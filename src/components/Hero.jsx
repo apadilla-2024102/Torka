@@ -38,7 +38,7 @@ export default function Hero() {
       <motion.div
         aria-hidden="true"
         className="pointer-events-none absolute -top-1/4 right-0 h-[70vh] w-[70vh] rounded-full blur-[120px]"
-        style={{ background: 'radial-gradient(circle, rgba(198,242,78,0.18), transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(227,16,25,0.30), transparent 70%)' }}
         animate={reduced ? {} : { scale: [1, 1.12, 1], opacity: [0.8, 1, 0.8] }}
         transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
       />
@@ -62,8 +62,8 @@ export default function Hero() {
             className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-ink-line bg-ink-soft/70 px-4 py-1.5 text-xs font-medium tracking-wide text-mist/80 backdrop-blur"
           >
             <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-volt opacity-60" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-volt" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand" />
             </span>
             Scooters eléctricos · Hecho para México
           </motion.p>
@@ -81,7 +81,7 @@ export default function Hero() {
                   {i === lineas.length - 1 ? (
                     <>
                       {linea}
-                      <span className="text-volt">.</span>
+                      <span className="text-brand-bright">.</span>
                     </>
                   ) : (
                     linea
@@ -112,7 +112,7 @@ export default function Hero() {
           >
             <a
               href="#gama"
-              className="group inline-flex items-center gap-2 rounded-full bg-volt px-7 py-3.5 font-semibold text-ink transition-all duration-300 hover:bg-volt-deep hover:shadow-[0_0_40px_-6px] hover:shadow-volt/50"
+              className="group inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 font-semibold text-mist transition-all duration-300 hover:bg-brand-deep hover:shadow-[0_0_40px_-6px] hover:shadow-brand/50"
             >
               Ver la gama
               <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
@@ -145,7 +145,7 @@ export default function Hero() {
                   <span className="tabular font-display text-3xl font-bold text-mist sm:text-4xl">
                     {d.valor}
                   </span>
-                  <span className="ml-1 text-sm font-medium text-volt">{d.unidad}</span>
+                  <span className="ml-1 text-sm font-medium text-brand-bright">{d.unidad}</span>
                   <span className="mt-1.5 block text-xs leading-snug text-mist/45">{d.pie}</span>
                 </dd>
               </motion.div>
@@ -173,7 +173,7 @@ export default function Hero() {
           transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
           className="flex h-10 w-6 items-start justify-center rounded-full border border-ink-line pt-2"
         >
-          <span className="h-1.5 w-1 rounded-full bg-volt" />
+          <span className="h-1.5 w-1 rounded-full bg-brand" />
         </motion.div>
       </motion.div>
     </section>
@@ -192,9 +192,9 @@ function EnergyRing({ reduced }) {
     <div className="relative mx-auto aspect-square w-full max-w-[540px]">
       <svg viewBox="0 0 400 400" className="absolute inset-0 h-full w-full" aria-hidden="true">
         <defs>
-          <linearGradient id="arcoVolt" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#c6f24e" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#c6f24e" stopOpacity="0" />
+          <linearGradient id="arcoBrand" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#ff3d45" stopOpacity="1" />
+            <stop offset="100%" stopColor="#e31019" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -205,7 +205,7 @@ function EnergyRing({ reduced }) {
             cy="200"
             r={r}
             fill="none"
-            stroke="#232b28"
+            stroke="#26262c"
             strokeWidth={i === 0 ? 1.5 : 1}
           />
         ))}
@@ -216,10 +216,10 @@ function EnergyRing({ reduced }) {
           cy="200"
           r="176"
           fill="none"
-          stroke="url(#arcoVolt)"
-          strokeWidth="2.5"
+          stroke="url(#arcoBrand)"
+          strokeWidth="4"
           strokeLinecap="round"
-          strokeDasharray="280 826"
+          strokeDasharray="340 766"
           style={{ transformOrigin: '200px 200px' }}
           animate={reduced ? {} : { rotate: 360 }}
           transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
@@ -229,10 +229,10 @@ function EnergyRing({ reduced }) {
           cy="200"
           r="146"
           fill="none"
-          stroke="url(#arcoVolt)"
-          strokeWidth="1.5"
+          stroke="url(#arcoBrand)"
+          strokeWidth="2.5"
           strokeLinecap="round"
-          strokeDasharray="120 797"
+          strokeDasharray="200 717"
           style={{ transformOrigin: '200px 200px' }}
           animate={reduced ? {} : { rotate: -360 }}
           transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
@@ -247,7 +247,7 @@ function EnergyRing({ reduced }) {
         className="absolute inset-[22%] flex flex-col items-center justify-center rounded-3xl border border-dashed border-ink-line bg-ink-soft/40 text-center backdrop-blur-sm"
       >
         {/* Sustituye este bloque por: <img src="/moto.png" alt="Scooter TORKA Urbana" /> */}
-        <svg viewBox="0 0 24 24" className="mb-3 h-9 w-9 text-volt/70" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <svg viewBox="0 0 24 24" className="mb-3 h-9 w-9 text-brand-bright/70" fill="none" stroke="currentColor" strokeWidth="1.5">
           <path strokeLinecap="round" strokeLinejoin="round" d="M13 3 4 14h7l-1 8 9-11h-7l1-8Z" />
         </svg>
         <p className="px-5 font-display text-sm font-semibold text-mist/70">

@@ -7,24 +7,30 @@
    la página se actualiza sola.
    ============================================================ */
 @theme {
-  /* Colores */
-  --color-ink: #0a0e0d; /* fondo oscuro principal */
-  --color-ink-soft: #141a18; /* superficies elevadas sobre ink */
-  --color-ink-line: #232b28; /* bordes sobre fondo oscuro */
-  --color-volt: #c6f24e; /* acento de marca — el color que manda */
-  --color-volt-deep: #9bd41f; /* acento en estados presionados */
-  --color-mist: #f5f7f3; /* fondo claro */
-  --color-mist-soft: #e8ece4; /* superficies sobre mist */
-  --color-slate: #6b7671; /* texto secundario */
+  /* --- Color de marca, tomado del logotipo TORKA --- */
+  --color-brand: #e31019; /* rojo TORKA: rellenos, botones, acentos sólidos */
+  --color-brand-bright: #ff3d45; /* misma familia, aclarada para TEXTO sobre negro.
+                                    El rojo de marca puro no alcanza contraste
+                                    legible en texto pequeño sobre fondo oscuro. */
+  --color-brand-deep: #a50a12; /* estados presionados y texto sobre fondo claro */
 
-  /* Tipografía */
+  /* --- Neutros --- */
+  --color-ink: #0c0c0e; /* negro del logotipo */
+  --color-ink-soft: #161619; /* superficies elevadas sobre ink */
+  --color-ink-line: #26262c; /* bordes sobre fondo oscuro */
+  --color-mist: #f5f5f7; /* fondo claro */
+  --color-mist-soft: #e7e7eb; /* superficies sobre mist */
+  --color-slate: #6d6d77; /* texto secundario */
+
+  /* --- Tipografía --- */
   --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
-  /* Curvas de animación */
+  /* --- Curvas de animación --- */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+
 
 @layer base {
   html {
@@ -65,14 +71,14 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-volt);
+    outline: 2px solid var(--color-brand);
     outline-offset: 3px;
     border-radius: 4px;
   }
 
   ::selection {
-    background-color: var(--color-volt);
-    color: var(--color-ink);
+    background-color: var(--color-brand);
+    color: var(--color-mist);
   }
 }
 

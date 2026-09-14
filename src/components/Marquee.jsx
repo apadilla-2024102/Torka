@@ -34,7 +34,7 @@ export default function Marquee() {
               <span className="font-display text-sm font-medium tracking-wide text-mist/55 uppercase">
                 {f}
               </span>
-              <span className="h-1 w-1 shrink-0 rounded-full bg-volt" aria-hidden="true" />
+              <span className="h-1 w-1 shrink-0 rounded-full bg-brand" aria-hidden="true" />
             </span>
           ))}
         </motion.div>

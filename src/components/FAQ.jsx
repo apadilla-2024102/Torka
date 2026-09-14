@@ -49,7 +49,7 @@ export default function FAQ() {
                       animate={{ rotate: activa ? 45 : 0 }}
                       transition={{ duration: 0.35, ease: EASE.outExpo }}
                       className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-colors duration-300 ${
-                        activa ? 'border-transparent bg-volt text-ink' : 'border-mist-soft text-slate'
+                        activa ? 'border-transparent bg-brand text-mist' : 'border-mist-soft text-slate'
                       }`}
                       aria-hidden="true"
                     >

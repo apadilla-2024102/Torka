@@ -17,7 +17,7 @@ export default function Distribuidores() {
     <section id="distribuidores" className="scroll-mt-24 border-t border-ink-line bg-ink py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mb-14 max-w-2xl">
-          <Reveal as="p" className="mb-4 font-display text-sm font-semibold tracking-widest text-volt uppercase">
+          <Reveal as="p" className="mb-4 font-display text-sm font-semibold tracking-widest text-brand-bright uppercase">
             Dónde probarla
           </Reveal>
           <Reveal
@@ -46,13 +46,13 @@ export default function Distribuidores() {
               variants={reduced ? { hidden: { opacity: 0 }, visible: { opacity: 1 } } : riseIn}
               whileHover={reduced ? {} : { y: -6 }}
               transition={{ duration: 0.35, ease: EASE.outExpo }}
-              className="group rounded-2xl border border-ink-line bg-ink-soft/50 p-7 transition-colors duration-500 hover:border-volt/35"
+              className="group rounded-2xl border border-ink-line bg-ink-soft/50 p-7 transition-colors duration-500 hover:border-brand/35"
             >
               <span className="font-display text-xl font-semibold text-mist">{p.ciudad}</span>
               <span className="mt-1 block text-sm text-mist/50">{p.zona}</span>
               <a
                 href={`tel:${p.tel.replace(/\s/g, '')}`}
-                className="tabular mt-5 inline-flex items-center gap-2 text-sm font-medium text-volt transition-colors hover:text-volt-deep"
+                className="tabular mt-5 inline-flex items-center gap-2 text-sm font-medium text-brand-bright transition-colors hover:text-brand-deep"
               >
                 <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
                   <path
@@ -69,7 +69,7 @@ export default function Distribuidores() {
 
         <Reveal
           delay={0.15}
-          className="mt-14 flex flex-col items-start gap-6 rounded-3xl border border-volt/25 bg-gradient-to-br from-ink-soft to-ink p-9 sm:flex-row sm:items-center sm:justify-between"
+          className="mt-14 flex flex-col items-start gap-6 rounded-3xl border border-brand/25 bg-gradient-to-br from-ink-soft to-ink p-9 sm:flex-row sm:items-center sm:justify-between"
         >
           <div>
             <p className="font-display text-2xl font-semibold text-mist">
@@ -82,7 +82,7 @@ export default function Distribuidores() {
           </div>
           <a
             href="mailto:ventas@torka.mx"
-            className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-volt px-7 py-3.5 font-semibold text-ink transition-all duration-300 hover:bg-volt-deep hover:shadow-[0_0_40px_-6px] hover:shadow-volt/50"
+            className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-brand px-7 py-3.5 font-semibold text-mist transition-all duration-300 hover:bg-brand-deep hover:shadow-[0_0_40px_-6px] hover:shadow-brand/50"
           >
             Hablar con ventas
             <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">

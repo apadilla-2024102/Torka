@@ -20,7 +20,7 @@ export default function Catalogo() {
           <div className="max-w-2xl">
             <Reveal
               as="p"
-              className="mb-4 font-display text-sm font-semibold tracking-widest text-volt-deep uppercase"
+              className="mb-4 font-display text-sm font-semibold tracking-widest text-brand-deep uppercase"
             >
               La gama
             </Reveal>

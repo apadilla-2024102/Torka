@@ -80,7 +80,7 @@ export default function Comparador() {
                         <td key={m.id} className="p-5">
                           <span
                             className={`tabular inline-flex items-center gap-1.5 rounded-lg px-2 py-1 font-display text-base font-semibold ${
-                              esGanador ? 'bg-volt/25 text-ink' : 'text-ink/75'
+                              esGanador ? 'bg-brand/25 text-ink' : 'text-ink/75'
                             }`}
                           >
                             {v}

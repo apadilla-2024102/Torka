@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import Logo from './Logo.jsx'
 import { EASE } from '../lib/motion.js'
 
 const enlaces = [
@@ -44,14 +45,8 @@ export default function Nav() {
         }`}
       >
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
-          <a
-            href="#inicio"
-            className="font-display text-xl font-bold tracking-tight text-mist"
-            aria-label="TORKA, ir al inicio"
-          >
-            {/* Sustituye este texto por tu logo cuando lo tengas listo. */}
-            TORKA
-            <span className="text-volt">.</span>
+          <a href="#inicio" aria-label="TORKA, ir al inicio" className="shrink-0">
+            <Logo />
           </a>
 
           <ul className="hidden items-center gap-1 md:flex">
@@ -70,7 +65,7 @@ export default function Nav() {
           <div className="flex items-center gap-3">
             <a
               href="#distribuidores"
-              className="hidden rounded-full bg-volt px-5 py-2.5 text-sm font-semibold text-ink transition-transform duration-300 hover:scale-[1.03] active:scale-95 sm:inline-block"
+              className="hidden rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-mist transition-transform duration-300 hover:scale-[1.03] active:scale-95 sm:inline-block"
             >
               Dónde probarla
             </a>

@@ -1,3 +1,5 @@
+import Logo from './Logo.jsx'
+
 const columnas = [
   {
     titulo: 'Gama',
@@ -33,9 +35,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_2fr]">
           <div>
-            <span className="font-display text-2xl font-bold text-mist">
-              TORKA<span className="text-volt">.</span>
-            </span>
+            <Logo tagline alturaClase="h-10" />
             <p className="mt-4 max-w-sm leading-relaxed text-mist/50">
               Scooters eléctricos diseñados para el tráfico, los baches y los
               presupuestos reales de este país.
@@ -53,7 +53,7 @@ export default function Footer() {
                     <li key={e.label}>
                       <a
                         href={e.href}
-                        className="text-sm text-mist/50 transition-colors duration-300 hover:text-volt"
+                        className="text-sm text-mist/50 transition-colors duration-300 hover:text-brand-bright"
                       >
                         {e.label}
                       </a>

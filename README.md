@@ -30,8 +30,12 @@ Sin backend, sin base de datos, sin dependencias de pago.
 Está construido con datos y gráficos de ejemplo. Estos son los cinco puntos
 que hay que sustituir, en orden de importancia:
 
-1. **Colores y tipografía** — `src/index.css`, bloque `@theme`. Es el único
-   sitio que tocas para cambiar la identidad: todo lo demás se actualiza solo.
+1. **El logotipo** — guarda el archivo en `public/` (por ejemplo
+   `public/logo.svg`, o PNG con fondo transparente y 600 px de ancho mínimo)
+   y en `src/components/Logo.jsx` cambia `ARCHIVO_LOGO` de `null` a
+   `'/logo.svg'`. Hasta entonces se dibuja un sustituto tipográfico. No se
+   reprodujo el emblema a mano a propósito: una copia aproximada de una marca
+   registrada se ve peor y la deforma.
 2. **Fotos de las motos** — cada hueco marcado con borde punteado indica el
    formato esperado. Van en `public/` y se referencian desde `Hero.jsx` y
    `ModeloCard.jsx`, donde hay un comentario con la línea exacta a usar.
@@ -45,8 +49,23 @@ que hay que sustituir, en orden de importancia:
    `src/components/Ahorro.jsx`. Tarifa eléctrica, consumo y mantenimiento.
    Actualízalos con precios vigentes o el número pierde credibilidad.
 
-También: red de distribuidores en `src/components/Distribuidores.jsx` y el
-logo, que ahora es texto, en `Nav.jsx` y `Footer.jsx`.
+También: red de distribuidores en `src/components/Distribuidores.jsx`.
+
+## Color
+
+La paleta sale del logotipo: rojo TORKA sobre negro, con blanco roto para
+las zonas claras. Vive en el bloque `@theme` de `src/index.css` y es el único
+sitio que hay que tocar para cambiarla.
+
+Hay tres rojos, y la distinción importa:
+
+| Token | Para qué |
+|---|---|
+| `brand` | Rellenos sólidos: botones, resaltados, el color que manda |
+| `brand-bright` | **Texto sobre fondo negro.** El rojo de marca puro no alcanza contraste legible en texto pequeño sobre oscuro |
+| `brand-deep` | Texto sobre fondo claro y estados presionados |
+
+Sobre rojo sólido el texto va en blanco (`text-mist`), nunca en negro.
 
 ## Cómo está organizado
 

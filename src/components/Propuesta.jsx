@@ -60,7 +60,7 @@ export default function Propuesta() {
     <section className="relative bg-ink py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mb-16 max-w-2xl">
-          <Reveal as="p" className="mb-4 font-display text-sm font-semibold tracking-widest text-volt uppercase">
+          <Reveal as="p" className="mb-4 font-display text-sm font-semibold tracking-widest text-brand-bright uppercase">
             Por qué eléctrica
           </Reveal>
           <Reveal
@@ -89,18 +89,18 @@ export default function Propuesta() {
               variants={reduced ? { hidden: { opacity: 0 }, visible: { opacity: 1 } } : riseIn}
               whileHover={reduced ? {} : { y: -6 }}
               transition={{ duration: 0.35, ease: EASE.outExpo }}
-              className="group relative overflow-hidden rounded-2xl border border-ink-line bg-ink-soft/50 p-8 transition-colors duration-500 hover:border-volt/35"
+              className="group relative overflow-hidden rounded-2xl border border-ink-line bg-ink-soft/50 p-8 transition-colors duration-500 hover:border-brand/35"
             >
               {/* Resplandor que sigue al hover, sutil */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-volt/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
+                className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-brand/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
               />
 
               <div className="relative flex items-start justify-between gap-6">
                 <svg
                   viewBox="0 0 24 24"
-                  className="h-8 w-8 shrink-0 text-volt"
+                  className="h-8 w-8 shrink-0 text-brand-bright"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="1.5"

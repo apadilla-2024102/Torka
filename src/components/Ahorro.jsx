@@ -57,7 +57,7 @@ export default function Ahorro() {
     <section id="ahorro" className="scroll-mt-24 overflow-hidden bg-ink py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mb-14 max-w-2xl">
-          <Reveal as="p" className="mb-4 font-display text-sm font-semibold tracking-widest text-volt uppercase">
+          <Reveal as="p" className="mb-4 font-display text-sm font-semibold tracking-widest text-brand-bright uppercase">
             Haz la cuenta
           </Reveal>
           <Reveal
@@ -124,16 +124,16 @@ export default function Ahorro() {
           {/* ---------- Resultado ---------- */}
           <Reveal
             delay={0.1}
-            className="relative overflow-hidden rounded-3xl border border-volt/25 bg-gradient-to-br from-ink-soft to-ink p-7 sm:p-9"
+            className="relative overflow-hidden rounded-3xl border border-brand/25 bg-gradient-to-br from-ink-soft to-ink p-7 sm:p-9"
           >
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-volt/10 blur-3xl"
+              className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-brand/10 blur-3xl"
             />
 
             <div className="relative">
               <p className="text-sm font-medium text-mist/55">Ahorro estimado al año</p>
-              <p className="tabular mt-2 font-display text-[clamp(2.75rem,7vw,4.5rem)] font-bold leading-none text-volt">
+              <p className="tabular mt-2 font-display text-[clamp(2.75rem,7vw,4.5rem)] font-bold leading-none text-brand-bright">
                 {money.format(ahorroAnimado)}
               </p>
               <p className="mt-3 text-sm text-mist/50">
@@ -154,7 +154,7 @@ export default function Ahorro() {
                   etiqueta="TORKA eléctrica"
                   monto={money.format(electricoAnimado)}
                   ancho={proporcion}
-                  tono="bg-volt"
+                  tono="bg-brand"
                   reduced={reduced}
                 />
               </div>
@@ -172,7 +172,7 @@ export default function Ahorro() {
                   <dt className="text-xs font-medium tracking-wide text-mist/40 uppercase">
                     Costo por km · TORKA
                   </dt>
-                  <dd className="tabular mt-1.5 font-display text-2xl font-bold text-volt">
+                  <dd className="tabular mt-1.5 font-display text-2xl font-bold text-brand-bright">
                     ${calculo.porKmElectrico.toFixed(2)}
                   </dd>
                 </div>
@@ -192,7 +192,7 @@ function Control({ id, etiqueta, valor, min, max, paso, sufijo, decimales = 0, o
         <label htmlFor={id} className="text-sm font-medium text-mist/75">
           {etiqueta}
         </label>
-        <span className="tabular font-display text-xl font-bold text-volt">
+        <span className="tabular font-display text-xl font-bold text-brand-bright">
           {valor.toFixed(decimales)}
           <span className="ml-1 text-xs font-medium text-mist/45">{sufijo}</span>
         </span>
@@ -205,7 +205,7 @@ function Control({ id, etiqueta, valor, min, max, paso, sufijo, decimales = 0, o
         step={paso}
         value={valor}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-ink-line accent-volt"
+        className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-ink-line accent-brand"
       />
     </div>
   )
