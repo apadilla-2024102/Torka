@@ -1,3 +1,4 @@
+import ScrollProgress from './components/ScrollProgress.jsx'
 import Nav from './components/Nav.jsx'
 import Hero from './components/Hero.jsx'
 import Marquee from './components/Marquee.jsx'
@@ -19,6 +20,7 @@ export default function App() {
         Saltar al contenido
       </a>
 
+      <ScrollProgress />
       <Nav />
 
       <main>

@@ -2,6 +2,7 @@
  * Catálogo TORKA.
  *
  * DATOS DE EJEMPLO. Sustituye por las fichas reales antes de publicar.
+ * Precios en quetzales (GTQ), de ejemplo.
  * La estructura ya está lista: añade o quita modelos y la página, el
  * comparador y el filtro se reconstruyen solos.
  */
@@ -13,7 +14,7 @@ export const modelos = [
     tagline: 'La primera moto eléctrica que no te complica la vida',
     perfil: 'ciudad',
     perfilLabel: 'Ciudad',
-    precio: 32900,
+    precio: 13900,
     destacado: 'Más vendida',
     resumen:
       'Pensada para trayectos cortos y constantes: casa, oficina, mandado. Batería extraíble, así que la subes al departamento y la cargas en un contacto normal.',
@@ -27,8 +28,8 @@ export const modelos = [
     },
     puntos: [
       'Batería extraíble de 11 kg',
-      'No requiere licencia tipo A en la mayoría de estados',
-      'Cargador incluido, contacto doméstico de 127 V',
+      'No requiere licencia tipo M en la mayoría de departamentos',
+      'Cargador incluido, contacto doméstico de 120 V',
     ],
   },
   {
@@ -37,7 +38,7 @@ export const modelos = [
     tagline: 'Autonomía para dejar de pensar en la batería',
     perfil: 'autonomia',
     perfilLabel: 'Larga distancia',
-    precio: 46500,
+    precio: 19500,
     destacado: 'Mayor autonomía',
     resumen:
       'Doble batería y motor de mayor par para subidas y trayectos largos. Si haces más de 40 km diarios o vives en zona con pendientes, esta es la que aguanta.',
@@ -61,7 +62,7 @@ export const modelos = [
     tagline: 'Hecha para trabajar todos los días',
     perfil: 'trabajo',
     perfilLabel: 'Reparto y trabajo',
-    precio: 41900,
+    precio: 17600,
     destacado: null,
     resumen:
       'Chasis reforzado, parrilla trasera y suspensión calibrada para peso. Para reparto, mensajería y flotillas donde cada peso de combustible cuenta.',
@@ -85,7 +86,7 @@ export const modelos = [
     tagline: 'La respuesta a quien dice que lo eléctrico es lento',
     perfil: 'potencia',
     perfilLabel: 'Potencia',
-    precio: 54900,
+    precio: 22900,
     destacado: null,
     resumen:
       'Motor de 3000 W y arranque instantáneo. Velocidad de vía primaria con la entrega de par que solo da un eléctrico. Requiere licencia y placas.',
@@ -100,7 +101,7 @@ export const modelos = [
     puntos: [
       'De 0 a 50 km/h en 4.2 segundos',
       'Tres modos de manejo: Eco, Ciudad y Sport',
-      'Requiere licencia tipo A y placas',
+      'Requiere licencia tipo M y placas',
     ],
   },
 ]

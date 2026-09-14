@@ -1,11 +1,12 @@
 import { motion, useReducedMotion } from 'motion/react'
 import Reveal from './Reveal.jsx'
+import SplitText from './SplitText.jsx'
 import { modelos, specsMeta } from '../data/modelos.js'
 import { EASE, inViewOnce } from '../lib/motion.js'
 
-const money = new Intl.NumberFormat('es-MX', {
+const money = new Intl.NumberFormat('es-GT', {
   style: 'currency',
-  currency: 'MXN',
+  currency: 'GTQ',
   maximumFractionDigits: 0,
 })
 
@@ -24,14 +25,13 @@ export default function Comparador() {
     <section id="comparar" className="scroll-mt-24 bg-mist pb-24 sm:pb-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mb-10 max-w-2xl">
-          <Reveal
-            as="h2"
-            className="font-display text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-tight text-ink"
-          >
-            Compara lado a lado
-          </Reveal>
+          <SplitText
+              as="h2"
+              texto="Compara lado a lado"
+              className="font-display text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-tight text-ink"
+            />
           <Reveal as="p" delay={0.08} className="mt-4 leading-relaxed text-slate">
-            Resaltado en verde, el mejor dato de cada fila. Ojo: el mejor número
+            Resaltado en rojo, el mejor dato de cada fila. Ojo: el mejor número
             no siempre es la mejor compra — más autonomía de la que necesitas es
             dinero inmovilizado en batería.
           </Reveal>

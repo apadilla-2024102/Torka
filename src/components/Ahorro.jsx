@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import Reveal from './Reveal.jsx'
+import SplitText from './SplitText.jsx'
 import { useCountUp } from '../lib/useCountUp.js'
 import { EASE } from '../lib/motion.js'
 
@@ -13,22 +14,23 @@ import { EASE } from '../lib/motion.js'
  */
 const SUPUESTOS = {
   consumoKwh100km: 2.8, // kWh por cada 100 km
-  tarifaKwh: 1.95, // pesos por kWh, tarifa doméstica básica
-  mantenimientoGasolinaAnual: 2400, // afinaciones, aceite, filtros
-  mantenimientoElectricoAnual: 600, // frenos y llantas
+  tarifaKwh: 1.85, // quetzales por kWh, tarifa doméstica
+  litrosPorGalon: 3.785, // en Guatemala la gasolina se vende por galón
+  mantenimientoGasolinaAnual: 1100, // afinaciones, aceite, filtros
+  mantenimientoElectricoAnual: 280, // frenos y llantas
 }
 
-const money = new Intl.NumberFormat('es-MX', {
+const money = new Intl.NumberFormat('es-GT', {
   style: 'currency',
-  currency: 'MXN',
+  currency: 'GTQ',
   maximumFractionDigits: 0,
 })
 
 export default function Ahorro() {
   const reduced = useReducedMotion()
   const [kmMes, setKmMes] = useState(600)
-  const [precioGasolina, setPrecioGasolina] = useState(24.5)
-  const [rendimiento, setRendimiento] = useState(35)
+  const [precioGasolina, setPrecioGasolina] = useState(38)
+  const [rendimiento, setRendimiento] = useState(130)
 
   const calculo = useMemo(() => {
     const kmAnual = kmMes * 12
@@ -60,13 +62,12 @@ export default function Ahorro() {
           <Reveal as="p" className="mb-4 font-display text-sm font-semibold tracking-widest text-brand-bright uppercase">
             Haz la cuenta
           </Reveal>
-          <Reveal
-            as="h2"
-            delay={0.08}
-            className="font-display text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.05] text-mist"
-          >
-            Cuánto dejas de gastar al año
-          </Reveal>
+          <SplitText
+              as="h2"
+              texto="Cuánto dejas de gastar al año"
+              retraso={0.08}
+              className="font-display text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.05] text-mist"
+            />
           <Reveal as="p" delay={0.16} className="mt-5 text-lg leading-relaxed text-mist/60">
             Mueve los valores a tu realidad. Preferimos que compruebes el número
             con tus datos a darte una cifra bonita que no se sostenga.
@@ -93,10 +94,10 @@ export default function Ahorro() {
                 id="gas"
                 etiqueta="Precio de la gasolina"
                 valor={precioGasolina}
-                min={15}
-                max={40}
+                min={25}
+                max={60}
                 paso={0.5}
-                sufijo="$/L"
+                sufijo="Q/galón"
                 decimales={2}
                 onChange={setPrecioGasolina}
               />
@@ -104,20 +105,21 @@ export default function Ahorro() {
                 id="rend"
                 etiqueta="Rendimiento de tu moto actual"
                 valor={rendimiento}
-                min={15}
-                max={60}
-                paso={1}
-                sufijo="km/L"
+                min={60}
+                max={220}
+                paso={5}
+                sufijo="km/galón"
                 onChange={setRendimiento}
               />
             </div>
 
             <p className="mt-9 border-t border-ink-line pt-6 text-xs leading-relaxed text-mist/40">
-              Cálculo sobre {calculo.kmAnual.toLocaleString('es-MX')} km al año. Incluye
+              Cálculo sobre {calculo.kmAnual.toLocaleString('es-GT')} km al año. Incluye
               energía y mantenimiento estimado ({money.format(SUPUESTOS.mantenimientoGasolinaAnual)} anuales
               en gasolina contra {money.format(SUPUESTOS.mantenimientoElectricoAnual)} en eléctrica).
-              Energía eléctrica a {SUPUESTOS.tarifaKwh} $/kWh y consumo de{' '}
-              {SUPUESTOS.consumoKwh100km} kWh por cada 100 km.
+              Energía eléctrica a Q{SUPUESTOS.tarifaKwh} por kWh y consumo de{' '}
+              {SUPUESTOS.consumoKwh100km} kWh por cada 100 km. Gasolina calculada
+              por galón, como se vende en Guatemala.
             </p>
           </Reveal>
 
@@ -165,7 +167,7 @@ export default function Ahorro() {
                     Costo por km · gasolina
                   </dt>
                   <dd className="tabular mt-1.5 font-display text-2xl font-bold text-mist">
-                    ${calculo.porKmGasolina.toFixed(2)}
+                    Q{calculo.porKmGasolina.toFixed(2)}
                   </dd>
                 </div>
                 <div>
@@ -173,7 +175,7 @@ export default function Ahorro() {
                     Costo por km · TORKA
                   </dt>
                   <dd className="tabular mt-1.5 font-display text-2xl font-bold text-brand-bright">
-                    ${calculo.porKmElectrico.toFixed(2)}
+                    Q{calculo.porKmElectrico.toFixed(2)}
                   </dd>
                 </div>
               </dl>
