@@ -48,6 +48,11 @@ que hay que sustituir, en orden de importancia:
      **sin necesidad de recortarla**.
    - **Tarjetas:** `src/components/ModeloCard.jsx` tiene un comentario con
      la línea exacta.
+
+   Mientras no exista `public/moto.png`, el héroe dibuja una ilustración
+   vectorial de respaldo (`MotoIlustracion.jsx`) que se traza sola al
+   cargar. Es un dibujo original y genérico, no el producto: sustitúyela
+   por la fotografía real en cuanto la tengas.
 3. **Fichas técnicas** — `src/data/modelos.js`. Nombres, precios, autonomía,
    potencia. Añade o quita modelos y el catálogo, el filtro y el comparador
    se reconstruyen solos.

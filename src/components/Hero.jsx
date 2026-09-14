@@ -9,6 +9,7 @@ import {
   useTransform,
 } from 'motion/react'
 import MagneticButton from './MagneticButton.jsx'
+import MotoIlustracion from './MotoIlustracion.jsx'
 import { DURATION, EASE, maskUp, stagger } from '../lib/motion.js'
 
 const lineas = ['La ciudad', 'cambió de sonido']
@@ -310,7 +311,7 @@ function EnergyRing({ reduced, progreso }) {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.1, ease: EASE.outExpo, delay: 0.4 }}
         className={
-          hayFoto && SIN_FONDO
+          !hayFoto || SIN_FONDO
             ? 'absolute inset-[10%] flex items-center justify-center'
             : 'absolute inset-[18%] overflow-hidden rounded-[2rem]'
         }
@@ -347,16 +348,8 @@ function EnergyRing({ reduced, progreso }) {
             </>
           )
         ) : (
-          <div className="flex h-full w-full flex-col items-center justify-center rounded-[2rem] border border-dashed border-ink-line bg-ink-soft/40 text-center backdrop-blur-sm">
-            <svg viewBox="0 0 24 24" className="mb-3 h-9 w-9 text-brand-bright/70" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13 3 4 14h7l-1 8 9-11h-7l1-8Z" />
-            </svg>
-            <p className="px-5 font-display text-sm font-semibold text-mist/70">
-              Aquí va la foto de la moto
-            </p>
-            <p className="mt-1 px-6 text-xs leading-snug text-mist/35">
-              Sube public/moto.png — PNG transparente, 1200 px de ancho
-            </p>
+          <div className="flex h-full w-full items-center justify-center">
+            <MotoIlustracion className="h-auto w-[115%] max-w-none text-mist/80" />
           </div>
         )}
       </motion.div>
