@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import {
   motion,
   useMotionTemplate,
@@ -15,7 +15,7 @@ const lineas = ['La ciudad', 'cambió de sonido']
 
 const datos = [
   { valor: '120', unidad: 'km', pie: 'de autonomía máxima' },
-  { valor: '0.20', unidad: '$/km', pie: 'de costo en energía' },
+  { valor: '0.09', unidad: 'Q/km', pie: 'de costo en energía' },
   { valor: '4', unidad: 'modelos', pie: 'en la gama actual' },
 ]
 
@@ -218,23 +218,34 @@ export default function Hero() {
 /**
  * Composición gráfica del héroe.
  *
- * PARA PONER TU FOTO:
- *   1. Sube el archivo a public/ (por ejemplo public/moto.jpg).
- *   2. Cambia FOTO abajo a '/moto.jpg'.
- *   3. Si el archivo YA viene sin fondo (PNG transparente), pon
- *      SIN_FONDO en true. Si es una foto normal con pared y piso
- *      detrás, déjalo en false.
+ * LA FOTO YA ESTÁ ACTIVADA. Solo falta subir el archivo:
  *
- * Los dos casos están resueltos con tratamientos distintos:
- *   - Sin fondo: la moto flota dentro de los anillos, con sombra propia.
- *   - Con fondo: la foto va enmarcada en un panel redondeado con
- *     degradado encima, para que el fondo real se funda con el negro de
- *     la página en lugar de pelearse con él.
+ *   public/moto.png
+ *
+ * Requisitos, y los tres importan:
+ *   - PNG con transparencia REAL. Un PNG o JPG con fondo blanco se verá
+ *     como un recuadro blanco sobre el negro de la página.
+ *   - Al menos 1200 px de ancho. El hueco se muestra a más de 500 px, así
+ *     que una imagen de 256 px se ve borrosa.
+ *   - La moto encuadrada holgada, sin recorte al ras de las ruedas.
+ *
+ * Mientras el archivo no exista, se muestra el marcador automáticamente:
+ * activar esta constante antes de subir la imagen no rompe nada.
+ *
+ * Si tu archivo TIENE fondo (pared, piso, estudio), pon SIN_FONDO en
+ * false: entonces la foto se enmarca con un degradado que funde el fondo
+ * real con el negro de la página, y no hace falta recortarla.
  */
-const FOTO = null
-const SIN_FONDO = false
+const FOTO = '/moto.png'
+const SIN_FONDO = true
 
 function EnergyRing({ reduced, progreso }) {
+  // Si el archivo todavía no está subido, la imagen falla al cargar y se
+  // vuelve al marcador. Así activar FOTO antes de tiempo nunca deja un
+  // icono roto en producción.
+  const [fotoRota, setFotoRota] = useState(false)
+  const hayFoto = Boolean(FOTO) && !fotoRota
+
   // Los anillos giran solos y además reaccionan al scroll: el giro
   // acumulado hace que la composición nunca se vea estática.
   const giroScroll = useTransform(progreso, [0, 1], [0, 90])
@@ -299,16 +310,17 @@ function EnergyRing({ reduced, progreso }) {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.1, ease: EASE.outExpo, delay: 0.4 }}
         className={
-          FOTO && SIN_FONDO
+          hayFoto && SIN_FONDO
             ? 'absolute inset-[10%] flex items-center justify-center'
             : 'absolute inset-[18%] overflow-hidden rounded-[2rem]'
         }
       >
-        {FOTO ? (
+        {hayFoto ? (
           SIN_FONDO ? (
             <motion.img
               src={FOTO}
               alt="Scooter eléctrico TORKA"
+              onError={() => setFotoRota(true)}
               className="h-full w-full object-contain drop-shadow-[0_30px_50px_rgba(0,0,0,0.6)]"
               animate={reduced ? {} : { y: [0, -12, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
@@ -318,6 +330,7 @@ function EnergyRing({ reduced, progreso }) {
               <motion.img
                 src={FOTO}
                 alt="Scooter eléctrico TORKA"
+                onError={() => setFotoRota(true)}
                 className="h-full w-full object-cover"
                 animate={reduced ? {} : { scale: [1, 1.07, 1] }}
                 transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
@@ -342,7 +355,7 @@ function EnergyRing({ reduced, progreso }) {
               Aquí va la foto de la moto
             </p>
             <p className="mt-1 px-6 text-xs leading-snug text-mist/35">
-              Súbela a public/ y activa FOTO en este archivo
+              Sube public/moto.png — PNG transparente, 1200 px de ancho
             </p>
           </div>
         )}
