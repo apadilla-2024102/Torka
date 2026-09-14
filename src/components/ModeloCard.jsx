@@ -1,25 +1,30 @@
 import { motion, useReducedMotion } from 'motion/react'
 import { EASE } from '../lib/motion.js'
+import { useTilt } from '../lib/useTilt.js'
 
-const money = new Intl.NumberFormat('es-MX', {
+const money = new Intl.NumberFormat('es-GT', {
   style: 'currency',
-  currency: 'MXN',
+  currency: 'GTQ',
   maximumFractionDigits: 0,
 })
 
 export default function ModeloCard({ modelo, index }) {
   const reduced = useReducedMotion()
+  const tilt = useTilt({ grados: 6 })
   const { nombre, tagline, precio, destacado, resumen, specs, puntos } = modelo
 
   return (
+    <motion.div layout style={{ perspective: 1100 }} className="h-full">
     <motion.article
-      layout
+      ref={tilt.ref}
+      {...tilt.manejadores}
       initial={reduced ? { opacity: 0 } : { opacity: 0, y: 30, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={reduced ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
       transition={{ duration: 0.55, ease: EASE.outExpo, delay: index * 0.06 }}
-      whileHover={reduced ? {} : { y: -8 }}
-      className="group relative flex flex-col overflow-hidden rounded-3xl border border-mist-soft bg-white transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgba(12,12,14,0.26)]"
+      whileHover={reduced ? {} : { y: -8, scale: tilt.escalaHover }}
+      style={tilt.estilo}
+      className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-mist-soft bg-white transition-shadow duration-500 hover:shadow-[0_32px_70px_-28px_rgba(12,12,14,0.35)]"
     >
       {/* Zona de imagen */}
       <div className="relative aspect-[4/3] overflow-hidden border-b border-mist-soft bg-mist-soft/60">
@@ -116,5 +121,6 @@ export default function ModeloCard({ modelo, index }) {
         </footer>
       </div>
     </motion.article>
+    </motion.div>
   )
 }

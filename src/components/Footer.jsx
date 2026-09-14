@@ -38,7 +38,7 @@ export default function Footer() {
             <Logo tagline alturaClase="h-10" />
             <p className="mt-4 max-w-sm leading-relaxed text-mist/50">
               Scooters eléctricos diseñados para el tráfico, los baches y los
-              presupuestos reales de este país.
+              presupuestos reales de Guatemala.
             </p>
           </div>
 

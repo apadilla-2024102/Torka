@@ -1,13 +1,14 @@
 import { motion, useReducedMotion } from 'motion/react'
 import Reveal from './Reveal.jsx'
+import SplitText from './SplitText.jsx'
 import { EASE, inViewOnce, riseIn, stagger } from '../lib/motion.js'
 
 /** DATOS DE EJEMPLO: sustituye por tu red real de distribuidores. */
 const puntos = [
-  { ciudad: 'Ciudad de México', zona: 'Roma Norte', tel: '55 0000 0000' },
-  { ciudad: 'Guadalajara', zona: 'Providencia', tel: '33 0000 0000' },
-  { ciudad: 'Monterrey', zona: 'San Pedro', tel: '81 0000 0000' },
-  { ciudad: 'Querétaro', zona: 'Centro Sur', tel: '44 0000 0000' },
+  { ciudad: 'Ciudad de Guatemala', zona: 'Zona 10', tel: '2200 0000' },
+  { ciudad: 'Quetzaltenango', zona: 'Zona 3', tel: '7700 0000' },
+  { ciudad: 'Escuintla', zona: 'Centro', tel: '7880 0000' },
+  { ciudad: 'Cobán', zona: 'Zona 1', tel: '7950 0000' },
 ]
 
 export default function Distribuidores() {
@@ -20,13 +21,12 @@ export default function Distribuidores() {
           <Reveal as="p" className="mb-4 font-display text-sm font-semibold tracking-widest text-brand-bright uppercase">
             Dónde probarla
           </Reveal>
-          <Reveal
-            as="h2"
-            delay={0.08}
-            className="font-display text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.05] text-mist"
-          >
-            Ninguna moto se compra por una página web
-          </Reveal>
+          <SplitText
+              as="h2"
+              texto="Ninguna moto se compra por una página web"
+              retraso={0.08}
+              className="font-display text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.05] text-mist"
+            />
           <Reveal as="p" delay={0.16} className="mt-5 text-lg leading-relaxed text-mist/60">
             Súbete, acelera y siente el par. Te vas a dar cuenta en los primeros
             veinte metros. Agenda una prueba en el punto que te quede cerca.
@@ -81,7 +81,7 @@ export default function Distribuidores() {
             </p>
           </div>
           <a
-            href="mailto:ventas@torka.mx"
+            href="mailto:ventas@torka.gt"
             className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-brand px-7 py-3.5 font-semibold text-mist transition-all duration-300 hover:bg-brand-deep hover:shadow-[0_0_40px_-6px] hover:shadow-brand/50"
           >
             Hablar con ventas

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import Reveal from './Reveal.jsx'
+import SplitText from './SplitText.jsx'
 import { faq } from '../data/faq.js'
 import { EASE } from '../lib/motion.js'
 
@@ -12,12 +13,11 @@ export default function FAQ() {
     <section id="preguntas" className="scroll-mt-24 bg-mist py-24 sm:py-32">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr]">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <Reveal
-            as="h2"
-            className="font-display text-[clamp(2rem,5vw,3.25rem)] font-bold leading-[1.05] text-ink"
-          >
-            Lo que todos preguntan antes de decidir
-          </Reveal>
+          <SplitText
+              as="h2"
+              texto="Lo que todos preguntan antes de decidir"
+              className="font-display text-[clamp(2rem,5vw,3.25rem)] font-bold leading-[1.05] text-ink"
+            />
           <Reveal as="p" delay={0.08} className="mt-5 leading-relaxed text-slate">
             Son las seis dudas que detienen la compra en piso. Si después de
             leerlas te queda una más, tu distribuidor la responde en la prueba

@@ -1,5 +1,14 @@
 import { useRef } from 'react'
-import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from 'motion/react'
+import MagneticButton from './MagneticButton.jsx'
 import { DURATION, EASE, maskUp, stagger } from '../lib/motion.js'
 
 const lineas = ['La ciudad', 'cambió de sonido']
@@ -25,14 +34,40 @@ export default function Hero() {
   const yGrafico = useTransform(scrollYProgress, [0, 1], ['0%', '-12%'])
   const opacidad = useTransform(scrollYProgress, [0, 0.7], [1, 0])
 
+  // Resplandor que persigue al cursor. Se suaviza con muelle para que no
+  // se pegue al puntero: seguirlo con retraso se lee como profundidad,
+  // seguirlo exacto se lee como un error de renderizado.
+  const cursorX = useMotionValue(0)
+  const cursorY = useMotionValue(0)
+  const glowX = useSpring(cursorX, { stiffness: 60, damping: 22, mass: 0.6 })
+  const glowY = useSpring(cursorY, { stiffness: 60, damping: 22, mass: 0.6 })
+  const fondoGlow = useMotionTemplate`radial-gradient(420px circle at ${glowX}px ${glowY}px, rgba(227,16,25,0.13), transparent 72%)`
+
+  const seguirCursor = (e) => {
+    if (reduced) return
+    const caja = e.currentTarget.getBoundingClientRect()
+    cursorX.set(e.clientX - caja.left)
+    cursorY.set(e.clientY - caja.top)
+  }
+
   return (
     <section
       id="inicio"
       ref={ref}
+      onMouseMove={seguirCursor}
       className="relative flex min-h-[100svh] items-center overflow-hidden bg-ink pt-28 pb-16"
     >
       {/* Rejilla técnica de fondo */}
       <div className="bg-grid absolute inset-0 opacity-50" aria-hidden="true" />
+
+      {/* Resplandor que persigue al cursor */}
+      {!reduced && (
+        <motion.div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{ background: fondoGlow }}
+        />
+      )}
 
       {/* Halo de color: da vida al fondo sin necesitar una fotografía */}
       <motion.div
@@ -65,7 +100,7 @@ export default function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand" />
             </span>
-            Scooters eléctricos · Hecho para México
+            Scooters eléctricos · Hecho para Guatemala
           </motion.p>
 
           {/* Revelado con máscara: cada línea sube desde detrás de un borde
@@ -110,21 +145,21 @@ export default function Hero() {
             }}
             className="mt-10 flex flex-wrap items-center gap-3"
           >
-            <a
+            <MagneticButton
               href="#gama"
-              className="group inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 font-semibold text-mist transition-all duration-300 hover:bg-brand-deep hover:shadow-[0_0_40px_-6px] hover:shadow-brand/50"
+              className="group inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 font-semibold text-mist transition-colors duration-300 hover:bg-brand-deep hover:shadow-[0_0_40px_-6px] hover:shadow-brand/50"
             >
               Ver la gama
               <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
                 →
               </span>
-            </a>
-            <a
+            </MagneticButton>
+            <MagneticButton
               href="#ahorro"
               className="inline-flex items-center gap-2 rounded-full border border-ink-line px-7 py-3.5 font-semibold text-mist transition-colors duration-300 hover:border-mist/40 hover:bg-ink-soft"
             >
               Calcular mi ahorro
-            </a>
+            </MagneticButton>
           </motion.div>
 
           {/* Datos duros arriba del pliegue: responden "¿por qué te creo?" */}
@@ -155,7 +190,7 @@ export default function Hero() {
 
         {/* ---------- Columna gráfica ---------- */}
         <motion.div style={{ y: reduced ? 0 : yGrafico }} className="relative">
-          <EnergyRing reduced={reduced} />
+          <EnergyRing reduced={reduced} progreso={scrollYProgress} />
         </motion.div>
       </motion.div>
 
@@ -183,14 +218,35 @@ export default function Hero() {
 /**
  * Composición gráfica del héroe.
  *
- * Mientras no haya fotografía del producto, esta pieza sostiene la mitad
- * derecha: anillos concéntricos que giran a distinta velocidad, sugiriendo
- * carga y movimiento. El hueco central es donde va la foto de la moto.
+ * PARA PONER TU FOTO:
+ *   1. Sube el archivo a public/ (por ejemplo public/moto.jpg).
+ *   2. Cambia FOTO abajo a '/moto.jpg'.
+ *   3. Si el archivo YA viene sin fondo (PNG transparente), pon
+ *      SIN_FONDO en true. Si es una foto normal con pared y piso
+ *      detrás, déjalo en false.
+ *
+ * Los dos casos están resueltos con tratamientos distintos:
+ *   - Sin fondo: la moto flota dentro de los anillos, con sombra propia.
+ *   - Con fondo: la foto va enmarcada en un panel redondeado con
+ *     degradado encima, para que el fondo real se funda con el negro de
+ *     la página en lugar de pelearse con él.
  */
-function EnergyRing({ reduced }) {
+const FOTO = null
+const SIN_FONDO = false
+
+function EnergyRing({ reduced, progreso }) {
+  // Los anillos giran solos y además reaccionan al scroll: el giro
+  // acumulado hace que la composición nunca se vea estática.
+  const giroScroll = useTransform(progreso, [0, 1], [0, 90])
+
   return (
     <div className="relative mx-auto aspect-square w-full max-w-[540px]">
-      <svg viewBox="0 0 400 400" className="absolute inset-0 h-full w-full" aria-hidden="true">
+      <motion.svg
+        viewBox="0 0 400 400"
+        className="absolute inset-0 h-full w-full"
+        aria-hidden="true"
+        style={reduced ? undefined : { rotate: giroScroll }}
+      >
         <defs>
           <linearGradient id="arcoBrand" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor="#ff3d45" stopOpacity="1" />
@@ -210,7 +266,6 @@ function EnergyRing({ reduced }) {
           />
         ))}
 
-        {/* Arcos que giran: dos sentidos opuestos para que nunca se sincronicen */}
         <motion.circle
           cx="200"
           cy="200"
@@ -237,25 +292,60 @@ function EnergyRing({ reduced }) {
           animate={reduced ? {} : { rotate: -360 }}
           transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
         />
-      </svg>
+      </motion.svg>
 
-      {/* Hueco para la fotografía del producto */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.1, ease: EASE.outExpo, delay: 0.4 }}
-        className="absolute inset-[22%] flex flex-col items-center justify-center rounded-3xl border border-dashed border-ink-line bg-ink-soft/40 text-center backdrop-blur-sm"
+        className={
+          FOTO && SIN_FONDO
+            ? 'absolute inset-[10%] flex items-center justify-center'
+            : 'absolute inset-[18%] overflow-hidden rounded-[2rem]'
+        }
       >
-        {/* Sustituye este bloque por: <img src="/moto.png" alt="Scooter TORKA Urbana" /> */}
-        <svg viewBox="0 0 24 24" className="mb-3 h-9 w-9 text-brand-bright/70" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M13 3 4 14h7l-1 8 9-11h-7l1-8Z" />
-        </svg>
-        <p className="px-5 font-display text-sm font-semibold text-mist/70">
-          Aquí va la foto de la moto
-        </p>
-        <p className="mt-1 px-6 text-xs leading-snug text-mist/35">
-          PNG con fondo transparente, 1200 px de ancho
-        </p>
+        {FOTO ? (
+          SIN_FONDO ? (
+            <motion.img
+              src={FOTO}
+              alt="Scooter eléctrico TORKA"
+              className="h-full w-full object-contain drop-shadow-[0_30px_50px_rgba(0,0,0,0.6)]"
+              animate={reduced ? {} : { y: [0, -12, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            />
+          ) : (
+            <>
+              <motion.img
+                src={FOTO}
+                alt="Scooter eléctrico TORKA"
+                className="h-full w-full object-cover"
+                animate={reduced ? {} : { scale: [1, 1.07, 1] }}
+                transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+              />
+              {/* Funde los bordes de la foto con el negro de la página. */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-transparent"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-ink-line"
+              />
+            </>
+          )
+        ) : (
+          <div className="flex h-full w-full flex-col items-center justify-center rounded-[2rem] border border-dashed border-ink-line bg-ink-soft/40 text-center backdrop-blur-sm">
+            <svg viewBox="0 0 24 24" className="mb-3 h-9 w-9 text-brand-bright/70" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 3 4 14h7l-1 8 9-11h-7l1-8Z" />
+            </svg>
+            <p className="px-5 font-display text-sm font-semibold text-mist/70">
+              Aquí va la foto de la moto
+            </p>
+            <p className="mt-1 px-6 text-xs leading-snug text-mist/35">
+              Súbela a public/ y activa FOTO en este archivo
+            </p>
+          </div>
+        )}
       </motion.div>
     </div>
   )

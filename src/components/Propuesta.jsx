@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'motion/react'
 import Reveal from './Reveal.jsx'
+import SplitText from './SplitText.jsx'
 import { EASE, inViewOnce, riseIn, stagger } from '../lib/motion.js'
 
 const razones = [
@@ -16,7 +17,7 @@ const razones = [
     n: '02',
     titulo: 'La batería sube contigo',
     texto:
-      'Se desmonta con llave, pesa 11 kg y se carga en cualquier contacto de 127 V. No necesitas cochera, ni instalación eléctrica especial, ni pelearte con el vecino por el enchufe.',
+      'Se desmonta con llave, pesa 11 kg y se carga en cualquier contacto de 120 V. No necesitas cochera, ni instalación eléctrica especial, ni pelearte con el vecino por el enchufe.',
     icono: (
       <>
         <rect x="3" y="7" width="15" height="10" rx="2" strokeLinejoin="round" />
@@ -63,13 +64,12 @@ export default function Propuesta() {
           <Reveal as="p" className="mb-4 font-display text-sm font-semibold tracking-widest text-brand-bright uppercase">
             Por qué eléctrica
           </Reveal>
-          <Reveal
-            as="h2"
-            delay={0.08}
-            className="font-display text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.05] text-mist"
-          >
-            Cuatro razones que aguantan una hoja de cálculo
-          </Reveal>
+          <SplitText
+              as="h2"
+              texto="Cuatro razones que aguantan una hoja de cálculo"
+              retraso={0.08}
+              className="font-display text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.05] text-mist"
+            />
           <Reveal as="p" delay={0.16} className="mt-5 text-lg leading-relaxed text-mist/60">
             No vendemos la moto por moderna. La vendemos porque el número sale, y
             porque las tres dudas que te frenan tienen respuesta concreta.

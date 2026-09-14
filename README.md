@@ -2,6 +2,9 @@
 
 Sitio de marca y catálogo de scooters eléctricos TORKA.
 
+Localizado para **Guatemala**: precios en quetzales, gasolina calculada por
+galón, licencia tipo M y trámite de placas ante la SAT.
+
 ## Arrancar
 
 ```bash
@@ -36,9 +39,15 @@ que hay que sustituir, en orden de importancia:
    `'/logo.svg'`. Hasta entonces se dibuja un sustituto tipográfico. No se
    reprodujo el emblema a mano a propósito: una copia aproximada de una marca
    registrada se ve peor y la deforma.
-2. **Fotos de las motos** — cada hueco marcado con borde punteado indica el
-   formato esperado. Van en `public/` y se referencian desde `Hero.jsx` y
-   `ModeloCard.jsx`, donde hay un comentario con la línea exacta a usar.
+2. **Fotos de las motos** — súbelas a `public/` y actívalas:
+   - **Héroe:** en `src/components/Hero.jsx`, pon `FOTO = '/moto.jpg'`.
+     Si el archivo ya viene sin fondo (PNG transparente), pon también
+     `SIN_FONDO = true` y la moto flota dentro de los anillos. Si es una
+     foto normal con pared detrás, déjalo en `false`: la foto se enmarca
+     con un degradado que funde el fondo real con el negro de la página,
+     **sin necesidad de recortarla**.
+   - **Tarjetas:** `src/components/ModeloCard.jsx` tiene un comentario con
+     la línea exacta.
 3. **Fichas técnicas** — `src/data/modelos.js`. Nombres, precios, autonomía,
    potencia. Añade o quita modelos y el catálogo, el filtro y el comparador
    se reconstruyen solos.
@@ -83,6 +92,25 @@ src/
 Las animaciones **no** viven dentro de los componentes: están en
 `lib/motion.js`. Para cambiar el carácter del movimiento de toda la página
 —o sustituir el sistema completo— se toca ese archivo, no la interfaz.
+
+## Animación
+
+| Efecto | Dónde |
+|---|---|
+| Barra de progreso de lectura | Borde superior, toda la página |
+| Resplandor que persigue al cursor | Héroe |
+| Parallax a dos velocidades | Héroe |
+| Anillos que giran y reaccionan al scroll | Héroe |
+| Botones magnéticos | Llamados del héroe |
+| Revelado palabra por palabra | Todos los titulares de sección |
+| Inclinación 3D según el puntero | Tarjetas del catálogo |
+| Reordenamiento animado | Catálogo al filtrar |
+| Contadores que suben | Calculadora de ahorro |
+| Banda en bucle continuo | Bajo el héroe |
+| Acordeón por altura real | Preguntas frecuentes |
+
+Todo se apaga o se sustituye por fundidos cuando el sistema del visitante
+pide menos movimiento.
 
 ## Accesibilidad
 

@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { AnimatePresence, LayoutGroup, motion } from 'motion/react'
 import ModeloCard from './ModeloCard.jsx'
 import Reveal from './Reveal.jsx'
+import SplitText from './SplitText.jsx'
 import { filtros, modelos } from '../data/modelos.js'
 import { EASE } from '../lib/motion.js'
 
@@ -24,13 +25,12 @@ export default function Catalogo() {
             >
               La gama
             </Reveal>
-            <Reveal
+            <SplitText
               as="h2"
-              delay={0.08}
+              texto="Cuatro motos, cuatro usos distintos"
+              retraso={0.08}
               className="font-display text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.05] text-ink"
-            >
-              Cuatro motos, cuatro usos distintos
-            </Reveal>
+            />
             <Reveal as="p" delay={0.16} className="mt-5 text-lg leading-relaxed text-slate">
               Elegir mal aquí es el error más caro. Filtra por cómo vas a usarla,
               no por cuál se ve mejor.
