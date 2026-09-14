@@ -1,0 +1,97 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   IDENTIDAD DE MARCA — TORKA
+   Este es el único bloque que tocas para cambiar la identidad.
+   Sustituye los valores por los de tu manual de marca y toda
+   la página se actualiza sola.
+   ============================================================ */
+@theme {
+  /* Colores */
+  --color-ink: #0a0e0d; /* fondo oscuro principal */
+  --color-ink-soft: #141a18; /* superficies elevadas sobre ink */
+  --color-ink-line: #232b28; /* bordes sobre fondo oscuro */
+  --color-volt: #c6f24e; /* acento de marca — el color que manda */
+  --color-volt-deep: #9bd41f; /* acento en estados presionados */
+  --color-mist: #f5f7f3; /* fondo claro */
+  --color-mist-soft: #e8ece4; /* superficies sobre mist */
+  --color-slate: #6b7671; /* texto secundario */
+
+  /* Tipografía */
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* Curvas de animación */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-mist);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  /* Accesibilidad: quien pidió menos movimiento, recibe menos movimiento.
+     No es opcional — es la diferencia entre una web premium y una molesta. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-volt);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: var(--color-volt);
+    color: var(--color-ink);
+  }
+}
+
+@layer utilities {
+  /* Rejilla técnica de fondo, evoca plano de ingeniería */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--color-ink-line) 60%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--color-ink-line) 60%, transparent) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .text-stroke {
+    -webkit-text-stroke: 1px var(--color-ink-line);
+    color: transparent;
+  }
+
+  /* Números que no bailan al animarse */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
