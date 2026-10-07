@@ -35,8 +35,10 @@ const ScrollReveal = ({
     const el = containerRef.current;
     if (!el) return;
 
-    // [TORKA] Con "reducir movimiento" el texto queda encendido completo.
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // [TORKA] Con "reducir movimiento" (Windows lo activa al apagar los
+    // "efectos de animación") no hay giro ni desenfoque, pero las palabras
+    // sí se encienden: solo cambia la opacidad, nada se desplaza.
+    const suave = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const scroller = scrollContainerRef && scrollContainerRef.current ? scrollContainerRef.current : window;
 
@@ -50,7 +52,7 @@ const ScrollReveal = ({
       const wordElements = el.querySelectorAll('.word');
       const desde = { opacity: baseOpacity };
       const hasta = { opacity: 1 };
-      if (enableBlur) {
+      if (enableBlur && !suave) {
         desde.filter = `blur(${blurStrength}px)`;
         hasta.filter = 'blur(0px)';
       }
@@ -61,7 +63,9 @@ const ScrollReveal = ({
         // Al terminar se quitan los filtros: palabras nítidas sin costo de GPU.
         onComplete: () => gsap.set(wordElements, { clearProps: 'filter,willChange' })
       });
-      linea.fromTo(el, { transformOrigin: '0% 50%', rotate: baseRotation }, { rotate: 0, duration: 1.2 }, 0);
+      if (!suave) {
+        linea.fromTo(el, { transformOrigin: '0% 50%', rotate: baseRotation }, { rotate: 0, duration: 1.2 }, 0);
+      }
       linea.fromTo(wordElements, desde, { ...hasta, duration: 0.6, stagger: 0.045 }, 0);
 
       ScrollTrigger.create({

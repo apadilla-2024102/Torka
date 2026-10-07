@@ -55,7 +55,8 @@ export const ScrollVelocity = ({
     parallaxClassName,
     scrollerClassName,
     parallaxStyle,
-    scrollerStyle
+    scrollerStyle,
+    suave
   }) {
     const baseX = useMotionValue(0);
     const scrollOptions = scrollContainerRef ? { container: scrollContainerRef } : {};
@@ -90,6 +91,12 @@ export const ScrollVelocity = ({
     useAnimationFrame((t, delta) => {
       let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
+      // [TORKA] En modo suave la banda corre a paso constante, sin
+      // acelerarse ni cambiar de sentido con el scroll.
+      if (suave) {
+        baseX.set(baseX.get() + baseVelocity * 0.5 * (delta / 1000));
+        return;
+      }
       if (velocityFactor.get() < 0) {
         directionFactor.current = -1;
       } else if (velocityFactor.get() > 0) {
@@ -112,7 +119,7 @@ export const ScrollVelocity = ({
     return (
       <div className={`${parallaxClassName} relative overflow-hidden`} style={parallaxStyle}>
         <motion.div
-          className={`${scrollerClassName} flex whitespace-nowrap text-center font-sans text-4xl font-bold tracking-[-0.02em] drop-shadow md:text-[5rem] md:leading-[5rem]`}
+          className={`${scrollerClassName} flex whitespace-nowrap text-center font-sans text-4xl font-bold tracking-[-0.02em] md:text-[5rem] md:leading-[5rem]`}
           style={{ x, ...scrollerStyle }}
         >
           {spans}
@@ -122,19 +129,11 @@ export const ScrollVelocity = ({
   }
 
   // [TORKA] Las copias repetidas son decorativas: el lector de pantalla
-  // oye cada frase una vez. Con "reducir movimiento" la banda queda quieta.
+  // oye cada frase una vez. Con "reducir movimiento" (Windows lo activa al
+  // apagar los "efectos de animación", muy común en equipos de oficina) la
+  // banda no se queda quieta: corre lenta y constante, sin reaccionar al
+  // scroll.
   const reduced = useReducedMotion();
-  if (reduced) {
-    return (
-      <div>
-        {texts.map((text, index) => (
-          <p key={index} className={`overflow-hidden whitespace-nowrap ${className}`}>
-            {text}
-          </p>
-        ))}
-      </div>
-    );
-  }
 
   return (
     <div>
@@ -158,6 +157,7 @@ export const ScrollVelocity = ({
           scrollerClassName={scrollerClassName}
           parallaxStyle={parallaxStyle}
           scrollerStyle={scrollerStyle}
+          suave={reduced}
         >
           {text}
         </VelocityText>

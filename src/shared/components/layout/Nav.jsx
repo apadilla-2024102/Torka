@@ -94,9 +94,14 @@ export default function Nav() {
 
         <div className="flex items-center gap-2">
           {/* Contorno, no rojo: en cada vista solo puede haber un botón rojo (DESIGN.md). */}
-          <Boton to="/cotizar" variante="secundario" className="hidden min-h-11 px-5 sm:inline-flex">
-            Cotizar
-          </Boton>
+          {/* En celular el botón vive en la barra inferior. Se oculta con un
+              envoltorio: la clase "hidden" sobre el botón perdía contra su
+              propio display y lo dejaba visible, empujando el menú fuera. */}
+          <span className="hidden sm:contents">
+            <Boton to="/cotizar" variante="secundario" className="min-h-11 px-5">
+              Cotizar
+            </Boton>
+          </span>
           <button
             type="button"
             onClick={() => setAbierta((v) => !v)}

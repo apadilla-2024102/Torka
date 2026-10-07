@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useIntro } from './IntroContexto.jsx'
 import { CURVA } from '../../lib/movimiento.js'
 import { rutaRender } from '../brand/ModeloImagen.jsx'
+import Logo, { RUTAS_LOGO } from '../brand/Logo.jsx'
 
 const SEGMENTOS = 10
 const MINIMO_MS = 1600 // aunque todo llegue antes: la carga se tiene que poder ver
@@ -30,17 +31,20 @@ export default function PantallaCarga() {
     const inicio = performance.now()
     let cancelado = false
 
-    // Lo que cuenta como "cargado": tipografías e imagen de la portada.
+    // Lo que cuenta como "cargado": tipografías, logo e imagen de la portada.
     // No se espera el evento "load" de la ventana: Edge y Chrome lo
     // aplazan con conexión lenta o ahorro de datos ("Load events are
     // deferred") y la batería se quedaría esperando.
     const tareas = [
       document.fonts?.ready ?? Promise.resolve(),
-      new Promise((resolver) => {
-        const img = new Image()
-        img.onload = img.onerror = resolver
-        img.src = rutaRender('sport', 'rojo')
-      }),
+      ...[rutaRender('sport', 'rojo'), RUTAS_LOGO.emblema, RUTAS_LOGO.palabraClaro].map(
+        (ruta) =>
+          new Promise((resolver) => {
+            const img = new Image()
+            img.onload = img.onerror = resolver
+            img.src = ruta
+          }),
+      ),
     ]
     tareas.forEach((t) => t.then(() => (real.current += 1 / tareas.length)))
 
@@ -91,7 +95,7 @@ export default function PantallaCarga() {
           exit={reduced ? { opacity: 0, transition: { duration: 0.3 } } : { clipPath: 'inset(0 0 100% 0)', transition: { duration: 0.9, ease: CURVA.expo } }}
         >
           <div className="flex items-center justify-between text-sm text-niebla">
-            <span className="tipo-ruta text-lg text-papel italic">TORKA</span>
+            <Logo />
             <span>Motos eléctricas para Guatemala</span>
           </div>
 

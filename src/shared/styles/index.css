@@ -222,11 +222,6 @@
   ::view-transition-new(*) {
     animation: none !important;
   }
-  /* Se detienen los bucles y los desplazamientos; el cambio de color y de
-     opacidad que confirma una acción se conserva. */
-  .carril-en-marcha {
-    animation-play-state: paused !important;
-  }
   .progreso-lectura {
     display: none;
   }
