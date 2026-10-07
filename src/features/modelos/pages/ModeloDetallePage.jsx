@@ -10,6 +10,7 @@ import { formatoQuetzales } from '../../../shared/lib/formato.js'
 import SelectorColor from '../components/SelectorColor.jsx'
 import FichaTecnica from '../components/FichaTecnica.jsx'
 import CuotaEstimada from '../components/CuotaEstimada.jsx'
+import VisorModelo from '../components/VisorModelo.jsx'
 
 export const modeloDetalleLoader = async ({ params }) => {
   const [modelo, modelos] = await Promise.all([getModeloPorId(params.id), getModelos()])
@@ -42,8 +43,8 @@ export default function ModeloDetallePage() {
           </nav>
 
           <div className="mt-8 grid items-center gap-10 lg:grid-cols-[1.25fr_1fr]">
-            <div className="rounded-3xl bg-asfalto-alto p-6 sm:p-10">
-              <ModeloImagen modelo={modelo} colorId={colorId} className="aspect-[44/27] w-full" />
+            <div className="rounded-3xl bg-asfalto-alto p-4 sm:p-8">
+              <VisorModelo modelo={modelo} colorId={colorId} />
             </div>
 
             <div>

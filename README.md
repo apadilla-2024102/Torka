@@ -57,11 +57,13 @@ src/
     components/
       layout/     Layout, Nav, Footer, encabezados, contenedor
       ui/         Botón, lecturas de tablero, llamado a cotizar
-      brand/      Logo, silueta de la moto, imagen de modelo
+      brand/      Logo, imagen de modelo, silueta y moto3d/ (modelo 3D)
     config/       negocio.js: WhatsApp, correo, teléfono
     hooks/        hooks reutilizables
     lib/          formatos de número y cálculos de energía y cuotas
     styles/       index.css: tokens de marca
+herramientas/renders/           página de desarrollo que dibuja los renders
+scripts/generar-renders.mjs     npm run renders
 ```
 
 Regla para crecer: si algo solo lo usa una página, va dentro de su
@@ -84,16 +86,50 @@ Todo está construido con datos de ejemplo. En orden de importancia:
 6. **Logotipo** en `src/shared/components/brand/Logo.jsx`: guarda el
    archivo en `public/` y cambia `ARCHIVO_LOGO`.
 
-## Fotos de las motos
+## Imágenes de las motos
 
-Mientras no hay fotos, cada modelo se dibuja con una **silueta vectorial**
-que cambia de color con el selector y muestra lo que distingue al modelo:
-parabrisas (Sierra), parrilla y caja (Carga), una o dos baterías.
+Mientras no haya fotografías, las motos se muestran con **renders 3D**
+generados por código: carrocería con laca automotriz, llantas, rines,
+disco de freno, faro LED y sombra de estudio. Cada modelo conserva lo que
+lo distingue: parabrisas (Sierra), parrilla y caja (Carga), cúpula
+deportiva (Sport), una o dos baterías.
 
-Cuando tengas fotos:
+Cada imagen pasa por tres niveles de respaldo, en este orden:
 
-1. Guárdalas en `public/modelos/`, una por color. Lo ideal es PNG **sin
-   fondo** de al menos 1200 px de ancho, todas con el mismo encuadre de
+1. **Foto real**, si el modelo la tiene (campo `fotos` en `mockData.js`).
+2. **Render** de `public/modelos/renders/<modelo>-<color>.webp`.
+3. **Silueta vectorial**, si ninguno de los dos archivos carga.
+
+Subir o quitar imágenes nunca deja un icono roto.
+
+### Visor 3D en la ficha
+
+En la ficha de cada modelo, la moto se puede girar arrastrando, con los
+botones o con las flechas del teclado, y cambia de color en vivo. Three.js
+se descarga **solo** en esa página (unos 140 kB comprimidos), nunca en la
+portada. Si el navegador no puede dibujar 3D, se queda el render.
+
+Las imágenes llevan la nota "imagen generada por computadora; el acabado
+real puede variar". Retírala cuando pongas fotos reales.
+
+### Regenerar los renders
+
+Cuando agregues un modelo o un color en `mockData.js`:
+
+```bash
+npx playwright install chromium   # solo la primera vez
+npm run renders
+```
+
+El modelo 3D se arma en `src/shared/components/brand/moto3d/`:
+`construirMoto.js` (piezas), `estudio.js` (luces, cámara y sombra) y
+`Moto3D.jsx` (visor). El visor y los renders usan el mismo estudio, así
+que siempre se ven igual.
+
+### Cuando tengas fotos
+
+1. Guárdalas en `public/modelos/`, una por color. Lo ideal es PNG o WebP
+   **sin fondo**, de al menos 1200 px de ancho y con el mismo encuadre de
    perfil para que el cambio de color no salte.
 2. En `mockData.js`, llena el campo `fotos` del modelo:
 
@@ -104,8 +140,8 @@ Cuando tengas fotos:
    },
    ```
 
-Un color sin foto sigue mostrando la silueta, y si un archivo no carga se
-vuelve a la silueta: subir fotos nunca deja una imagen rota.
+La foto tiene prioridad sobre el render en catálogo, portada y
+comparador.
 
 ## Conectar un backend
 
