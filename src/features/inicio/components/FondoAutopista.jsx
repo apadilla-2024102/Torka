@@ -1,6 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { useReducedMotion } from 'motion/react'
-import MontarEnVista from '../../../shared/components/ui/MontarEnVista.jsx'
 import { hayWebGL } from '../../../shared/components/brand/moto3d/webgl.js'
 import { useIntro } from '../../../shared/components/intro/IntroContexto.jsx'
 import { useFluidez } from '../../../shared/hooks/useFluidez.js'
@@ -95,14 +94,14 @@ export default function FondoAutopista() {
   if (reduced || !animado || !arrancar || lento) return <AutopistaEstatica />
 
   return (
-    <MontarEnVista className="absolute inset-0" respaldo={<AutopistaEstatica />}>
-      <Decorado respaldo={<AutopistaEstatica />}>
-        <Suspense fallback={<AutopistaEstatica />}>
-          <div className="absolute inset-0">
-            <Hyperspeed effectOptions={OPCIONES_TORKA} />
-          </div>
-        </Suspense>
-      </Decorado>
-    </MontarEnVista>
+    // Se monta una sola vez: fuera de pantalla la autopista se pausa sola.
+    // Desmontarla y volver a crearla al subir congelaba la página.
+    <Decorado respaldo={<AutopistaEstatica />}>
+      <Suspense fallback={<AutopistaEstatica />}>
+        <div className="absolute inset-0">
+          <Hyperspeed effectOptions={OPCIONES_TORKA} />
+        </div>
+      </Suspense>
+    </Decorado>
   )
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { BloomEffect, EffectComposer, EffectPass, RenderPass, SMAAEffect, SMAAPreset } from 'postprocessing';
+import { BloomEffect, EffectComposer, EffectPass, RenderPass, SMAAEffect } from 'postprocessing';
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
@@ -362,7 +362,9 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS, lightMode = false 
           alpha: true
         });
         this.renderer.setSize(initW, initH, false);
-        this.renderer.setPixelRatio(window.devicePixelRatio);
+        // [TORKA] Densidad 1: es un fondo de luces difusas y con la escala de
+        // Windows al 125 % o 150 % el original redimensionaba en cada cuadro.
+        this.renderer.setPixelRatio(1);
         this.composer = new EffectComposer(this.renderer);
         container.append(this.renderer.domElement);
 
@@ -448,24 +450,15 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS, lightMode = false 
           new BloomEffect({
             luminanceThreshold: 0.2,
             luminanceSmoothing: 0,
-            resolutionScale: 1
-          })
-        );
-
-        const smaaPass = new EffectPass(
-          this.camera,
-          new SMAAEffect({
-            preset: SMAAPreset.MEDIUM,
-            searchImage: SMAAEffect.searchImageDataURL,
-            areaImage: SMAAEffect.areaImageDataURL
+            // [TORKA] Brillo a media resolución y sin SMAA: el resplandor ya
+            // suaviza los bordes y la GPU gasta menos de la mitad.
+            resolutionScale: 0.5
           })
         );
         this.renderPass.renderToScreen = false;
-        this.bloomPass.renderToScreen = false;
-        smaaPass.renderToScreen = true;
+        this.bloomPass.renderToScreen = true;
         this.composer.addPass(this.renderPass);
         this.composer.addPass(this.bloomPass);
-        this.composer.addPass(smaaPass);
       }
 
       loadAssets() {
@@ -642,6 +635,13 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS, lightMode = false 
 
       tick() {
         if (this.disposed) return;
+
+        // [TORKA] Fuera de pantalla o con la pestaña oculta no se dibuja.
+        if (this.paused || document.hidden) {
+          this.timer.reset();
+          requestAnimationFrame(this.tick);
+          return;
+        }
 
         if (!this.hasValidSize) {
           const w = this.container.offsetWidth;
@@ -1152,7 +1152,10 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS, lightMode = false 
       const width = canvas.clientWidth;
       const height = canvas.clientHeight;
       if (width <= 0 || height <= 0) return false;
-      const needResize = canvas.width !== width || canvas.height !== height;
+      // [TORKA] Compara en píxeles reales (ancho × densidad); el original
+      // comparaba contra el ancho CSS y redimensionaba en cada cuadro.
+      const ratio = renderer.getPixelRatio();
+      const needResize = canvas.width !== Math.floor(width * ratio) || canvas.height !== Math.floor(height * ratio);
       if (needResize) {
         setSize(width, height, false);
       }
@@ -1190,6 +1193,13 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS, lightMode = false 
       return undefined;
     }
     appRef.current = myApp;
+
+    // [TORKA] Pausa el dibujo cuando la autopista sale de pantalla, sin
+    // desmontarla: volver a crear el contexto WebGL congela la página.
+    const vigia = new IntersectionObserver(([entrada]) => {
+      myApp.paused = !entrada.isIntersecting;
+    });
+    vigia.observe(container);
     // TORKA: los recursos cargan en diferido; si el componente se desmontó
     // mientras tanto (modo estricto, cambio de página, vigilante de fluidez),
     // el contexto ya se liberó y no hay nada que iniciar.
@@ -1201,6 +1211,7 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS, lightMode = false 
       .catch(() => {});
 
     return () => {
+      vigia.disconnect();
       if (appRef.current) {
         appRef.current.dispose();
       }

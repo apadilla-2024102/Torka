@@ -10,14 +10,18 @@ const marcadoLento = () => {
   }
 }
 
+const CALENTAMIENTO_MS = 2500 // compilar sombreadores en Windows tarda: no cuenta
+const VENTANA_MS = 2000
+
 /**
  * Vigila que un efecto pesado no vuelva lenta la página.
  *
- * Mientras `activo` es verdadero, mide cuadros por segundo durante dos
- * segundos (después de uno de calentamiento). Si el equipo no llega a
- * `minimo`, devuelve `lento = true` y lo recuerda para la sesión: quien
- * tiene una computadora sin aceleración gráfica ve la versión ligera en
- * lugar de una página entrecortada.
+ * Mientras `activo` es verdadero, mide cuadros por segundo en ventanas de
+ * dos segundos durante todo el tiempo que el efecto está montado (no solo
+ * al inicio). Si dos ventanas seguidas quedan bajo `minimo`, devuelve
+ * `lento = true` y lo recuerda para la sesión: quien tiene una computadora
+ * sin aceleración gráfica ve la versión ligera en lugar de una página
+ * entrecortada. Las ventanas con la pestaña oculta no cuentan.
  */
 export function useFluidez(activo, minimo = 30) {
   const [lento, setLento] = useState(marcadoLento)
@@ -26,21 +30,27 @@ export function useFluidez(activo, minimo = 30) {
     if (!activo || lento) return
     let marco
     let cuadros = 0
-    let inicio = 0
-    const t0 = performance.now()
+    let inicioVentana = performance.now() + CALENTAMIENTO_MS
+    let bajas = 0
 
     const contar = (ahora) => {
-      const transcurrido = ahora - t0
-      if (transcurrido > 1000) {
-        if (!inicio) inicio = ahora
-        cuadros++
-      }
-      if (transcurrido < 3000) {
-        marco = requestAnimationFrame(contar)
+      marco = requestAnimationFrame(contar)
+      if (document.hidden) {
+        cuadros = 0
+        inicioVentana = ahora + 500
         return
       }
-      const fps = (cuadros * 1000) / Math.max(ahora - inicio, 1)
-      if (fps < minimo) {
+      if (ahora < inicioVentana) return
+      cuadros++
+      const transcurrido = ahora - inicioVentana
+      if (transcurrido < VENTANA_MS) return
+
+      const fps = (cuadros * 1000) / transcurrido
+      bajas = fps < minimo ? bajas + 1 : 0
+      cuadros = 0
+      inicioVentana = ahora
+      if (bajas >= 2) {
+        cancelAnimationFrame(marco)
         try {
           sessionStorage.setItem(CLAVE, '1')
         } catch {
