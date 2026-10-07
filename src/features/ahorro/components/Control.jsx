@@ -23,7 +23,7 @@ export default function Control({ id, etiqueta, valor, min, max, paso, prefijo =
         step={paso}
         value={valor}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full cursor-pointer accent-rojo"
+        className="w-full cursor-pointer accent-lima-hondo"
       />
     </div>
   )

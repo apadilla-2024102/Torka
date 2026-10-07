@@ -49,7 +49,7 @@ export default function CalculadoraAhorro() {
 
       <div className="rounded-[2px] border border-linea bg-negro p-6 text-papel sm:p-8">
         <p className="text-niebla">Ahorro estimado al año</p>
-        <p className="tipo-tablero mt-1 text-[clamp(3rem,9vw,5rem)] leading-none text-senal" aria-hidden="true">
+        <p className="tipo-tablero mt-1 text-[clamp(3rem,9vw,5rem)] leading-none text-lima" aria-hidden="true">
           {formatoQuetzales(ahorro)}
         </p>
         <p className="sr-only" aria-live="polite">
@@ -61,7 +61,7 @@ export default function CalculadoraAhorro() {
 
         <div className="mt-10 space-y-5">
           <Barra etiqueta="Moto de gasolina, al año" monto={r.totalGasolina} proporcion={1} color="bg-niebla/45" />
-          <Barra etiqueta="TORKA eléctrica, al año" monto={r.totalElectrico} proporcion={proporcion} color="bg-rojo" />
+          <Barra etiqueta="yolt eléctrica, al año" monto={r.totalElectrico} proporcion={proporcion} color="bg-lima" />
         </div>
 
         <dl className="mt-10 grid grid-cols-2 gap-6 border-t border-linea pt-7">
@@ -70,8 +70,8 @@ export default function CalculadoraAhorro() {
             <dd className="tipo-tablero mt-1 text-3xl">Q{formatoDecimal(r.porKmGasolina)}</dd>
           </div>
           <div>
-            <dt className="text-sm text-niebla">Por kilómetro con TORKA</dt>
-            <dd className="tipo-tablero mt-1 text-3xl text-senal">Q{formatoDecimal(r.porKmElectrico)}</dd>
+            <dt className="text-sm text-niebla">Por kilómetro con yolt</dt>
+            <dd className="tipo-tablero mt-1 text-3xl text-lima">Q{formatoDecimal(r.porKmElectrico)}</dd>
           </div>
         </dl>
 

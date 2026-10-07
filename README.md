@@ -1,6 +1,6 @@
-# TORKA
+# yolt
 
-Sitio de venta de motos eléctricas TORKA, localizado para **Guatemala**:
+**Enciende tu camino.** Sitio de venta de motos eléctricas yolt, localizado para **Guatemala**:
 precios en quetzales, gasolina por galón, licencia tipo M, trámite de placas
 ante la SAT y cotización por WhatsApp.
 
@@ -83,9 +83,9 @@ Todo está construido con datos de ejemplo. En orden de importancia:
 4. **Distribuidores** en el mismo archivo.
 5. **Supuestos de costo** en `src/shared/lib/energia.js`: precio del galón,
    tarifa eléctrica, mantenimiento y la tasa de ejemplo de las cuotas.
-6. **Logotipo**: el original está en `herramientas/logo/torka-original.png`.
-   Si cambia, reemplázalo y corre `python3 herramientas/logo/procesar_logo.py`
-   (requiere Pillow): regenera `public/marca/` y `public/favicon.png`.
+6. **Logotipo**: se genera con `python3 herramientas/logo/generar_logo.py`
+   (requiere fonttools): "yolt" en Outfit Bold convertido a trazos más el
+   rayo lima. Regenera `public/marca/` y `public/favicon.svg`.
 
 ## Imágenes de las motos
 
@@ -96,10 +96,10 @@ originales están en `herramientas/fotos/originales/`.
 
 | Modelo | Color         | Archivo                |
 | ------ | ------------- | ---------------------- |
-| Urbana | Crema y menta | `urbana-crema.webp`    |
-| Sierra | Gris titanio  | `sierra-titanio.webp`  |
-| Sport  | Blanco perla  | `sport-perla.webp`     |
-| Carga  | Verde y naranja / Negro y lima | `carga-verde.webp`, `carga-lima.webp` |
+| yolt ONE  | Crema y menta | `one-crema.webp` |
+| yolt CITY | Negro y lima / Verde y naranja | `city-lima.webp`, `city-verde.webp` |
+| yolt X    | Gris titanio  | `x-titanio.webp` |
+| yolt GT   | Blanco perla (próximamente) | `gt-perla.webp` |
 
 Cada modelo ofrece **solo los colores que tienen foto**: un color sin foto
 no se puede mostrar y genera dudas en la compra.
@@ -124,8 +124,8 @@ colores sin foto.
 3. En `mockData.js`, agrega el color en `colores` y su ruta en `fotos`:
 
    ```js
-   colores: [{ id: 'rojo', nombre: 'Rojo', hex: '#c8102e' }],
-   fotos: { rojo: '/modelos/fotos/urbana-rojo.webp' },
+   colores: [{ id: 'negro', nombre: 'Negro', hex: '#1a1a1a' }],
+   fotos: { negro: '/modelos/fotos/one-negro.webp' },
    ```
 
 ### Visor 3D y renders
@@ -145,18 +145,15 @@ el sitio vuelve a los datos de ejemplo en lugar de quedar en blanco.
 ## Diseño
 
 **Las reglas visuales viven en [`DESIGN.md`](DESIGN.md)**: colores y para
-qué se usa cada uno, tipografía, botones, espaciado y movimiento. Combina
-lo mejor del análisis de cuatro marcas automotrices del repositorio
-[VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md)
-(MIT): lienzo negro y titulares gigantes en mayúsculas (Lamborghini), el
-rojo solo en la acción principal y bandas claras solo para leer con calma
-(Ferrari), el producto como protagonista y un solo tiempo de transición
-(Tesla), y una franja de marca de tres colores (BMW M). Se toman reglas,
-nunca marcas, logos ni textos.
+qué se usa cada uno, tipografía, botones, espaciado y movimiento. Aplica el
+sistema de marca de yolt (rayo lima, "yolt" en minúsculas, paleta lima /
+grafito / hueso / gris metálico) sobre una estructura de escaparate
+nocturno: lienzo negro, titulares gigantes en mayúsculas y la moto como
+protagonista.
 
 Antes de agregar una página o componente, léelo. Las tres reglas que más
-se rompen: un solo botón rojo por vista, botones sin esquinas redondeadas,
-y el amarillo solo para datos de energía.
+se rompen: un solo botón lima por vista, nada de texto lima sobre fondo
+claro (usa lima hondo), y "yolt" siempre en minúsculas.
 
 Los tokens están en el bloque `@theme` de `src/shared/styles/index.css`.
 
@@ -189,7 +186,7 @@ guardados en `src/shared/components/reactbits/` con su licencia:
 
 | Sección | Componente | Qué hace |
 |---|---|---|
-| Héroe | Hyperspeed | Autopista nocturna en colores TORKA; al mantener presionado, acelera |
+| Héroe | Hyperspeed | Autopista nocturna en lima y blanco; al mantener presionado, acelera |
 | Héroe y cierre | ClickSpark | Chispas amarillas al hacer clic |
 | Botón principal | Magnet | El botón se acerca al cursor |
 | Banda | ScrollVelocity | Frases que corren y se aceleran con el scroll |
@@ -212,7 +209,7 @@ versión estática en CSS.
 |---|---|---|
 | Pantalla de carga | `shared/components/intro/PantallaCarga.jsx` | Batería que se carga de 0 a 100 % siguiendo la carga real (tipografía e imagen principal), luego se abre como cortina. Solo en la primera visita de la sesión |
 | Cambio de página | `shared/styles/index.css` (view transitions) | La página nueva sube como cortina mientras la anterior se hunde y se oscurece |
-| Cursor | `shared/components/intro/CursorTorka.jsx` | Anillo que sigue al mouse; crece sobre enlaces y muestra "Ver", "Arrastra" o "Acelera" según el elemento (atributo `data-cursor`) |
+| Cursor | `shared/components/intro/CursorMarca.jsx` | Anillo que sigue al mouse; crece sobre enlaces y muestra "Ver", "Arrastra" o "Acelera" según el elemento (atributo `data-cursor`) |
 | Scroll suave | `shared/hooks/useScrollSuave.js` | Inercia con Lenis, solo con mouse o trackpad |
 | Menú de celular | `shared/components/layout/Nav.jsx` | Pantalla completa, baja como cortina y los enlaces entran en cascada |
 

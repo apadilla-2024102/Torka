@@ -6,11 +6,11 @@
  * página y los botones de WhatsApp los leen de aquí.
  */
 export const NEGOCIO = {
-  nombre: 'TORKA',
+  nombre: 'yolt',
   // Número de WhatsApp con código de país y sin espacios ni signos.
   // Guatemala: 502 + 8 dígitos. Este es un número de ejemplo.
   whatsapp: '50200000000',
-  correoVentas: 'ventas@torka.gt',
+  correoVentas: 'ventas@yolt.gt',
   telefono: '2200 0000',
 }
 

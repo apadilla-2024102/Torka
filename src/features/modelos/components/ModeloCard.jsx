@@ -3,7 +3,7 @@ import { motion } from 'motion/react'
 import ModeloImagen from '../../../shared/components/brand/ModeloImagen.jsx'
 import Inclinar from '../../../shared/components/ui/Inclinar.jsx'
 import Lectura from '../../../shared/components/ui/Lectura.jsx'
-import { formatoQuetzales } from '../../../shared/lib/formato.js'
+import { precioModelo } from '../../../shared/lib/formato.js'
 
 /**
  * Tarjeta del catálogo. Toda la tarjeta es un enlace a la ficha; la moto
@@ -34,7 +34,7 @@ export default function ModeloCard({ modelo, ref }) {
         >
           <div className="relative bg-negro px-6 pt-10 pb-4">
             {destacado && (
-              <span className="tipo-etiqueta absolute top-4 left-4 bg-senal px-3 py-1 text-negro">
+              <span className="tipo-etiqueta absolute top-4 left-4 bg-lima px-3 py-1 text-negro">
                 {destacado}
               </span>
             )}
@@ -60,7 +60,7 @@ export default function ModeloCard({ modelo, ref }) {
             <div className="mt-auto flex items-end justify-between gap-4 pt-7">
               <div>
                 <span className="tipo-etiqueta block text-niebla">Precio</span>
-                <span className="tipo-tablero text-2xl">{formatoQuetzales(precio)}</span>
+                <span className="tipo-tablero text-2xl">{precioModelo(modelo)}</span>
               </div>
               <div className="flex gap-1.5" aria-label={colores.length === 1 ? `Color: ${colores[0].nombre}` : `${colores.length} colores disponibles`}>
                 {colores.map((c) => (

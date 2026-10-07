@@ -24,14 +24,14 @@ export const inicioLoader = async () => {
  */
 export default function InicioPage() {
   const { modelos, preguntas } = useLoaderData()
-  const precioDesde = Math.min(...modelos.map((m) => m.precio))
+  // El GT aún no tiene precio: el "desde" se calcula con los que sí.
+  const precioDesde = Math.min(...modelos.filter((m) => m.precio != null).map((m) => m.precio))
 
   return (
     <>
       <Hero
         precioDesde={precioDesde}
-        totalModelos={modelos.length}
-        modeloPortada={modelos.find((m) => m.id === 'sierra') ?? modelos[0]}
+        modeloPortada={modelos.find((m) => m.id === 'x') ?? modelos[0]}
       />
       <BandaVelocidad />
       <Manifiesto />

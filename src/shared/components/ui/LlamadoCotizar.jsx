@@ -10,8 +10,8 @@ export default function LlamadoCotizar({
   modelo,
 }) {
   const mensaje = modelo
-    ? `Hola, quiero información de la TORKA ${modelo.nombre}.`
-    : 'Hola, quiero información de las motos TORKA.'
+    ? `Hola, quiero información de la yolt ${modelo.nombre}.`
+    : 'Hola, quiero información de las motos yolt.'
 
   return (
     <section className="relative bg-asfalto py-20 text-papel sm:py-24">

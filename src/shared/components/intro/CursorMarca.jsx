@@ -14,7 +14,7 @@ import { useSinMovimiento } from '../../hooks/useMovimiento.js'
  * Solo en equipos con mouse. El cursor del sistema sigue visible: el
  * anillo acompaña, no reemplaza (el puntero real nunca se pierde).
  */
-export default function CursorTorka() {
+export default function CursorMarca() {
   const [activo] = useState(() => window.matchMedia('(hover: hover) and (pointer: fine)').matches)
   const reduced = useSinMovimiento()
   const x = useMotionValue(-100)
@@ -66,7 +66,7 @@ export default function CursorTorka() {
       </motion.div>
       <motion.div aria-hidden="true" className="pointer-events-none fixed top-0 left-0 z-[90]" style={posicion}>
         <motion.div
-          className="absolute -top-[42px] -left-[42px] flex h-[84px] w-[84px] items-center justify-center rounded-full bg-rojo text-sm font-semibold text-white"
+          className="absolute -top-[42px] -left-[42px] flex h-[84px] w-[84px] items-center justify-center rounded-full bg-lima text-sm font-semibold text-negro"
           animate={{ scale: etiqueta && visible ? 1 : 0 }}
           transition={resorte}
         >

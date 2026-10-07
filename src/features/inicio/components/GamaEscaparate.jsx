@@ -4,7 +4,7 @@ import { AnimatePresence, motion, useInView } from 'motion/react'
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import ModeloImagen from '../../../shared/components/brand/ModeloImagen.jsx'
 import Lectura from '../../../shared/components/ui/Lectura.jsx'
-import { formatoQuetzales } from '../../../shared/lib/formato.js'
+import { precioModelo } from '../../../shared/lib/formato.js'
 import { CURVA } from '../../../shared/lib/movimiento.js'
 import { useSinMovimiento } from '../../../shared/hooks/useMovimiento.js'
 
@@ -109,7 +109,7 @@ function Capitulo({ modelo, indice, total, onActivo }) {
       </dl>
 
       <div className="mt-8 flex flex-wrap items-center gap-5">
-        <span className="tipo-tablero text-3xl">{formatoQuetzales(modelo.precio)}</span>
+        <span className="tipo-tablero text-3xl">{precioModelo(modelo)}</span>
         <Link
           to={`/modelos/${modelo.id}`}
           viewTransition

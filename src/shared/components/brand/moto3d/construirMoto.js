@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js'
 
 /**
- * Moto eléctrica TORKA construida por código con piezas reales: llantas,
+ * Moto eléctrica yolt construida por código con piezas reales: llantas,
  * rines, disco de freno, horquilla, manubrio, asiento, faro LED y una
  * carrocería con laca automotriz.
  *
@@ -107,11 +107,11 @@ export function crearMateriales(colorHex) {
     aluminio: new THREE.MeshStandardMaterial({ color: '#b8bcc4', roughness: 0.28, metalness: 0.95 }),
     aceroOscuro: new THREE.MeshStandardMaterial({ color: '#3a3c42', roughness: 0.35, metalness: 0.85 }),
     disco: new THREE.MeshStandardMaterial({ color: '#d4d7dd', roughness: 0.22, metalness: 1 }),
-    rojoMarca: new THREE.MeshStandardMaterial({ color: '#e31019', roughness: 0.4, metalness: 0.2 }),
+    rojoMarca: new THREE.MeshStandardMaterial({ color: '#c5f230', roughness: 0.4, metalness: 0.2 }),
     senal: new THREE.MeshStandardMaterial({
-      color: '#f2c230',
+      color: '#c5f230',
       roughness: 0.35,
-      emissive: '#f2c230',
+      emissive: '#c5f230',
       emissiveIntensity: 0.25,
     }),
     faro: new THREE.MeshStandardMaterial({ color: '#fff7dc', emissive: '#fff3c4', emissiveIntensity: 2.2 }),
@@ -191,7 +191,7 @@ function rueda(m, { conDisco = false, conMotor = false } = {}) {
  * @param rasgos  { parabrisas, parrilla, caja, dobleBateria, deportiva }
  * @returns { grupo, materiales }  — cambia el color con materiales.pintura.color
  */
-export function construirMoto(rasgos = {}, colorHex = '#e31019') {
+export function construirMoto(rasgos = {}, colorHex = '#c5f230') {
   const m = crearMateriales(colorHex)
   const moto = new THREE.Group()
 

@@ -31,7 +31,7 @@ export default function ModeloImagen({ modelo, colorId, className = '', transici
   const [rotas, setRotas] = useState(() => new Set())
   const src = candidatos.find((c) => !rotas.has(c))
 
-  const titulo = `TORKA ${modelo.nombre} en ${color.nombre.toLowerCase()}`
+  const titulo = `yolt ${modelo.nombre} en ${color.nombre.toLowerCase()}`
   const estilo = transicion ? { viewTransitionName: `moto-${modelo.id}` } : undefined
 
   if (src && destello) {

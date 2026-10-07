@@ -10,7 +10,7 @@ import { createContext, useCallback, useContext, useState } from 'react'
 const IntroContexto = createContext({ lista: true, terminar: () => {} })
 
 /** Solo la primera visita de la sesión ve la pantalla de carga completa. */
-const CLAVE = 'torka-intro-vista'
+const CLAVE = 'yolt-intro-vista'
 
 const yaVista = () => {
   try {

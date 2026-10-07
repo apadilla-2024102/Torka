@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const CLAVE = 'torka-equipo-lento'
+const CLAVE = 'yolt-equipo-lento'
 
 const marcadoLento = () => {
   try {

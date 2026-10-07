@@ -36,9 +36,9 @@ export default function Footer() {
       <Contenedor>
         <div className="grid gap-12 lg:grid-cols-[1.2fr_2fr]">
           <div>
-            <Logo variante="completo" className="-ml-1" />
+            <Logo variante="completo" />
             <p className="mt-6 max-w-sm text-niebla">
-              Motos eléctricas para el tráfico, las pendientes y el presupuesto de Guatemala.
+              Movilidad eléctrica para una Guatemala más real. Más ahorro, menos mantenimiento y una ciudad más limpia.
             </p>
             <p className="mt-6 text-niebla">
               <a href={`mailto:${NEGOCIO.correoVentas}`} className="text-papel underline-offset-4 hover:underline">
@@ -70,7 +70,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col gap-3 border-t border-linea pt-7 text-sm text-niebla sm:flex-row sm:justify-between">
-          <p>© {new Date().getFullYear()} TORKA</p>
+          <p>© {new Date().getFullYear()} yolt · Guatemala en movimiento</p>
           <p>Precios y especificaciones de referencia. Confirma la ficha vigente con tu distribuidor.</p>
         </div>
       </Contenedor>

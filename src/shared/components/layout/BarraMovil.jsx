@@ -35,7 +35,7 @@ export default function BarraMovil() {
           Cotizar
         </Boton>
         <Boton
-          href={enlaceWhatsApp('Hola, quiero información de las motos TORKA.')}
+          href={enlaceWhatsApp('Hola, quiero información de las motos yolt.')}
           target="_blank"
           rel="noopener noreferrer"
           variante="secundario"

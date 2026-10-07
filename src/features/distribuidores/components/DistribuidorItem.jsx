@@ -16,7 +16,7 @@ export default function DistribuidorItem({ distribuidor }) {
           {horario}
         </li>
       </ul>
-      <p className={`mt-4 text-sm font-medium ${pruebaManejo ? 'text-senal' : 'text-niebla'}`}>
+      <p className={`mt-4 text-sm font-medium ${pruebaManejo ? 'text-lima' : 'text-niebla'}`}>
         {pruebaManejo ? 'Con unidades para prueba de manejo' : 'Exhibición y venta, sin prueba de manejo'}
       </p>
       <a

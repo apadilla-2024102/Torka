@@ -25,7 +25,7 @@ export default function SelectorColor({ colores, activo, onCambiar, nombreGrupo 
             <span className="sr-only">{c.nombre}</span>
             <span
               aria-hidden="true"
-              className="block h-11 w-11 rounded-full ring-2 ring-linea ring-offset-4 ring-offset-asfalto transition-[box-shadow] duration-150 peer-checked:ring-papel peer-focus-visible:ring-rojo"
+              className="block h-11 w-11 rounded-full ring-2 ring-linea ring-offset-4 ring-offset-asfalto transition-[box-shadow] duration-150 peer-checked:ring-papel peer-focus-visible:ring-lima"
               style={{ backgroundColor: c.hex }}
             />
           </label>

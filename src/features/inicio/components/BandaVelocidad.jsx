@@ -7,13 +7,13 @@ import MontarEnVista from '../../../shared/components/ui/MontarEnVista.jsx'
  * dos filas van en sentidos opuestos, como los dos carriles de la calle.
  */
 const FRASES = [
-  'Cero gasolina / Hasta 120 km por carga / Se carga en tu casa /',
-  'Sin afinaciones / Sin ruido / Sin filas en la gasolinera /',
+  'Enciende tu camino / Menos gasto / Más vida /',
+  'Más ahorro / Menos mantenimiento / Una ciudad más limpia / Más posibilidades /',
 ]
 
 export default function BandaVelocidad() {
   return (
-    <section aria-label="Lo que cambia con una TORKA" className="overflow-hidden border-y border-linea bg-asfalto py-8 text-papel sm:py-12">
+    <section aria-label="Lo que cambia con una yolt" className="overflow-hidden border-y border-linea bg-asfalto py-8 text-papel sm:py-12">
       {/* Su bucle de animación corre en cada cuadro: fuera de pantalla se
           cambia por el mismo texto quieto. */}
       <MontarEnVista

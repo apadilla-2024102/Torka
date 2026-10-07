@@ -7,7 +7,7 @@ Licencia: **MIT + Commons Clause** (ver `LICENSE.md`, que debe quedarse
 junto a estos archivos). Permite usarlos en este sitio, incluso con fines
 comerciales; no permite vender ni redistribuir los componentes por separado.
 
-Los cambios hechos para TORKA están marcados en el código con `[TORKA]`:
+Los cambios hechos para yolt están marcados en el código con `[yolt]`:
 
 | Componente | Cambio |
 |---|---|

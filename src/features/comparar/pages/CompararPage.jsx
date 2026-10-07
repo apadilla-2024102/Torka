@@ -15,7 +15,7 @@ export default function CompararPage() {
     <>
       <EncabezadoPagina
         titulo="Compara los modelos"
-        descripcion="El punto rojo marca el mejor dato de cada fila. El mejor número no siempre es la mejor compra: elige la autonomía que tu recorrido necesita."
+        descripcion="El punto verde marca el mejor dato de cada fila. El mejor número no siempre es la mejor compra: elige la autonomía que tu recorrido necesita."
       />
       <Contenedor className="py-12 sm:py-16">
         <TablaComparativa modelos={modelos} specsMeta={SPECS_META} />
