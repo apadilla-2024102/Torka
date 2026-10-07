@@ -1,6 +1,7 @@
 import { lazy, Suspense, useState } from 'react'
 import ModeloImagen from '../../../shared/components/brand/ModeloImagen.jsx'
 import { hayWebGL } from '../../../shared/components/brand/moto3d/webgl.js'
+import Decorado from '../../../shared/components/ui/Decorado.jsx'
 
 // Three.js pesa: solo se descarga al abrir una ficha, nunca en la portada.
 const Moto3D = lazy(() => import('../../../shared/components/brand/moto3d/Moto3D.jsx'))
@@ -28,11 +29,13 @@ export default function VisorModelo({ modelo, colorId }) {
           className={`h-full w-full transition-opacity duration-300 ${listo ? 'opacity-0' : 'opacity-100'}`}
         />
         {con3D && (
-          <Suspense fallback={null}>
-            <div className={`transition-opacity duration-300 ${listo ? 'opacity-100' : 'opacity-0'}`}>
-              <Moto3D modelo={modelo} colorHex={color.hex} onListo={() => setListo(true)} />
-            </div>
-          </Suspense>
+          <Decorado>
+            <Suspense fallback={null}>
+              <div className={`transition-opacity duration-300 ${listo ? 'opacity-100' : 'opacity-0'}`}>
+                <Moto3D modelo={modelo} colorHex={color.hex} onListo={() => setListo(true)} />
+              </div>
+            </Suspense>
+          </Decorado>
         )}
       </div>
       {/* Con 3D, los botones de giro ocupan la franja de abajo: el texto va después. */}
