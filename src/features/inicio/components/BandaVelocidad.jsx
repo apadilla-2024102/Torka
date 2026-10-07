@@ -13,13 +13,13 @@ const FRASES = [
 
 export default function BandaVelocidad() {
   return (
-    <section aria-label="Lo que cambia con una yolt" className="overflow-hidden border-y border-linea bg-asfalto py-8 text-papel sm:py-12">
+    <section aria-label="Lo que cambia con una yolt" className="overflow-hidden border-y border-linea bg-asfalto py-6 text-papel sm:py-8">
       {/* Su bucle de animación corre en cada cuadro: fuera de pantalla se
           cambia por el mismo texto quieto. */}
       <MontarEnVista
         margen="100px 0px"
         respaldo={FRASES.map((f) => (
-          <p key={f} className="tipo-ruta overflow-hidden px-4 py-1 text-[clamp(2.2rem,6vw,5rem)] leading-[1.1] whitespace-nowrap">
+          <p key={f} className="tipo-ruta overflow-hidden px-4 py-1 text-[clamp(1.4rem,3.4vw,2.6rem)] leading-[1.2] whitespace-nowrap">
             {f}
           </p>
         ))}
@@ -28,7 +28,7 @@ export default function BandaVelocidad() {
           texts={FRASES}
           velocity={55}
           numCopies={4}
-          className="tipo-ruta px-4 text-[clamp(2.2rem,6vw,5rem)] leading-[1.1]"
+          className="tipo-ruta px-4 text-[clamp(1.4rem,3.4vw,2.6rem)] leading-[1.2]"
           scrollerClassName="scroller"
           parallaxClassName="parallax py-1"
         />
