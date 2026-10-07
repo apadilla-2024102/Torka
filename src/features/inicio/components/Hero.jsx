@@ -10,6 +10,7 @@ import { formatoNumero, formatoQuetzales } from '../../../shared/lib/formato.js'
 import { kmPorMonto } from '../../../shared/lib/energia.js'
 import { escalonar, lineaMascara, subir } from '../../../shared/lib/movimiento.js'
 import FondoAutopista from './FondoAutopista.jsx'
+import { useIntro } from '../../../shared/components/intro/IntroContexto.jsx'
 
 const LINEAS = ['Deja la gasolinera', 'en el retrovisor.']
 
@@ -38,6 +39,8 @@ const CONFIANZA = [
 export default function Hero({ precioDesde, totalModelos, modeloPortada }) {
   const seccion = useRef(null)
   const reduced = useReducedMotion()
+  // La entrada espera a que se abra la cortina de la pantalla de carga.
+  const { lista } = useIntro()
   const { scrollYProgress } = useScroll({ target: seccion, offset: ['start start', 'end start'] })
   const capaLetras = useTransform(scrollYProgress, [0, 1], ['0%', '35%'])
   const capaMoto = useTransform(scrollYProgress, [0, 1], ['0%', '-18%'])
@@ -53,7 +56,7 @@ export default function Hero({ precioDesde, totalModelos, modeloPortada }) {
     <section ref={seccion} className="relative isolate overflow-hidden bg-black text-papel">
       <ClickSpark sparkColor="#f2c230" sparkSize={12} sparkRadius={22} sparkCount={10} duration={450}>
         {/* capa 0 */}
-        <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 -z-10" data-cursor="Acelera">
           <FondoAutopista />
         </div>
         {/* capa 1 */}
@@ -73,7 +76,7 @@ export default function Hero({ precioDesde, totalModelos, modeloPortada }) {
         <Contenedor className="pointer-events-none relative flex min-h-[100svh] flex-col justify-center pt-28 pb-10 lg:min-h-[calc(100svh-5.25rem)]">
           <motion.div
             initial="oculto"
-            animate="visible"
+            animate={lista ? 'visible' : 'oculto'}
             variants={escalonar(0, 0.12)}
             style={reduced ? undefined : { opacity: desvanecer }}
             className="grid items-center gap-8 lg:grid-cols-[1.05fr_1fr]"
@@ -114,7 +117,7 @@ export default function Hero({ precioDesde, totalModelos, modeloPortada }) {
               >
                 <motion.div
                   initial={reduced ? { opacity: 0 } : { opacity: 0, x: '-55%' }}
-                  animate={{ opacity: 1, x: '0%' }}
+                  animate={lista ? { opacity: 1, x: '0%' } : undefined}
                   transition={
                     reduced
                       ? { duration: 0.3 }

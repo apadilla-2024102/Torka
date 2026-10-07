@@ -13,6 +13,7 @@ import SelectorColor from '../components/SelectorColor.jsx'
 import FichaTecnica from '../components/FichaTecnica.jsx'
 import CuotaEstimada from '../components/CuotaEstimada.jsx'
 import VisorModelo from '../components/VisorModelo.jsx'
+import { useIntro } from '../../../shared/components/intro/IntroContexto.jsx'
 
 export const modeloDetalleLoader = async ({ params }) => {
   const [modelo, modelos] = await Promise.all([getModeloPorId(params.id), getModelos()])
@@ -22,6 +23,7 @@ export const modeloDetalleLoader = async ({ params }) => {
 
 export default function ModeloDetallePage() {
   const { modelo, otros } = useLoaderData()
+  const { lista } = useIntro()
   // El color elegido vive en la URL y viaja a la cotización.
   const [params, setParams] = useSearchParams()
   const colorId = modelo.colores.some((c) => c.id === params.get('color'))
@@ -51,7 +53,7 @@ export default function ModeloDetallePage() {
 
             {/* Al llegar o cambiar de modelo, el nombre sube con máscara y el
                 resto de la columna lo sigue en ola. */}
-            <motion.div key={modelo.id} initial="oculto" animate="visible" variants={escalonar(0.05, 0.08)}>
+            <motion.div key={modelo.id} initial="oculto" animate={lista ? 'visible' : 'oculto'} variants={escalonar(0.05, 0.08)}>
               <motion.p variants={subir} className="text-niebla">
                 {modelo.perfilLabel}
               </motion.p>

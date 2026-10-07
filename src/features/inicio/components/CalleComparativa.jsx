@@ -58,8 +58,9 @@ export default function CalleComparativa() {
               <motion.span
                 className="tipo-tablero text-3xl text-papel sm:text-4xl"
                 initial={reduced ? false : { opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.0 + c.duracion, duration: 0.3 }}
+                whileInView={{ opacity: 1 }}
+                  viewport={{ once: true, margin: '0px 0px -20% 0px' }}
+                transition={{ delay: 0.2 + c.duracion, duration: 0.3 }}
               >
                 {formatoNumero(c.km)}
                 <span className="ml-1 text-base text-niebla">km</span>
@@ -69,8 +70,9 @@ export default function CalleComparativa() {
               <motion.div
                 className={`absolute inset-0 rounded-xl ${c.barra}`}
                 initial={reduced ? false : { x: '-100%' }}
-                animate={{ x: `${-(1 - c.proporcion) * 100}%` }}
-                transition={{ duration: c.duracion, ease: [0.22, 0.8, 0.3, 1], delay: 1.0 }}
+                whileInView={{ x: `${-(1 - c.proporcion) * 100}%` }}
+                viewport={{ once: true, margin: '0px 0px -20% 0px' }}
+                transition={{ duration: c.duracion, ease: [0.22, 0.8, 0.3, 1], delay: 0.2 }}
               >
                 <MotoMarcador color={c.moto} />
               </motion.div>

@@ -3,10 +3,13 @@ import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
 import BarraMovil from './BarraMovil.jsx'
 import { useScrollAHash } from '../../hooks/useScrollAHash.js'
+import { useScrollSuave } from '../../hooks/useScrollSuave.js'
+import CursorTorka from '../intro/CursorTorka.jsx'
 
 /** Estructura común a todas las páginas: navegación, contenido y pie. */
 export default function Layout() {
   useScrollAHash()
+  useScrollSuave()
 
   return (
     <>
@@ -24,6 +27,7 @@ export default function Layout() {
       </main>
       <Footer />
       <BarraMovil />
+      <CursorTorka />
       <ScrollRestoration />
     </>
   )
