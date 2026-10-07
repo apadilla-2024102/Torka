@@ -36,16 +36,16 @@ const ScrollReveal = ({
     const el = containerRef.current;
     if (!el) return;
 
-    // [TORKA] Si el sitio obedece "reducir movimiento" (ver
+    // [yolt] Si el sitio obedece "reducir movimiento" (ver
     // shared/hooks/useMovimiento.js), no hay giro ni desenfoque, pero las
     // palabras sí se encienden: solo cambia la opacidad.
     const suave = sinMovimiento();
 
     const scroller = scrollContainerRef && scrollContainerRef.current ? scrollContainerRef.current : window;
 
-    // [TORKA] gsap.context limita la limpieza a los disparadores de este
+    // [yolt] gsap.context limita la limpieza a los disparadores de este
     // componente; el original borraba TODOS los ScrollTrigger de la página.
-    // [TORKA] Una sola vez al entrar en pantalla, con tiempo propio, en vez
+    // [yolt] Una sola vez al entrar en pantalla, con tiempo propio, en vez
     // de amarrado a la rueda (scrub). Con scrub el texto quedaba a medio
     // encender si el usuario dejaba de bajar, y en pantallas anchas parecía
     // trabado. Así siempre termina, a la velocidad que se lee.
@@ -82,7 +82,7 @@ const ScrollReveal = ({
   }, [scrollContainerRef, enableBlur, baseRotation, baseOpacity, blurStrength]);
 
   return (
-    // [TORKA] El original anidaba <p> dentro de <h2> (HTML inválido).
+    // [yolt] El original anidaba <p> dentro de <h2> (HTML inválido).
     <Etiqueta ref={containerRef} className={`my-5 ${containerClassName}`}>
       <span className={`block text-[clamp(1.6rem,4vw,3rem)] leading-[1.5] font-semibold ${textClassName}`}>{splitText}</span>
     </Etiqueta>

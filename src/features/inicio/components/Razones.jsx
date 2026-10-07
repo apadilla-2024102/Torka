@@ -48,10 +48,10 @@ export default function Razones() {
           {RAZONES.map(({ icono: Icono, titulo, texto, ancha }) => (
             <Revelar.Item key={titulo} className={ancha ? 'md:col-span-2' : ''}>
               <SpotlightCard
-                spotlightColor="rgba(227, 16, 25, 0.22)"
+                spotlightColor="rgba(197, 242, 48, 0.16)"
                 className="h-full !rounded-[2px] !border-linea !bg-asfalto-alto"
               >
-                <Icono className="h-8 w-8 text-senal" strokeWidth={1.6} aria-hidden="true" />
+                <Icono className="h-8 w-8 text-lima" strokeWidth={1.6} aria-hidden="true" />
                 <h3 className="mt-6 text-2xl font-semibold">{titulo}</h3>
                 <p className="mt-3 max-w-xl text-niebla">{texto}</p>
               </SpotlightCard>

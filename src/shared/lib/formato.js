@@ -12,3 +12,6 @@ const decimales = (n) =>
 export const formatoQuetzales = (valor) => quetzales.format(valor)
 export const formatoNumero = (valor) => numero.format(valor)
 export const formatoDecimal = (valor, n = 2) => decimales(n).format(valor)
+
+/** Precio de un modelo para mostrar: "Próximamente" si aún no tiene precio. */
+export const precioModelo = (modelo) => (modelo.precio == null ? 'Próximamente' : quetzales.format(modelo.precio))

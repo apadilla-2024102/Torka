@@ -8,7 +8,7 @@ import ModeloImagen from '../../../shared/components/brand/ModeloImagen.jsx'
 import Boton from '../../../shared/components/ui/Boton.jsx'
 import LlamadoCotizar from '../../../shared/components/ui/LlamadoCotizar.jsx'
 import { enlaceWhatsApp } from '../../../shared/config/negocio.js'
-import { formatoQuetzales } from '../../../shared/lib/formato.js'
+import { precioModelo } from '../../../shared/lib/formato.js'
 import SelectorColor from '../components/SelectorColor.jsx'
 import FichaTecnica from '../components/FichaTecnica.jsx'
 import CuotaEstimada from '../components/CuotaEstimada.jsx'
@@ -67,8 +67,12 @@ export default function ModeloDetallePage() {
               </motion.p>
 
               <motion.p variants={subir} className="mt-8">
-                <span className="tipo-tablero text-5xl">{formatoQuetzales(modelo.precio)}</span>
-                <span className="mt-1 block text-sm text-niebla">Precio de lista, sin placas ni seguro</span>
+                <span className="tipo-tablero text-5xl">{precioModelo(modelo)}</span>
+                <span className="mt-1 block text-sm text-niebla">
+                  {modelo.proximamente
+                    ? 'Futura gama superior. Te avisamos primero cuando llegue.'
+                    : 'Precio de lista, sin placas ni seguro'}
+                </span>
               </motion.p>
 
               <motion.div variants={subir} className="mt-8">
@@ -81,9 +85,11 @@ export default function ModeloDetallePage() {
               </motion.div>
 
               <motion.div variants={subir} className="mt-9 flex flex-wrap gap-3">
-                <Boton to={`/cotizar?modelo=${modelo.id}&color=${colorId}`}>Cotizar la {modelo.nombre}</Boton>
+                <Boton to={`/cotizar?modelo=${modelo.id}&color=${colorId}`}>
+                  {modelo.proximamente ? 'Avísame cuando llegue' : `Cotizar la ${modelo.nombre}`}
+                </Boton>
                 <Boton
-                  href={enlaceWhatsApp(`Hola, me interesa la TORKA ${modelo.nombre}.`)}
+                  href={enlaceWhatsApp(`Hola, me interesa la yolt ${modelo.nombre}.`)}
                   target="_blank"
                   rel="noopener noreferrer"
                   variante="secundario"
@@ -115,7 +121,7 @@ export default function ModeloDetallePage() {
           <ul className="mt-8 space-y-4">
             {modelo.puntos.map((p) => (
               <li key={p} className="flex gap-3">
-                <Check className="mt-0.5 h-6 w-6 shrink-0 text-rojo" aria-hidden="true" />
+                <Check className="mt-0.5 h-6 w-6 shrink-0 text-lima" aria-hidden="true" />
                 {p}
               </li>
             ))}
@@ -129,7 +135,7 @@ export default function ModeloDetallePage() {
       </Contenedor>
 
       <Contenedor className="pb-20 sm:pb-24">
-        <CuotaEstimada key={modelo.id} precio={modelo.precio} />
+        {modelo.precio != null && <CuotaEstimada key={modelo.id} precio={modelo.precio} />}
       </Contenedor>
 
       <Contenedor as="section" aria-labelledby="otros-titulo" className="pb-20 sm:pb-24">
@@ -152,7 +158,7 @@ export default function ModeloDetallePage() {
                 <ModeloImagen modelo={m} className="aspect-[44/27] w-24 shrink-0" />
                 <span>
                   <span className="block text-lg font-semibold">{m.nombre}</span>
-                  <span className="tipo-tablero text-niebla">{formatoQuetzales(m.precio)}</span>
+                  <span className="tipo-tablero text-niebla">{precioModelo(m)}</span>
                 </span>
               </Link>
             </li>

@@ -26,7 +26,7 @@ export const armarMensaje = (datos, modelo, color) => {
   const interes = INTERESES.find((i) => i.id === datos.interes)?.label ?? ''
   const telefono = soloDigitos(datos.telefono).replace(/(\d{4})(\d{4})/, '$1 $2')
   return [
-    `Hola, soy ${datos.nombre.trim()}. Quiero cotizar una TORKA ${modelo.nombre}${color ? ` en ${color.nombre.toLowerCase()}` : ''}.`,
+    `Hola, soy ${datos.nombre.trim()}. Quiero cotizar una yolt ${modelo.nombre}${color ? ` en ${color.nombre.toLowerCase()}` : ''}.`,
     `Me interesa: ${interes}.`,
     `Departamento: ${datos.departamento}.`,
     `Teléfono: ${telefono}.`,

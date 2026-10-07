@@ -41,7 +41,7 @@ export default function CuotaEstimada({ precio }) {
               step={5}
               value={porcentaje}
               onChange={(e) => setPorcentaje(Number(e.target.value))}
-              className="mt-3 w-full accent-rojo"
+              className="mt-3 w-full accent-lima-hondo"
             />
           </div>
 
@@ -58,7 +58,7 @@ export default function CuotaEstimada({ precio }) {
                     onChange={() => setMeses(p)}
                     className="peer sr-only"
                   />
-                  <span className="flex min-h-11 items-center justify-center rounded-[2px] border border-asfalto/25 text-base font-medium transition-colors duration-150 peer-checked:border-asfalto peer-checked:bg-asfalto peer-checked:text-papel peer-focus-visible:ring-2 peer-focus-visible:ring-rojo">
+                  <span className="flex min-h-11 items-center justify-center rounded-[2px] border border-asfalto/25 text-base font-medium transition-colors duration-150 peer-checked:border-asfalto peer-checked:bg-asfalto peer-checked:text-papel peer-focus-visible:ring-2 peer-focus-visible:ring-lima-hondo">
                     {p} meses
                   </span>
                 </label>

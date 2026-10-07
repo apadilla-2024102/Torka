@@ -12,7 +12,7 @@ import { useSinMovimiento } from '../../hooks/useMovimiento.js'
  * pantalla, como la aguja del tablero al encender la moto. El lector de
  * pantalla recibe el valor final, no la cuenta.
  *
- * `energia` marca la cifra con el amarillo de carril: solo para datos de
+ * `energia` marca la cifra en lima: solo para datos de
  * autonomía, carga y distancia.
  */
 export default function Lectura({ valor, unidad, etiqueta, energia = false, sobreOscuro = true, grande = false }) {
@@ -22,14 +22,14 @@ export default function Lectura({ valor, unidad, etiqueta, energia = false, sobr
   const esNumero = typeof valor === 'number'
   const mostrado = useCountUp(esNumero ? (enVista || reduced ? valor : 0) : 0, 1.1)
 
-  const colorCifra = energia && sobreOscuro ? 'text-senal' : sobreOscuro ? 'text-papel' : 'text-asfalto'
+  const colorCifra = energia && sobreOscuro ? 'text-lima' : sobreOscuro ? 'text-papel' : 'text-asfalto'
 
   return (
     <div ref={ref}>
       <dt className={`text-sm ${sobreOscuro ? 'text-niebla' : 'text-grafito'}`}>{etiqueta}</dt>
       <dd className={`tipo-tablero mt-0.5 leading-none ${grande ? 'text-5xl' : 'text-3xl'} ${colorCifra}`}>
         {energia && !sobreOscuro && (
-          <span className="mr-1.5 inline-block h-[0.6em] w-1.5 rounded-sm bg-senal align-baseline" aria-hidden="true" />
+          <span className="mr-1.5 inline-block h-[0.6em] w-1.5 rounded-sm bg-lima align-baseline" aria-hidden="true" />
         )}
         {esNumero ? (
           <>

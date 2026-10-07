@@ -1,5 +1,5 @@
 /**
- * Sistema de movimiento de TORKA.
+ * Sistema de movimiento de yolt.
  *
  * Todas las curvas y duraciones viven aquí: para cambiar el carácter del
  * movimiento de todo el sitio se toca este archivo, no los componentes.

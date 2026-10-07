@@ -1,5 +1,5 @@
 /**
- * Datos de ejemplo de TORKA.
+ * Datos de ejemplo de yolt.
  *
  * Se usan mientras no exista un backend (variable VITE_API_URL vacía).
  * Precios en quetzales (GTQ), fichas, garantías y distribuidores son de
@@ -11,125 +11,127 @@
 
 export const MOCK_MODELOS = [
   {
-    id: 'urbana',
-    nombre: 'Urbana',
-    tagline: 'La primera moto eléctrica que no te complica la vida',
+    id: 'one',
+    nombre: 'ONE',
+    tagline: 'Tu primer gran paso',
     perfil: 'ciudad',
     perfilLabel: 'Ciudad',
-    precio: 13900,
-    destacado: 'Más vendida',
+    precio: 8000,
+    destacado: 'Desde Q 8,000',
     requiereLicencia: false,
     resumen:
-      'Pensada para trayectos cortos y constantes: casa, oficina, mandados. La batería se desmonta, así que la subes a tu casa y la cargas en un contacto normal.',
+      'La puerta de entrada a lo eléctrico: ligera, fácil de manejar y con batería que se desmonta para cargarla en casa. Para casa, oficina y mandados sin volver a pasar por la gasolinera.',
     specs: {
-      autonomia: 65,
+      autonomia: 60,
       velocidad: 45,
       carga: 4,
-      motor: 1200,
+      motor: 1000,
       cargaUtil: 150,
-      bateria: 'Extraíble 60V 20Ah',
+      bateria: 'Extraíble 48V 20Ah',
     },
     puntos: [
-      'Batería extraíble de 11 kg',
+      'Batería extraíble: la cargas en cualquier contacto de 120 V',
       'No requiere licencia tipo M',
-      'Cargador incluido para contacto de 120 V',
+      'Asiento con respaldo para el acompañante',
     ],
     // Silueta de respaldo, por si una foto no carga.
     ilustracion: { parabrisas: false, parrilla: false, caja: false, dobleBateria: false },
     // Un color por cada foto real: no se ofrece un color que no se puede mostrar.
     colores: [{ id: 'crema', nombre: 'Crema y menta', hex: '#e8e1cb' }],
-    // Fotos recortadas en public/modelos/fotos (ver README, "Fotos de las motos").
-    fotos: { crema: '/modelos/fotos/urbana-crema.webp' },
+    // Fotos recortadas en public/modelos/fotos (ver README, "Imágenes de las motos").
+    fotos: { crema: '/modelos/fotos/one-crema.webp' },
   },
   {
-    id: 'sierra',
-    nombre: 'Sierra',
-    tagline: 'Autonomía para dejar de pensar en la batería',
-    perfil: 'autonomia',
-    perfilLabel: 'Larga distancia',
-    precio: 19500,
-    destacado: 'Mayor autonomía',
-    requiereLicencia: true,
-    resumen:
-      'Doble batería y motor de mayor par para subidas y trayectos largos. Si haces más de 40 km diarios o vives en una zona con pendientes, esta es la que aguanta.',
-    specs: {
-      autonomia: 120,
-      velocidad: 65,
-      carga: 6,
-      motor: 2000,
-      cargaUtil: 170,
-      bateria: 'Doble extraíble 72V 20Ah',
-    },
-    puntos: [
-      'Dos baterías: carga una mientras usas la otra',
-      'Motor de 2000 W con par reforzado para pendientes',
-      'Frenos de disco delantero y trasero',
-    ],
-    ilustracion: { parabrisas: true, parrilla: false, caja: false, dobleBateria: true },
-    colores: [{ id: 'titanio', nombre: 'Gris titanio', hex: '#8b8d8f' }],
-    fotos: { titanio: '/modelos/fotos/sierra-titanio.webp' },
-  },
-  {
-    id: 'carga',
-    nombre: 'Carga',
-    tagline: 'Hecha para trabajar todos los días',
+    id: 'city',
+    nombre: 'CITY',
+    tagline: 'Más ciudad. Más vida.',
     perfil: 'trabajo',
-    perfilLabel: 'Reparto y trabajo',
-    precio: 17600,
-    destacado: null,
+    perfilLabel: 'Ciudad y reparto',
+    precio: 12000,
+    destacado: 'Más vendida',
     requiereLicencia: false,
     resumen:
-      'Chasis reforzado, parrilla trasera y suspensión calibrada para peso. Para reparto, mensajería y flotillas donde cada quetzal de combustible cuenta.',
+      'Chasis con defensas, parrilla trasera y plataforma amplia. Para moverte todos los días por la ciudad, hacer reparto o mensajería, y que cada quetzal que antes iba a combustible se quede contigo.',
     specs: {
-      autonomia: 90,
-      velocidad: 55,
+      autonomia: 80,
+      velocidad: 50,
       carga: 5,
-      motor: 1800,
-      cargaUtil: 220,
-      bateria: 'Extraíble 72V 20Ah',
+      motor: 1500,
+      cargaUtil: 200,
+      bateria: 'Extraíble 60V 24Ah',
     },
     puntos: [
-      'Capacidad de 220 kg incluyendo conductor',
-      'Parrilla trasera y anclajes para caja de reparto',
+      'Defensas laterales y parrilla trasera de acero',
+      'Capacidad de 200 kg incluyendo conductor',
       'Precio por flotilla a partir de 5 unidades',
     ],
     ilustracion: { parabrisas: false, parrilla: true, caja: false, dobleBateria: false },
     colores: [
-      { id: 'verde', nombre: 'Verde y naranja', hex: '#2e5a4b' },
       { id: 'lima', nombre: 'Negro y lima', hex: '#c9e021' },
+      { id: 'verde', nombre: 'Verde y naranja', hex: '#2e5a4b' },
     ],
     fotos: {
-      verde: '/modelos/fotos/carga-verde.webp',
-      lima: '/modelos/fotos/carga-lima.webp',
+      lima: '/modelos/fotos/city-lima.webp',
+      verde: '/modelos/fotos/city-verde.webp',
     },
   },
   {
-    id: 'sport',
-    nombre: 'Sport',
-    tagline: 'Para quien dice que lo eléctrico es lento',
+    id: 'x',
+    nombre: 'X',
+    tagline: 'Más potencia. Más libertad.',
     perfil: 'potencia',
     perfilLabel: 'Potencia',
-    precio: 22900,
-    destacado: null,
+    precio: 25000,
+    destacado: 'Más potencia',
     requiereLicencia: true,
     resumen:
-      'Motor de 3000 W y respuesta instantánea. Velocidad de vía primaria con la entrega de par que solo da un eléctrico. Requiere licencia y placas.',
+      'Postura de aventura, parabrisas alto y llantas para cualquier camino. Motor de mayor par para subidas, vía primaria y fines de semana fuera de la ciudad. Requiere licencia y placas.',
     specs: {
-      autonomia: 100,
-      velocidad: 85,
-      carga: 5,
+      autonomia: 110,
+      velocidad: 80,
+      carga: 6,
       motor: 3000,
-      cargaUtil: 160,
-      bateria: 'Litio fija 72V 32Ah',
+      cargaUtil: 180,
+      bateria: 'Litio 72V 40Ah',
     },
     puntos: [
-      'De 0 a 50 km/h en 4.2 segundos',
-      'Tres modos de manejo: Eco, Ciudad y Sport',
-      'Requiere licencia tipo M y placas',
+      'Motor de 3000 W con par inmediato para pendientes',
+      'Frenos de disco delantero y trasero',
+      'Parabrisas alto y llantas de uso mixto',
+    ],
+    ilustracion: { parabrisas: true, parrilla: false, caja: false, dobleBateria: true },
+    colores: [{ id: 'titanio', nombre: 'Gris titanio', hex: '#8b8d8f' }],
+    fotos: { titanio: '/modelos/fotos/x-titanio.webp' },
+  },
+  {
+    id: 'gt',
+    nombre: 'GT',
+    tagline: 'Sin límites',
+    perfil: 'autonomia',
+    perfilLabel: 'Larga distancia',
+    // Futura gama superior: sin precio publicado todavía.
+    precio: null,
+    proximamente: true,
+    destacado: 'Próximamente',
+    requiereLicencia: true,
+    resumen:
+      'La futura gama superior de yolt: scooter grande, cómodo para dos y con la mayor autonomía de la marca. Déjanos tus datos y te avisamos primero cuando llegue.',
+    specs: {
+      autonomia: 140,
+      velocidad: 95,
+      carga: 6,
+      motor: 4000,
+      cargaUtil: 190,
+      bateria: 'Litio 72V 50Ah',
+    },
+    puntos: [
+      'La mayor autonomía de la gama',
+      'Respaldo y parrilla para viajar en pareja',
+      'Ficha preliminar: puede cambiar al lanzamiento',
     ],
     ilustracion: { parabrisas: true, parrilla: true, caja: false, dobleBateria: false, deportiva: true },
     colores: [{ id: 'perla', nombre: 'Blanco perla', hex: '#e2e1e6' }],
-    fotos: { perla: '/modelos/fotos/sport-perla.webp' },
+    fotos: { perla: '/modelos/fotos/gt-perla.webp' },
   },
 ]
 
@@ -146,9 +148,9 @@ export const SPECS_META = [
 export const PERFILES = [
   { id: 'todos', label: 'Todos' },
   { id: 'ciudad', label: 'Ciudad' },
-  { id: 'autonomia', label: 'Larga distancia' },
-  { id: 'trabajo', label: 'Reparto y trabajo' },
+  { id: 'trabajo', label: 'Ciudad y reparto' },
   { id: 'potencia', label: 'Potencia' },
+  { id: 'autonomia', label: 'Larga distancia' },
 ]
 
 export const MOCK_DISTRIBUIDORES = [
@@ -196,13 +198,13 @@ export const MOCK_PREGUNTAS = [
     id: 'licencia',
     pregunta: '¿Necesito licencia y placas?',
     respuesta:
-      'Depende del modelo. Urbana y Carga se mantienen dentro del límite de potencia y velocidad que suele clasificarse como ciclomotor y no exigen licencia tipo M. Sierra y Sport sí requieren licencia tipo M y placas. Tu distribuidor te entrega la factura y el certificado de origen, que es lo que necesitas para inscribir el vehículo ante la SAT.',
+      'Depende del modelo. yolt ONE y CITY se mantienen dentro del límite de potencia y velocidad que suele clasificarse como ciclomotor y no exigen licencia tipo M. yolt X y GT sí requieren licencia tipo M y placas. Tu distribuidor te entrega la factura y el certificado de origen, que es lo que necesitas para inscribir el vehículo ante la SAT.',
   },
   {
     id: 'carga-departamento',
     pregunta: 'Vivo en un apartamento, ¿dónde la cargo?',
     respuesta:
-      'Por eso la batería es extraíble en Urbana, Sierra y Carga. Pesa entre 11 y 14 kg, la desmontas con llave, la subes y la conectas a un contacto normal de 120 V. No necesitas instalación especial. Sport lleva batería fija y se carga con la moto estacionada.',
+      'Por eso la batería es extraíble en yolt ONE y CITY. Pesa entre 11 y 14 kg, la desmontas con llave, la subes y la conectas a un contacto normal de 120 V. No necesitas instalación especial. yolt X y GT llevan batería fija de mayor capacidad y se cargan con la moto estacionada.',
   },
   {
     id: 'vida-bateria',

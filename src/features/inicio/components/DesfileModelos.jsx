@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
 import ModeloImagen from '../../../shared/components/brand/ModeloImagen.jsx'
-import { formatoQuetzales } from '../../../shared/lib/formato.js'
+import { precioModelo } from '../../../shared/lib/formato.js'
 import { EN_VISTA, lineaMascara } from '../../../shared/lib/movimiento.js'
 
 /**
@@ -47,7 +47,7 @@ export default function DesfileModelos({ modelos }) {
                 >
                   <span
                     aria-hidden="true"
-                    className="tipo-ruta pointer-events-none absolute inset-x-0 top-[22%] overflow-hidden text-center text-[clamp(2.6rem,11vw,4.1rem)] leading-none text-transparent transition-colors duration-500 [-webkit-text-stroke:1px_rgba(246,246,243,0.22)] group-hover:text-rojo/90 group-hover:[-webkit-text-stroke:1px_transparent]"
+                    className="tipo-ruta pointer-events-none absolute inset-x-0 top-[22%] overflow-hidden text-center text-[clamp(2.6rem,11vw,4.1rem)] leading-none text-transparent transition-colors duration-500 [-webkit-text-stroke:1px_rgba(241,238,229,0.22)] group-hover:text-lima/90 group-hover:[-webkit-text-stroke:1px_transparent]"
                   >
                     {modelo.nombre}
                   </span>
@@ -61,7 +61,7 @@ export default function DesfileModelos({ modelos }) {
                         {modelo.nombre} · {color.nombre}
                       </span>
                     </span>
-                    <span className="tipo-tablero text-xl">{formatoQuetzales(modelo.precio)}</span>
+                    <span className="tipo-tablero text-xl">{precioModelo(modelo)}</span>
                   </span>
                 </Link>
               </li>

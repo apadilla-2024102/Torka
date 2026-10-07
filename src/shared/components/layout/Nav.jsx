@@ -63,7 +63,7 @@ export default function Nav() {
       }`}
     >
       <nav aria-label="Principal" className="mx-auto flex h-18 max-w-6xl items-center justify-between gap-6 px-4 sm:px-8">
-        <Link to="/" viewTransition aria-label="TORKA, ir al inicio" className="shrink-0 rounded-md">
+        <Link to="/" viewTransition aria-label="yolt, ir al inicio" className="shrink-0 rounded-md">
           <Logo />
         </Link>
 
@@ -83,7 +83,7 @@ export default function Nav() {
                   <>
                     {e.label}
                     {isActive && (
-                      <span className="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-rojo" aria-hidden="true" />
+                      <span className="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-lima" aria-hidden="true" />
                     )}
                   </>
                 )}
@@ -93,7 +93,7 @@ export default function Nav() {
         </ul>
 
         <div className="flex items-center gap-2">
-          {/* Contorno, no rojo: en cada vista solo puede haber un botón rojo (DESIGN.md). */}
+          {/* Contorno, no lima: en cada vista solo puede haber un botón lima (DESIGN.md). */}
           {/* En celular el botón vive en la barra inferior. Se oculta con un
               envoltorio: la clase "hidden" sobre el botón perdía contra su
               propio display y lo dejaba visible, empujando el menú fuera. */}
@@ -140,7 +140,7 @@ export default function Nav() {
                       to={e.to}
                       viewTransition
                       className={({ isActive }) =>
-                        `tipo-ruta block py-5 text-[clamp(2rem,9vw,3rem)] leading-none ${isActive ? 'text-rojo-claro' : 'text-papel'}`
+                        `tipo-ruta block py-5 text-[clamp(2rem,9vw,3rem)] leading-none ${isActive ? 'text-lima' : 'text-papel'}`
                       }
                     >
                       {e.label}

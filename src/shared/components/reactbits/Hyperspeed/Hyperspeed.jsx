@@ -362,7 +362,7 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS, lightMode = false 
           alpha: true
         });
         this.renderer.setSize(initW, initH, false);
-        // [TORKA] Densidad 1: es un fondo de luces difusas y con la escala de
+        // [yolt] Densidad 1: es un fondo de luces difusas y con la escala de
         // Windows al 125 % o 150 % el original redimensionaba en cada cuadro.
         this.renderer.setPixelRatio(1);
         this.composer = new EffectComposer(this.renderer);
@@ -450,7 +450,7 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS, lightMode = false 
           new BloomEffect({
             luminanceThreshold: 0.2,
             luminanceSmoothing: 0,
-            // [TORKA] Brillo a media resolución y sin SMAA: el resplandor ya
+            // [yolt] Brillo a media resolución y sin SMAA: el resplandor ya
             // suaviza los bordes y la GPU gasta menos de la mitad.
             resolutionScale: 0.5
           })
@@ -636,7 +636,7 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS, lightMode = false 
       tick() {
         if (this.disposed) return;
 
-        // [TORKA] Fuera de pantalla o con la pestaña oculta no se dibuja.
+        // [yolt] Fuera de pantalla o con la pestaña oculta no se dibuja.
         if (this.paused || document.hidden) {
           this.timer.reset();
           requestAnimationFrame(this.tick);
@@ -1152,7 +1152,7 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS, lightMode = false 
       const width = canvas.clientWidth;
       const height = canvas.clientHeight;
       if (width <= 0 || height <= 0) return false;
-      // [TORKA] Compara en píxeles reales (ancho × densidad); el original
+      // [yolt] Compara en píxeles reales (ancho × densidad); el original
       // comparaba contra el ancho CSS y redimensionaba en cada cuadro.
       const ratio = renderer.getPixelRatio();
       const needResize = canvas.width !== Math.floor(width * ratio) || canvas.height !== Math.floor(height * ratio);
@@ -1184,7 +1184,7 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS, lightMode = false 
     };
     options.distortion = distortions[options.distortion];
 
-    // TORKA: si el navegador no entrega un contexto WebGL, el fondo se
+    // yolt: si el navegador no entrega un contexto WebGL, el fondo se
     // queda vacío en vez de tumbar la página.
     let myApp;
     try {
@@ -1194,13 +1194,13 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS, lightMode = false 
     }
     appRef.current = myApp;
 
-    // [TORKA] Pausa el dibujo cuando la autopista sale de pantalla, sin
+    // [yolt] Pausa el dibujo cuando la autopista sale de pantalla, sin
     // desmontarla: volver a crear el contexto WebGL congela la página.
     const vigia = new IntersectionObserver(([entrada]) => {
       myApp.paused = !entrada.isIntersecting;
     });
     vigia.observe(container);
-    // TORKA: los recursos cargan en diferido; si el componente se desmontó
+    // yolt: los recursos cargan en diferido; si el componente se desmontó
     // mientras tanto (modo estricto, cambio de página, vigilante de fluidez),
     // el contexto ya se liberó y no hay nada que iniciar.
     myApp

@@ -31,19 +31,19 @@ export default function LlamadoFinal() {
 
   return (
     <section className="relative isolate overflow-hidden bg-black py-28 text-papel sm:py-36">
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_70%_20%,rgba(227,16,25,0.25),transparent_60%)]" />
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_70%_20%,rgba(197,242,48,0.16),transparent_60%)]" />
       {con3D && !reduced && !lento && (
         <MontarEnVista className="absolute inset-0 -z-10 opacity-70">
           <Decorado>
             <Suspense fallback={null}>
-              <Lightning hue={356} xOffset={0.55} speed={suave ? 0.35 : 0.7} intensity={0.9} size={1.2} />
+              <Lightning hue={78} xOffset={0.55} speed={suave ? 0.35 : 0.7} intensity={0.9} size={1.2} />
             </Suspense>
           </Decorado>
         </MontarEnVista>
       )}
 
       <Contenedor>
-        <ClickSpark sparkColor="#f2c230" sparkSize={12} sparkRadius={24} sparkCount={10}>
+        <ClickSpark sparkColor="#c5f230" sparkSize={12} sparkRadius={24} sparkCount={10}>
           <div ref={tarjeta}>
           <BordeElectrico activo={enVista && !reduced}>
             <div className="rounded-[28px] bg-black/60 p-8 backdrop-blur sm:p-14">
@@ -55,7 +55,7 @@ export default function LlamadoFinal() {
               <div className="mt-10 flex flex-wrap gap-3">
                 <Boton to="/cotizar">Pedir cotización</Boton>
                 <Boton
-                  href={enlaceWhatsApp('Hola, quiero información de las motos TORKA.')}
+                  href={enlaceWhatsApp('Hola, quiero información de las motos yolt.')}
                   target="_blank"
                   rel="noopener noreferrer"
                   variante="secundario"
@@ -73,14 +73,14 @@ export default function LlamadoFinal() {
   )
 }
 
-/** Borde eléctrico animado en pantalla; fuera de ella, un borde rojo quieto. */
+/** Borde eléctrico animado en pantalla; fuera de ella, un borde lima quieto. */
 function BordeElectrico({ activo, children }) {
   if (activo) {
     return (
-      <ElectricBorder color="#e31019" speed={0.8} chaos={0.14} borderRadius={28}>
+      <ElectricBorder color="#c5f230" speed={0.8} chaos={0.14} borderRadius={28}>
         {children}
       </ElectricBorder>
     )
   }
-  return <div className="rounded-[28px] border-2 border-rojo/70">{children}</div>
+  return <div className="rounded-[28px] border-2 border-lima/70">{children}</div>
 }

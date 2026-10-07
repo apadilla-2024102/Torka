@@ -91,7 +91,7 @@ export const ScrollVelocity = ({
     useAnimationFrame((t, delta) => {
       let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
-      // [TORKA] En modo suave la banda corre a paso constante, sin
+      // [yolt] En modo suave la banda corre a paso constante, sin
       // acelerarse ni cambiar de sentido con el scroll.
       if (suave) {
         baseX.set(baseX.get() + baseVelocity * 0.5 * (delta / 1000));
@@ -128,7 +128,7 @@ export const ScrollVelocity = ({
     );
   }
 
-  // [TORKA] Las copias repetidas son decorativas: el lector de pantalla
+  // [yolt] Las copias repetidas son decorativas: el lector de pantalla
   // oye cada frase una vez. Si el sitio obedece "reducir movimiento" (ver
   // shared/hooks/useMovimiento.js) la banda no se queda quieta: corre lenta
   // y constante, sin reaccionar al scroll.

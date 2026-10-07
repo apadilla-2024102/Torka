@@ -10,7 +10,7 @@ const MONTO = 100
 /**
  * La firma de la portada: dos carriles, el mismo dinero.
  *
- * Con Q100 de energía, la moto de gasolina se detiene pronto y la TORKA
+ * Con Q100 de energía, la moto de gasolina se detiene pronto y la yolt
  * sigue hasta el final de la calle. Es el argumento de venta convertido
  * en imagen, y el único movimiento que ocurre sin que el usuario haga
  * nada en todo el sitio.
@@ -35,11 +35,11 @@ export default function CalleComparativa() {
       duracion: 1.1,
     },
     {
-      id: 'torka',
-      etiqueta: 'TORKA eléctrica',
+      id: 'yolt',
+      etiqueta: 'yolt eléctrica',
       km: km.electrica,
       proporcion: 1,
-      barra: 'bg-rojo',
+      barra: 'bg-lima',
       moto: '#ff4a50',
       duracion: 2.4,
     },
@@ -48,7 +48,7 @@ export default function CalleComparativa() {
   return (
     <figure aria-labelledby="calle-titulo">
       <figcaption id="calle-titulo" className="mb-6 text-lg text-papel">
-        Lo que recorres con <span className="tipo-tablero text-2xl text-senal">Q{MONTO}</span> de energía
+        Lo que recorres con <span className="tipo-tablero text-2xl text-lima">Q{MONTO}</span> de energía
       </figcaption>
 
       <div>

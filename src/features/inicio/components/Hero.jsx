@@ -14,7 +14,7 @@ import FondoAutopista from './FondoAutopista.jsx'
 import { useIntro } from '../../../shared/components/intro/IntroContexto.jsx'
 import { useSinMovimiento } from '../../../shared/hooks/useMovimiento.js'
 
-const LINEAS = ['Deja la gasolinera', 'en el retrovisor.']
+const LINEAS = ['Enciende', 'tu camino.']
 
 /** Lo que más pesa en la decisión, a la vista desde el primer pantallazo. */
 const CONFIANZA = [
@@ -29,7 +29,7 @@ const CONFIANZA = [
  *
  *   capa 0  autopista nocturna (React Bits · Hyperspeed)
  *   capa 1  sombra que asegura la lectura del texto
- *   capa 2  "TORKA" gigante en contorno, se mueve más lento al hacer scroll
+ *   capa 2  "yolt" gigante en contorno, se mueve más lento al hacer scroll
  *   capa 3  la moto: entra rodando, flota y se adelanta con el scroll
  *   capa 4  titular, texto y botones
  *   capa 5  pista "mantén presionado para acelerar" (solo escritorio)
@@ -38,7 +38,7 @@ const CONFIANZA = [
  * presionado en cualquier punto vacío acelere la autopista; los botones
  * sí lo reciben.
  */
-export default function Hero({ precioDesde, totalModelos, modeloPortada }) {
+export default function Hero({ precioDesde, modeloPortada }) {
   const seccion = useRef(null)
   const reduced = useSinMovimiento()
   // La entrada espera a que se abra la cortina de la pantalla de carga.
@@ -49,14 +49,14 @@ export default function Hero({ precioDesde, totalModelos, modeloPortada }) {
   const escalaMoto = useTransform(scrollYProgress, [0, 1], [1, 1.12])
   const desvanecer = useTransform(scrollYProgress, [0, 0.8], [1, 0])
   const km = kmPorMonto(100)
-  // Redondeos que nunca exageran a favor de TORKA: lo eléctrico hacia abajo
+  // Redondeos que nunca exageran a favor de yolt: lo eléctrico hacia abajo
   // a la centena, lo de gasolina a la decena más cercana.
   const kmElectrica = formatoNumero(Math.floor(km.electrica / 100) * 100)
   const kmGasolina = formatoNumero(Math.round(km.gasolina / 10) * 10)
 
   return (
     <section ref={seccion} className="relative isolate overflow-hidden bg-black text-papel">
-      <ClickSpark sparkColor="#f2c230" sparkSize={12} sparkRadius={22} sparkCount={10} duration={450}>
+      <ClickSpark sparkColor="#c5f230" sparkSize={12} sparkRadius={22} sparkCount={10} duration={450}>
         {/* capa 0 */}
         <div className="absolute inset-0 -z-10" data-cursor="Acelera">
           <FondoAutopista />
@@ -70,9 +70,9 @@ export default function Hero({ precioDesde, totalModelos, modeloPortada }) {
         <motion.p
           aria-hidden="true"
           style={reduced ? undefined : { y: capaLetras }}
-          className="tipo-ruta pointer-events-none absolute right-[-2vw] bottom-[9%] -z-10 text-[clamp(6rem,24vw,22rem)] leading-none text-transparent select-none [-webkit-text-stroke:1.5px_rgba(246,246,243,0.16)]"
+          className="tipo-ruta pointer-events-none absolute right-[-2vw] bottom-[9%] -z-10 text-[clamp(6rem,24vw,22rem)] leading-none normal-case text-transparent select-none [-webkit-text-stroke:1.5px_rgba(241,238,229,0.16)]"
         >
-          TORKA
+          yolt
         </motion.p>
 
         <Contenedor className="pointer-events-none relative flex min-h-[100svh] flex-col justify-center pt-28 pb-10 lg:min-h-[calc(100svh-5.25rem)]">
@@ -85,8 +85,11 @@ export default function Hero({ precioDesde, totalModelos, modeloPortada }) {
           >
             {/* capa 4 */}
             <div>
-              <motion.span variants={subir} aria-hidden="true" className="franja-marca mb-7 block h-1 w-24" />
-              <h1 className="tipo-ruta text-[clamp(2.6rem,7vw,5.5rem)] drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)]">
+              <motion.span variants={subir} aria-hidden="true" className="franja-marca mb-6 block h-1 w-24" />
+              <motion.p variants={subir} className="tipo-etiqueta mb-5 text-niebla">
+                Movilidad eléctrica para una Guatemala más real
+              </motion.p>
+              <h1 className="tipo-ruta text-[clamp(2.1rem,5.4vw,4.4rem)] drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)]">
                 {LINEAS.map((linea) => (
                   <span key={linea} className="block overflow-hidden pb-[0.08em]">
                     <motion.span variants={lineaMascara} className="block">
@@ -95,14 +98,17 @@ export default function Hero({ precioDesde, totalModelos, modeloPortada }) {
                   </span>
                 ))}
               </h1>
+              <motion.p variants={subir} className="tipo-ruta mt-4 text-[clamp(1.3rem,2.6vw,2rem)] text-lima">
+                Menos gasto. Más vida.
+              </motion.p>
               <motion.p variants={subir} className="mt-6 max-w-lg text-lg text-papel/80 sm:text-xl">
                 Con Q100 de luz recorres más de {kmElectrica} km; con gasolina, unos{' '}
-                {kmGasolina}. Batería que subes a tu casa y cero afinaciones. {totalModelos} modelos desde{' '}
+                {kmGasolina}. Batería que subes a tu casa y cero afinaciones. La gama yolt arranca en{' '}
                 {formatoQuetzales(precioDesde)}.
               </motion.p>
               <motion.div variants={subir} className="pointer-events-auto mt-9 flex flex-wrap items-center gap-3">
                 <Magnet padding={60} magnetStrength={4} disabled={reduced}>
-                  <Boton to="/modelos" className="shadow-[0_0_40px_-8px_rgba(227,16,25,0.8)]">
+                  <Boton to="/modelos" className="shadow-[0_0_40px_-8px_rgba(197,242,48,0.7)]">
                     Ver los modelos
                   </Boton>
                 </Magnet>
@@ -142,7 +148,7 @@ export default function Hero({ precioDesde, totalModelos, modeloPortada }) {
                         prioridad
                         ajustada
                         destello
-                        className="aspect-[4/3] w-full drop-shadow-[0_40px_50px_rgba(227,16,25,0.25)]"
+                        className="aspect-[4/3] w-full drop-shadow-[0_40px_50px_rgba(197,242,48,0.18)]"
                       />
                     </Inclinar>
                   </motion.div>
@@ -163,7 +169,7 @@ export default function Hero({ precioDesde, totalModelos, modeloPortada }) {
         <Contenedor as="ul" className="grid grid-cols-2 gap-x-6 gap-y-4 py-5 lg:grid-cols-4">
           {CONFIANZA.map(({ icono: Icono, texto }) => (
             <li key={texto} className="flex items-center gap-3 text-sm text-papel/85 sm:text-base">
-              <Icono className="h-5 w-5 shrink-0 text-senal" aria-hidden="true" />
+              <Icono className="h-5 w-5 shrink-0 text-lima" aria-hidden="true" />
               {texto}
             </li>
           ))}

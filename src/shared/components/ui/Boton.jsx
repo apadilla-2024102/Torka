@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
  * externos (`href`) y acciones (`onClick` / `type="submit"`).
  *
  * Variantes:
- *   primario    rojo sólido: la acción principal de la pantalla, una sola
+ *   primario    lima sólido: la acción principal de la pantalla, una sola
  *   secundario  contorno: acciones alternativas
  *   fantasma    solo texto: acciones de bajo peso
  *
@@ -20,7 +20,7 @@ const BASE =
   'active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50'
 
 const VARIANTES = {
-  primario: () => 'bg-rojo text-white hover:bg-rojo-hondo',
+  primario: () => 'bg-lima text-negro hover:bg-lima-vivo',
   // Contorno blanco al 50 % que se rellena al pasar el cursor.
   secundario: (oscuro) =>
     oscuro

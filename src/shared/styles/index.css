@@ -1,32 +1,34 @@
 @import 'tailwindcss';
 
 /* ============================================================
-   IDENTIDAD DE MARCA — TORKA
+   IDENTIDAD DE MARCA — yolt
    Único bloque que se toca para cambiar la identidad: toda la
    página lee estos tokens.
 
-   Idea de la paleta: la calle. Asfalto para las zonas oscuras,
-   papel y concreto para las claras, el rojo del logotipo para
-   todo lo que es acción, y el amarillo de la línea de carril
-   reservado SOLO para datos de energía y distancia. Cada color
-   tiene un trabajo; ninguno es decoración.
+   Paleta del sistema de marca: lima yolt (energía, movimiento,
+   futuro), grafito (solidez), hueso (claridad) y gris metálico
+   (elegancia). El lima es el único color de acento: acciones,
+   energía y distancia. Todo lo demás es grafito y hueso.
    ============================================================ */
 @theme {
   /* --- Marca --- */
-  --color-rojo: #e31019; /* rellenos: botones, acciones, el color que manda */
-  --color-rojo-claro: #ff4a50; /* TEXTO rojo sobre asfalto (el rojo puro no da contraste) */
-  --color-rojo-hondo: #b00c14; /* TEXTO rojo sobre papel, y estado presionado */
+  --color-lima: #c5f230; /* acento: botones, acciones, energía. Texto lima SOLO sobre oscuro */
+  --color-lima-vivo: #d8ff52; /* lima al pasar el cursor */
+  --color-lima-hondo: #4a6600; /* TEXTO y líneas lima sobre hueso (5.7:1) */
 
-  /* --- Calle --- */
-  --color-senal: #f2c230; /* línea de carril: solo energía, carga y distancia */
-  --color-negro: #000000; /* lienzo de escenas: héroe y cierre (Lamborghini) */
-  --color-asfalto: #111111; /* lienzo general y texto sobre bandas claras */
+  /* --- Estados --- */
+  --color-error: #ff6b5e; /* error sobre oscuro */
+  --color-error-hondo: #b42318; /* error sobre hueso (5.7:1) */
+
+  /* --- Base --- */
+  --color-negro: #000000; /* lienzo de escenas: héroe y cierre */
+  --color-asfalto: #121212; /* grafito: lienzo general y texto sobre bandas claras */
   --color-asfalto-alto: #1c1c1c; /* tarjetas y superficies elevadas */
-  --color-linea: #2e2e2e; /* filetes sobre oscuro (Ferrari) */
-  --color-papel: #f6f6f3; /* fondo claro */
-  --color-concreto: #e4e5e0; /* superficies y bordes sobre papel */
-  --color-grafito: #5b5d65; /* texto secundario sobre papel (6.1:1) */
-  --color-niebla: #9a9a9a; /* texto secundario sobre asfalto (6.7:1) */
+  --color-linea: #2e2e2e; /* filetes sobre oscuro */
+  --color-papel: #f1eee5; /* hueso: texto sobre oscuro y bandas claras */
+  --color-concreto: #e2ded2; /* superficies y bordes sobre hueso */
+  --color-grafito: #55575e; /* texto secundario sobre hueso (6.2:1) */
+  --color-niebla: #9b9b9b; /* gris metálico: texto secundario sobre oscuro (6.8:1) */
 
   /* --- Tipografía ---
      Una sola familia, Archivo, y su eje de ANCHO como recurso expresivo:
@@ -81,14 +83,18 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-rojo);
+    outline: 2px solid var(--color-lima);
     outline-offset: 3px;
     border-radius: 6px;
   }
+  /* Sobre las bandas claras (hueso) el lima no se ve: foco en lima hondo. */
+  .bg-papel :focus-visible {
+    outline-color: var(--color-lima-hondo);
+  }
 
   ::selection {
-    background-color: var(--color-rojo);
-    color: #fff;
+    background-color: var(--color-lima);
+    color: #000;
   }
 }
 
@@ -112,13 +118,13 @@
     letter-spacing: 0.12em;
   }
 
-  /* Franja de marca de tres colores (firma, a la manera de BMW M). */
+  /* Franja de marca: lima, gris metálico y hueso, la paleta en una línea. */
   .franja-marca {
     background-image: linear-gradient(
       90deg,
-      var(--color-rojo) 0 33.33%,
-      var(--color-senal) 33.33% 66.66%,
-      var(--color-papel) 66.66% 100%
+      var(--color-lima) 0 50%,
+      var(--color-niebla) 50% 75%,
+      var(--color-papel) 75% 100%
     );
   }
 
@@ -138,7 +144,7 @@
   .carril {
     background-image: linear-gradient(
       to right,
-      var(--color-senal) 0 55%,
+      var(--color-lima) 0 55%,
       transparent 55% 100%
     );
     background-size: 44px 100%;

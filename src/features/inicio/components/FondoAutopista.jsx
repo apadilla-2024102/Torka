@@ -9,14 +9,13 @@ import { usePrefiereSuave, useSinMovimiento } from '../../../shared/hooks/useMov
 const Hyperspeed = lazy(() => import('../../../shared/components/reactbits/Hyperspeed/Hyperspeed.jsx'))
 
 /**
- * Autopista nocturna (React Bits · Hyperspeed) con los colores TORKA:
- * luces rojas de un lado, luces cálidas del otro y postes en amarillo de
- * carril. Al mantener presionado el fondo, acelera.
+ * Autopista nocturna (React Bits · Hyperspeed) con los colores yolt:
+ * luces lima de un lado, luces blancas del otro y postes en lima. Al mantener presionado el fondo, acelera.
  *
  * Objeto fuera del componente a propósito: Hyperspeed se reconstruye
  * completo si recibe un objeto nuevo en cada render.
  */
-const OPCIONES_TORKA = {
+const OPCIONES_MARCA = {
   distortion: 'turbulentDistortion',
   length: 400,
   roadWidth: 9,
@@ -45,10 +44,10 @@ const OPCIONES_TORKA = {
     islandColor: 0x0e0e11,
     background: 0x000000,
     shoulderLines: 0x1c1c22,
-    brokenLines: 0xf2c230,
-    leftCars: [0xe31019, 0xff4a50, 0xb00c14],
-    rightCars: [0xfff3c4, 0xf2c230, 0xe8e2d0],
-    sticks: 0xf2c230,
+    brokenLines: 0xc5f230,
+    leftCars: [0xc5f230, 0xd8ff52, 0x8fb81a],
+    rightCars: [0xf1eee5, 0xffffff, 0x9b9b9b],
+    sticks: 0xc5f230,
   },
 }
 
@@ -57,7 +56,7 @@ const OPCIONES_TORKA = {
  * su sistema: la mitad de velocidad y una aceleración corta al presionar.
  */
 const OPCIONES_SUAVES = {
-  ...OPCIONES_TORKA,
+  ...OPCIONES_MARCA,
   fovSpeedUp: 105,
   speedUp: 1.2,
   movingAwaySpeed: [30, 40],
@@ -71,11 +70,11 @@ const OPCIONES_SUAVES = {
 function AutopistaEstatica() {
   return (
     <div className="absolute inset-0 overflow-hidden bg-black" aria-hidden="true">
-      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-[radial-gradient(ellipse_at_50%_100%,rgba(227,16,25,0.35),transparent_60%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[radial-gradient(ellipse_at_70%_100%,rgba(242,194,48,0.18),transparent_55%)]" />
-      <div className="absolute bottom-[18%] left-[-10%] h-px w-[70%] rotate-[-8deg] bg-gradient-to-r from-transparent via-rojo to-transparent opacity-70" />
-      <div className="absolute bottom-[26%] left-[20%] h-px w-[60%] rotate-[-5deg] bg-gradient-to-r from-transparent via-[#fff3c4] to-transparent opacity-40" />
-      <div className="absolute bottom-[10%] right-[-10%] h-px w-[60%] rotate-[6deg] bg-gradient-to-r from-transparent via-senal to-transparent opacity-50" />
+      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-[radial-gradient(ellipse_at_50%_100%,rgba(197,242,48,0.22),transparent_60%)]" />
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[radial-gradient(ellipse_at_70%_100%,rgba(241,238,229,0.10),transparent_55%)]" />
+      <div className="absolute bottom-[18%] left-[-10%] h-px w-[70%] rotate-[-8deg] bg-gradient-to-r from-transparent via-lima to-transparent opacity-70" />
+      <div className="absolute bottom-[26%] left-[20%] h-px w-[60%] rotate-[-5deg] bg-gradient-to-r from-transparent via-papel to-transparent opacity-40" />
+      <div className="absolute bottom-[10%] right-[-10%] h-px w-[60%] rotate-[6deg] bg-gradient-to-r from-transparent via-lima to-transparent opacity-50" />
     </div>
   )
 }
@@ -112,7 +111,7 @@ export default function FondoAutopista() {
     <Decorado respaldo={<AutopistaEstatica />}>
       <Suspense fallback={<AutopistaEstatica />}>
         <div className="absolute inset-0">
-          <Hyperspeed effectOptions={suave ? OPCIONES_SUAVES : OPCIONES_TORKA} />
+          <Hyperspeed effectOptions={suave ? OPCIONES_SUAVES : OPCIONES_MARCA} />
         </div>
       </Suspense>
     </Decorado>

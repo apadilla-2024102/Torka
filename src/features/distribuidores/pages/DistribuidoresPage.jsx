@@ -45,7 +45,7 @@ export default function DistribuidoresPage() {
               la propuesta para tu operación.
             </p>
           </div>
-          <Boton href={`mailto:${NEGOCIO.correoVentas}?subject=Flotilla%20TORKA`} className="shrink-0">
+          <Boton href={`mailto:${NEGOCIO.correoVentas}?subject=Flotilla%20yolt`} className="shrink-0">
             Escribir a ventas
           </Boton>
         </section>

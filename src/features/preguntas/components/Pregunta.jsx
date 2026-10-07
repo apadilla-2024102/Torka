@@ -11,7 +11,7 @@ export default function Pregunta({ id, pregunta, respuesta, abierta = false }) {
       <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-lg font-semibold sm:text-xl [&::-webkit-details-marker]:hidden">
         {pregunta}
         <Plus
-          className="h-6 w-6 shrink-0 text-rojo transition-transform duration-200 group-open:rotate-45"
+          className="h-6 w-6 shrink-0 text-lima transition-transform duration-200 group-open:rotate-45"
           aria-hidden="true"
         />
       </summary>

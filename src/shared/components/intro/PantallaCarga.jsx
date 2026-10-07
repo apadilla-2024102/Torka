@@ -7,7 +7,7 @@ import { useSinMovimiento } from '../../hooks/useMovimiento.js'
 
 const SEGMENTOS = 10
 // La moto de la portada (InicioPage): se precarga junto con el logo.
-const FOTO_PORTADA = '/modelos/fotos/sierra-titanio.webp'
+const FOTO_PORTADA = '/modelos/fotos/x-titanio.webp'
 const MINIMO_MS = 1600 // aunque todo llegue antes: la carga se tiene que poder ver
 const MAXIMO_MS = 4500 // con conexión lenta, nunca se queda esperando de más
 
@@ -39,7 +39,7 @@ export default function PantallaCarga() {
     // deferred") y la batería se quedaría esperando.
     const tareas = [
       document.fonts?.ready ?? Promise.resolve(),
-      ...[FOTO_PORTADA, RUTAS_LOGO.emblema, RUTAS_LOGO.palabraClaro].map(
+      ...[FOTO_PORTADA, RUTAS_LOGO.claro].map(
         (ruta) =>
           new Promise((resolver) => {
             const img = new Image()
@@ -91,7 +91,7 @@ export default function PantallaCarga() {
           key="carga"
           role="status"
           aria-live="polite"
-          aria-label={`Cargando TORKA, ${porcentaje} por ciento`}
+          aria-label={`Cargando yolt, ${porcentaje} por ciento`}
           className="fixed inset-0 z-[100] flex flex-col justify-between bg-black px-5 py-6 text-papel sm:px-10 sm:py-8"
           initial={{ clipPath: 'inset(0 0 0% 0)' }}
           exit={reduced ? { opacity: 0, transition: { duration: 0.3 } } : { clipPath: 'inset(0 0 100% 0)', transition: { duration: 0.9, ease: CURVA.expo } }}
@@ -102,13 +102,13 @@ export default function PantallaCarga() {
           </div>
 
           <div className="mx-auto flex w-full max-w-3xl flex-col items-center">
-            {/* Batería: diez celdas que se encienden en amarillo de carril */}
+            {/* Batería: diez celdas que se encienden en lima */}
             <div className="flex w-full items-center gap-2" aria-hidden="true">
               <div className="flex h-24 flex-1 gap-1.5 rounded-[3px] border-2 border-papel/80 p-2 sm:h-32">
                 {Array.from({ length: SEGMENTOS }, (_, i) => (
                   <motion.span
                     key={i}
-                    className="flex-1 rounded-[1px] bg-senal"
+                    className="flex-1 rounded-[1px] bg-lima"
                     initial={false}
                     animate={{ opacity: i < llenos ? 1 : 0.08, scaleY: i < llenos ? 1 : 0.86 }}
                     transition={{ duration: 0.25, ease: CURVA.entrar }}

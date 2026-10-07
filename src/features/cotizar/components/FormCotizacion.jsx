@@ -185,7 +185,7 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
                 onChange={actualizar('interes')}
                 className="peer sr-only"
               />
-              <span className="flex min-h-12 items-center justify-center rounded-[2px] border border-asfalto/25 px-4 text-center font-medium transition-colors duration-150 peer-checked:border-asfalto peer-checked:bg-asfalto peer-checked:text-papel peer-focus-visible:ring-2 peer-focus-visible:ring-rojo">
+              <span className="flex min-h-12 items-center justify-center rounded-[2px] border border-asfalto/25 px-4 text-center font-medium transition-colors duration-150 peer-checked:border-asfalto peer-checked:bg-asfalto peer-checked:text-papel peer-focus-visible:ring-2 peer-focus-visible:ring-lima-hondo">
                 {i.label}
               </span>
             </label>
@@ -221,7 +221,7 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
 /** Círculo y palomita que se trazan solos: confirma que la solicitud quedó lista. */
 function PalomitaAnimada() {
   return (
-    <svg viewBox="0 0 48 48" className="h-12 w-12 text-rojo" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true">
+    <svg viewBox="0 0 48 48" className="h-12 w-12 text-lima-hondo" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true">
       <motion.circle
         cx="24"
         cy="24"

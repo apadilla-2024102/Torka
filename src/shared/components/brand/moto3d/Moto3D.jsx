@@ -141,7 +141,7 @@ export default function Moto3D({ modelo, colorHex, onListo }) {
         tabIndex={0}
         data-cursor="Arrastra"
         role="img"
-        aria-label={`Vista 3D de la TORKA ${modelo.nombre}. Usa las flechas izquierda y derecha para girarla.`}
+        aria-label={`Vista 3D de la yolt ${modelo.nombre}. Usa las flechas izquierda y derecha para girarla.`}
         onPointerDown={alPresionar}
         onPointerMove={alMover}
         onPointerUp={alSoltar}

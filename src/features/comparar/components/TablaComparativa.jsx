@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
 import ModeloImagen from '../../../shared/components/brand/ModeloImagen.jsx'
-import { formatoNumero, formatoQuetzales } from '../../../shared/lib/formato.js'
+import { formatoNumero, precioModelo } from '../../../shared/lib/formato.js'
 
 /** Valor ganador de una especificación numérica, según su dirección. */
 const ganadorDe = (modelos, key, mejor) => {
@@ -16,7 +16,7 @@ export default function TablaComparativa({ modelos, specsMeta }) {
     <div className="relative overflow-x-auto rounded-[2px] bg-papel text-asfalto">
       <table className="w-full min-w-[720px] border-collapse text-left">
         <caption className="sr-only">
-          Especificaciones de los modelos TORKA. El mejor valor de cada fila está marcado.
+          Especificaciones de los modelos yolt. El mejor valor de cada fila está marcado.
         </caption>
         <thead>
           <tr className="border-b border-concreto align-bottom">
@@ -54,7 +54,7 @@ export default function TablaComparativa({ modelos, specsMeta }) {
                               whileInView={{ scale: 1 }}
                               viewport={{ once: true }}
                               transition={{ type: 'spring', stiffness: 500, damping: 18, delay: 0.25 }}
-                              className="mr-2 inline-block h-2.5 w-2.5 rounded-full bg-rojo align-middle"
+                              className="mr-2 inline-block h-2.5 w-2.5 rounded-full bg-lima-hondo align-middle"
                             />
                           )}
                           {formatoNumero(v)}
@@ -86,11 +86,11 @@ export default function TablaComparativa({ modelos, specsMeta }) {
             </th>
             {modelos.map((m) => (
               <td key={m.id} className="p-5">
-                <span className="tipo-tablero block text-2xl">{formatoQuetzales(m.precio)}</span>
+                <span className="tipo-tablero block text-2xl">{precioModelo(m)}</span>
                 <Link
                   to={`/cotizar?modelo=${m.id}`}
                   viewTransition
-                  className="mt-2 inline-block font-semibold text-rojo-hondo underline underline-offset-4"
+                  className="mt-2 inline-block font-semibold text-lima-hondo underline underline-offset-4"
                 >
                   Cotizar
                 </Link>

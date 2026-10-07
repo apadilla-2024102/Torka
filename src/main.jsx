@@ -8,8 +8,8 @@ import './shared/styles/index.css'
 // para traer la versión vigente.
 window.addEventListener('vite:preloadError', (evento) => {
   try {
-    if (sessionStorage.getItem('torka-recarga') === '1') return
-    sessionStorage.setItem('torka-recarga', '1')
+    if (sessionStorage.getItem('yolt-recarga') === '1') return
+    sessionStorage.setItem('yolt-recarga', '1')
   } catch {
     return
   }
@@ -20,7 +20,7 @@ window.addEventListener('vite:preloadError', (evento) => {
 // "load", que el navegador puede aplazar con conexión lenta).
 setTimeout(() => {
   try {
-    sessionStorage.removeItem('torka-recarga')
+    sessionStorage.removeItem('yolt-recarga')
   } catch {
     // Sin almacenamiento: no hay recarga automática, no pasa nada.
   }
