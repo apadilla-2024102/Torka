@@ -4,6 +4,7 @@ import { BatteryCharging, FileCheck2, KeyRound, Wrench } from 'lucide-react'
 import Boton from '../../../shared/components/ui/Boton.jsx'
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import ModeloImagen from '../../../shared/components/brand/ModeloImagen.jsx'
+import Inclinar from '../../../shared/components/ui/Inclinar.jsx'
 import Magnet from '../../../shared/components/reactbits/Magnet/Magnet.jsx'
 import ClickSpark from '../../../shared/components/reactbits/ClickSpark/ClickSpark.jsx'
 import { formatoNumero, formatoQuetzales } from '../../../shared/lib/formato.js'
@@ -134,13 +135,16 @@ export default function Hero({ precioDesde, totalModelos, modeloPortada }) {
                     animate={reduced ? undefined : { y: [0, -10, 0] }}
                     transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1.8 }}
                   >
-                    <ModeloImagen
-                      modelo={modeloPortada}
-                      transicion={false}
-                      prioridad
-                      ajustada
-                      className="aspect-[4/3] w-full drop-shadow-[0_40px_50px_rgba(227,16,25,0.25)]"
-                    />
+                    <Inclinar grados={10} className="pointer-events-auto">
+                      <ModeloImagen
+                        modelo={modeloPortada}
+                        transicion={false}
+                        prioridad
+                        ajustada
+                        destello
+                        className="aspect-[4/3] w-full drop-shadow-[0_40px_50px_rgba(227,16,25,0.25)]"
+                      />
+                    </Inclinar>
                   </motion.div>
                 </motion.div>
               </motion.div>
