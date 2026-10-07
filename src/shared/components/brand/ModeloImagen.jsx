@@ -13,10 +13,14 @@ export const rutaRender = (modeloId, colorId) => `/modelos/renders/${modeloId}-$
  *
  * Así subir o quitar imágenes nunca deja un icono roto.
  *
+ * `ajustada` recorta los márgenes laterales vacíos de la foto (cuadro 4:3):
+ * la moto se ve más grande sin cortar nada, porque ninguna foto ocupa más
+ * de ese ancho. Úsala con contenedores 4:3.
+ *
  * `viewTransitionName` hace que la moto viaje de la tarjeta a su ficha
  * cuando el usuario navega entre ellas.
  */
-export default function ModeloImagen({ modelo, colorId, className = '', transicion = true, prioridad = false }) {
+export default function ModeloImagen({ modelo, colorId, className = '', transicion = true, prioridad = false, ajustada = false }) {
   const color = modelo.colores.find((c) => c.id === colorId) ?? modelo.colores[0]
   const candidatos = [modelo.fotos?.[color.id], rutaRender(modelo.id, color.id)].filter(Boolean)
   // Se recuerdan las rutas que fallaron, no un sí/no: si falla el render de
@@ -38,7 +42,7 @@ export default function ModeloImagen({ modelo, colorId, className = '', transici
         loading={prioridad ? 'eager' : 'lazy'}
         fetchPriority={prioridad ? 'high' : undefined}
         decoding="async"
-        className={`object-contain ${className}`}
+        className={`${ajustada ? 'object-cover' : 'object-contain'} ${className}`}
         style={estilo}
       />
     )

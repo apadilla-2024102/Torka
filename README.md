@@ -89,60 +89,51 @@ Todo está construido con datos de ejemplo. En orden de importancia:
 
 ## Imágenes de las motos
 
-Mientras no haya fotografías, las motos se muestran con **renders 3D**
-generados por código: carrocería con laca automotriz, llantas, rines,
-disco de freno, faro LED y sombra de estudio. Cada modelo conserva lo que
-lo distingue: parabrisas (Sierra), parrilla y caja (Carga), cúpula
-deportiva (Sport), una o dos baterías.
+Las motos se muestran con **fotos reales recortadas** (sin fondo, sobre el
+negro del sitio) en `public/modelos/fotos/<modelo>-<color>.webp`, a
+1320 × 810 px, con la moto apoyada abajo y una sombra de contacto. Los
+originales están en `herramientas/fotos/originales/`.
+
+| Modelo | Color         | Archivo                |
+| ------ | ------------- | ---------------------- |
+| Urbana | Crema y menta | `urbana-crema.webp`    |
+| Sierra | Gris titanio  | `sierra-titanio.webp`  |
+| Sport  | Blanco perla  | `sport-perla.webp`     |
+| Carga  | Verde y naranja / Negro y lima | `carga-verde.webp`, `carga-lima.webp` |
+
+Cada modelo ofrece **solo los colores que tienen foto**: un color sin foto
+no se puede mostrar y genera dudas en la compra.
 
 Cada imagen pasa por tres niveles de respaldo, en este orden:
 
-1. **Foto real**, si el modelo la tiene (campo `fotos` en `mockData.js`).
-2. **Render** de `public/modelos/renders/<modelo>-<color>.webp`.
-3. **Silueta vectorial**, si ninguno de los dos archivos carga.
+1. **Foto real** (campo `fotos` en `mockData.js`).
+2. **Render 3D** de `public/modelos/renders/<modelo>-<color>.webp`, si
+   existe (`npm run renders`).
+3. **Silueta vectorial**, si ninguno carga.
 
-Subir o quitar imágenes nunca deja un icono roto.
+Subir o quitar imágenes nunca deja un icono roto. En la ficha, si el color
+tiene foto se muestra la foto; el visor 3D (genérico) solo aparece en
+colores sin foto.
 
-### Visor 3D en la ficha
+### Agregar una foto o un color
 
-En la ficha de cada modelo, la moto se puede girar arrastrando, con los
-botones o con las flechas del teclado, y cambia de color en vivo. Three.js
-se descarga **solo** en esa página (unos 140 kB comprimidos), nunca en la
-portada. Si el navegador no puede dibujar 3D, se queda el render.
-
-Las imágenes llevan la nota "imagen generada por computadora; el acabado
-real puede variar". Retírala cuando pongas fotos reales.
-
-### Regenerar los renders
-
-Cuando agregues un modelo o un color en `mockData.js`:
-
-```bash
-npx playwright install chromium   # solo la primera vez
-npm run renders
-```
-
-El modelo 3D se arma en `src/shared/components/brand/moto3d/`:
-`construirMoto.js` (piezas), `estudio.js` (luces, cámara y sombra) y
-`Moto3D.jsx` (visor). El visor y los renders usan el mismo estudio, así
-que siempre se ven igual.
-
-### Cuando tengas fotos
-
-1. Guárdalas en `public/modelos/`, una por color. Lo ideal es PNG o WebP
-   **sin fondo**, de al menos 1200 px de ancho y con el mismo encuadre de
-   perfil para que el cambio de color no salte.
-2. En `mockData.js`, llena el campo `fotos` del modelo:
+1. Recorta la moto sin fondo (PNG/WebP con transparencia, mínimo 1200 px).
+   Con fondo de showroom, cuida que no se cuelen otras motos.
+2. Encuádrala en 1320 × 810 con la moto apoyada abajo y guárdala en
+   `public/modelos/fotos/`.
+3. En `mockData.js`, agrega el color en `colores` y su ruta en `fotos`:
 
    ```js
-   fotos: {
-     blanco: '/modelos/urbana-blanco.png',
-     grafito: '/modelos/urbana-grafito.png',
-   },
+   colores: [{ id: 'rojo', nombre: 'Rojo', hex: '#c8102e' }],
+   fotos: { rojo: '/modelos/fotos/urbana-rojo.webp' },
    ```
 
-La foto tiene prioridad sobre el render en catálogo, portada y
-comparador.
+### Visor 3D y renders
+
+El modelo 3D procedural vive en `src/shared/components/brand/moto3d/`
+(`construirMoto.js`, `estudio.js`, `Moto3D.jsx`) y `npm run renders`
+genera renders con él. Hoy no se usa porque todos los colores tienen foto;
+queda como respaldo para modelos nuevos sin fotografía.
 
 ## Conectar un backend
 

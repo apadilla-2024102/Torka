@@ -37,7 +37,7 @@ export default function ModeloCard({ modelo, ref }) {
           )}
           {/* Al pasar el cursor la moto rueda un poco hacia adelante. */}
           <div className="transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-3">
-            <ModeloImagen modelo={modelo} className="mx-auto aspect-[44/27] w-full max-w-[320px]" />
+            <ModeloImagen modelo={modelo} ajustada className="mx-auto aspect-[4/3] w-full max-w-[320px]" />
           </div>
         </div>
 
@@ -59,7 +59,7 @@ export default function ModeloCard({ modelo, ref }) {
               <span className="tipo-etiqueta block text-niebla">Precio</span>
               <span className="tipo-tablero text-2xl">{formatoQuetzales(precio)}</span>
             </div>
-            <div className="flex gap-1.5" aria-label={`${colores.length} colores disponibles`}>
+            <div className="flex gap-1.5" aria-label={colores.length === 1 ? `Color: ${colores[0].nombre}` : `${colores.length} colores disponibles`}>
               {colores.map((c) => (
                 <span
                   key={c.id}
