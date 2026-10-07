@@ -1,9 +1,8 @@
 # TORKA
 
-Sitio de marca y catálogo de scooters eléctricos TORKA.
-
-Localizado para **Guatemala**: precios en quetzales, gasolina calculada por
-galón, licencia tipo M y trámite de placas ante la SAT.
+Sitio de venta de motos eléctricas TORKA, localizado para **Guatemala**:
+precios en quetzales, gasolina por galón, licencia tipo M, trámite de placas
+ante la SAT y cotización por WhatsApp.
 
 ## Arrancar
 
@@ -14,113 +13,141 @@ npm run build    # compila a dist/
 npm run preview  # revisa el build antes de publicar
 ```
 
-El resultado de `npm run build` son archivos estáticos: se suben a cualquier
-hosting (Netlify, Vercel, Cloudflare Pages, o un servidor propio) sin backend.
+`npm run build` produce archivos estáticos que se suben a cualquier hosting.
+Como el sitio tiene varias páginas (`/modelos`, `/cotizar`…), el hosting
+debe devolver `index.html` para cualquier ruta. Ya está configurado para
+**Netlify** (`public/_redirects`) y **Vercel** (`vercel.json`).
 
-## Stack
+## Páginas
 
-| Pieza | Para qué |
+| Ruta | Qué hace |
 |---|---|
-| Vite | Compilador y servidor de desarrollo |
-| React 19 | Interfaz |
-| Tailwind 4 | Estilos, configurados con tokens de marca |
-| Motion | Animación e interacción |
-
-Sin backend, sin base de datos, sin dependencias de pago.
-
-## Qué tienes que cambiar antes de publicar
-
-Está construido con datos y gráficos de ejemplo. Estos son los cinco puntos
-que hay que sustituir, en orden de importancia:
-
-1. **El logotipo** — guarda el archivo en `public/` (por ejemplo
-   `public/logo.svg`, o PNG con fondo transparente y 600 px de ancho mínimo)
-   y en `src/components/Logo.jsx` cambia `ARCHIVO_LOGO` de `null` a
-   `'/logo.svg'`. Hasta entonces se dibuja un sustituto tipográfico. No se
-   reprodujo el emblema a mano a propósito: una copia aproximada de una marca
-   registrada se ve peor y la deforma.
-2. **Fotos de las motos** — súbelas a `public/` y actívalas:
-   - **Héroe:** en `src/components/Hero.jsx`, pon `FOTO = '/moto.jpg'`.
-     Si el archivo ya viene sin fondo (PNG transparente), pon también
-     `SIN_FONDO = true` y la moto flota dentro de los anillos. Si es una
-     foto normal con pared detrás, déjalo en `false`: la foto se enmarca
-     con un degradado que funde el fondo real con el negro de la página,
-     **sin necesidad de recortarla**.
-   - **Tarjetas:** `src/components/ModeloCard.jsx` tiene un comentario con
-     la línea exacta.
-
-   Mientras no exista `public/moto.png`, el héroe dibuja una ilustración
-   vectorial de respaldo (`MotoIlustracion.jsx`) que se traza sola al
-   cargar. Es un dibujo original y genérico, no el producto: sustitúyela
-   por la fotografía real en cuanto la tengas.
-3. **Fichas técnicas** — `src/data/modelos.js`. Nombres, precios, autonomía,
-   potencia. Añade o quita modelos y el catálogo, el filtro y el comparador
-   se reconstruyen solos.
-4. **Preguntas frecuentes** — `src/data/faq.js`. Las respuestas sobre
-   garantía, licencias y cobertura son de ejemplo: contrástalas con tus
-   condiciones reales, porque son compromisos comerciales.
-5. **Supuestos de la calculadora** — constante `SUPUESTOS` en
-   `src/components/Ahorro.jsx`. Tarifa eléctrica, consumo y mantenimiento.
-   Actualízalos con precios vigentes o el número pierde credibilidad.
-
-También: red de distribuidores en `src/components/Distribuidores.jsx`.
-
-## Color
-
-La paleta sale del logotipo: rojo TORKA sobre negro, con blanco roto para
-las zonas claras. Vive en el bloque `@theme` de `src/index.css` y es el único
-sitio que hay que tocar para cambiarla.
-
-Hay tres rojos, y la distinción importa:
-
-| Token | Para qué |
-|---|---|
-| `brand` | Rellenos sólidos: botones, resaltados, el color que manda |
-| `brand-bright` | **Texto sobre fondo negro.** El rojo de marca puro no alcanza contraste legible en texto pequeño sobre oscuro |
-| `brand-deep` | Texto sobre fondo claro y estados presionados |
-
-Sobre rojo sólido el texto va en blanco (`text-mist`), nunca en negro.
+| `/` | Portada: comparativa de dos carriles (cuánto recorres con Q100), gama, razones, proceso de compra |
+| `/modelos` | Catálogo con filtro por uso (el filtro queda en la URL) |
+| `/modelos/:id` | Ficha: selector de color, ficha técnica, estimador de cuota |
+| `/comparar` | Tabla comparativa de todos los modelos |
+| `/ahorro` | Calculadora de ahorro anual frente a gasolina |
+| `/distribuidores` | Puntos de venta y contacto para flotillas |
+| `/cotizar` | Formulario que abre WhatsApp con la solicitud ya escrita |
+| `/preguntas` | Objeciones frecuentes; se puede enlazar a una (`/preguntas#garantia`) |
 
 ## Cómo está organizado
 
+Por **funcionalidades** (features), igual que el cliente de RestauranteCanela:
+cada página vive con sus propios componentes, y lo que comparten varias
+páginas va en `shared/`.
+
 ```
 src/
-  index.css               tokens de marca — el archivo de identidad
-  App.jsx                 orden de las secciones
-  lib/motion.js           sistema de animación centralizado
-  lib/useCountUp.js       contadores animados
-  data/modelos.js         catálogo
-  data/faq.js             objeciones de compra
-  components/             una sección por archivo
+  main.jsx                      punto de entrada
+  app/
+    App.jsx                     raíz de la aplicación
+    router/AppRouter.jsx        rutas y carga de datos de cada página
+  features/
+    inicio/       pages/ components/
+    modelos/      pages/ components/
+    comparar/     pages/ components/
+    ahorro/       pages/ components/
+    distribuidores/ pages/ components/
+    cotizar/      pages/ components/ lib/
+    preguntas/    pages/ components/
+    errores/      pages/
+  shared/
+    api/          datos: mockData.js + una función por recurso
+    components/
+      layout/     Layout, Nav, Footer, encabezados, contenedor
+      ui/         Botón, lecturas de tablero, llamado a cotizar
+      brand/      Logo, silueta de la moto, imagen de modelo
+    config/       negocio.js: WhatsApp, correo, teléfono
+    hooks/        hooks reutilizables
+    lib/          formatos de número y cálculos de energía y cuotas
+    styles/       index.css: tokens de marca
 ```
 
-Las animaciones **no** viven dentro de los componentes: están en
-`lib/motion.js`. Para cambiar el carácter del movimiento de toda la página
-—o sustituir el sistema completo— se toca ese archivo, no la interfaz.
+Regla para crecer: si algo solo lo usa una página, va dentro de su
+`features/<página>/`. Si lo usan dos o más, se mueve a `shared/`.
 
-## Animación
+## Qué cambiar antes de publicar
 
-| Efecto | Dónde |
+Todo está construido con datos de ejemplo. En orden de importancia:
+
+1. **Contacto** en `src/shared/config/negocio.js`: el número de WhatsApp
+   (`502` + 8 dígitos), el correo y el teléfono. El formulario de
+   cotización envía a ese número.
+2. **Modelos** en `src/shared/api/mockData.js`: nombres, precios, fichas,
+   colores. Añade o quita modelos y todas las páginas se reconstruyen solas.
+3. **Preguntas frecuentes** en el mismo archivo. Garantías, licencias y
+   coberturas son compromisos comerciales: revísalos.
+4. **Distribuidores** en el mismo archivo.
+5. **Supuestos de costo** en `src/shared/lib/energia.js`: precio del galón,
+   tarifa eléctrica, mantenimiento y la tasa de ejemplo de las cuotas.
+6. **Logotipo** en `src/shared/components/brand/Logo.jsx`: guarda el
+   archivo en `public/` y cambia `ARCHIVO_LOGO`.
+
+## Fotos de las motos
+
+Mientras no hay fotos, cada modelo se dibuja con una **silueta vectorial**
+que cambia de color con el selector y muestra lo que distingue al modelo:
+parabrisas (Sierra), parrilla y caja (Carga), una o dos baterías.
+
+Cuando tengas fotos:
+
+1. Guárdalas en `public/modelos/`, una por color. Lo ideal es PNG **sin
+   fondo** de al menos 1200 px de ancho, todas con el mismo encuadre de
+   perfil para que el cambio de color no salte.
+2. En `mockData.js`, llena el campo `fotos` del modelo:
+
+   ```js
+   fotos: {
+     blanco: '/modelos/urbana-blanco.png',
+     grafito: '/modelos/urbana-grafito.png',
+   },
+   ```
+
+Un color sin foto sigue mostrando la silueta, y si un archivo no carga se
+vuelve a la silueta: subir fotos nunca deja una imagen rota.
+
+## Conectar un backend
+
+Sin configuración, el sitio usa los datos de `mockData.js`. Para leerlos
+de un servidor, copia `.env.example` a `.env` y define `VITE_API_URL`. Se
+piden `/modelos`, `/distribuidores` y `/preguntas`; si el servidor falla,
+el sitio vuelve a los datos de ejemplo en lugar de quedar en blanco.
+
+## Diseño
+
+Toda la identidad vive en el bloque `@theme` de
+`src/shared/styles/index.css`.
+
+**La calle como idea.** Asfalto para las zonas oscuras, papel y concreto
+para las claras. Cada color tiene una sola función:
+
+| Token | Para qué |
 |---|---|
-| Barra de progreso de lectura | Borde superior, toda la página |
-| Resplandor que persigue al cursor | Héroe |
-| Parallax a dos velocidades | Héroe |
-| Anillos que giran y reaccionan al scroll | Héroe |
-| Botones magnéticos | Llamados del héroe |
-| Revelado palabra por palabra | Todos los titulares de sección |
-| Inclinación 3D según el puntero | Tarjetas del catálogo |
-| Reordenamiento animado | Catálogo al filtrar |
-| Contadores que suben | Calculadora de ahorro |
-| Banda en bucle continuo | Bajo el héroe |
-| Acordeón por altura real | Preguntas frecuentes |
+| `rojo` | Acciones: botones, enlaces activos. El rojo del logotipo |
+| `rojo-claro` | Texto rojo sobre asfalto (el rojo puro no da contraste) |
+| `rojo-hondo` | Texto rojo sobre papel, errores |
+| `senal` | Amarillo de línea de carril: **solo** energía, carga y distancia |
+| `asfalto` / `papel` | Fondos oscuro y claro |
 
-Todo se apaga o se sustituye por fundidos cuando el sistema del visitante
-pide menos movimiento.
+**Una sola tipografía, Archivo**, usada en tres anchos: expandida para
+titulares (`.tipo-ruta`), normal para leer y condensada con cifras
+tabulares para las especificaciones (`.tipo-tablero`), como el tablero de
+una moto.
+
+**Movimiento con propósito.** Solo hay una animación que ocurre sola: los
+dos carriles de la portada. El resto responde a lo que hace el usuario.
+Al cambiar de página hay una transición, y la moto viaja de la tarjeta a
+su ficha (View Transitions API). También se animan el indicador del
+filtro, el color de la moto, las cifras de la calculadora y de la cuota,
+y el acordeón de preguntas. Quien activa "reducir movimiento" en su
+sistema ve los cambios sin animación.
 
 ## Accesibilidad
 
-- Respeta `prefers-reduced-motion`: quien configuró su sistema para menos
-  movimiento recibe fundidos en lugar de desplazamientos.
-- Navegable por teclado, con enlace de salto al contenido y foco visible.
-- Tabla comparativa con encabezados de fila y columna correctos.
-- Textos alternativos y etiquetas en todos los controles.
+- Navegable por teclado, con enlace para saltar al contenido y foco visible.
+- Formulario con errores junto a cada campo y foco al primer error.
+- Selectores de color y plazo hechos con radios nativos: se recorren con
+  flechas y el lector de pantalla anuncia el nombre.
+- Las cifras animadas se anuncian solo con su valor final.
+- Tabla comparativa con encabezados de fila y columna.
