@@ -15,8 +15,6 @@ const ScrollReveal = ({
   blurStrength = 4,
   containerClassName = '',
   textClassName = '',
-  rotationEnd = 'bottom bottom',
-  wordAnimationEnd = 'bottom bottom',
   as: Etiqueta = 'h2'
 }) => {
   const containerRef = useRef(null);
@@ -44,66 +42,39 @@ const ScrollReveal = ({
 
     // [TORKA] gsap.context limita la limpieza a los disparadores de este
     // componente; el original borraba TODOS los ScrollTrigger de la página.
+    // [TORKA] Una sola vez al entrar en pantalla, con tiempo propio, en vez
+    // de amarrado a la rueda (scrub). Con scrub el texto quedaba a medio
+    // encender si el usuario dejaba de bajar, y en pantallas anchas parecía
+    // trabado. Así siempre termina, a la velocidad que se lee.
     const ctx = gsap.context(() => {
-
-    gsap.fromTo(
-      el,
-      { transformOrigin: '0% 50%', rotate: baseRotation },
-      {
-        ease: 'none',
-        rotate: 0,
-        scrollTrigger: {
-          trigger: el,
-          scroller,
-          start: 'top bottom',
-          end: rotationEnd,
-          scrub: true
-        }
+      const wordElements = el.querySelectorAll('.word');
+      const desde = { opacity: baseOpacity };
+      const hasta = { opacity: 1 };
+      if (enableBlur) {
+        desde.filter = `blur(${blurStrength}px)`;
+        hasta.filter = 'blur(0px)';
       }
-    );
 
-    const wordElements = el.querySelectorAll('.word');
+      const linea = gsap.timeline({
+        paused: true,
+        defaults: { ease: 'power2.out' },
+        // Al terminar se quitan los filtros: palabras nítidas sin costo de GPU.
+        onComplete: () => gsap.set(wordElements, { clearProps: 'filter,willChange' })
+      });
+      linea.fromTo(el, { transformOrigin: '0% 50%', rotate: baseRotation }, { rotate: 0, duration: 1.2 }, 0);
+      linea.fromTo(wordElements, desde, { ...hasta, duration: 0.6, stagger: 0.045 }, 0);
 
-    gsap.fromTo(
-      wordElements,
-      { opacity: baseOpacity, willChange: 'opacity' },
-      {
-        ease: 'none',
-        opacity: 1,
-        stagger: 0.05,
-        scrollTrigger: {
-          trigger: el,
-          scroller,
-          start: 'top bottom-=20%',
-          end: wordAnimationEnd,
-          scrub: true
-        }
-      }
-    );
-
-    if (enableBlur) {
-      gsap.fromTo(
-        wordElements,
-        { filter: `blur(${blurStrength}px)` },
-        {
-          ease: 'none',
-          filter: 'blur(0px)',
-          stagger: 0.05,
-          scrollTrigger: {
-            trigger: el,
-            scroller,
-            start: 'top bottom-=20%',
-            end: wordAnimationEnd,
-            scrub: true
-          }
-        }
-      );
-    }
-
+      ScrollTrigger.create({
+        trigger: el,
+        scroller,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => linea.play()
+      });
     }, el);
 
     return () => ctx.revert();
-  }, [scrollContainerRef, enableBlur, baseRotation, baseOpacity, rotationEnd, wordAnimationEnd, blurStrength]);
+  }, [scrollContainerRef, enableBlur, baseRotation, baseOpacity, blurStrength]);
 
   return (
     // [TORKA] El original anidaba <p> dentro de <h2> (HTML inválido).

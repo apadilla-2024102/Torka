@@ -9,9 +9,11 @@ const Lightning = ({ hue = 230, xOffset = 0, speed = 1, intensity = 1, size = 1 
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    // [TORKA] Solo cambia el tamaño si cambió: asignar width/height borra
+    // y vuelve a reservar el lienzo, y el original lo hacía en cada cuadro.
     const resizeCanvas = () => {
-      canvas.width = canvas.clientWidth;
-      canvas.height = canvas.clientHeight;
+      if (canvas.width !== canvas.clientWidth) canvas.width = canvas.clientWidth;
+      if (canvas.height !== canvas.clientHeight) canvas.height = canvas.clientHeight;
     };
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);

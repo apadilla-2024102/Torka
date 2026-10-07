@@ -31,6 +31,9 @@ export default function PantallaCarga() {
     let cancelado = false
 
     // Lo que cuenta como "cargado": tipografías e imagen de la portada.
+    // No se espera el evento "load" de la ventana: Edge y Chrome lo
+    // aplazan con conexión lenta o ahorro de datos ("Load events are
+    // deferred") y la batería se quedaría esperando.
     const tareas = [
       document.fonts?.ready ?? Promise.resolve(),
       new Promise((resolver) => {
@@ -38,7 +41,6 @@ export default function PantallaCarga() {
         img.onload = img.onerror = resolver
         img.src = rutaRender('sport', 'rojo')
       }),
-      new Promise((resolver) => (document.readyState === 'complete' ? resolver() : window.addEventListener('load', resolver, { once: true }))),
     ]
     tareas.forEach((t) => t.then(() => (real.current += 1 / tareas.length)))
 
@@ -57,11 +59,15 @@ export default function PantallaCarga() {
       marco = requestAnimationFrame(avanzar)
     }
     marco = requestAnimationFrame(avanzar)
+    // Red de seguridad: si el navegador frena los cuadros de animación
+    // (pestaña en segundo plano, modo ahorro), el sitio se abre igual.
+    const rescate = setTimeout(terminar, MAXIMO_MS + 1500)
     return () => {
       cancelado = true
       cancelAnimationFrame(marco)
+      clearTimeout(rescate)
     }
-  }, [lista])
+  }, [lista, terminar])
 
   // Al llegar a 100, una pausa breve y se abre la cortina.
   useEffect(() => {

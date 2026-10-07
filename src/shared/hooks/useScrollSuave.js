@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import { useIntro } from '../components/intro/IntroContexto.jsx'
 import Lenis from 'lenis'
 import 'lenis/dist/lenis.css'
 import { gsap } from 'gsap'
@@ -40,6 +41,25 @@ export function useScrollSuave() {
       lenis = null
     }
   }, [])
+
+  // Las posiciones de los disparadores se miden con la página ya
+  // completa: al abrirse la cortina y cuando terminan de llegar las
+  // tipografías (cambian el alto de los titulares). Medidas viejas hacían
+  // que una animación se disparara antes o nunca.
+  const { lista } = useIntro()
+  useEffect(() => {
+    if (!lista) return
+    let vivo = true
+    const medir = () => vivo && ScrollTrigger.refresh()
+    const marco = requestAnimationFrame(medir)
+    document.fonts?.ready.then(medir)
+    const tarde = setTimeout(medir, 1500)
+    return () => {
+      vivo = false
+      cancelAnimationFrame(marco)
+      clearTimeout(tarde)
+    }
+  }, [lista])
 
   // Al navegar, el router mueve el scroll: Lenis toma esa posición como
   // propia en lugar de animar de regreso a la anterior.
