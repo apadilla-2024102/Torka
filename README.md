@@ -192,6 +192,31 @@ Quien activa "reducir movimiento" en su sistema ve todo el contenido sin
 desplazamientos: los bucles se pausan, la línea de pasos aparece completa
 y las cifras muestran su valor final.
 
+## Portada cinematográfica
+
+La portada está armada por capas de profundidad (skill `epic-design`) y
+usa componentes de [React Bits](https://github.com/DavidHDev/react-bits),
+guardados en `src/shared/components/reactbits/` con su licencia:
+
+| Sección | Componente | Qué hace |
+|---|---|---|
+| Héroe | Hyperspeed | Autopista nocturna en colores TORKA; al mantener presionado, acelera |
+| Héroe y cierre | ClickSpark | Chispas amarillas al hacer clic |
+| Botón principal | Magnet | El botón se acerca al cursor |
+| Banda | ScrollVelocity | Frases que corren y se aceleran con el scroll |
+| Manifiesto | ScrollReveal | Las palabras se encienden mientras se lee |
+| Razones | SpotlightCard | Tarjetas con luz que sigue al cursor |
+| Cierre | Lightning + ElectricBorder | Relámpago de fondo y borde eléctrico en la tarjeta final |
+
+Además: escaparate de la gama con la moto fija mientras pasan los modelos
+(se intercambian como motos frente a una vitrina), franja de garantías bajo
+el héroe, resumen de dudas frecuentes y barra fija de compra en celular
+(recomendaciones de la skill `page-cro`).
+
+Los fondos WebGL (autopista y relámpago) solo se montan cuando están en
+pantalla. En celular, sin WebGL o con "reducir movimiento", se usa una
+versión estática en CSS.
+
 ## Accesibilidad
 
 - Navegable por teclado, con enlace para saltar al contenido y foco visible.

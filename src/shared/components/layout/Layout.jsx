@@ -1,6 +1,7 @@
 import { Outlet, ScrollRestoration } from 'react-router-dom'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
+import BarraMovil from './BarraMovil.jsx'
 import { useScrollAHash } from '../../hooks/useScrollAHash.js'
 
 /** Estructura común a todas las páginas: navegación, contenido y pie. */
@@ -22,6 +23,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <BarraMovil />
       <ScrollRestoration />
     </>
   )
