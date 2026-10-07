@@ -1,15 +1,28 @@
 import { useLoaderData } from 'react-router-dom'
 import { getModelos } from '../../../shared/api/modelosApi.js'
-import LlamadoCotizar from '../../../shared/components/ui/LlamadoCotizar.jsx'
+import { getPreguntas } from '../../../shared/api/preguntasApi.js'
 import Hero from '../components/Hero.jsx'
-import GamaResumen from '../components/GamaResumen.jsx'
+import BandaVelocidad from '../components/BandaVelocidad.jsx'
+import Manifiesto from '../components/Manifiesto.jsx'
+import GamaEscaparate from '../components/GamaEscaparate.jsx'
 import Razones from '../components/Razones.jsx'
 import ComoComprar from '../components/ComoComprar.jsx'
+import ObjecionesResumen from '../components/ObjecionesResumen.jsx'
+import LlamadoFinal from '../components/LlamadoFinal.jsx'
 
-export const inicioLoader = async () => ({ modelos: await getModelos() })
+export const inicioLoader = async () => {
+  const [modelos, preguntas] = await Promise.all([getModelos(), getPreguntas()])
+  return { modelos, preguntas }
+}
 
+/**
+ * Portada. Orden pensado como una prueba de manejo:
+ * la emoción primero (autopista y moto), luego el argumento (manifiesto
+ * y carriles), la elección (escaparate), las razones, el proceso, las
+ * dudas y, al final, la acción.
+ */
 export default function InicioPage() {
-  const { modelos } = useLoaderData()
+  const { modelos, preguntas } = useLoaderData()
   const precioDesde = Math.min(...modelos.map((m) => m.precio))
 
   return (
@@ -19,10 +32,13 @@ export default function InicioPage() {
         totalModelos={modelos.length}
         modeloPortada={modelos.find((m) => m.id === 'sport') ?? modelos[0]}
       />
-      <GamaResumen modelos={modelos} />
+      <BandaVelocidad />
+      <Manifiesto />
+      <GamaEscaparate modelos={modelos} />
       <Razones />
       <ComoComprar />
-      <LlamadoCotizar />
+      <ObjecionesResumen preguntas={preguntas} />
+      <LlamadoFinal />
     </>
   )
 }

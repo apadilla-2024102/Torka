@@ -1,0 +1,26 @@
+import ScrollVelocity from '../../../shared/components/reactbits/ScrollVelocity/ScrollVelocity.jsx'
+
+/**
+ * Banda de texto que corre (React Bits · ScrollVelocity): se acelera con
+ * la velocidad del scroll y cambia de sentido cuando el usuario sube. Las
+ * dos filas van en sentidos opuestos, como los dos carriles de la calle.
+ */
+const FRASES = [
+  'Cero gasolina / Hasta 120 km por carga / Se carga en tu casa /',
+  'Sin afinaciones / Sin ruido / Sin filas en la gasolinera /',
+]
+
+export default function BandaVelocidad() {
+  return (
+    <section aria-label="Lo que cambia con una TORKA" className="overflow-hidden border-y border-linea bg-asfalto py-8 text-papel sm:py-12">
+      <ScrollVelocity
+        texts={FRASES}
+        velocity={55}
+        numCopies={4}
+        className="tipo-ruta px-4 text-[clamp(2.2rem,6vw,5rem)] leading-[1.1]"
+        scrollerClassName="scroller"
+        parallaxClassName="parallax py-1"
+      />
+    </section>
+  )
+}
