@@ -1,7 +1,9 @@
-import { lazy, Suspense, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { useReducedMotion } from 'motion/react'
 import MontarEnVista from '../../../shared/components/ui/MontarEnVista.jsx'
 import { hayWebGL } from '../../../shared/components/brand/moto3d/webgl.js'
+import { useIntro } from '../../../shared/components/intro/IntroContexto.jsx'
+import { useFluidez } from '../../../shared/hooks/useFluidez.js'
 
 // Three.js + postprocessing pesan: se descargan después de pintar la portada.
 const Hyperspeed = lazy(() => import('../../../shared/components/reactbits/Hyperspeed/Hyperspeed.jsx'))
@@ -68,13 +70,28 @@ function AutopistaEstatica() {
 
 export default function FondoAutopista() {
   const reduced = useReducedMotion()
+  // La autopista arranca cuando se abre la cortina: armar la escena 3D
+  // mientras corre la pantalla de carga la volvería entrecortada.
+  const { lista } = useIntro()
+  // …y un instante después de que termina de subir, para no competir con
+  // la animación de la cortina ni con la entrada del titular.
+  const [arrancar, setArrancar] = useState(false)
+  useEffect(() => {
+    if (!lista) return
+    const espera = setTimeout(() => setArrancar(true), 1400)
+    return () => clearTimeout(espera)
+  }, [lista])
   // En pantallas táctiles se usa el respaldo: el efecto completo gasta
   // demasiada batería para un teléfono en datos móviles.
   const [animado] = useState(
     () => hayWebGL() && !window.matchMedia('(pointer: coarse)').matches,
   )
 
-  if (reduced || !animado) return <AutopistaEstatica />
+  // Si este equipo no mueve la autopista con fluidez, se queda la versión
+  // estática: mejor un fondo quieto que una página entrecortada.
+  const lento = useFluidez(animado && arrancar && !reduced)
+
+  if (reduced || !animado || !arrancar || lento) return <AutopistaEstatica />
 
   return (
     <MontarEnVista className="absolute inset-0" respaldo={<AutopistaEstatica />}>

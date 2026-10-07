@@ -26,6 +26,7 @@ export default function ModeloCard({ modelo, ref }) {
       <Link
         to={`/modelos/${id}`}
         viewTransition
+        data-cursor="Ver"
         className="group flex h-full flex-col overflow-hidden rounded-2xl border border-concreto bg-white transition-[border-color] duration-200 hover:border-asfalto/40"
       >
         <div className="relative bg-concreto/60 px-6 pt-10 pb-4">

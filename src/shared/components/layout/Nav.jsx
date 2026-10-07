@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
+import { AnimatePresence, motion } from 'motion/react'
+import { CURVA, escalonar, lineaMascara } from '../../lib/movimiento.js'
 import Logo from '../brand/Logo.jsx'
 import Boton from '../ui/Boton.jsx'
 
@@ -107,30 +109,52 @@ export default function Nav() {
         </div>
       </nav>
 
-      {abierta && (
-        <div id="menu-movil" className="h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain border-t border-linea bg-asfalto lg:hidden">
-          <ul className="mx-auto max-w-6xl px-4 py-4 sm:px-8">
-            {ENLACES.map((e) => (
-              <li key={e.to}>
-                <NavLink
-                  to={e.to}
-                  viewTransition
-                  className={({ isActive }) =>
-                    `tipo-ruta block border-b border-linea py-5 text-2xl ${isActive ? 'text-rojo-claro' : 'text-papel'}`
-                  }
-                >
-                  {e.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-          <div className="mx-auto max-w-6xl px-4 pb-8 sm:px-8">
-            <Boton to="/cotizar" className="w-full">
-              Cotizar una moto
-            </Boton>
-          </div>
-        </div>
-      )}
+      {/* Menú de celular: el panel baja como cortina y los enlaces entran
+          en cascada, grandes, como en los sitios de estudio. Al cerrar,
+          sale rápido: quien cierra un menú ya decidió. */}
+      <AnimatePresence>
+        {abierta && (
+          <motion.div
+            id="menu-movil"
+            className="h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain border-t border-linea bg-asfalto lg:hidden"
+            initial={{ clipPath: 'inset(0 0 100% 0)' }}
+            animate={{ clipPath: 'inset(0 0 0% 0)', transition: { duration: 0.6, ease: CURVA.expo } }}
+            exit={{ clipPath: 'inset(0 0 100% 0)', transition: { duration: 0.3, ease: CURVA.mover } }}
+          >
+            <motion.ul
+              className="mx-auto max-w-6xl px-4 py-6 sm:px-8"
+              initial="oculto"
+              animate="visible"
+              variants={escalonar(0.15, 0.06)}
+            >
+              {ENLACES.map((e) => (
+                <li key={e.to} className="overflow-hidden border-b border-linea">
+                  <motion.div variants={lineaMascara}>
+                    <NavLink
+                      to={e.to}
+                      viewTransition
+                      className={({ isActive }) =>
+                        `tipo-ruta block py-5 text-[clamp(2rem,9vw,3rem)] leading-none ${isActive ? 'text-rojo-claro' : 'text-papel'}`
+                      }
+                    >
+                      {e.label}
+                    </NavLink>
+                  </motion.div>
+                </li>
+              ))}
+            </motion.ul>
+            <motion.div
+              className="mx-auto max-w-6xl px-4 pb-8 sm:px-8"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0, transition: { delay: 0.45, duration: 0.4, ease: CURVA.entrar } }}
+            >
+              <Boton to="/cotizar" className="w-full">
+                Cotizar una moto
+              </Boton>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }

@@ -217,6 +217,26 @@ Los fondos WebGL (autopista y relámpago) solo se montan cuando están en
 pantalla. En celular, sin WebGL o con "reducir movimiento", se usa una
 versión estática en CSS.
 
+## Pantalla de carga, transiciones y cursor
+
+| Pieza | Dónde | Qué hace |
+|---|---|---|
+| Pantalla de carga | `shared/components/intro/PantallaCarga.jsx` | Batería que se carga de 0 a 100 % siguiendo la carga real (tipografía e imagen principal), luego se abre como cortina. Solo en la primera visita de la sesión |
+| Cambio de página | `shared/styles/index.css` (view transitions) | La página nueva sube como cortina mientras la anterior se hunde y se oscurece |
+| Cursor | `shared/components/intro/CursorTorka.jsx` | Anillo que sigue al mouse; crece sobre enlaces y muestra "Ver", "Arrastra" o "Acelera" según el elemento (atributo `data-cursor`) |
+| Scroll suave | `shared/hooks/useScrollSuave.js` | Inercia con Lenis, solo con mouse o trackpad |
+| Menú de celular | `shared/components/layout/Nav.jsx` | Pantalla completa, baja como cortina y los enlaces entran en cascada |
+
+Mientras la pantalla de carga está arriba, el sitio de abajo no se pinta
+(sus imágenes sí descargan): así la batería se mueve fluida incluso en
+equipos modestos. La portada y los títulos esperan a que la cortina se
+abra para hacer su entrada.
+
+**Equipos lentos.** La autopista del héroe y el relámpago del cierre se
+miden al arrancar: si el equipo no los mueve a 30 cuadros por segundo
+(por ejemplo, sin aceleración gráfica), se cambian por su versión estática
+durante el resto de la visita (`shared/hooks/useFluidez.js`).
+
 ## Accesibilidad
 
 - Navegable por teclado, con enlace para saltar al contenido y foco visible.
