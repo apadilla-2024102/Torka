@@ -31,7 +31,8 @@ const COLUMNAS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-asfalto pt-16 pb-28 text-papel lg:pb-10">
+    <footer className="relative bg-negro pt-16 pb-28 text-papel lg:pb-10">
+      <div aria-hidden="true" className="franja-marca absolute inset-x-0 top-0 h-1" />
       <Contenedor>
         <div className="grid gap-12 lg:grid-cols-[1.2fr_2fr]">
           <div>
