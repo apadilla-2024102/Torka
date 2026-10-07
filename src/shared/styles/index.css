@@ -215,16 +215,9 @@
   }
 }
 
-/* Quien pidió menos movimiento recibe cambios inmediatos. */
+/* El sitio se anima para todos (ver shared/hooks/useMovimiento.js); con
+   "reducir movimiento" solo se quita el scroll animado nativo. */
 @media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(*),
-  ::view-transition-old(*),
-  ::view-transition-new(*) {
-    animation: none !important;
-  }
-  .progreso-lectura {
-    display: none;
-  }
   html {
     scroll-behavior: auto !important;
   }

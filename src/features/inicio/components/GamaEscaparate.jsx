@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { AnimatePresence, motion, useInView, useReducedMotion } from 'motion/react'
+import { AnimatePresence, motion, useInView } from 'motion/react'
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import ModeloImagen from '../../../shared/components/brand/ModeloImagen.jsx'
 import Lectura from '../../../shared/components/ui/Lectura.jsx'
 import { formatoQuetzales } from '../../../shared/lib/formato.js'
 import { CURVA } from '../../../shared/lib/movimiento.js'
+import { useSinMovimiento } from '../../../shared/hooks/useMovimiento.js'
 
 /**
  * Escaparate de la gama (técnica "sticky column journey" de epic-design).
@@ -19,7 +20,7 @@ import { CURVA } from '../../../shared/lib/movimiento.js'
  */
 export default function GamaEscaparate({ modelos }) {
   const [activo, setActivo] = useState(modelos[0]?.id)
-  const reduced = useReducedMotion()
+  const reduced = useSinMovimiento()
   const modeloActivo = modelos.find((m) => m.id === activo) ?? modelos[0]
 
   return (

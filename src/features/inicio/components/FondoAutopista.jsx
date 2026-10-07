@@ -1,9 +1,9 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
-import { useReducedMotion } from 'motion/react'
 import { hayWebGL } from '../../../shared/components/brand/moto3d/webgl.js'
 import { useIntro } from '../../../shared/components/intro/IntroContexto.jsx'
 import { useFluidez } from '../../../shared/hooks/useFluidez.js'
 import Decorado from '../../../shared/components/ui/Decorado.jsx'
+import { usePrefiereSuave, useSinMovimiento } from '../../../shared/hooks/useMovimiento.js'
 
 // Three.js + postprocessing pesan: se descargan después de pintar la portada.
 const Hyperspeed = lazy(() => import('../../../shared/components/reactbits/Hyperspeed/Hyperspeed.jsx'))
@@ -53,7 +53,19 @@ const OPCIONES_TORKA = {
 }
 
 /**
- * Respaldo sin WebGL (celular, "reducir movimiento" o navegador sin 3D):
+ * Misma autopista a paso de crucero, para quien pidió menos movimiento en
+ * su sistema: la mitad de velocidad y una aceleración corta al presionar.
+ */
+const OPCIONES_SUAVES = {
+  ...OPCIONES_TORKA,
+  fovSpeedUp: 105,
+  speedUp: 1.2,
+  movingAwaySpeed: [30, 40],
+  movingCloserSpeed: [-60, -80],
+}
+
+/**
+ * Respaldo sin WebGL (celular, equipo lento o navegador sin 3D):
  * la misma idea en CSS, estelas de luz quietas sobre el asfalto.
  */
 function AutopistaEstatica() {
@@ -69,7 +81,8 @@ function AutopistaEstatica() {
 }
 
 export default function FondoAutopista() {
-  const reduced = useReducedMotion()
+  const reduced = useSinMovimiento()
+  const suave = usePrefiereSuave()
   // La autopista arranca cuando se abre la cortina: armar la escena 3D
   // mientras corre la pantalla de carga la volvería entrecortada.
   const { lista } = useIntro()
@@ -99,7 +112,7 @@ export default function FondoAutopista() {
     <Decorado respaldo={<AutopistaEstatica />}>
       <Suspense fallback={<AutopistaEstatica />}>
         <div className="absolute inset-0">
-          <Hyperspeed effectOptions={OPCIONES_TORKA} />
+          <Hyperspeed effectOptions={suave ? OPCIONES_SUAVES : OPCIONES_TORKA} />
         </div>
       </Suspense>
     </Decorado>

@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import { AnimatePresence, motion } from 'motion/react'
 import { useIntro } from './IntroContexto.jsx'
 import { CURVA } from '../../lib/movimiento.js'
 import { rutaRender } from '../brand/ModeloImagen.jsx'
 import Logo, { RUTAS_LOGO } from '../brand/Logo.jsx'
+import { useSinMovimiento } from '../../hooks/useMovimiento.js'
 
 const SEGMENTOS = 10
 const MINIMO_MS = 1600 // aunque todo llegue antes: la carga se tiene que poder ver
@@ -22,7 +23,7 @@ const MAXIMO_MS = 4500 // con conexión lenta, nunca se queda esperando de más
  */
 export default function PantallaCarga() {
   const { lista, terminar } = useIntro()
-  const reduced = useReducedMotion()
+  const reduced = useSinMovimiento()
   const [porcentaje, setPorcentaje] = useState(0)
   const real = useRef(0)
 

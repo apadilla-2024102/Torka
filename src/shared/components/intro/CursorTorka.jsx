@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { motion, useMotionValue, useReducedMotion, useSpring } from 'motion/react'
+import { motion, useMotionValue, useSpring } from 'motion/react'
+import { useSinMovimiento } from '../../hooks/useMovimiento.js'
 
 /**
  * Cursor de estudio: un anillo que sigue al puntero con un leve retraso.
@@ -15,7 +16,7 @@ import { motion, useMotionValue, useReducedMotion, useSpring } from 'motion/reac
  */
 export default function CursorTorka() {
   const [activo] = useState(() => window.matchMedia('(hover: hover) and (pointer: fine)').matches)
-  const reduced = useReducedMotion()
+  const reduced = useSinMovimiento()
   const x = useMotionValue(-100)
   const y = useMotionValue(-100)
   const suaveX = useSpring(x, { stiffness: 500, damping: 40, mass: 0.6 })

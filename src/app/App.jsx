@@ -1,14 +1,16 @@
 import { MotionConfig } from 'motion/react'
+import { RESPETAR_MENOS_MOVIMIENTO } from '../shared/hooks/useMovimiento.js'
 import { AppRouter } from './router/AppRouter.jsx'
 import { IntroProveedor, useIntro } from '../shared/components/intro/IntroContexto.jsx'
 import PantallaCarga from '../shared/components/intro/PantallaCarga.jsx'
 
 /**
- * Raíz de la aplicación. MotionConfig hace que todas las animaciones de
- * Motion respeten la preferencia de "reducir movimiento" del sistema.
+ * Raíz de la aplicación. MotionConfig decide si las animaciones de Motion
+ * obedecen "reducir movimiento"; el interruptor está en
+ * shared/hooks/useMovimiento.js.
  */
 export const App = () => (
-  <MotionConfig reducedMotion="user">
+  <MotionConfig reducedMotion={RESPETAR_MENOS_MOVIMIENTO ? 'user' : 'never'}>
     <IntroProveedor>
       <PantallaCarga />
       <Sitio />
