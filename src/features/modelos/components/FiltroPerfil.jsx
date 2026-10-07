@@ -15,14 +15,14 @@ export default function FiltroPerfil({ perfiles, activo, onCambiar }) {
             type="button"
             aria-pressed={seleccionado}
             onClick={() => onCambiar(p.id)}
-            className={`relative min-h-11 rounded-full px-5 text-[0.95rem] font-medium transition-colors duration-200 ${
-              seleccionado ? 'text-papel' : 'text-grafito hover:text-asfalto'
+            className={`tipo-etiqueta relative min-h-11 px-5 transition-colors duration-[330ms] ${
+              seleccionado ? 'text-negro' : 'text-niebla hover:text-papel'
             }`}
           >
             {seleccionado && (
               <motion.span
                 layoutId="perfil-activo"
-                className="absolute inset-0 rounded-full bg-asfalto"
+                className="absolute inset-0 bg-papel"
                 transition={{ type: 'spring', stiffness: 500, damping: 40 }}
               />
             )}
