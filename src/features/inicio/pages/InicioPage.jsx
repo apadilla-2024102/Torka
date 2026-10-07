@@ -9,6 +9,7 @@ import Razones from '../components/Razones.jsx'
 import ComoComprar from '../components/ComoComprar.jsx'
 import ObjecionesResumen from '../components/ObjecionesResumen.jsx'
 import LlamadoFinal from '../components/LlamadoFinal.jsx'
+import DesfileModelos from '../components/DesfileModelos.jsx'
 
 export const inicioLoader = async () => {
   const [modelos, preguntas] = await Promise.all([getModelos(), getPreguntas()])
@@ -18,8 +19,8 @@ export const inicioLoader = async () => {
 /**
  * Portada. Orden pensado como una prueba de manejo:
  * la emoción primero (autopista y moto), luego el argumento (manifiesto
- * y carriles), la elección (escaparate), las razones, el proceso, las
- * dudas y, al final, la acción.
+ * y carriles), la elección (escaparate), las razones, el desfile de la
+ * gama, el proceso, las dudas y, al final, la acción.
  */
 export default function InicioPage() {
   const { modelos, preguntas } = useLoaderData()
@@ -36,9 +37,10 @@ export default function InicioPage() {
       <Manifiesto />
       <GamaEscaparate modelos={modelos} />
       <Razones />
+      <DesfileModelos modelos={modelos} />
       <ComoComprar />
       <ObjecionesResumen preguntas={preguntas} />
-      <LlamadoFinal />
+      <LlamadoFinal modeloCalle={modelos.find((m) => m.id === 'urbana')} />
     </>
   )
 }

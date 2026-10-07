@@ -1,5 +1,5 @@
 import { lazy, Suspense, useRef, useState } from 'react'
-import { useInView } from 'motion/react'
+import { motion, useInView, useScroll, useTransform } from 'motion/react'
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import Boton from '../../../shared/components/ui/Boton.jsx'
 import MontarEnVista from '../../../shared/components/ui/MontarEnVista.jsx'
@@ -9,6 +9,8 @@ import { hayWebGL } from '../../../shared/components/brand/moto3d/webgl.js'
 import { enlaceWhatsApp } from '../../../shared/config/negocio.js'
 import { useFluidez } from '../../../shared/hooks/useFluidez.js'
 import Decorado from '../../../shared/components/ui/Decorado.jsx'
+import Carril from '../../../shared/components/ui/Carril.jsx'
+import ModeloImagen from '../../../shared/components/brand/ModeloImagen.jsx'
 import { usePrefiereSuave, useSinMovimiento } from '../../../shared/hooks/useMovimiento.js'
 
 const Lightning = lazy(() => import('../../../shared/components/reactbits/Lightning/Lightning.jsx'))
@@ -17,8 +19,11 @@ const Lightning = lazy(() => import('../../../shared/components/reactbits/Lightn
  * Cierre de la portada: relámpago de fondo (React Bits · Lightning) y la
  * tarjeta de acción con borde eléctrico (React Bits · ElectricBorder).
  * Es el único lugar con borde eléctrico: así se reconoce como el destino.
+ *
+ * Al pie, una moto cruza la calle de izquierda a derecha al ritmo del
+ * scroll: "súbete" dicho con movimiento.
  */
-export default function LlamadoFinal() {
+export default function LlamadoFinal({ modeloCalle }) {
   const reduced = useSinMovimiento()
   // Con "menos movimiento" en el sistema, los rayos caen más despacio.
   const suave = usePrefiereSuave()
@@ -28,9 +33,14 @@ export default function LlamadoFinal() {
   // El borde eléctrico dibuja en cada cuadro: solo se enciende en pantalla.
   const tarjeta = useRef(null)
   const enVista = useInView(tarjeta, { margin: '100px 0px' })
+  // Recorrido de la moto: entra por la izquierda cuando la sección asoma y
+  // sale por la derecha cuando se va. Atado al scroll, sin bucle.
+  const seccion = useRef(null)
+  const { scrollYProgress } = useScroll({ target: seccion, offset: ['start end', 'end start'] })
+  const xMoto = useTransform(scrollYProgress, [0.2, 0.95], ['-40vw', '105vw'])
 
   return (
-    <section className="relative isolate overflow-hidden bg-black py-28 text-papel sm:py-36">
+    <section ref={seccion} className="relative isolate overflow-hidden bg-black pt-28 pb-52 text-papel sm:pt-36 sm:pb-64">
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_70%_20%,rgba(227,16,25,0.25),transparent_60%)]" />
       {con3D && !reduced && !lento && (
         <MontarEnVista className="absolute inset-0 -z-10 opacity-70">
@@ -69,6 +79,14 @@ export default function LlamadoFinal() {
           </div>
         </ClickSpark>
       </Contenedor>
+      {modeloCalle && (
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-44 sm:h-56">
+          <Carril className="absolute inset-x-0 bottom-8 h-1.5 opacity-60" />
+          <motion.div style={{ x: xMoto }} className="absolute bottom-6 left-0 w-56 sm:w-80">
+            <ModeloImagen modelo={modeloCalle} transicion={false} ajustada className="aspect-[4/3] w-full" />
+          </motion.div>
+        </div>
+      )}
     </section>
   )
 }

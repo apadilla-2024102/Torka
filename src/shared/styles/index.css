@@ -215,6 +215,34 @@
   }
 }
 
+/* Reflejo que recorre la carrocería, como la luz de un comercial de autos.
+   La foto de la moto es la máscara: la luz solo toca la moto. */
+.destello {
+  background-image: linear-gradient(100deg, transparent 38%, rgba(255, 255, 255, 0.7) 50%, transparent 62%);
+  background-size: 260% 100%;
+  background-repeat: no-repeat;
+  mix-blend-mode: overlay;
+  animation: destello 6.5s cubic-bezier(0.45, 0, 0.25, 1) 2.5s infinite;
+  background-position: 160% 0;
+}
+@keyframes destello {
+  0% { background-position: 160% 0; }
+  30%, 100% { background-position: -60% 0; }
+}
+
+/* Desfile de modelos: la fila duplicada se desplaza media longitud y
+   vuelve a empezar sin corte. Se detiene al pasar el cursor. */
+.desfile {
+  animation: desfile 38s linear infinite;
+}
+.desfile:hover,
+.desfile:focus-within {
+  animation-play-state: paused;
+}
+@keyframes desfile {
+  to { transform: translateX(-50%); }
+}
+
 /* El sitio se anima para todos (ver shared/hooks/useMovimiento.js); con
    "reducir movimiento" solo se quita el scroll animado nativo. */
 @media (prefers-reduced-motion: reduce) {
