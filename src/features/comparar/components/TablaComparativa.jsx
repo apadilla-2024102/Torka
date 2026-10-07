@@ -13,7 +13,7 @@ const ganadorDe = (modelos, key, mejor) => {
 
 export default function TablaComparativa({ modelos, specsMeta }) {
   return (
-    <div className="relative overflow-x-auto rounded-2xl border border-concreto bg-white">
+    <div className="relative overflow-x-auto rounded-[2px] bg-papel text-asfalto">
       <table className="w-full min-w-[720px] border-collapse text-left">
         <caption className="sr-only">
           Especificaciones de los modelos TORKA. El mejor valor de cada fila está marcado.

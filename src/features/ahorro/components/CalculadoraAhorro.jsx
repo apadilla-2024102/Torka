@@ -19,7 +19,7 @@ export default function CalculadoraAhorro() {
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_1.15fr]">
-      <div className="rounded-2xl border border-concreto bg-white p-6 sm:p-8">
+      <div className="rounded-[2px] bg-papel text-asfalto p-6 sm:p-8">
         <h2 className="text-2xl font-semibold">Tus datos</h2>
         <div className="mt-8 space-y-9">
           <Control id="km" etiqueta="Kilómetros al mes" valor={kmMes} min={100} max={3000} paso={50} sufijo="km" onChange={setKmMes} />
@@ -47,7 +47,7 @@ export default function CalculadoraAhorro() {
         </div>
       </div>
 
-      <div className="rounded-2xl bg-asfalto p-6 text-papel sm:p-8">
+      <div className="rounded-[2px] border border-linea bg-negro p-6 text-papel sm:p-8">
         <p className="text-niebla">Ahorro estimado al año</p>
         <p className="tipo-tablero mt-1 text-[clamp(3rem,9vw,5rem)] leading-none text-senal" aria-hidden="true">
           {formatoQuetzales(ahorro)}

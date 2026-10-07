@@ -66,9 +66,9 @@ export default function CalleComparativa() {
                 <span className="ml-1 text-base text-niebla">km</span>
               </motion.span>
             </div>
-            <div className="relative h-12 overflow-hidden rounded-xl bg-asfalto-alto sm:h-14">
+            <div className="relative h-12 overflow-hidden rounded-[2px] bg-asfalto-alto sm:h-14">
               <motion.div
-                className={`absolute inset-0 rounded-xl ${c.barra}`}
+                className={`absolute inset-0 rounded-[2px] ${c.barra}`}
                 initial={reduced ? false : { x: '-100%' }}
                 whileInView={{ x: `${-(1 - c.proporcion) * 100}%` }}
                 viewport={{ once: true, margin: '0px 0px -20% 0px' }}
