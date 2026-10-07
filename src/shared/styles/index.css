@@ -19,13 +19,14 @@
 
   /* --- Calle --- */
   --color-senal: #f2c230; /* línea de carril: solo energía, carga y distancia */
-  --color-asfalto: #1f2024; /* fondos oscuros y texto principal sobre claro */
-  --color-asfalto-alto: #2a2b31; /* superficies elevadas sobre asfalto */
-  --color-linea: #3b3c43; /* bordes sobre asfalto */
+  --color-negro: #000000; /* lienzo de escenas: héroe y cierre (Lamborghini) */
+  --color-asfalto: #111111; /* lienzo general y texto sobre bandas claras */
+  --color-asfalto-alto: #1c1c1c; /* tarjetas y superficies elevadas */
+  --color-linea: #2e2e2e; /* filetes sobre oscuro (Ferrari) */
   --color-papel: #f6f6f3; /* fondo claro */
   --color-concreto: #e4e5e0; /* superficies y bordes sobre papel */
   --color-grafito: #5b5d65; /* texto secundario sobre papel (6.1:1) */
-  --color-niebla: #a9abb3; /* texto secundario sobre asfalto (7.1:1) */
+  --color-niebla: #9a9a9a; /* texto secundario sobre asfalto (6.7:1) */
 
   /* --- Tipografía ---
      Una sola familia, Archivo, y su eje de ANCHO como recurso expresivo:
@@ -34,6 +35,7 @@
   --font-sans: 'Archivo', ui-sans-serif, system-ui, sans-serif;
 
   --ease-salida: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-estado: cubic-bezier(0.25, 1, 0.5, 1); /* 0.33 s, todo cambio de estado (Tesla) */
 }
 
 @layer base {
@@ -45,9 +47,14 @@
     scroll-padding-top: 5.5rem;
   }
 
+  /* Lienzo oscuro de borde a borde (DESIGN.md). Las bandas claras
+     (tabla, formularios, calculadoras) declaran su propio fondo. */
+  html {
+    background-color: var(--color-negro);
+  }
   body {
-    background-color: var(--color-papel);
-    color: var(--color-asfalto);
+    background-color: var(--color-asfalto);
+    color: var(--color-papel);
     font-family: var(--font-sans);
     font-size: 1.0625rem;
     line-height: 1.6;
@@ -87,10 +94,32 @@
 
 @layer utilities {
   /* Titular expandido: la firma tipográfica de la marca. */
+  /* Display de la marca: expandida, en MAYÚSCULAS, interlínea apretada
+     (Lamborghini). */
   .tipo-ruta {
     font-stretch: 125%;
-    font-weight: 800;
-    letter-spacing: -0.035em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 0.92;
+  }
+
+  /* Rótulos de botones y datos: chicos, en mayúsculas y espaciados. */
+  .tipo-etiqueta {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  /* Franja de marca de tres colores (firma, a la manera de BMW M). */
+  .franja-marca {
+    background-image: linear-gradient(
+      90deg,
+      var(--color-rojo) 0 33.33%,
+      var(--color-senal) 33.33% 66.66%,
+      var(--color-papel) 66.66% 100%
+    );
   }
 
   /* Lectura de tablero: condensada y con cifras que no bailan. */

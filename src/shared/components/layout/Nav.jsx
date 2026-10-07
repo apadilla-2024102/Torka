@@ -59,7 +59,7 @@ export default function Nav() {
       onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setFocoDentro(false)}
       style={{ transform: escondida && !abierta && !focoDentro ? 'translateY(-100%)' : 'translateY(0)' }}
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,transform] duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] motion-reduce:transition-none ${
-        conFondo || abierta ? 'border-b border-linea bg-asfalto/95 backdrop-blur-md' : 'border-b border-transparent'
+        conFondo || abierta ? 'border-b border-white/10 bg-negro/70 backdrop-blur-xl' : 'border-b border-transparent'
       }`}
     >
       <nav aria-label="Principal" className="mx-auto flex h-18 max-w-6xl items-center justify-between gap-6 px-4 sm:px-8">
@@ -93,7 +93,8 @@ export default function Nav() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <Boton to="/cotizar" className="hidden min-h-11 px-5 text-[0.95rem] sm:inline-flex">
+          {/* Contorno, no rojo: en cada vista solo puede haber un botón rojo (DESIGN.md). */}
+          <Boton to="/cotizar" variante="secundario" className="hidden min-h-11 px-5 sm:inline-flex">
             Cotizar
           </Boton>
           <button
