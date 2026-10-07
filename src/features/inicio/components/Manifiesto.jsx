@@ -16,10 +16,10 @@ export default function Manifiesto() {
           baseOpacity={0.12}
           baseRotation={2}
           blurStrength={5}
-          containerClassName="max-w-5xl"
-          textClassName="tipo-ruta !text-[clamp(1.9rem,4.6vw,3.6rem)] !leading-[1.15]"
+          containerClassName="max-w-4xl"
+          textClassName="tipo-ruta !text-[clamp(1.4rem,2.9vw,2.3rem)] !leading-[1.25]"
         >
-          Una moto de gasolina te cobra en cada semáforo. Una yolt se carga en el mismo contacto que tu celular, no
+          Una moto de gasolina te cobra en cada semáforo. Una eléctrica se carga en el mismo contacto que tu celular, no
           pide afinación y no hace ruido. Lo que ahorras se queda contigo.
         </ScrollReveal>
 
