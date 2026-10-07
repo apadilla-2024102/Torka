@@ -2,7 +2,6 @@
 
 import { useRef, useLayoutEffect, useState } from 'react';
 import {
-  useReducedMotion,
   motion,
   useScroll,
   useSpring,
@@ -11,6 +10,7 @@ import {
   useVelocity,
   useAnimationFrame
 } from 'motion/react';
+import { useSinMovimiento } from '../../../hooks/useMovimiento.js';
 
 function useElementWidth(ref) {
   const [width, setWidth] = useState(0);
@@ -129,11 +129,10 @@ export const ScrollVelocity = ({
   }
 
   // [TORKA] Las copias repetidas son decorativas: el lector de pantalla
-  // oye cada frase una vez. Con "reducir movimiento" (Windows lo activa al
-  // apagar los "efectos de animación", muy común en equipos de oficina) la
-  // banda no se queda quieta: corre lenta y constante, sin reaccionar al
-  // scroll.
-  const reduced = useReducedMotion();
+  // oye cada frase una vez. Si el sitio obedece "reducir movimiento" (ver
+  // shared/hooks/useMovimiento.js) la banda no se queda quieta: corre lenta
+  // y constante, sin reaccionar al scroll.
+  const reduced = useSinMovimiento();
 
   return (
     <div>

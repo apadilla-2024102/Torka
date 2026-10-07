@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import { useReducedMotion } from 'motion/react'
 import { RotateCcw, RotateCw } from 'lucide-react'
 import * as THREE from 'three'
 import { crearEstudio, VISTA_CATALOGO } from './estudio.js'
+import { useSinMovimiento } from '../../../hooks/useMovimiento.js'
 
 const PASO_GIRO = Math.PI / 4
 const SUAVE = (t) => 1 - Math.pow(1 - t, 3)
@@ -15,7 +15,8 @@ const SUAVE = (t) => 1 - Math.pow(1 - t, 3)
  * - Dibuja solo cuando algo cambia: sin bucle continuo, no gasta batería.
  * - El color cambia con una transición corta, como respuesta a la elección.
  * - Al cargar da un cuarto de vuelta hasta la vista de catálogo: el único
- *   movimiento que no inicia el usuario, y se omite con "reducir movimiento".
+ *   movimiento que no inicia el usuario (se omite si el sitio obedece
+ *   "reducir movimiento"; ver shared/hooks/useMovimiento.js).
  *
  * Se carga de forma perezosa: Three.js solo se descarga en esta página.
  */
@@ -24,7 +25,7 @@ export default function Moto3D({ modelo, colorHex, onListo }) {
   const estudio = useRef(null)
   const azimut = useRef(VISTA_CATALOGO.azimut)
   const animacion = useRef(0)
-  const reduced = useReducedMotion()
+  const reduced = useSinMovimiento()
   const [arrastrando, setArrastrando] = useState(false)
 
   const dibujar = () => {

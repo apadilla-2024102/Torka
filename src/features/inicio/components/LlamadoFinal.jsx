@@ -1,5 +1,5 @@
 import { lazy, Suspense, useRef, useState } from 'react'
-import { useInView, useReducedMotion } from 'motion/react'
+import { useInView } from 'motion/react'
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import Boton from '../../../shared/components/ui/Boton.jsx'
 import MontarEnVista from '../../../shared/components/ui/MontarEnVista.jsx'
@@ -9,6 +9,7 @@ import { hayWebGL } from '../../../shared/components/brand/moto3d/webgl.js'
 import { enlaceWhatsApp } from '../../../shared/config/negocio.js'
 import { useFluidez } from '../../../shared/hooks/useFluidez.js'
 import Decorado from '../../../shared/components/ui/Decorado.jsx'
+import { usePrefiereSuave, useSinMovimiento } from '../../../shared/hooks/useMovimiento.js'
 
 const Lightning = lazy(() => import('../../../shared/components/reactbits/Lightning/Lightning.jsx'))
 
@@ -18,7 +19,9 @@ const Lightning = lazy(() => import('../../../shared/components/reactbits/Lightn
  * Es el único lugar con borde eléctrico: así se reconoce como el destino.
  */
 export default function LlamadoFinal() {
-  const reduced = useReducedMotion()
+  const reduced = useSinMovimiento()
+  // Con "menos movimiento" en el sistema, los rayos caen más despacio.
+  const suave = usePrefiereSuave()
   const [con3D] = useState(() => hayWebGL() && !window.matchMedia('(pointer: coarse)').matches)
   // Lee la misma marca de "equipo lento" que pone la autopista de la portada.
   const lento = useFluidez(false)
@@ -33,7 +36,7 @@ export default function LlamadoFinal() {
         <MontarEnVista className="absolute inset-0 -z-10 opacity-70">
           <Decorado>
             <Suspense fallback={null}>
-              <Lightning hue={356} xOffset={0.55} speed={0.7} intensity={0.9} size={1.2} />
+              <Lightning hue={356} xOffset={0.55} speed={suave ? 0.35 : 0.7} intensity={0.9} size={1.2} />
             </Suspense>
           </Decorado>
         </MontarEnVista>

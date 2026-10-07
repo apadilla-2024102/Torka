@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
+import { motion, useScroll, useTransform } from 'motion/react'
 import { BatteryCharging, FileCheck2, KeyRound, Wrench } from 'lucide-react'
 import Boton from '../../../shared/components/ui/Boton.jsx'
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
@@ -11,6 +11,7 @@ import { kmPorMonto } from '../../../shared/lib/energia.js'
 import { escalonar, lineaMascara, subir } from '../../../shared/lib/movimiento.js'
 import FondoAutopista from './FondoAutopista.jsx'
 import { useIntro } from '../../../shared/components/intro/IntroContexto.jsx'
+import { useSinMovimiento } from '../../../shared/hooks/useMovimiento.js'
 
 const LINEAS = ['Deja la gasolinera', 'en el retrovisor.']
 
@@ -38,7 +39,7 @@ const CONFIANZA = [
  */
 export default function Hero({ precioDesde, totalModelos, modeloPortada }) {
   const seccion = useRef(null)
-  const reduced = useReducedMotion()
+  const reduced = useSinMovimiento()
   // La entrada espera a que se abra la cortina de la pantalla de carga.
   const { lista } = useIntro()
   const { scrollYProgress } = useScroll({ target: seccion, offset: ['start start', 'end start'] })

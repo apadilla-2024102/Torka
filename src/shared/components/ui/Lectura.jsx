@@ -1,7 +1,8 @@
 import { useRef } from 'react'
-import { useInView, useReducedMotion } from 'motion/react'
+import { useInView } from 'motion/react'
 import { useCountUp } from '../../hooks/useCountUp.js'
 import { formatoNumero } from '../../lib/formato.js'
+import { useSinMovimiento } from '../../hooks/useMovimiento.js'
 
 /**
  * Lectura de tablero: una cifra con su unidad y su nombre, como en el
@@ -17,7 +18,7 @@ import { formatoNumero } from '../../lib/formato.js'
 export default function Lectura({ valor, unidad, etiqueta, energia = false, sobreOscuro = true, grande = false }) {
   const ref = useRef(null)
   const enVista = useInView(ref, { once: true, margin: '0px 0px -10% 0px' })
-  const reduced = useReducedMotion()
+  const reduced = useSinMovimiento()
   const esNumero = typeof valor === 'number'
   const mostrado = useCountUp(esNumero ? (enVista || reduced ? valor : 0) : 0, 1.1)
 

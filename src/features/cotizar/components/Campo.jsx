@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { useAnimate, useReducedMotion } from 'motion/react'
+import { useAnimate } from 'motion/react'
+import { useSinMovimiento } from '../../../shared/hooks/useMovimiento.js'
 
 /**
  * Envoltura de un campo de formulario: etiqueta, ayuda y error, todos
@@ -7,7 +8,7 @@ import { useAnimate, useReducedMotion } from 'motion/react'
  */
 export default function Campo({ id, etiqueta, ayuda, error, intento = 0, children }) {
   const [zona, animar] = useAnimate()
-  const reduced = useReducedMotion()
+  const reduced = useSinMovimiento()
 
   // Sacudida en cada intento fallido. Anima el contenedor sin volver a
   // montar el campo, así el foco que el formulario puso en él se conserva.

@@ -1,8 +1,9 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
+import { motion, useScroll, useTransform } from 'motion/react'
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import Revelar from '../../../shared/components/ui/Revelar.jsx'
+import { useSinMovimiento } from '../../../shared/hooks/useMovimiento.js'
 
 /** El proceso de compra. Aquí sí hay números: es una secuencia real. */
 const PASOS = [
@@ -31,12 +32,12 @@ const PASOS = [
 /**
  * La línea roja avanza paso a paso mientras el usuario baja: muestra que
  * es un recorrido con principio y fin. Está atada al scroll (sin curva ni
- * duración) y con "reducir movimiento" queda completa desde el inicio.
+ * duración); si el sitio obedece "reducir movimiento" queda completa.
  */
 export default function ComoComprar() {
   const lista = useRef(null)
   const { scrollYProgress } = useScroll({ target: lista, offset: ['start 85%', 'end 55%'] })
-  const reduced = useReducedMotion()
+  const reduced = useSinMovimiento()
   const avanceScroll = useTransform(scrollYProgress, [0, 1], [0, 1])
   const avance = reduced ? 1 : avanceScroll
 

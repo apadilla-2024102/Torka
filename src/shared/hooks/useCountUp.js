@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { animate, useReducedMotion } from 'motion/react'
+import { animate } from 'motion/react'
+import { useSinMovimiento } from './useMovimiento.js'
 
 /**
  * Lleva un número de su valor anterior al nuevo con una curva suave.
@@ -7,7 +8,7 @@ import { animate, useReducedMotion } from 'motion/react'
  * movimiento explica qué cambió en lugar de decorar.
  */
 export function useCountUp(objetivo, duracion = 0.6) {
-  const reduced = useReducedMotion()
+  const reduced = useSinMovimiento()
   const [valor, setValor] = useState(objetivo)
   // Valor mostrado en este instante: si el usuario mueve el control a
   // mitad de la animación, la siguiente parte de donde está, sin saltos.

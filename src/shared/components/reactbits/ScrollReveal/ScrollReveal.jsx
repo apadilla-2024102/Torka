@@ -3,6 +3,7 @@
 import { useEffect, useRef, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { sinMovimiento } from '../../../hooks/useMovimiento.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,10 +36,10 @@ const ScrollReveal = ({
     const el = containerRef.current;
     if (!el) return;
 
-    // [TORKA] Con "reducir movimiento" (Windows lo activa al apagar los
-    // "efectos de animación") no hay giro ni desenfoque, pero las palabras
-    // sí se encienden: solo cambia la opacidad, nada se desplaza.
-    const suave = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // [TORKA] Si el sitio obedece "reducir movimiento" (ver
+    // shared/hooks/useMovimiento.js), no hay giro ni desenfoque, pero las
+    // palabras sí se encienden: solo cambia la opacidad.
+    const suave = sinMovimiento();
 
     const scroller = scrollContainerRef && scrollContainerRef.current ? scrollContainerRef.current : window;
 

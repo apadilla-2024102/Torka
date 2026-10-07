@@ -5,7 +5,7 @@ import { useInView } from 'motion/react'
  * Línea de carril discontinua que avanza como la calle bajo la moto.
  *
  * Es un bucle decorativo, así que se pausa fuera de pantalla (no gasta
- * GPU) y se detiene con "reducir movimiento" (regla en index.css).
+ * GPU).
  */
 export default function Carril({ className = '' }) {
   const ref = useRef(null)

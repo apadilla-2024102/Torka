@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
-import { motion, useReducedMotion } from 'motion/react'
+import { motion } from 'motion/react'
 import { kmPorMonto, SUPUESTOS } from '../../../shared/lib/energia.js'
 import { formatoNumero } from '../../../shared/lib/formato.js'
 import Carril from '../../../shared/components/ui/Carril.jsx'
+import { useSinMovimiento } from '../../../shared/hooks/useMovimiento.js'
 
 const MONTO = 100
 
@@ -19,7 +20,7 @@ const MONTO = 100
  * el ancho.
  */
 export default function CalleComparativa() {
-  const reduced = useReducedMotion()
+  const reduced = useSinMovimiento()
   const km = kmPorMonto(MONTO)
   const proporcionGasolina = km.gasolina / km.electrica
 

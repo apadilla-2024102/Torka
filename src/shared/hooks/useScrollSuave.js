@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useIntro } from '../components/intro/IntroContexto.jsx'
+import { sinMovimiento } from './useMovimiento.js'
 import Lenis from 'lenis'
 import 'lenis/dist/lenis.css'
 import { gsap } from 'gsap'
@@ -14,8 +15,8 @@ let lenis = null
  * Scroll con inercia (Lenis), como en los sitios de estudio.
  *
  * Solo con mouse o trackpad: en pantallas táctiles el sistema ya tiene su
- * propia inercia y reemplazarla se siente peor. Tampoco con "reducir
- * movimiento". No hay saltos forzados ni secciones que atrapen el scroll:
+ * propia inercia y reemplazarla se siente peor. Tampoco si el sitio obedece
+ * "reducir movimiento" (ver useMovimiento.js). No hay saltos forzados ni secciones que atrapen el scroll:
  * solo suaviza la rueda del mouse.
  *
  * Sincronizado con GSAP ScrollTrigger (el manifiesto) y con el router:
@@ -26,7 +27,7 @@ export function useScrollSuave() {
 
   useEffect(() => {
     const conMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches
-    const reducir = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const reducir = sinMovimiento()
     if (!conMouse || reducir) return
 
     lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 0.95 })

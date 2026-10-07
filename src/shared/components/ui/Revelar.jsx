@@ -11,7 +11,8 @@ import { EN_VISTA, escalonar, subir } from '../../lib/movimiento.js'
  * Regla: una sola entrada por contenedor. Si el grupo escalona a sus
  * hijos, el grupo en sí no se mueve.
  *
- * Con "reducir movimiento", MotionConfig (app/App.jsx) quita el
+ * Si el sitio obedece "reducir movimiento" (shared/hooks/useMovimiento.js),
+ * MotionConfig (app/App.jsx) quita el
  * desplazamiento y deja solo el cambio de opacidad.
  */
 export default function Revelar({ as = 'div', grupo = false, retraso = 0, escalon, className, children, ...props }) {
