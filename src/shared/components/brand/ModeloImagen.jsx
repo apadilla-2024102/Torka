@@ -47,7 +47,7 @@ export default function ModeloImagen({ modelo, colorId, className = '', transici
           loading={prioridad ? 'eager' : 'lazy'}
           fetchPriority={prioridad ? 'high' : undefined}
           decoding="async"
-          className={`h-full w-full ${ajustada ? 'object-cover' : 'object-contain'}`}
+          className={`foto-moto h-full w-full ${ajustada ? 'object-cover' : 'object-contain'}`}
         />
         <span
           aria-hidden="true"
@@ -78,7 +78,7 @@ export default function ModeloImagen({ modelo, colorId, className = '', transici
         loading={prioridad ? 'eager' : 'lazy'}
         fetchPriority={prioridad ? 'high' : undefined}
         decoding="async"
-        className={`${ajustada ? 'object-cover' : 'object-contain'} ${className}`}
+        className={`foto-moto ${ajustada ? 'object-cover' : 'object-contain'} ${className}`}
         style={estilo}
       />
     )

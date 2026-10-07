@@ -89,17 +89,24 @@ Todo está construido con datos de ejemplo. En orden de importancia:
 
 ## Imágenes de las motos
 
-Las motos se muestran con **fotos reales recortadas** (sin fondo, sobre el
-negro del sitio) en `public/modelos/fotos/<modelo>-<color>.webp`, a
-1320 × 810 px, con la moto apoyada abajo y una sombra de contacto. Los
-originales están en `herramientas/fotos/originales/`.
+Las motos son las de la lámina del sistema de marca
+(`herramientas/fotos/gama/sistema-de-marca-yolt.webp`): recortadas de la
+sección "Nuestra gama", ampliadas 4× con superresolución (EDSR), sin fondo
+y encuadradas en 1320 × 810 px con sombra de contacto, en
+`public/modelos/fotos/<modelo>-<color>.webp`. La lámina es de baja
+resolución: **cuando haya fotos o renders oficiales de cada modelo,
+reemplázalas** (mismo nombre de archivo y encuadre). Las fotos de showroom
+anteriores siguen en `herramientas/fotos/originales/`.
+
+Como las motos son negras sobre lienzo negro, `.foto-moto` les da una
+orilla de luz tenue (index.css).
 
 | Modelo | Color         | Archivo                |
 | ------ | ------------- | ---------------------- |
-| yolt ONE  | Crema y menta | `one-crema.webp` |
-| yolt CITY | Negro y lima / Verde y naranja | `city-lima.webp`, `city-verde.webp` |
-| yolt X    | Gris titanio  | `x-titanio.webp` |
-| yolt GT   | Blanco perla (próximamente) | `gt-perla.webp` |
+| yolt ONE  | Grafito y lima | `one-grafito.webp` |
+| yolt CITY | Grafito y lima | `city-grafito.webp` |
+| yolt X    | Grafito y lima | `x-grafito.webp` |
+| yolt GT   | Grafito y lima (próximamente) | `gt-grafito.webp` |
 
 Cada modelo ofrece **solo los colores que tienen foto**: un color sin foto
 no se puede mostrar y genera dudas en la compra.
