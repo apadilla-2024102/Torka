@@ -13,11 +13,16 @@ const Moto3D = lazy(() => import('../../../shared/components/brand/moto3d/Moto3D
  * tarjeta en la transición de página). Si el navegador dibuja WebGL, monta
  * encima el visor 3D y, cuando el primer cuadro está listo, el render se
  * retira. Sin WebGL, el render se queda: nadie ve un hueco.
+ *
+ * Si el color tiene foto real, se muestra la foto y no se monta el 3D: el
+ * modelo 3D es genérico y no se parece a la moto que se vende.
  */
 export default function VisorModelo({ modelo, colorId }) {
-  const [con3D] = useState(hayWebGL)
+  const [webgl] = useState(hayWebGL)
   const [listo, setListo] = useState(false)
   const color = modelo.colores.find((c) => c.id === colorId) ?? modelo.colores[0]
+  const conFoto = Boolean(modelo.fotos?.[color.id])
+  const con3D = webgl && !conFoto
 
   return (
     <figure>
@@ -40,8 +45,9 @@ export default function VisorModelo({ modelo, colorId }) {
       </div>
       {/* Con 3D, los botones de giro ocupan la franja de abajo: el texto va después. */}
       <figcaption className={`text-sm text-niebla ${con3D ? 'mt-[4.25rem]' : 'mt-4'}`}>
-        {con3D ? 'Arrastra la moto para verla desde cualquier lado. ' : ''}
-        Imagen generada por computadora; el acabado real puede variar.
+        {conFoto
+          ? 'Fotografía de la unidad. Las calcomanías pueden variar según el lote.'
+          : `${con3D ? 'Arrastra la moto para verla desde cualquier lado. ' : ''}Imagen generada por computadora; el acabado real puede variar.`}
       </figcaption>
     </figure>
   )

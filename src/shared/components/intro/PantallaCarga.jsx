@@ -2,11 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useIntro } from './IntroContexto.jsx'
 import { CURVA } from '../../lib/movimiento.js'
-import { rutaRender } from '../brand/ModeloImagen.jsx'
 import Logo, { RUTAS_LOGO } from '../brand/Logo.jsx'
 import { useSinMovimiento } from '../../hooks/useMovimiento.js'
 
 const SEGMENTOS = 10
+// La moto de la portada (InicioPage): se precarga junto con el logo.
+const FOTO_PORTADA = '/modelos/fotos/sierra-titanio.webp'
 const MINIMO_MS = 1600 // aunque todo llegue antes: la carga se tiene que poder ver
 const MAXIMO_MS = 4500 // con conexión lenta, nunca se queda esperando de más
 
@@ -38,7 +39,7 @@ export default function PantallaCarga() {
     // deferred") y la batería se quedaría esperando.
     const tareas = [
       document.fonts?.ready ?? Promise.resolve(),
-      ...[rutaRender('sport', 'rojo'), RUTAS_LOGO.emblema, RUTAS_LOGO.palabraClaro].map(
+      ...[FOTO_PORTADA, RUTAS_LOGO.emblema, RUTAS_LOGO.palabraClaro].map(
         (ruta) =>
           new Promise((resolver) => {
             const img = new Image()

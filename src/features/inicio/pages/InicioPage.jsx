@@ -30,7 +30,7 @@ export default function InicioPage() {
       <Hero
         precioDesde={precioDesde}
         totalModelos={modelos.length}
-        modeloPortada={modelos.find((m) => m.id === 'sport') ?? modelos[0]}
+        modeloPortada={modelos.find((m) => m.id === 'sierra') ?? modelos[0]}
       />
       <BandaVelocidad />
       <Manifiesto />

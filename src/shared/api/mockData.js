@@ -34,15 +34,12 @@ export const MOCK_MODELOS = [
       'No requiere licencia tipo M',
       'Cargador incluido para contacto de 120 V',
     ],
-    // Ilustración: rasgos que la distinguen mientras no hay foto.
+    // Silueta de respaldo, por si una foto no carga.
     ilustracion: { parabrisas: false, parrilla: false, caja: false, dobleBateria: false },
-    colores: [
-      { id: 'blanco', nombre: 'Blanco glaciar', hex: '#eceef0' },
-      { id: 'grafito', nombre: 'Grafito', hex: '#4a4c53' },
-      { id: 'rojo', nombre: 'Rojo TORKA', hex: '#e31019' },
-    ],
-    // Cuando tengas fotos: { blanco: '/modelos/urbana-blanco.png', ... }
-    fotos: null,
+    // Un color por cada foto real: no se ofrece un color que no se puede mostrar.
+    colores: [{ id: 'crema', nombre: 'Crema y menta', hex: '#e8e1cb' }],
+    // Fotos recortadas en public/modelos/fotos (ver README, "Fotos de las motos").
+    fotos: { crema: '/modelos/fotos/urbana-crema.webp' },
   },
   {
     id: 'sierra',
@@ -69,12 +66,8 @@ export const MOCK_MODELOS = [
       'Frenos de disco delantero y trasero',
     ],
     ilustracion: { parabrisas: true, parrilla: false, caja: false, dobleBateria: true },
-    colores: [
-      { id: 'olivo', nombre: 'Verde volcán', hex: '#5f6b4a' },
-      { id: 'arena', nombre: 'Arena', hex: '#c8b48a' },
-      { id: 'negro', nombre: 'Negro mate', hex: '#2b2c30' },
-    ],
-    fotos: null,
+    colores: [{ id: 'titanio', nombre: 'Gris titanio', hex: '#8b8d8f' }],
+    fotos: { titanio: '/modelos/fotos/sierra-titanio.webp' },
   },
   {
     id: 'carga',
@@ -100,13 +93,15 @@ export const MOCK_MODELOS = [
       'Parrilla trasera y anclajes para caja de reparto',
       'Precio por flotilla a partir de 5 unidades',
     ],
-    ilustracion: { parabrisas: false, parrilla: true, caja: true, dobleBateria: false },
+    ilustracion: { parabrisas: false, parrilla: true, caja: false, dobleBateria: false },
     colores: [
-      { id: 'amarillo', nombre: 'Amarillo servicio', hex: '#e9b824' },
-      { id: 'blanco', nombre: 'Blanco flotilla', hex: '#eceef0' },
-      { id: 'grafito', nombre: 'Grafito', hex: '#4a4c53' },
+      { id: 'verde', nombre: 'Verde y naranja', hex: '#2e5a4b' },
+      { id: 'lima', nombre: 'Negro y lima', hex: '#c9e021' },
     ],
-    fotos: null,
+    fotos: {
+      verde: '/modelos/fotos/carga-verde.webp',
+      lima: '/modelos/fotos/carga-lima.webp',
+    },
   },
   {
     id: 'sport',
@@ -132,13 +127,9 @@ export const MOCK_MODELOS = [
       'Tres modos de manejo: Eco, Ciudad y Sport',
       'Requiere licencia tipo M y placas',
     ],
-    ilustracion: { parabrisas: false, parrilla: false, caja: false, dobleBateria: false, deportiva: true },
-    colores: [
-      { id: 'rojo', nombre: 'Rojo TORKA', hex: '#e31019' },
-      { id: 'negro', nombre: 'Negro mate', hex: '#2b2c30' },
-      { id: 'azul', nombre: 'Azul lago', hex: '#2f5d8a' },
-    ],
-    fotos: null,
+    ilustracion: { parabrisas: true, parrilla: true, caja: false, dobleBateria: false, deportiva: true },
+    colores: [{ id: 'perla', nombre: 'Blanco perla', hex: '#e2e1e6' }],
+    fotos: { perla: '/modelos/fotos/sport-perla.webp' },
   },
 ]
 

@@ -138,7 +138,8 @@ export default function Hero({ precioDesde, totalModelos, modeloPortada }) {
                       modelo={modeloPortada}
                       transicion={false}
                       prioridad
-                      className="aspect-[44/27] w-full drop-shadow-[0_40px_50px_rgba(227,16,25,0.25)]"
+                      ajustada
+                      className="aspect-[4/3] w-full drop-shadow-[0_40px_50px_rgba(227,16,25,0.25)]"
                     />
                   </motion.div>
                 </motion.div>

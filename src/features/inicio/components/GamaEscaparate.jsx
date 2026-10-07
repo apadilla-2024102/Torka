@@ -53,7 +53,7 @@ export default function GamaEscaparate({ modelos }) {
                 >
                   {modeloActivo.nombre}
                 </p>
-                <div className="relative aspect-[44/27] overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <AnimatePresence initial={false} mode="popLayout">
                     <motion.div
                       key={modeloActivo.id}
@@ -63,7 +63,7 @@ export default function GamaEscaparate({ modelos }) {
                       exit={reduced ? { opacity: 0 } : { x: '70%', opacity: 0 }}
                       transition={{ duration: 0.7, ease: CURVA.expo }}
                     >
-                      <ModeloImagen modelo={modeloActivo} transicion={false} className="h-full w-full" />
+                      <ModeloImagen modelo={modeloActivo} transicion={false} ajustada className="h-full w-full" />
                     </motion.div>
                   </AnimatePresence>
                 </div>
@@ -94,7 +94,7 @@ function Capitulo({ modelo, indice, total, onActivo }) {
   return (
     <li ref={ref} className="flex flex-col justify-center lg:min-h-[85vh]">
       <div className="mb-6 lg:hidden">
-        <ModeloImagen modelo={modelo} className="aspect-[44/27] w-full" />
+        <ModeloImagen modelo={modelo} ajustada className="aspect-[4/3] w-full" />
       </div>
       <p className="tipo-etiqueta text-niebla">
         {String(indice + 1).padStart(2, '0')} de {String(total).padStart(2, '0')} · {modelo.perfilLabel}
