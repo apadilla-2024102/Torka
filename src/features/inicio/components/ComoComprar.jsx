@@ -1,5 +1,8 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
+import Revelar from '../../../shared/components/ui/Revelar.jsx'
 
 /** El proceso de compra. Aquí sí hay números: es una secuencia real. */
 const PASOS = [
@@ -25,7 +28,18 @@ const PASOS = [
   },
 ]
 
+/**
+ * La línea roja avanza paso a paso mientras el usuario baja: muestra que
+ * es un recorrido con principio y fin. Está atada al scroll (sin curva ni
+ * duración) y con "reducir movimiento" queda completa desde el inicio.
+ */
 export default function ComoComprar() {
+  const lista = useRef(null)
+  const { scrollYProgress } = useScroll({ target: lista, offset: ['start 85%', 'end 55%'] })
+  const reduced = useReducedMotion()
+  const avanceScroll = useTransform(scrollYProgress, [0, 1], [0, 1])
+  const avance = reduced ? 1 : avanceScroll
+
   return (
     <section aria-labelledby="comprar-titulo" className="py-20 sm:py-28">
       <Contenedor>
@@ -33,20 +47,36 @@ export default function ComoComprar() {
           Cómo se compra
         </h2>
 
-        <ol className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-concreto sm:grid-cols-2 lg:grid-cols-4">
-          {PASOS.map((p, i) => (
-            <li key={p.titulo} className="flex flex-col bg-papel p-7">
-              <span className="tipo-tablero text-5xl text-rojo" aria-hidden="true">
-                {i + 1}
-              </span>
-              <h3 className="mt-4 text-xl font-semibold">{p.titulo}</h3>
-              <p className="mt-2 flex-1 text-grafito">{p.texto}</p>
-              <Link to={p.enlace.to} viewTransition className="mt-5 font-semibold underline underline-offset-4">
-                {p.enlace.label}
-              </Link>
-            </li>
-          ))}
-        </ol>
+        <div ref={lista} className="relative mt-12">
+          {/* Riel y línea de avance: horizontal en escritorio, vertical en celular. */}
+          <div aria-hidden="true" className="absolute top-0 left-0 hidden h-1 w-full rounded-full bg-concreto lg:block" />
+          <motion.div
+            aria-hidden="true"
+            style={{ scaleX: avance }}
+            className="absolute top-0 left-0 hidden h-1 w-full origin-left rounded-full bg-rojo lg:block"
+          />
+          <div aria-hidden="true" className="absolute top-0 left-3 h-full w-1 rounded-full bg-concreto lg:hidden" />
+          <motion.div
+            aria-hidden="true"
+            style={{ scaleY: avance }}
+            className="absolute top-0 left-3 h-full w-1 origin-top rounded-full bg-rojo lg:hidden"
+          />
+
+          <Revelar grupo as="ol" escalon={0.12} className="grid gap-10 pl-10 lg:grid-cols-4 lg:gap-8 lg:pt-10 lg:pl-0">
+            {PASOS.map((p, i) => (
+              <Revelar.Item as="li" key={p.titulo} className="flex flex-col">
+                <span className="tipo-tablero text-5xl text-rojo" aria-hidden="true">
+                  {i + 1}
+                </span>
+                <h3 className="mt-3 text-xl font-semibold">{p.titulo}</h3>
+                <p className="mt-2 flex-1 text-grafito">{p.texto}</p>
+                <Link to={p.enlace.to} viewTransition className="mt-5 font-semibold underline underline-offset-4">
+                  {p.enlace.label}
+                </Link>
+              </Revelar.Item>
+            ))}
+          </Revelar>
+        </div>
       </Contenedor>
     </section>
   )

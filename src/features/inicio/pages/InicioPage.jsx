@@ -14,7 +14,11 @@ export default function InicioPage() {
 
   return (
     <>
-      <Hero precioDesde={precioDesde} totalModelos={modelos.length} />
+      <Hero
+        precioDesde={precioDesde}
+        totalModelos={modelos.length}
+        modeloPortada={modelos.find((m) => m.id === 'sport') ?? modelos[0]}
+      />
       <GamaResumen modelos={modelos} />
       <Razones />
       <ComoComprar />

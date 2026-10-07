@@ -1,5 +1,7 @@
 import { Link, useLoaderData, useSearchParams } from 'react-router-dom'
 import { Check } from 'lucide-react'
+import { motion } from 'motion/react'
+import { escalonar, lineaMascara, subir } from '../../../shared/lib/movimiento.js'
 import { getModeloPorId, getModelos } from '../../../shared/api/modelosApi.js'
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import ModeloImagen from '../../../shared/components/brand/ModeloImagen.jsx'
@@ -47,26 +49,36 @@ export default function ModeloDetallePage() {
               <VisorModelo modelo={modelo} colorId={colorId} />
             </div>
 
-            <div>
-              <p className="text-niebla">{modelo.perfilLabel}</p>
-              <h1 className="tipo-ruta mt-1 text-[clamp(3rem,8vw,5.5rem)]">{modelo.nombre}</h1>
-              <p className="mt-3 text-xl text-niebla">{modelo.tagline}</p>
+            {/* Al llegar o cambiar de modelo, el nombre sube con máscara y el
+                resto de la columna lo sigue en ola. */}
+            <motion.div key={modelo.id} initial="oculto" animate="visible" variants={escalonar(0.05, 0.08)}>
+              <motion.p variants={subir} className="text-niebla">
+                {modelo.perfilLabel}
+              </motion.p>
+              <h1 className="tipo-ruta mt-1 overflow-hidden pb-[0.08em] text-[clamp(3rem,8vw,5.5rem)]">
+                <motion.span variants={lineaMascara} className="block">
+                  {modelo.nombre}
+                </motion.span>
+              </h1>
+              <motion.p variants={subir} className="mt-3 text-xl text-niebla">
+                {modelo.tagline}
+              </motion.p>
 
-              <p className="mt-8">
+              <motion.p variants={subir} className="mt-8">
                 <span className="tipo-tablero text-5xl">{formatoQuetzales(modelo.precio)}</span>
                 <span className="mt-1 block text-sm text-niebla">Precio de lista, sin placas ni seguro</span>
-              </p>
+              </motion.p>
 
-              <div className="mt-8">
+              <motion.div variants={subir} className="mt-8">
                 <SelectorColor
                   colores={modelo.colores}
                   activo={colorId}
                   onCambiar={cambiarColor}
                   nombreGrupo={`color-${modelo.id}`}
                 />
-              </div>
+              </motion.div>
 
-              <div className="mt-9 flex flex-wrap gap-3">
+              <motion.div variants={subir} className="mt-9 flex flex-wrap gap-3">
                 <Boton to={`/cotizar?modelo=${modelo.id}&color=${colorId}`}>Cotizar la {modelo.nombre}</Boton>
                 <Boton
                   href={enlaceWhatsApp(`Hola, me interesa la TORKA ${modelo.nombre}.`)}
@@ -77,8 +89,8 @@ export default function ModeloDetallePage() {
                 >
                   Preguntar por WhatsApp
                 </Boton>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </Contenedor>
       </section>

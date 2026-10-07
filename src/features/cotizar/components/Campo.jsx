@@ -1,8 +1,23 @@
+import { useEffect } from 'react'
+import { useAnimate, useReducedMotion } from 'motion/react'
+
 /**
  * Envoltura de un campo de formulario: etiqueta, ayuda y error, todos
  * conectados al control por id para que el lector de pantalla los lea.
  */
-export default function Campo({ id, etiqueta, ayuda, error, children }) {
+export default function Campo({ id, etiqueta, ayuda, error, intento = 0, children }) {
+  const [zona, animar] = useAnimate()
+  const reduced = useReducedMotion()
+
+  // Sacudida en cada intento fallido. Anima el contenedor sin volver a
+  // montar el campo, así el foco que el formulario puso en él se conserva.
+  useEffect(() => {
+    if (error && intento > 0 && zona.current && !reduced) {
+      animar(zona.current, { x: [0, -7, 7, -4, 4, 0] }, { duration: 0.38, ease: 'easeOut' })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [intento])
+
   return (
     <div>
       <label htmlFor={id} className="block font-medium">
@@ -13,7 +28,11 @@ export default function Campo({ id, etiqueta, ayuda, error, children }) {
           {ayuda}
         </p>
       )}
-      <div className="mt-2">{children}</div>
+      {/* Con error, el campo da una sacudida corta en cada intento de envío:
+          señala dónde corregir sin depender solo del color. */}
+      <div ref={zona} className="mt-2">
+        {children}
+      </div>
       {error && (
         <p id={`${id}-error`} className="mt-2 text-sm font-medium text-rojo-hondo">
           {error}

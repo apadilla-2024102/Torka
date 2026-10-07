@@ -15,6 +15,8 @@ export default function Layout() {
       >
         Saltar al contenido
       </a>
+      {/* Progreso de lectura: atado al scroll, sin JavaScript. */}
+      <div aria-hidden="true" className="progreso-lectura fixed inset-x-0 top-0 z-[55] h-0.5 origin-left bg-rojo" />
       <Nav />
       <main id="contenido">
         <Outlet />

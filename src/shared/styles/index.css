@@ -114,6 +114,39 @@
     );
     background-size: 44px 100%;
   }
+
+  /* El carril avanza de derecha a izquierda: la moto va hacia adelante. */
+  .carril-en-marcha {
+    animation: carril-avanza 0.9s linear infinite;
+  }
+}
+
+@keyframes carril-avanza {
+  to {
+    background-position-x: -44px;
+  }
+}
+
+/* Barra de progreso de lectura, atada al scroll. Corre fuera del hilo
+   principal; donde el navegador no la soporta, simplemente no aparece. */
+@supports (animation-timeline: scroll()) {
+  .progreso-lectura {
+    animation: progreso-lectura linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+@supports not (animation-timeline: scroll()) {
+  .progreso-lectura {
+    display: none;
+  }
+}
+@keyframes progreso-lectura {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 /* ============================================================
@@ -154,12 +187,15 @@
   ::view-transition-new(*) {
     animation: none !important;
   }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  /* Se detienen los bucles y los desplazamientos; el cambio de color y de
+     opacidad que confirma una acción se conserva. */
+  .carril-en-marcha {
+    animation-play-state: paused !important;
+  }
+  .progreso-lectura {
+    display: none;
+  }
+  html {
     scroll-behavior: auto !important;
   }
 }

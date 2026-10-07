@@ -171,13 +171,26 @@ titulares (`.tipo-ruta`), normal para leer y condensada con cifras
 tabulares para las especificaciones (`.tipo-tablero`), como el tablero de
 una moto.
 
-**Movimiento con propósito.** Solo hay una animación que ocurre sola: los
-dos carriles de la portada. El resto responde a lo que hace el usuario.
-Al cambiar de página hay una transición, y la moto viaja de la tarjeta a
-su ficha (View Transitions API). También se animan el indicador del
-filtro, el color de la moto, las cifras de la calculadora y de la cuota,
-y el acordeón de preguntas. Quien activa "reducir movimiento" en su
-sistema ve los cambios sin animación.
+**Movimiento.** Las curvas y duraciones viven en
+`src/shared/lib/movimiento.js`; para cambiar el carácter de todo el sitio
+se toca ese archivo.
+
+| Momento | Qué se mueve |
+|---|---|
+| Portada al cargar | El titular sube línea por línea, la moto entra rodando y frena, luego corren los dos carriles |
+| Portada al hacer scroll | La moto se adelanta (parallax atado al scroll) |
+| Toda la página | Barra roja de progreso de lectura; la navegación se esconde al bajar y vuelve al subir |
+| Líneas de carril amarillas | Avanzan como la calle; se pausan fuera de pantalla |
+| Especificaciones | Las cifras suben desde cero al aparecer, como el tablero al encender |
+| Gama, razones, pasos | Entran en ola una sola vez; en "Cómo se compra" una línea roja avanza con el scroll |
+| Tarjetas y filas de modelos | Al pasar el cursor, la moto rueda un poco hacia adelante |
+| Cambio de página | Transición de vista; la moto viaja de la tarjeta a la ficha |
+| Ficha | Nombre con máscara, visor 3D que gira y cambia de color |
+| Formulario | El campo con error da una sacudida; la confirmación dibuja una palomita |
+
+Quien activa "reducir movimiento" en su sistema ve todo el contenido sin
+desplazamientos: los bucles se pausan, la línea de pasos aparece completa
+y las cifras muestran su valor final.
 
 ## Accesibilidad
 
