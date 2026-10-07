@@ -7,7 +7,7 @@ import { Plus } from 'lucide-react'
  */
 export default function Pregunta({ id, pregunta, respuesta, abierta = false }) {
   return (
-    <details id={id} open={abierta} className="group scroll-mt-28 border-b border-concreto">
+    <details id={id} open={abierta} className="group scroll-mt-28 border-b border-linea">
       <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-lg font-semibold sm:text-xl [&::-webkit-details-marker]:hidden">
         {pregunta}
         <Plus
@@ -15,7 +15,7 @@ export default function Pregunta({ id, pregunta, respuesta, abierta = false }) {
           aria-hidden="true"
         />
       </summary>
-      <p className="max-w-3xl pb-7 text-grafito">{respuesta}</p>
+      <p className="max-w-3xl pb-7 text-niebla">{respuesta}</p>
     </details>
   )
 }

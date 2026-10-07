@@ -14,7 +14,7 @@ import { formatoNumero } from '../../lib/formato.js'
  * `energia` marca la cifra con el amarillo de carril: solo para datos de
  * autonomía, carga y distancia.
  */
-export default function Lectura({ valor, unidad, etiqueta, energia = false, sobreOscuro = false, grande = false }) {
+export default function Lectura({ valor, unidad, etiqueta, energia = false, sobreOscuro = true, grande = false }) {
   const ref = useRef(null)
   const enVista = useInView(ref, { once: true, margin: '0px 0px -10% 0px' })
   const reduced = useReducedMotion()

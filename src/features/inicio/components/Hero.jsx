@@ -83,6 +83,7 @@ export default function Hero({ precioDesde, totalModelos, modeloPortada }) {
           >
             {/* capa 4 */}
             <div>
+              <motion.span variants={subir} aria-hidden="true" className="franja-marca mb-7 block h-1 w-24" />
               <h1 className="tipo-ruta text-[clamp(2.6rem,7vw,5.5rem)] drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)]">
                 {LINEAS.map((linea) => (
                   <span key={linea} className="block overflow-hidden pb-[0.08em]">

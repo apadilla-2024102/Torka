@@ -21,7 +21,7 @@ export default function FichaTecnica({ specs }) {
           />
         ) : (
           <div key={s.key}>
-            <dt className="text-sm text-grafito">{s.label}</dt>
+            <dt className="text-sm text-niebla">{s.label}</dt>
             <dd className="mt-1 text-lg font-semibold">{valor}</dd>
           </div>
         )

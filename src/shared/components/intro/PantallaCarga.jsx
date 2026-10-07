@@ -92,18 +92,18 @@ export default function PantallaCarga() {
           <div className="mx-auto flex w-full max-w-3xl flex-col items-center">
             {/* Batería: diez celdas que se encienden en amarillo de carril */}
             <div className="flex w-full items-center gap-2" aria-hidden="true">
-              <div className="flex h-24 flex-1 gap-1.5 rounded-2xl border-2 border-papel/80 p-2 sm:h-32">
+              <div className="flex h-24 flex-1 gap-1.5 rounded-[3px] border-2 border-papel/80 p-2 sm:h-32">
                 {Array.from({ length: SEGMENTOS }, (_, i) => (
                   <motion.span
                     key={i}
-                    className="flex-1 rounded-md bg-senal"
+                    className="flex-1 rounded-[1px] bg-senal"
                     initial={false}
                     animate={{ opacity: i < llenos ? 1 : 0.08, scaleY: i < llenos ? 1 : 0.86 }}
                     transition={{ duration: 0.25, ease: CURVA.entrar }}
                   />
                 ))}
               </div>
-              <span className="h-10 w-3 rounded-r-md bg-papel/80 sm:h-12" />
+              <span className="h-10 w-3 rounded-r-[2px] bg-papel/80 sm:h-12" />
             </div>
 
             <p className="tipo-tablero mt-8 text-[clamp(4rem,16vw,10rem)] leading-none" aria-hidden="true">

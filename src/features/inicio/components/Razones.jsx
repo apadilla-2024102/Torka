@@ -49,7 +49,7 @@ export default function Razones() {
             <Revelar.Item key={titulo} className={ancha ? 'md:col-span-2' : ''}>
               <SpotlightCard
                 spotlightColor="rgba(227, 16, 25, 0.22)"
-                className="h-full !rounded-2xl !border-linea !bg-asfalto-alto"
+                className="h-full !rounded-[2px] !border-linea !bg-asfalto-alto"
               >
                 <Icono className="h-8 w-8 text-senal" strokeWidth={1.6} aria-hidden="true" />
                 <h3 className="mt-6 text-2xl font-semibold">{titulo}</h3>

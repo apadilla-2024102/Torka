@@ -11,12 +11,13 @@ import { useIntro } from '../intro/IntroContexto.jsx'
 export default function EncabezadoPagina({ titulo, descripcion, children }) {
   const { lista } = useIntro()
   return (
-    <header className="relative bg-asfalto pt-32 pb-14 text-papel sm:pt-36 sm:pb-16">
+    <header className="relative bg-negro pt-32 pb-14 text-papel sm:pt-36 sm:pb-16">
       <Contenedor>
         {/* Al llegar a la página, el título sube desde detrás de una máscara
             y la descripción lo sigue: la misma firma que la portada. */}
         <motion.div initial="oculto" animate={lista ? 'visible' : 'oculto'} transition={{ staggerChildren: 0.12 }}>
-          <h1 className="tipo-ruta max-w-3xl overflow-hidden pb-[0.08em] text-[clamp(2.25rem,6vw,4rem)]">
+          <motion.span variants={subir} aria-hidden="true" className="franja-marca mb-6 block h-1 w-20" />
+          <h1 className="tipo-ruta max-w-4xl overflow-hidden pb-[0.08em] text-[clamp(2.4rem,7vw,5.5rem)]">
             <motion.span variants={lineaMascara} className="block">
               {titulo}
             </motion.span>

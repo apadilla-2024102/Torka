@@ -152,24 +152,21 @@ el sitio vuelve a los datos de ejemplo en lugar de quedar en blanco.
 
 ## Diseño
 
-Toda la identidad vive en el bloque `@theme` de
-`src/shared/styles/index.css`.
+**Las reglas visuales viven en [`DESIGN.md`](DESIGN.md)**: colores y para
+qué se usa cada uno, tipografía, botones, espaciado y movimiento. Combina
+lo mejor del análisis de cuatro marcas automotrices del repositorio
+[VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md)
+(MIT): lienzo negro y titulares gigantes en mayúsculas (Lamborghini), el
+rojo solo en la acción principal y bandas claras solo para leer con calma
+(Ferrari), el producto como protagonista y un solo tiempo de transición
+(Tesla), y una franja de marca de tres colores (BMW M). Se toman reglas,
+nunca marcas, logos ni textos.
 
-**La calle como idea.** Asfalto para las zonas oscuras, papel y concreto
-para las claras. Cada color tiene una sola función:
+Antes de agregar una página o componente, léelo. Las tres reglas que más
+se rompen: un solo botón rojo por vista, botones sin esquinas redondeadas,
+y el amarillo solo para datos de energía.
 
-| Token | Para qué |
-|---|---|
-| `rojo` | Acciones: botones, enlaces activos. El rojo del logotipo |
-| `rojo-claro` | Texto rojo sobre asfalto (el rojo puro no da contraste) |
-| `rojo-hondo` | Texto rojo sobre papel, errores |
-| `senal` | Amarillo de línea de carril: **solo** energía, carga y distancia |
-| `asfalto` / `papel` | Fondos oscuro y claro |
-
-**Una sola tipografía, Archivo**, usada en tres anchos: expandida para
-titulares (`.tipo-ruta`), normal para leer y condensada con cifras
-tabulares para las especificaciones (`.tipo-tablero`), como el tablero de
-una moto.
+Los tokens están en el bloque `@theme` de `src/shared/styles/index.css`.
 
 **Movimiento.** Las curvas y duraciones viven en
 `src/shared/lib/movimiento.js`; para cambiar el carácter de todo el sitio

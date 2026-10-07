@@ -64,7 +64,7 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         style={{ transformOrigin: '100% 100%' }}
-        className="rounded-2xl border border-concreto bg-white p-8 sm:p-10"
+        className="rounded-[2px] bg-papel text-asfalto p-8 sm:p-10"
         role="status"
       >
         <PalomitaAnimada />
@@ -76,7 +76,7 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
           <Boton href={enlaceEnviado} target="_blank" rel="noopener noreferrer">
             Abrir WhatsApp otra vez
           </Boton>
-          <Boton variante="secundario" onClick={() => setEnlaceEnviado(null)}>
+          <Boton variante="secundario" sobreOscuro={false} onClick={() => setEnlaceEnviado(null)}>
             Editar la solicitud
           </Boton>
         </div>
@@ -85,7 +85,7 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
   }
 
   return (
-    <form ref={formulario} onSubmit={enviar} noValidate className="space-y-7 rounded-2xl border border-concreto bg-white p-6 sm:p-10">
+    <form ref={formulario} onSubmit={enviar} noValidate className="space-y-7 rounded-[2px] bg-papel text-asfalto p-6 sm:p-10">
       <div className="grid gap-7 sm:grid-cols-2">
         <Campo id="modelo" etiqueta="Modelo" error={errores.modelo} intento={intento}>
           <select
@@ -185,7 +185,7 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
                 onChange={actualizar('interes')}
                 className="peer sr-only"
               />
-              <span className="flex min-h-12 items-center justify-center rounded-xl border border-asfalto/25 px-4 text-center font-medium transition-colors duration-150 peer-checked:border-asfalto peer-checked:bg-asfalto peer-checked:text-papel peer-focus-visible:ring-2 peer-focus-visible:ring-rojo">
+              <span className="flex min-h-12 items-center justify-center rounded-[2px] border border-asfalto/25 px-4 text-center font-medium transition-colors duration-150 peer-checked:border-asfalto peer-checked:bg-asfalto peer-checked:text-papel peer-focus-visible:ring-2 peer-focus-visible:ring-rojo">
                 {i.label}
               </span>
             </label>

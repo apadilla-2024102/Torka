@@ -34,7 +34,7 @@ export default function ModeloDetallePage() {
 
   return (
     <>
-      <section className="bg-asfalto pt-28 pb-14 text-papel sm:pt-32 sm:pb-20">
+      <section className="bg-negro pt-28 pb-14 text-papel sm:pt-32 sm:pb-20">
         <Contenedor>
           <nav aria-label="Ruta de navegación" className="text-niebla">
             <Link to="/modelos" viewTransition className="underline-offset-4 hover:text-papel hover:underline">
@@ -47,7 +47,7 @@ export default function ModeloDetallePage() {
           </nav>
 
           <div className="mt-8 grid items-center gap-10 lg:grid-cols-[1.25fr_1fr]">
-            <div className="rounded-3xl bg-asfalto-alto p-4 sm:p-8">
+            <div className="rounded-[2px] border border-linea bg-asfalto p-4 sm:p-8">
               <VisorModelo modelo={modelo} colorId={colorId} />
             </div>
 
@@ -102,7 +102,7 @@ export default function ModeloDetallePage() {
           <h2 id="ficha-titulo" className="tipo-ruta text-3xl">
             Ficha técnica
           </h2>
-          <p className="mt-3 max-w-xl text-grafito">{modelo.resumen}</p>
+          <p className="mt-3 max-w-xl text-niebla">{modelo.resumen}</p>
           <div className="mt-10">
             <FichaTecnica specs={modelo.specs} />
           </div>
@@ -120,7 +120,7 @@ export default function ModeloDetallePage() {
               </li>
             ))}
           </ul>
-          <p className="mt-8 rounded-xl bg-concreto/70 p-5">
+          <p className="mt-8 rounded-[2px] border border-linea bg-asfalto-alto p-5">
             {modelo.requiereLicencia
               ? 'Requiere licencia tipo M y placas. Sales del distribuidor con factura y certificado de origen para tramitarlas.'
               : 'No requiere licencia tipo M. Sales del distribuidor con factura y certificado de origen.'}
@@ -147,12 +147,12 @@ export default function ModeloDetallePage() {
               <Link
                 to={`/modelos/${m.id}`}
                 viewTransition
-                className="flex items-center gap-4 rounded-2xl border border-concreto bg-white p-4 transition-[border-color] duration-200 hover:border-asfalto/40"
+                className="flex items-center gap-4 rounded-[2px] border border-linea bg-asfalto-alto p-4 transition-[border-color] duration-[330ms] hover:border-papel/40"
               >
                 <ModeloImagen modelo={m} className="aspect-[44/27] w-24 shrink-0" />
                 <span>
                   <span className="block text-lg font-semibold">{m.nombre}</span>
-                  <span className="tipo-tablero text-grafito">{formatoQuetzales(m.precio)}</span>
+                  <span className="tipo-tablero text-niebla">{formatoQuetzales(m.precio)}</span>
                 </span>
               </Link>
             </li>

@@ -23,7 +23,7 @@ export default function GamaEscaparate({ modelos }) {
   const modeloActivo = modelos.find((m) => m.id === activo) ?? modelos[0]
 
   return (
-    <section aria-labelledby="gama-titulo" className="relative bg-papel py-24 sm:py-32">
+    <section aria-labelledby="gama-titulo" className="relative bg-negro py-24 sm:py-32">
       <Contenedor>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <h2 id="gama-titulo" className="tipo-ruta max-w-2xl text-[clamp(2.2rem,5.5vw,4rem)]">
@@ -95,11 +95,11 @@ function Capitulo({ modelo, indice, total, onActivo }) {
       <div className="mb-6 lg:hidden">
         <ModeloImagen modelo={modelo} className="aspect-[44/27] w-full" />
       </div>
-      <p className="tipo-tablero text-grafito">
+      <p className="tipo-etiqueta text-niebla">
         {String(indice + 1).padStart(2, '0')} de {String(total).padStart(2, '0')} · {modelo.perfilLabel}
       </p>
       <h3 className="tipo-ruta mt-2 text-[clamp(2.6rem,5vw,4.2rem)]">{modelo.nombre}</h3>
-      <p className="mt-3 max-w-md text-lg text-grafito">{modelo.tagline}</p>
+      <p className="mt-3 max-w-md text-lg text-niebla">{modelo.tagline}</p>
 
       <dl className="mt-8 grid max-w-md grid-cols-3 gap-4">
         <Lectura etiqueta="Autonomía" valor={modelo.specs.autonomia} unidad="km" energia />
@@ -112,7 +112,7 @@ function Capitulo({ modelo, indice, total, onActivo }) {
         <Link
           to={`/modelos/${modelo.id}`}
           viewTransition
-          className="inline-flex min-h-12 items-center rounded-full bg-asfalto px-6 font-semibold text-papel transition-[background-color] duration-200 hover:bg-rojo"
+          className="tipo-etiqueta inline-flex min-h-12 items-center border border-papel/50 px-7 text-papel transition-[background-color,border-color,color] duration-[330ms] hover:border-papel hover:bg-papel hover:text-negro"
         >
           Ver la {modelo.nombre}
         </Link>

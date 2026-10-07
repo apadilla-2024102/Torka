@@ -34,7 +34,7 @@ export default function DistribuidoresPage() {
         <section
           id="flotillas"
           aria-labelledby="flotillas-titulo"
-          className="mt-16 flex scroll-mt-28 flex-col gap-6 rounded-2xl bg-asfalto p-8 text-papel sm:p-10 lg:flex-row lg:items-center lg:justify-between"
+          className="mt-16 flex scroll-mt-28 flex-col gap-6 rounded-[2px] border border-linea bg-negro p-8 text-papel sm:p-10 lg:flex-row lg:items-center lg:justify-between"
         >
           <div>
             <h2 id="flotillas-titulo" className="tipo-ruta text-3xl">

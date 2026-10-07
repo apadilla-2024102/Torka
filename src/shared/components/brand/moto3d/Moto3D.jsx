@@ -171,7 +171,7 @@ function BotonGiro({ etiqueta, onClick, children }) {
       onClick={onClick}
       aria-label={etiqueta}
       title={etiqueta}
-      className="flex h-11 min-w-11 items-center justify-center rounded-full border border-linea bg-asfalto/80 px-2 text-papel backdrop-blur transition-[background-color,border-color] duration-150 hover:border-niebla hover:bg-asfalto active:scale-95"
+      className="flex h-11 min-w-11 items-center justify-center border border-papel/40 bg-negro/80 px-2 text-papel backdrop-blur transition-[background-color,border-color] duration-150 hover:border-niebla hover:bg-asfalto active:scale-95"
     >
       {children}
     </button>

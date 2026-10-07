@@ -49,17 +49,17 @@ export default function ComoComprar() {
 
         <div ref={lista} className="relative mt-12">
           {/* Riel y línea de avance: horizontal en escritorio, vertical en celular. */}
-          <div aria-hidden="true" className="absolute top-0 left-0 hidden h-1 w-full rounded-full bg-concreto lg:block" />
+          <div aria-hidden="true" className="absolute top-0 left-0 hidden h-1 w-full bg-linea lg:block" />
           <motion.div
             aria-hidden="true"
             style={{ scaleX: avance }}
-            className="absolute top-0 left-0 hidden h-1 w-full origin-left rounded-full bg-rojo lg:block"
+            className="absolute top-0 left-0 hidden h-1 w-full origin-left bg-senal lg:block"
           />
-          <div aria-hidden="true" className="absolute top-0 left-3 h-full w-1 rounded-full bg-concreto lg:hidden" />
+          <div aria-hidden="true" className="absolute top-0 left-3 h-full w-1 bg-linea lg:hidden" />
           <motion.div
             aria-hidden="true"
             style={{ scaleY: avance }}
-            className="absolute top-0 left-3 h-full w-1 origin-top rounded-full bg-rojo lg:hidden"
+            className="absolute top-0 left-3 h-full w-1 origin-top bg-senal lg:hidden"
           />
 
           <Revelar grupo as="ol" escalon={0.12} className="grid gap-10 pl-10 lg:grid-cols-4 lg:gap-8 lg:pt-10 lg:pl-0">
@@ -69,7 +69,7 @@ export default function ComoComprar() {
                   {i + 1}
                 </span>
                 <h3 className="mt-3 text-xl font-semibold">{p.titulo}</h3>
-                <p className="mt-2 flex-1 text-grafito">{p.texto}</p>
+                <p className="mt-2 flex-1 text-niebla">{p.texto}</p>
                 <Link to={p.enlace.to} viewTransition className="mt-5 font-semibold underline underline-offset-4">
                   {p.enlace.label}
                 </Link>
