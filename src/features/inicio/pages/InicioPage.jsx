@@ -40,7 +40,7 @@ export default function InicioPage() {
       <DesfileModelos modelos={modelos} />
       <ComoComprar />
       <ObjecionesResumen preguntas={preguntas} />
-      <LlamadoFinal modeloCalle={modelos.find((m) => m.id === 'urbana')} />
+      <LlamadoFinal />
     </>
   )
 }
