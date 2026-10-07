@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useCallback, useContext, useState } from 'react'
 
 /**
  * ¿Ya terminó la pantalla de carga?
@@ -23,14 +23,14 @@ const yaVista = () => {
 export function IntroProveedor({ children }) {
   const [lista, setLista] = useState(yaVista)
 
-  const terminar = () => {
+  const terminar = useCallback(() => {
     try {
       sessionStorage.setItem(CLAVE, '1')
     } catch {
       // Sin almacenamiento (modo privado): la intro se verá de nuevo, no pasa nada.
     }
     setLista(true)
-  }
+  }, [])
 
   return <IntroContexto.Provider value={{ lista, terminar }}>{children}</IntroContexto.Provider>
 }

@@ -16,13 +16,15 @@ window.addEventListener('vite:preloadError', (evento) => {
   evento.preventDefault()
   window.location.reload()
 })
-window.addEventListener('load', () => {
+// Si la página arrancó bien, se olvida la recarga (sin esperar al evento
+// "load", que el navegador puede aplazar con conexión lenta).
+setTimeout(() => {
   try {
     sessionStorage.removeItem('torka-recarga')
   } catch {
     // Sin almacenamiento: no hay recarga automática, no pasa nada.
   }
-})
+}, 10000)
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
