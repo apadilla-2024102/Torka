@@ -32,14 +32,14 @@ export const MOCK_MODELOS = [
     puntos: [
       'Batería extraíble: la cargas en cualquier contacto de 120 V',
       'No requiere licencia tipo M',
-      'Asiento con respaldo para el acompañante',
+      'Firma luminosa yolt y rayo lateral en lima',
     ],
     // Silueta de respaldo, por si una foto no carga.
     ilustracion: { parabrisas: false, parrilla: false, caja: false, dobleBateria: false },
     // Un color por cada foto real: no se ofrece un color que no se puede mostrar.
-    colores: [{ id: 'crema', nombre: 'Crema y menta', hex: '#e8e1cb' }],
-    // Fotos recortadas en public/modelos/fotos (ver README, "Imágenes de las motos").
-    fotos: { crema: '/modelos/fotos/one-crema.webp' },
+    colores: [{ id: 'grafito', nombre: 'Grafito y lima', hex: '#1f2125' }],
+    // Imágenes en public/modelos/fotos (ver README, "Imágenes de las motos").
+    fotos: { grafito: '/modelos/fotos/one-grafito.webp' },
   },
   {
     id: 'city',
@@ -51,7 +51,7 @@ export const MOCK_MODELOS = [
     destacado: 'Más vendida',
     requiereLicencia: false,
     resumen:
-      'Chasis con defensas, parrilla trasera y plataforma amplia. Para moverte todos los días por la ciudad, hacer reparto o mensajería, y que cada quetzal que antes iba a combustible se quede contigo.',
+      'Más motor y más autonomía que la ONE, con frenos de disco y llantas más anchas. Para moverte todos los días por la ciudad, hacer mensajería o reparto, y que cada quetzal que antes iba a combustible se quede contigo.',
     specs: {
       autonomia: 80,
       velocidad: 50,
@@ -61,19 +61,13 @@ export const MOCK_MODELOS = [
       bateria: 'Extraíble 60V 24Ah',
     },
     puntos: [
-      'Defensas laterales y parrilla trasera de acero',
+      'Frenos de disco y llantas anchas para la ciudad',
       'Capacidad de 200 kg incluyendo conductor',
       'Precio por flotilla a partir de 5 unidades',
     ],
-    ilustracion: { parabrisas: false, parrilla: true, caja: false, dobleBateria: false },
-    colores: [
-      { id: 'lima', nombre: 'Negro y lima', hex: '#c9e021' },
-      { id: 'verde', nombre: 'Verde y naranja', hex: '#2e5a4b' },
-    ],
-    fotos: {
-      lima: '/modelos/fotos/city-lima.webp',
-      verde: '/modelos/fotos/city-verde.webp',
-    },
+    ilustracion: { parabrisas: false, parrilla: false, caja: false, dobleBateria: false },
+    colores: [{ id: 'grafito', nombre: 'Grafito y lima', hex: '#1f2125' }],
+    fotos: { grafito: '/modelos/fotos/city-grafito.webp' },
   },
   {
     id: 'x',
@@ -85,7 +79,7 @@ export const MOCK_MODELOS = [
     destacado: 'Más potencia',
     requiereLicencia: true,
     resumen:
-      'Postura de aventura, parabrisas alto y llantas para cualquier camino. Motor de mayor par para subidas, vía primaria y fines de semana fuera de la ciudad. Requiere licencia y placas.',
+      'Moto de uso mixto con suspensión delantera invertida, rines de rayos y llantas de tacos para salirte del asfalto. Motor de mayor par para subidas, vía primaria y rutas fuera de la ciudad. Requiere licencia y placas.',
     specs: {
       autonomia: 110,
       velocidad: 80,
@@ -97,11 +91,11 @@ export const MOCK_MODELOS = [
     puntos: [
       'Motor de 3000 W con par inmediato para pendientes',
       'Frenos de disco delantero y trasero',
-      'Parabrisas alto y llantas de uso mixto',
+      'Suspensión invertida y llantas de tacos para terracería',
     ],
-    ilustracion: { parabrisas: true, parrilla: false, caja: false, dobleBateria: true },
-    colores: [{ id: 'titanio', nombre: 'Gris titanio', hex: '#8b8d8f' }],
-    fotos: { titanio: '/modelos/fotos/x-titanio.webp' },
+    ilustracion: { parabrisas: false, parrilla: false, caja: false, dobleBateria: true, deportiva: true },
+    colores: [{ id: 'grafito', nombre: 'Grafito y lima', hex: '#1f2125' }],
+    fotos: { grafito: '/modelos/fotos/x-grafito.webp' },
   },
   {
     id: 'gt',
@@ -126,12 +120,12 @@ export const MOCK_MODELOS = [
     },
     puntos: [
       'La mayor autonomía de la gama',
-      'Respaldo y parrilla para viajar en pareja',
+      'Parabrisas alto y baúl trasero para viajar en pareja',
       'Ficha preliminar: puede cambiar al lanzamiento',
     ],
     ilustracion: { parabrisas: true, parrilla: true, caja: false, dobleBateria: false, deportiva: true },
-    colores: [{ id: 'perla', nombre: 'Blanco perla', hex: '#e2e1e6' }],
-    fotos: { perla: '/modelos/fotos/gt-perla.webp' },
+    colores: [{ id: 'grafito', nombre: 'Grafito y lima', hex: '#1f2125' }],
+    fotos: { grafito: '/modelos/fotos/gt-grafito.webp' },
   },
 ]
 

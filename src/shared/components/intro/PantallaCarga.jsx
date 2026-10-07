@@ -7,7 +7,7 @@ import { useSinMovimiento } from '../../hooks/useMovimiento.js'
 
 const SEGMENTOS = 10
 // La moto de la portada (InicioPage): se precarga junto con el logo.
-const FOTO_PORTADA = '/modelos/fotos/x-titanio.webp'
+const FOTO_PORTADA = '/modelos/fotos/x-grafito.webp'
 const MINIMO_MS = 1600 // aunque todo llegue antes: la carga se tiene que poder ver
 const MAXIMO_MS = 4500 // con conexión lenta, nunca se queda esperando de más
 

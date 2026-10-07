@@ -221,6 +221,13 @@
   }
 }
 
+/* Contorno de luz para las motos: son negras sobre lienzo negro, y una
+   orilla tenue en hueso las despega del fondo. Sobre fondos claros no se
+   nota. */
+.foto-moto {
+  filter: drop-shadow(0 0 1px rgba(241, 238, 229, 0.35)) drop-shadow(0 0 22px rgba(241, 238, 229, 0.12));
+}
+
 /* Reflejo que recorre la carrocería, como la luz de un comercial de autos.
    La foto de la moto es la máscara: la luz solo toca la moto. */
 .destello {
