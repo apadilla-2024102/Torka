@@ -8,6 +8,7 @@ import ClickSpark from '../../../shared/components/reactbits/ClickSpark/ClickSpa
 import { hayWebGL } from '../../../shared/components/brand/moto3d/webgl.js'
 import { enlaceWhatsApp } from '../../../shared/config/negocio.js'
 import { useFluidez } from '../../../shared/hooks/useFluidez.js'
+import Decorado from '../../../shared/components/ui/Decorado.jsx'
 
 const Lightning = lazy(() => import('../../../shared/components/reactbits/Lightning/Lightning.jsx'))
 
@@ -30,9 +31,11 @@ export default function LlamadoFinal() {
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_70%_20%,rgba(227,16,25,0.25),transparent_60%)]" />
       {con3D && !reduced && !lento && (
         <MontarEnVista className="absolute inset-0 -z-10 opacity-70">
-          <Suspense fallback={null}>
-            <Lightning hue={356} xOffset={0.55} speed={0.7} intensity={0.9} size={1.2} />
-          </Suspense>
+          <Decorado>
+            <Suspense fallback={null}>
+              <Lightning hue={356} xOffset={0.55} speed={0.7} intensity={0.9} size={1.2} />
+            </Suspense>
+          </Decorado>
         </MontarEnVista>
       )}
 

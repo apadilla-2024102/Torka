@@ -4,6 +4,7 @@ import MontarEnVista from '../../../shared/components/ui/MontarEnVista.jsx'
 import { hayWebGL } from '../../../shared/components/brand/moto3d/webgl.js'
 import { useIntro } from '../../../shared/components/intro/IntroContexto.jsx'
 import { useFluidez } from '../../../shared/hooks/useFluidez.js'
+import Decorado from '../../../shared/components/ui/Decorado.jsx'
 
 // Three.js + postprocessing pesan: se descargan después de pintar la portada.
 const Hyperspeed = lazy(() => import('../../../shared/components/reactbits/Hyperspeed/Hyperspeed.jsx'))
@@ -95,11 +96,13 @@ export default function FondoAutopista() {
 
   return (
     <MontarEnVista className="absolute inset-0" respaldo={<AutopistaEstatica />}>
-      <Suspense fallback={<AutopistaEstatica />}>
-        <div className="absolute inset-0">
-          <Hyperspeed effectOptions={OPCIONES_TORKA} />
-        </div>
-      </Suspense>
+      <Decorado respaldo={<AutopistaEstatica />}>
+        <Suspense fallback={<AutopistaEstatica />}>
+          <div className="absolute inset-0">
+            <Hyperspeed effectOptions={OPCIONES_TORKA} />
+          </div>
+        </Suspense>
+      </Decorado>
     </MontarEnVista>
   )
 }

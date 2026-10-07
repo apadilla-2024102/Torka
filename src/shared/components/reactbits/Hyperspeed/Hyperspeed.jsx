@@ -1181,9 +1181,24 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS, lightMode = false 
     };
     options.distortion = distortions[options.distortion];
 
-    const myApp = new App(container, options);
+    // TORKA: si el navegador no entrega un contexto WebGL, el fondo se
+    // queda vacío en vez de tumbar la página.
+    let myApp;
+    try {
+      myApp = new App(container, options);
+    } catch {
+      return undefined;
+    }
     appRef.current = myApp;
-    myApp.loadAssets().then(myApp.init);
+    // TORKA: los recursos cargan en diferido; si el componente se desmontó
+    // mientras tanto (modo estricto, cambio de página, vigilante de fluidez),
+    // el contexto ya se liberó y no hay nada que iniciar.
+    myApp
+      .loadAssets()
+      .then(() => {
+        if (!myApp.disposed) myApp.init();
+      })
+      .catch(() => {});
 
     return () => {
       if (appRef.current) {
