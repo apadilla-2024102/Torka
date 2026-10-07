@@ -13,6 +13,12 @@
       "skillPath": "skills/canvas-design/SKILL.md",
       "computedHash": "3fa7ea60170023ad8268bf9fd734ea75dd404279a2ef8ddf5abaa1102ad8e5f4"
     },
+    "epic-design": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "skillPath": "engineering-team/skills/epic-design/SKILL.md",
+      "computedHash": "80750bbdb02254d64066cb8cab8fa1c8253a8cb770dd5fd7b799b393f0fc6952"
+    },
     "frontend-design": {
       "source": "anthropics/skills",
       "sourceType": "github",
@@ -25,11 +31,29 @@
       "skillPath": "skills/gsap-scrolltrigger/SKILL.md",
       "computedHash": "1cdc5647693783cb7a662d84a5de434c88a051ed56b4d33597c9b5782b5973e6"
     },
+    "landing": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "skillPath": "marketing/landing/skills/landing/SKILL.md",
+      "computedHash": "4f3bf8d2c3e734670d4edd02708567f173751dcad6e0259350cdb429e24e313f"
+    },
+    "landing-page-generator": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "skillPath": "product-team/skills/landing-page-generator/SKILL.md",
+      "computedHash": "26ce3b8ccccf4d32bd39834490a5a7e7d9d0e430bbc2a526313a6b3c36e69365"
+    },
     "motion-graphics": {
       "source": "heygen-com/hyperframes",
       "sourceType": "github",
       "skillPath": "skills/motion-graphics/SKILL.md",
       "computedHash": "73420963bea97e1008257c32f89b172486e87b87132ee4ebc83d21e1805ffd25"
+    },
+    "page-cro": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "skillPath": "marketing-skill/skills/page-cro/SKILL.md",
+      "computedHash": "3a23307022fd3ef3eb1972a166652506fcdeffba844c4776e1cb11ecd7f4dda3"
     },
     "slack-gif-creator": {
       "source": "anthropics/skills",
