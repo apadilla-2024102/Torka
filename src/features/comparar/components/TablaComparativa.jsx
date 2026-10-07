@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { motion } from 'motion/react'
 import ModeloImagen from '../../../shared/components/brand/ModeloImagen.jsx'
 import { formatoNumero, formatoQuetzales } from '../../../shared/lib/formato.js'
 
@@ -46,7 +47,16 @@ export default function TablaComparativa({ modelos, specsMeta }) {
                     <td key={m.id} className="p-5">
                       {typeof v === 'number' ? (
                         <span className={`tipo-tablero text-2xl ${gana ? '' : 'text-asfalto/70'}`}>
-                          {gana && <span className="mr-2 inline-block h-2.5 w-2.5 rounded-full bg-rojo align-middle" />}
+                          {gana && (
+                            // El punto del ganador aparece con un pequeño salto al ver la tabla.
+                            <motion.span
+                              initial={{ scale: 0 }}
+                              whileInView={{ scale: 1 }}
+                              viewport={{ once: true }}
+                              transition={{ type: 'spring', stiffness: 500, damping: 18, delay: 0.25 }}
+                              className="mr-2 inline-block h-2.5 w-2.5 rounded-full bg-rojo align-middle"
+                            />
+                          )}
                           {formatoNumero(v)}
                           <span className="ml-1 text-sm text-grafito">{s.unidad}</span>
                           {gana && <span className="sr-only"> (mejor valor)</span>}

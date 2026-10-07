@@ -15,13 +15,25 @@ export const ENLACES = [
 export default function Nav() {
   const [abierta, setAbierta] = useState(false)
   const [conFondo, setConFondo] = useState(false)
+  // Al bajar se esconde para dejar ver la página; al subir vuelve: subir
+  // suele significar "quiero ir a otro lado".
+  const [escondida, setEscondida] = useState(false)
+  const [focoDentro, setFocoDentro] = useState(false)
   const { pathname } = useLocation()
 
   // Cambiar de página cierra el menú móvil.
   useEffect(() => setAbierta(false), [pathname])
 
   useEffect(() => {
-    const alScroll = () => setConFondo(window.scrollY > 16)
+    let anterior = window.scrollY
+    const alScroll = () => {
+      const y = window.scrollY
+      setConFondo(y > 16)
+      if (Math.abs(y - anterior) > 6) {
+        setEscondida(y > anterior && y > 140)
+        anterior = y
+      }
+    }
     alScroll()
     window.addEventListener('scroll', alScroll, { passive: true })
     return () => window.removeEventListener('scroll', alScroll)
@@ -41,7 +53,10 @@ export default function Nav() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-300 ${
+      onFocus={() => setFocoDentro(true)}
+      onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setFocoDentro(false)}
+      style={{ transform: escondida && !abierta && !focoDentro ? 'translateY(-100%)' : 'translateY(0)' }}
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,transform] duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] motion-reduce:transition-none ${
         conFondo || abierta ? 'border-b border-linea bg-asfalto/95 backdrop-blur-md' : 'border-b border-transparent'
       }`}
     >

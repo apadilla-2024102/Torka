@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import { kmPorMonto, SUPUESTOS } from '../../../shared/lib/energia.js'
 import { formatoNumero } from '../../../shared/lib/formato.js'
+import Carril from '../../../shared/components/ui/Carril.jsx'
 
 const MONTO = 100
 
@@ -58,7 +59,7 @@ export default function CalleComparativa() {
                 className="tipo-tablero text-3xl text-papel sm:text-4xl"
                 initial={reduced ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 + c.duracion, duration: 0.3 }}
+                transition={{ delay: 1.0 + c.duracion, duration: 0.3 }}
               >
                 {formatoNumero(c.km)}
                 <span className="ml-1 text-base text-niebla">km</span>
@@ -69,12 +70,12 @@ export default function CalleComparativa() {
                 className={`absolute inset-0 rounded-xl ${c.barra}`}
                 initial={reduced ? false : { x: '-100%' }}
                 animate={{ x: `${-(1 - c.proporcion) * 100}%` }}
-                transition={{ duration: c.duracion, ease: [0.22, 0.8, 0.3, 1], delay: 0.5 }}
+                transition={{ duration: c.duracion, ease: [0.22, 0.8, 0.3, 1], delay: 1.0 }}
               >
                 <MotoMarcador color={c.moto} />
               </motion.div>
             </div>
-            {i === 0 && <div className="carril my-5 h-1 rounded-full opacity-80" aria-hidden="true" />}
+            {i === 0 && <Carril className="my-5 h-1 rounded-full opacity-80" />}
           </div>
         ))}
       </div>

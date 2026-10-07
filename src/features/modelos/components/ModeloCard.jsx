@@ -34,7 +34,10 @@ export default function ModeloCard({ modelo, ref }) {
               {destacado}
             </span>
           )}
-          <ModeloImagen modelo={modelo} className="mx-auto aspect-[44/27] w-full max-w-[320px]" />
+          {/* Al pasar el cursor la moto rueda un poco hacia adelante. */}
+          <div className="transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-3">
+            <ModeloImagen modelo={modelo} className="mx-auto aspect-[44/27] w-full max-w-[320px]" />
+          </div>
         </div>
 
         <div className="flex flex-1 flex-col p-6">

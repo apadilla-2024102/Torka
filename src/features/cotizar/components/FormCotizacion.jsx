@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { CheckCircle2 } from 'lucide-react'
+import { motion } from 'motion/react'
 import { DEPARTAMENTOS_GT } from '../../../shared/api/mockData.js'
 import { enlaceWhatsApp } from '../../../shared/config/negocio.js'
 import Boton from '../../../shared/components/ui/Boton.jsx'
@@ -24,6 +24,7 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
   })
   const [errores, setErrores] = useState({})
   const [enlaceEnviado, setEnlaceEnviado] = useState(null)
+  const [intento, setIntento] = useState(0)
   const formulario = useRef(null)
 
   const modelo = modelos.find((m) => m.id === datos.modelo)
@@ -42,6 +43,7 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
 
     const primero = Object.keys(encontrados)[0]
     if (primero) {
+      setIntento((n) => n + 1)
       // Lleva el foco al primer campo con error: el usuario sabe dónde corregir.
       formulario.current?.querySelector(`#${primero}`)?.focus()
       return
@@ -57,8 +59,15 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
 
   if (enlaceEnviado) {
     return (
-      <div className="rounded-2xl border border-concreto bg-white p-8 sm:p-10" role="status">
-        <CheckCircle2 className="h-10 w-10 text-rojo" aria-hidden="true" />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96, y: 12 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        style={{ transformOrigin: '100% 100%' }}
+        className="rounded-2xl border border-concreto bg-white p-8 sm:p-10"
+        role="status"
+      >
+        <PalomitaAnimada />
         <h2 className="tipo-ruta mt-5 text-3xl">Abrimos WhatsApp con tu solicitud</h2>
         <p className="mt-3 max-w-lg text-grafito">
           Solo falta que envíes el mensaje. Un asesor te responde con el precio y el distribuidor más cercano.
@@ -71,14 +80,14 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
             Editar la solicitud
           </Boton>
         </div>
-      </div>
+      </motion.div>
     )
   }
 
   return (
     <form ref={formulario} onSubmit={enviar} noValidate className="space-y-7 rounded-2xl border border-concreto bg-white p-6 sm:p-10">
       <div className="grid gap-7 sm:grid-cols-2">
-        <Campo id="modelo" etiqueta="Modelo" error={errores.modelo}>
+        <Campo id="modelo" etiqueta="Modelo" error={errores.modelo} intento={intento}>
           <select
             id="modelo"
             name="modelo"
@@ -115,7 +124,7 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
           </select>
         </Campo>
 
-        <Campo id="nombre" etiqueta="Nombre" error={errores.nombre}>
+        <Campo id="nombre" etiqueta="Nombre" error={errores.nombre} intento={intento}>
           <input
             id="nombre"
             name="nombre"
@@ -129,7 +138,7 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
           />
         </Campo>
 
-        <Campo id="telefono" etiqueta="Teléfono" ayuda="8 dígitos. Te contactamos por WhatsApp." error={errores.telefono}>
+        <Campo id="telefono" etiqueta="Teléfono" ayuda="8 dígitos. Te contactamos por WhatsApp." error={errores.telefono} intento={intento}>
           <input
             id="telefono"
             name="telefono"
@@ -144,7 +153,7 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
           />
         </Campo>
 
-        <Campo id="departamento" etiqueta="Departamento" error={errores.departamento}>
+        <Campo id="departamento" etiqueta="Departamento" error={errores.departamento} intento={intento}>
           <select
             id="departamento"
             name="departamento"
@@ -206,5 +215,29 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
         </Boton>
       </div>
     </form>
+  )
+}
+
+/** Círculo y palomita que se trazan solos: confirma que la solicitud quedó lista. */
+function PalomitaAnimada() {
+  return (
+    <svg viewBox="0 0 48 48" className="h-12 w-12 text-rojo" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true">
+      <motion.circle
+        cx="24"
+        cy="24"
+        r="21"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      />
+      <motion.path
+        d="M15 25 L21.5 31.5 L33 18"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
+      />
+    </svg>
   )
 }

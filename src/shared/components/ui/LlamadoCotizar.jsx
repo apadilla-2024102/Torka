@@ -1,6 +1,7 @@
 import Contenedor from '../layout/Contenedor.jsx'
 import Boton from './Boton.jsx'
 import { enlaceWhatsApp } from '../../config/negocio.js'
+import Carril from './Carril.jsx'
 
 /** Cierre de página: una acción principal y una alternativa directa. */
 export default function LlamadoCotizar({
@@ -14,7 +15,7 @@ export default function LlamadoCotizar({
 
   return (
     <section className="relative bg-asfalto py-20 text-papel sm:py-24">
-      <div className="carril absolute inset-x-0 top-0 h-1.5" aria-hidden="true" />
+      <Carril className="absolute inset-x-0 top-0 h-1.5" />
       <Contenedor className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <h2 className="tipo-ruta max-w-2xl text-[clamp(2rem,5vw,3.25rem)]">{titulo}</h2>

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import ModeloImagen from '../../../shared/components/brand/ModeloImagen.jsx'
 import Lectura from '../../../shared/components/ui/Lectura.jsx'
+import Revelar from '../../../shared/components/ui/Revelar.jsx'
 import { formatoQuetzales } from '../../../shared/lib/formato.js'
 
 /**
@@ -27,15 +28,18 @@ export default function GamaResumen({ modelos }) {
           </Link>
         </div>
 
-        <ul className="mt-12 border-t border-concreto">
+        <Revelar grupo as="ul" escalon={0.11} className="mt-12 border-t border-concreto">
           {modelos.map((m) => (
-            <li key={m.id} className="border-b border-concreto">
+            <Revelar.Item as="li" key={m.id} className="border-b border-concreto">
               <Link
                 to={`/modelos/${m.id}`}
                 viewTransition
                 className="group grid items-center gap-x-8 gap-y-4 py-8 sm:grid-cols-[220px_1fr] lg:grid-cols-[240px_1.1fr_1.4fr_auto]"
               >
-                <ModeloImagen modelo={m} className="aspect-[44/27] w-full max-w-[260px]" />
+                {/* Al pasar el cursor la moto rueda un poco hacia adelante. */}
+                <div className="transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-3">
+                  <ModeloImagen modelo={m} className="aspect-[44/27] w-full max-w-[260px]" />
+                </div>
 
                 <div>
                   <h3 className="tipo-ruta text-3xl">{m.nombre}</h3>
@@ -55,9 +59,9 @@ export default function GamaResumen({ modelos }) {
                   </span>
                 </div>
               </Link>
-            </li>
+            </Revelar.Item>
           ))}
-        </ul>
+        </Revelar>
       </Contenedor>
     </section>
   )
