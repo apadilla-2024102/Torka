@@ -36,8 +36,8 @@ export default function Footer() {
       <Contenedor>
         <div className="grid gap-12 lg:grid-cols-[1.2fr_2fr]">
           <div>
-            <Logo />
-            <p className="mt-4 max-w-sm text-niebla">
+            <Logo variante="completo" className="-ml-1" />
+            <p className="mt-6 max-w-sm text-niebla">
               Motos eléctricas para el tráfico, las pendientes y el presupuesto de Guatemala.
             </p>
             <p className="mt-6 text-niebla">

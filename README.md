@@ -83,8 +83,9 @@ Todo está construido con datos de ejemplo. En orden de importancia:
 4. **Distribuidores** en el mismo archivo.
 5. **Supuestos de costo** en `src/shared/lib/energia.js`: precio del galón,
    tarifa eléctrica, mantenimiento y la tasa de ejemplo de las cuotas.
-6. **Logotipo** en `src/shared/components/brand/Logo.jsx`: guarda el
-   archivo en `public/` y cambia `ARCHIVO_LOGO`.
+6. **Logotipo**: el original está en `herramientas/logo/torka-original.png`.
+   Si cambia, reemplázalo y corre `python3 herramientas/logo/procesar_logo.py`
+   (requiere Pillow): regenera `public/marca/` y `public/favicon.png`.
 
 ## Imágenes de las motos
 
