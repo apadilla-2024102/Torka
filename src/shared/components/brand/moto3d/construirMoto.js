@@ -107,11 +107,11 @@ export function crearMateriales(colorHex) {
     aluminio: new THREE.MeshStandardMaterial({ color: '#b8bcc4', roughness: 0.28, metalness: 0.95 }),
     aceroOscuro: new THREE.MeshStandardMaterial({ color: '#3a3c42', roughness: 0.35, metalness: 0.85 }),
     disco: new THREE.MeshStandardMaterial({ color: '#d4d7dd', roughness: 0.22, metalness: 1 }),
-    rojoMarca: new THREE.MeshStandardMaterial({ color: '#c5f230', roughness: 0.4, metalness: 0.2 }),
+    rojoMarca: new THREE.MeshStandardMaterial({ color: '#d6f715', roughness: 0.4, metalness: 0.2 }),
     senal: new THREE.MeshStandardMaterial({
-      color: '#c5f230',
+      color: '#d6f715',
       roughness: 0.35,
-      emissive: '#c5f230',
+      emissive: '#d6f715',
       emissiveIntensity: 0.25,
     }),
     faro: new THREE.MeshStandardMaterial({ color: '#fff7dc', emissive: '#fff3c4', emissiveIntensity: 2.2 }),
@@ -191,7 +191,7 @@ function rueda(m, { conDisco = false, conMotor = false } = {}) {
  * @param rasgos  { parabrisas, parrilla, caja, dobleBateria, deportiva }
  * @returns { grupo, materiales }  — cambia el color con materiales.pintura.color
  */
-export function construirMoto(rasgos = {}, colorHex = '#c5f230') {
+export function construirMoto(rasgos = {}, colorHex = '#d6f715') {
   const m = crearMateriales(colorHex)
   const moto = new THREE.Group()
 

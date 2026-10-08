@@ -5,8 +5,8 @@ import Boton from '../../../shared/components/ui/Boton.jsx'
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import ModeloImagen from '../../../shared/components/brand/ModeloImagen.jsx'
 import Inclinar from '../../../shared/components/ui/Inclinar.jsx'
+import { RUTAS_LOGO } from '../../../shared/components/brand/Logo.jsx'
 import Magnet from '../../../shared/components/reactbits/Magnet/Magnet.jsx'
-import ClickSpark from '../../../shared/components/reactbits/ClickSpark/ClickSpark.jsx'
 import { formatoNumero, formatoQuetzales } from '../../../shared/lib/formato.js'
 import { kmPorMonto } from '../../../shared/lib/energia.js'
 import { escalonar, lineaMascara, subir } from '../../../shared/lib/movimiento.js'
@@ -29,10 +29,9 @@ const CONFIANZA = [
  *
  *   capa 0  autopista nocturna (React Bits · Hyperspeed)
  *   capa 1  sombra que asegura la lectura del texto
- *   capa 2  "yolt" gigante en contorno, se mueve más lento al hacer scroll
+ *   capa 2  la Y del logotipo como marca de agua, más lenta al hacer scroll
  *   capa 3  la moto: entra rodando, flota y se adelanta con el scroll
  *   capa 4  titular, texto y botones
- *   capa 5  pista "mantén presionado para acelerar" (solo escritorio)
  *
  * El texto deja pasar el puntero (pointer-events-none) para que mantener
  * presionado en cualquier punto vacío acelere la autopista; los botones
@@ -56,9 +55,9 @@ export default function Hero({ precioDesde, modeloPortada }) {
 
   return (
     <section ref={seccion} className="relative isolate overflow-hidden bg-black text-papel">
-      <ClickSpark sparkColor="#c5f230" sparkSize={12} sparkRadius={22} sparkCount={10} duration={450}>
+      <>
         {/* capa 0 */}
-        <div className="absolute inset-0 -z-10" data-cursor="Acelera">
+        <div className="absolute inset-0 -z-10">
           <FondoAutopista />
         </div>
         {/* capa 1 */}
@@ -67,13 +66,15 @@ export default function Hero({ precioDesde, modeloPortada }) {
           className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.85)_0%,rgba(0,0,0,0.55)_40%,rgba(0,0,0,0)_75%),linear-gradient(0deg,#1f2024_0%,rgba(31,32,36,0)_30%)]"
         />
         {/* capa 2 */}
-        <motion.p
+        <motion.img
+          src={RUTAS_LOGO.isotipo}
+          alt=""
           aria-hidden="true"
+          width="851"
+          height="535"
           style={reduced ? undefined : { y: capaLetras }}
-          className="tipo-ruta pointer-events-none absolute right-[-2vw] bottom-[9%] -z-10 text-[clamp(6rem,24vw,22rem)] leading-none normal-case text-transparent select-none [-webkit-text-stroke:1.5px_rgba(241,238,229,0.16)]"
-        >
-          yolt
-        </motion.p>
+          className="pointer-events-none absolute right-[-6vw] bottom-[6%] -z-10 w-[min(70vw,1000px)] opacity-[0.06] select-none"
+        />
 
         <Contenedor className="pointer-events-none relative flex min-h-[100svh] flex-col justify-center pt-28 pb-10 lg:min-h-[calc(100svh-5.25rem)]">
           <motion.div
@@ -108,7 +109,7 @@ export default function Hero({ precioDesde, modeloPortada }) {
               </motion.p>
               <motion.div variants={subir} className="pointer-events-auto mt-9 flex flex-wrap items-center gap-3">
                 <Magnet padding={60} magnetStrength={4} disabled={reduced}>
-                  <Boton to="/modelos" className="shadow-[0_0_40px_-8px_rgba(197,242,48,0.7)]">
+                  <Boton to="/modelos" className="shadow-[0_0_40px_-8px_rgba(214,247,21,0.7)]">
                     Ver los modelos
                   </Boton>
                 </Magnet>
@@ -148,7 +149,7 @@ export default function Hero({ precioDesde, modeloPortada }) {
                         prioridad
                         ajustada
                         destello
-                        className="aspect-[4/3] w-full drop-shadow-[0_40px_50px_rgba(197,242,48,0.18)]"
+                        className="aspect-[4/3] w-full drop-shadow-[0_40px_50px_rgba(214,247,21,0.18)]"
                       />
                     </Inclinar>
                   </motion.div>
@@ -156,13 +157,8 @@ export default function Hero({ precioDesde, modeloPortada }) {
               </motion.div>
             )}
           </motion.div>
-
-          {/* capa 5 */}
-          <p className="mt-6 hidden text-sm text-papel/50 [@media(pointer:fine)]:block" aria-hidden="true">
-            Mantén presionado el fondo para acelerar.
-          </p>
         </Contenedor>
-      </ClickSpark>
+      </>
 
       {/* Franja de confianza: garantías y trámites, junto a los botones. */}
       <div className="relative border-t border-white/10 bg-asfalto/80 backdrop-blur">

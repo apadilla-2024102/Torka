@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import Revelar from '../../../shared/components/ui/Revelar.jsx'
+import TituloSeccion from '../../../shared/components/ui/TituloSeccion.jsx'
 
 /**
  * Las tres dudas que más frenan la compra, respondidas en la portada
@@ -17,9 +18,9 @@ export default function ObjecionesResumen({ preguntas: todas }) {
     <section aria-labelledby="dudas-titulo" className="bg-asfalto py-24 sm:py-28">
       <Contenedor>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <h2 id="dudas-titulo" className="tipo-ruta max-w-2xl text-[clamp(2rem,5vw,3.25rem)]">
+          <TituloSeccion id="dudas-titulo" indice="05" etiqueta="Preguntas frecuentes">
             Lo que todos preguntan antes de comprar
-          </h2>
+          </TituloSeccion>
           <Link to="/preguntas" viewTransition className="shrink-0 font-semibold underline underline-offset-4">
             Ver todas las preguntas
           </Link>

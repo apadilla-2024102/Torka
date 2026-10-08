@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'motion/react'
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import Revelar from '../../../shared/components/ui/Revelar.jsx'
 import { useSinMovimiento } from '../../../shared/hooks/useMovimiento.js'
+import TituloSeccion from '../../../shared/components/ui/TituloSeccion.jsx'
 
 /** El proceso de compra. Aquí sí hay números: es una secuencia real. */
 const PASOS = [
@@ -13,18 +14,18 @@ const PASOS = [
     enlace: { to: '/comparar', label: 'Comparar modelos' },
   },
   {
-    titulo: 'Pruébala',
+    titulo: 'Agenda tu prueba',
     texto: 'Agenda una prueba de manejo en el distribuidor más cercano.',
     enlace: { to: '/distribuidores', label: 'Ver distribuidores' },
   },
   {
     titulo: 'Decide cómo pagar',
-    texto: 'De contado o en cuotas. Te enviamos la cotización por WhatsApp.',
-    enlace: { to: '/cotizar', label: 'Pedir cotización' },
+    texto: 'De contado o con financiamiento. Recibe tu cotización formal por WhatsApp.',
+    enlace: { to: '/cotizar', label: 'Solicitar cotización' },
   },
   {
-    titulo: 'Llévatela',
-    texto: 'Sales con factura y certificado de origen para tramitar placas ante la SAT.',
+    titulo: 'Recibe tu moto',
+    texto: 'Entrega con factura y certificado de origen para el trámite de placas ante la SAT.',
     enlace: { to: '/preguntas#licencia', label: 'Licencia y placas' },
   },
 ]
@@ -44,9 +45,9 @@ export default function ComoComprar() {
   return (
     <section aria-labelledby="comprar-titulo" className="py-20 sm:py-28">
       <Contenedor>
-        <h2 id="comprar-titulo" className="tipo-ruta text-[clamp(2rem,5vw,3.25rem)]">
-          Cómo se compra
-        </h2>
+        <TituloSeccion id="comprar-titulo" indice="04" etiqueta="Proceso de compra">
+          Así de simple es comprar
+        </TituloSeccion>
 
         <div ref={lista} className="relative mt-12">
           {/* Riel y línea de avance: horizontal en escritorio, vertical en celular. */}

@@ -16,7 +16,7 @@ const MECANICA = '#2b2c30'
 const RIN = '#9a9ca3'
 
 export default function MotoSilueta({
-  color = '#c5f230',
+  color = '#d6f715',
   rasgos = {},
   titulo = 'Moto eléctrica yolt',
   className = '',
@@ -120,7 +120,7 @@ export default function MotoSilueta({
       {(dobleBateria ? [138, 186] : [160]).map((x) => (
         <g key={x}>
           <rect x={x} y="146" width="40" height="18" rx="4" fill={MECANICA} />
-          <rect x={x + 4} y="150" width="32" height="10" rx="2" fill="#c5f230" />
+          <rect x={x + 4} y="150" width="32" height="10" rx="2" fill="#d6f715" />
         </g>
       ))}
 
@@ -134,7 +134,7 @@ export default function MotoSilueta({
       <path d="M350 104 L364 112 L362 124 L352 120 Z" fill="#fff6d5" stroke={MECANICA} strokeWidth="2" />
 
       {/* Piloto trasero */}
-      <path d="M46 146 L58 142 L58 152 L46 154 Z" fill="#c5f230" stroke="#4a6600" strokeWidth="1.5" />
+      <path d="M46 146 L58 142 L58 152 L46 154 Z" fill="#d6f715" stroke="#4a6600" strokeWidth="1.5" />
     </svg>
   )
 }

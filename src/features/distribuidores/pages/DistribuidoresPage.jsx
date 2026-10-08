@@ -15,7 +15,7 @@ export default function DistribuidoresPage() {
     <>
       <EncabezadoPagina
         titulo="Dónde verla y probarla"
-        descripcion="Ninguna moto se compra solo por una página web. Súbete, acelera y siente la respuesta del motor."
+        descripcion="La mejor forma de decidir es manejarla. Visita un distribuidor autorizado y agenda tu prueba de manejo."
       />
 
       <Contenedor className="py-12 sm:py-16">

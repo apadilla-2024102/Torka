@@ -12,8 +12,8 @@
    ============================================================ */
 @theme {
   /* --- Marca --- */
-  --color-lima: #c5f230; /* acento: botones, acciones, energía. Texto lima SOLO sobre oscuro */
-  --color-lima-vivo: #d8ff52; /* lima al pasar el cursor */
+  --color-lima: #d6f715; /* acento: botones, acciones, energía. Texto lima SOLO sobre oscuro */
+  --color-lima-vivo: #e4ff4d; /* lima al pasar el cursor */
   --color-lima-hondo: #4a6600; /* TEXTO y líneas lima sobre hueso (5.7:1) */
 
   /* --- Estados --- */
@@ -140,25 +140,27 @@
     font-variant-numeric: tabular-nums;
   }
 
-  /* Línea de carril discontinua. */
+  /* Línea de luz: un filete fino con un destello lima que lo recorre. */
   .carril {
-    background-image: linear-gradient(
-      to right,
-      var(--color-lima) 0 55%,
-      transparent 55% 100%
-    );
-    background-size: 44px 100%;
+    background-image:
+      linear-gradient(90deg, transparent, var(--color-lima) 50%, transparent),
+      linear-gradient(rgba(241, 238, 229, 0.12), rgba(241, 238, 229, 0.12));
+    background-size: 28% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    background-position: -40% 0, 0 0;
   }
 
-  /* El carril avanza de derecha a izquierda: la moto va hacia adelante. */
   .carril-en-marcha {
-    animation: carril-avanza 0.9s linear infinite;
+    animation: carril-avanza 4.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
   }
 }
 
 @keyframes carril-avanza {
+  from {
+    background-position: -40% 0, 0 0;
+  }
   to {
-    background-position-x: -44px;
+    background-position: 140% 0, 0 0;
   }
 }
 
@@ -218,6 +220,47 @@
   to {
     clip-path: inset(0 0 0 0 round 0);
     transform: translateY(0);
+  }
+}
+
+/* Borde con una línea de luz lima que recorre el contorno (cierre de la
+   portada). El ángulo se anima como propiedad registrada: solo pinta el
+   borde, sin JavaScript. */
+@property --angulo {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+.borde-vivo {
+  padding: 1px;
+  background: conic-gradient(
+    from var(--angulo),
+    rgba(241, 238, 229, 0.12) 0deg,
+    rgba(241, 238, 229, 0.12) 250deg,
+    var(--color-lima) 320deg,
+    rgba(241, 238, 229, 0.12) 360deg
+  );
+  animation: borde-gira 6s linear infinite;
+}
+.borde-vivo-pausa {
+  animation-play-state: paused;
+}
+@keyframes borde-gira {
+  to {
+    --angulo: 360deg;
+  }
+}
+
+/* Resplandor lima que se desplaza despacio detrás del cierre. */
+.resplandor-lento {
+  background:
+    radial-gradient(40% 50% at 70% 30%, rgba(214, 247, 21, 0.14), transparent 70%),
+    radial-gradient(35% 45% at 25% 80%, rgba(241, 238, 229, 0.05), transparent 70%);
+  animation: resplandor-deriva 14s ease-in-out infinite alternate;
+}
+@keyframes resplandor-deriva {
+  to {
+    transform: translate3d(-6%, 4%, 0) scale(1.08);
   }
 }
 

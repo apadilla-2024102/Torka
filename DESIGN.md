@@ -3,14 +3,14 @@ version: 2
 name: yolt
 description: >
   Sistema de diseño de yolt, movilidad eléctrica para una Guatemala más
-  real. Toma el sistema de marca de yolt (rayo lima, palabra en minúsculas,
+  real. Toma el sistema de marca de yolt (isotipo Y lima, marca en minúsculas,
   paleta lima / grafito / hueso / gris metálico) y lo aplica sobre la
   estructura de escaparate nocturno del sitio: lienzo negro, titulares
   grandes en mayúsculas y la moto como protagonista.
 
 colors:
-  lima: "#c5f230"         # acento único: acciones, energía, distancia
-  lima-vivo: "#d8ff52"    # lima al pasar el cursor
+  lima: "#d6f715"         # acento único: acciones, energía, distancia
+  lima-vivo: "#e4ff4d"    # lima al pasar el cursor
   lima-hondo: "#4a6600"   # lima sobre fondos claros (texto, foco, puntos)
   negro: "#000000"        # lienzo de escenas (héroe, cierre)
   asfalto: "#121212"      # grafito: lienzo general
@@ -22,7 +22,7 @@ colors:
   error-hondo: "#b42318"  # error sobre hueso
 
 typography:
-  logotipo: "Outfit Bold, en trazos (public/marca)"
+  logotipo: "oficial, vectorizado (public/marca)"
   familia: "Archivo (eje de ancho 62–125)"
   display: { ancho: 125%, peso: 700, caja: MAYÚSCULAS, interlinea: 0.92, tracking: -0.02em }
   cuerpo:  { ancho: 100%, peso: 400, tamaño: 17px, interlinea: 1.6 }
@@ -40,9 +40,10 @@ motion:
 
 ## 1. Marca
 
-- **Logotipo**: rayo lima + "yolt" en minúsculas. Siempre en minúsculas,
-  también dentro de textos ("una yolt", "yolt ONE"). Archivos en
-  `public/marca/` (versión clara, oscura y solo el rayo).
+- **Logotipo**: la Y lima (isotipo) + "olt". Archivos vectorizados del
+  original en `public/marca/` (versión clara, oscura e isotipo); se
+  regeneran con `herramientas/logo/vectorizar_logo.py`. En textos, la
+  marca se escribe "yolt" en minúsculas ("una yolt", "yolt ONE").
 - **Lema**: *Enciende tu camino.* Secundario: *Menos gasto. Más vida.*
 - **Voz**: simple, moderna, auténtica, con propósito. Guatemala real:
   ciudad, volcanes, rutas.
@@ -64,7 +65,7 @@ permiso de brillar.
 
 ## 3. Color
 
-- **Lima `#c5f230`**: el único acento. Botón principal (con texto negro),
+- **Lima `#d6f715`**: el único acento. Botón principal (con texto negro),
   energía, autonomía, distancia y detalles de marca. Una pantalla tiene,
   como máximo, un botón lima a la vista.
 - **Lima hondo `#4a6600`**: cuando el lima va sobre hueso (texto, foco,
@@ -74,12 +75,12 @@ permiso de brillar.
 - **Gris metálico `#9b9b9b`**: texto secundario sobre oscuro.
 
 Contrastes verificados (WCAG AA): hueso sobre grafito 16.2:1, gris metálico
-sobre grafito 6.7:1, negro sobre lima 16.1:1, lima sobre grafito 14.4:1,
+sobre grafito 6.7:1, negro sobre lima 17.2:1, lima sobre grafito 15.3:1,
 lima hondo sobre hueso 5.7:1.
 
 ## 4. Tipografía
 
-- **Logotipo**: Outfit Bold convertido a trazos; no se escribe con texto.
+- **Logotipo**: siempre el archivo SVG; nunca se escribe con texto.
 - **Display / títulos** (`.tipo-ruta`): Archivo expandida al 125 %, peso
   700, en MAYÚSCULAS, interlínea 0.92.
 - **Cuerpo**: ancho normal, 17 px, interlínea 1.6.
@@ -98,17 +99,26 @@ lima hondo sobre hueso 5.7:1.
   en gris; las de energía en lima.
 - **Franja de marca**: lima / gris metálico / hueso, bajo los encabezados y
   como separador de escenas.
+- **Encabezado de sección** (`TituloSeccion`): índice numerado en lima,
+  filete que se dibuja y rótulo; debajo, el titular que sube por máscara.
+- **Línea de luz** (`Carril`): filete fino con un destello lima que lo
+  recorre; separa encabezados y bandas.
+- **Borde vivo**: una línea de luz lima recorre el borde de la tarjeta de
+  cierre. Solo ahí.
 
 ## 6. Movimiento
+
+Tono formal: movimiento preciso y sereno, nunca juguetón. Sin chispas,
+rayos ni efectos de videojuego.
 
 - Cambios de estado (hover, foco, selección): 0.33 s, curva `mover`.
 - Entradas y titulares: curva expo, 0.5–0.9 s, una vez.
 - El sitio se anima para todos; con "reducir movimiento" solo se suavizan
-  la autopista y los rayos (ver `src/shared/hooks/useMovimiento.js`).
+  la autopista (ver `src/shared/hooks/useMovimiento.js`).
 
 ## 7. Qué no hacer
 
-- No escribir "YOLT" ni "Yolt": la marca va en minúsculas.
+- En textos corridos, la marca va en minúsculas: "yolt".
 - No usar lima para decorar, ni dos botones lima en la misma vista.
 - No poner texto lima sobre fondos claros: usa lima hondo.
 - No redondear botones.

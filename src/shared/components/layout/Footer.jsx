@@ -15,7 +15,7 @@ const COLUMNAS = [
   {
     titulo: 'Comprar',
     enlaces: [
-      { to: '/cotizar', label: 'Pedir cotización' },
+      { to: '/cotizar', label: 'Solicitar cotización' },
       { to: '/distribuidores', label: 'Distribuidores' },
       { to: '/distribuidores#flotillas', label: 'Flotillas' },
     ],
