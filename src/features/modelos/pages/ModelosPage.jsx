@@ -30,7 +30,7 @@ export default function ModelosPage() {
       <Contenedor className="py-12 sm:py-16">
         <FiltroPerfil perfiles={PERFILES} activo={perfil} onCambiar={cambiarPerfil} />
 
-        <p className="mt-6 text-niebla" aria-live="polite">
+        <p className="mt-6 text-tinta-suave" aria-live="polite">
           {visibles.length === 1 ? '1 modelo' : `${visibles.length} modelos`}
         </p>
 
@@ -43,7 +43,7 @@ export default function ModelosPage() {
         </ul>
 
         {visibles.length === 0 && (
-          <div className="border border-dashed border-papel/30 p-10 text-center">
+          <div className="border border-dashed border-tinta/30 p-10 text-center">
             <p className="text-lg">Todavía no hay modelos para este uso.</p>
             <button type="button" onClick={() => cambiarPerfil('todos')} className="mt-3 font-semibold underline underline-offset-4">
               Ver todos los modelos

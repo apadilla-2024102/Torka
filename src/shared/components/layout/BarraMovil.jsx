@@ -25,7 +25,7 @@ export default function BarraMovil() {
 
   return (
     <div
-      className={`fixed inset-x-0 bottom-0 z-40 border-t border-linea bg-asfalto/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur transition-transform duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] motion-reduce:transition-none lg:hidden ${
+      className={`fixed inset-x-0 bottom-0 z-40 border-t border-filete bg-lienzo-alto/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur transition-transform duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] motion-reduce:transition-none lg:hidden ${
         visible ? 'translate-y-0' : 'pointer-events-none translate-y-full'
       }`}
       aria-hidden={!visible}
@@ -39,7 +39,7 @@ export default function BarraMovil() {
           target="_blank"
           rel="noopener noreferrer"
           variante="secundario"
-          sobreOscuro
+          sobreLienzo
           className="flex-1"
           tabIndex={visible ? 0 : -1}
         >

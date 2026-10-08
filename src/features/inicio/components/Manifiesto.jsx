@@ -9,7 +9,7 @@ import CalleComparativa from './CalleComparativa.jsx'
  */
 export default function Manifiesto() {
   return (
-    <section className="relative bg-asfalto py-24 text-papel sm:py-32">
+    <section className="relative bg-lienzo-alto py-24 text-tinta sm:py-32">
       <Contenedor>
         <ScrollReveal
           as="h2"

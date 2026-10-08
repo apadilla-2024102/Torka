@@ -39,7 +39,7 @@ const RAZONES = [
 
 export default function Razones() {
   return (
-    <section aria-labelledby="razones-titulo" className="bg-asfalto py-24 text-papel sm:py-32">
+    <section aria-labelledby="razones-titulo" className="bg-lienzo-alto py-24 text-tinta sm:py-32">
       <Contenedor>
         <TituloSeccion id="razones-titulo" indice="03" etiqueta="Por qué eléctrica">
           Lo que cambia cuando dejas la gasolina
@@ -50,11 +50,11 @@ export default function Razones() {
             <Revelar.Item key={titulo} className={ancha ? 'md:col-span-2' : ''}>
               <SpotlightCard
                 spotlightColor="rgba(214, 247, 21, 0.16)"
-                className="h-full !rounded-[2px] !border-linea !bg-asfalto-alto"
+                className="h-full !rounded-[2px] !border-filete !bg-superficie"
               >
-                <Icono className="h-8 w-8 text-lima" strokeWidth={1.6} aria-hidden="true" />
+                <Icono className="h-8 w-8 text-lima-hondo" strokeWidth={1.6} aria-hidden="true" />
                 <h3 className="mt-6 text-2xl font-semibold">{titulo}</h3>
-                <p className="mt-3 max-w-xl text-niebla">{texto}</p>
+                <p className="mt-3 max-w-xl text-tinta-suave">{texto}</p>
               </SpotlightCard>
             </Revelar.Item>
           ))}

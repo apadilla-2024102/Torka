@@ -30,7 +30,7 @@ export default function CalleComparativa() {
       etiqueta: 'Moto de gasolina 150 cc',
       km: km.gasolina,
       proporcion: proporcionGasolina,
-      barra: 'bg-niebla/35',
+      barra: 'bg-tinta-suave/40',
       moto: '#a9abb3',
       duracion: 1.1,
     },
@@ -39,35 +39,35 @@ export default function CalleComparativa() {
       etiqueta: 'yolt eléctrica',
       km: km.electrica,
       proporcion: 1,
-      barra: 'bg-lima',
-      moto: '#121212',
+      barra: 'bg-tinta',
+      moto: '#d6f715',
       duracion: 2.4,
     },
   ]
 
   return (
     <figure aria-labelledby="calle-titulo">
-      <figcaption id="calle-titulo" className="mb-6 text-lg text-papel">
-        Lo que recorres con <span className="tipo-tablero text-2xl text-lima">Q{MONTO}</span> de energía
+      <figcaption id="calle-titulo" className="mb-6 text-lg text-tinta">
+        Lo que recorres con <span className="tipo-tablero text-2xl text-lima-hondo">Q{MONTO}</span> de energía
       </figcaption>
 
       <div>
         {carriles.map((c, i) => (
           <div key={c.id}>
             <div className="mb-2 flex items-baseline justify-between gap-4">
-              <span className="text-base font-medium text-papel">{c.etiqueta}</span>
+              <span className="text-base font-medium text-tinta">{c.etiqueta}</span>
               <motion.span
-                className="tipo-tablero text-3xl text-papel sm:text-4xl"
+                className="tipo-tablero text-3xl text-tinta sm:text-4xl"
                 initial={reduced ? false : { opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                   viewport={{ once: true, margin: '0px 0px -20% 0px' }}
                 transition={{ delay: 0.2 + c.duracion, duration: 0.3 }}
               >
                 {formatoNumero(c.km)}
-                <span className="ml-1 text-base text-niebla">km</span>
+                <span className="ml-1 text-base text-tinta-suave">km</span>
               </motion.span>
             </div>
-            <div className="relative h-12 overflow-hidden rounded-[2px] bg-asfalto-alto sm:h-14">
+            <div className="relative h-12 overflow-hidden rounded-[2px] bg-filete/60 sm:h-14">
               <motion.div
                 className={`absolute inset-0 rounded-[2px] ${c.barra}`}
                 initial={reduced ? false : { x: '-100%' }}
@@ -83,10 +83,10 @@ export default function CalleComparativa() {
         ))}
       </div>
 
-      <p className="mt-5 max-w-3xl text-sm text-niebla">
+      <p className="mt-5 max-w-3xl text-sm text-tinta-suave">
         Gasolina a Q{SUPUESTOS.precioGalon} el galón y {SUPUESTOS.rendimientoKmGalon} km por galón. Luz a Q
         {SUPUESTOS.tarifaKwh} el kWh y {SUPUESTOS.consumoKwh100km} kWh cada 100 km.{' '}
-        <Link to="/ahorro" viewTransition className="font-medium text-papel underline underline-offset-4">
+        <Link to="/ahorro" viewTransition className="font-medium text-tinta underline underline-offset-4">
           Haz la cuenta con tus números
         </Link>
       </p>
@@ -102,8 +102,8 @@ function MotoMarcador({ color }) {
       className="absolute top-1/2 right-1 h-8 w-14 -translate-y-1/2 sm:h-10 sm:w-[4.5rem]"
       aria-hidden="true"
     >
-      <circle cx="13" cy="27" r="7.5" fill="#1d1e22" stroke={color} strokeWidth="2" />
-      <circle cx="51" cy="27" r="7.5" fill="#1d1e22" stroke={color} strokeWidth="2" />
+      <circle cx="13" cy="27" r="7.5" fill="#ffffff" stroke={color} strokeWidth="2" />
+      <circle cx="51" cy="27" r="7.5" fill="#ffffff" stroke={color} strokeWidth="2" />
       <path d="M6 18 L22 15 L36 15 L38 22 L44 22 L48 9 L56 8 L58 16 L54 24 L18 24 Z" fill={color} />
       <path d="M48 9 L45 3 L41 3" stroke={color} strokeWidth="2.5" strokeLinecap="round" fill="none" />
     </svg>

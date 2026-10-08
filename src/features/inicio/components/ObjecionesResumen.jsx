@@ -15,7 +15,7 @@ export default function ObjecionesResumen({ preguntas: todas }) {
   if (!preguntas.length) return null
 
   return (
-    <section aria-labelledby="dudas-titulo" className="bg-asfalto py-24 sm:py-28">
+    <section aria-labelledby="dudas-titulo" className="bg-lienzo-alto py-24 sm:py-28">
       <Contenedor>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <TituloSeccion id="dudas-titulo" indice="07" etiqueta="Preguntas frecuentes">
@@ -28,11 +28,11 @@ export default function ObjecionesResumen({ preguntas: todas }) {
 
         <Revelar grupo as="dl" className="mt-12 grid gap-10 md:grid-cols-3">
           {preguntas.map((p) => (
-            <Revelar.Item key={p.id} className="border-t-2 border-papel pt-6">
+            <Revelar.Item key={p.id} className="border-t-2 border-tinta pt-6">
               <dt className="text-xl font-semibold">{p.pregunta}</dt>
-              <dd className="mt-3 text-niebla">
+              <dd className="mt-3 text-tinta-suave">
                 {p.respuesta.split('. ').slice(0, 2).join('. ')}.{' '}
-                <Link to={`/preguntas#${p.id}`} viewTransition className="font-semibold text-papel underline underline-offset-4">
+                <Link to={`/preguntas#${p.id}`} viewTransition className="font-semibold text-tinta underline underline-offset-4">
                   Leer más
                 </Link>
               </dd>

@@ -11,7 +11,7 @@ import { useIntro } from '../intro/IntroContexto.jsx'
 export default function EncabezadoPagina({ titulo, descripcion, children }) {
   const { lista } = useIntro()
   return (
-    <header className="relative bg-negro pt-32 pb-14 text-papel sm:pt-36 sm:pb-16">
+    <header className="relative bg-lienzo pt-32 pb-14 text-tinta sm:pt-36 sm:pb-16">
       <Contenedor>
         {/* Al llegar a la página, el título sube desde detrás de una máscara
             y la descripción lo sigue: la misma firma que la portada. */}
@@ -23,7 +23,7 @@ export default function EncabezadoPagina({ titulo, descripcion, children }) {
             </motion.span>
           </h1>
           {descripcion && (
-            <motion.p variants={subir} className="mt-5 max-w-2xl text-lg text-niebla">
+            <motion.p variants={subir} className="mt-5 max-w-2xl text-lg text-tinta-suave">
               {descripcion}
             </motion.p>
           )}

@@ -40,7 +40,7 @@ export default function Experiencia() {
   }, [])
 
   return (
-    <section aria-labelledby="experiencia-titulo" className="bg-negro py-24 text-papel sm:py-32">
+    <section aria-labelledby="experiencia-titulo" className="bg-lienzo py-24 text-tinta sm:py-32">
       <Contenedor className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <div>
           <TituloSeccion id="experiencia-titulo" indice="05" etiqueta="Experiencia yolt">
@@ -52,30 +52,30 @@ export default function Experiencia() {
             whileInView="visible"
             viewport={EN_VISTA}
             variants={escalonar(0.1, 0.08)}
-            className="mt-12 border-t border-linea"
+            className="mt-12 border-t border-filete"
           >
             {SERVICIOS.map((s, i) => (
               <motion.li
                 key={s.nombre}
                 variants={fila}
-                className="group grid grid-cols-[3rem_1fr] items-baseline gap-4 border-b border-linea py-5 sm:grid-cols-[3rem_10rem_1fr]"
+                className="group grid grid-cols-[3rem_1fr] items-baseline gap-4 border-b border-filete py-5 sm:grid-cols-[3rem_10rem_1fr]"
               >
-                <span className="tipo-tablero text-niebla">{String(i + 1).padStart(2, '0')}</span>
-                <span className="tipo-ruta text-3xl transition-colors duration-300 group-hover:text-lima">{s.nombre}</span>
-                <span className="col-start-2 text-niebla sm:col-start-3">{s.detalle}</span>
+                <span className="tipo-tablero text-tinta-suave">{String(i + 1).padStart(2, '0')}</span>
+                <span className="tipo-ruta text-3xl transition-colors duration-300 group-hover:text-lima-hondo">{s.nombre}</span>
+                <span className="col-start-2 text-tinta-suave sm:col-start-3">{s.detalle}</span>
               </motion.li>
             ))}
           </motion.ol>
 
           <motion.div initial="oculto" whileInView="visible" viewport={EN_VISTA} variants={subir} className="mt-10">
-            <Boton to="/distribuidores" variante="secundario" sobreOscuro>
+            <Boton to="/distribuidores" variante="secundario" sobreLienzo>
               Agendar visita
             </Boton>
           </motion.div>
         </div>
 
         <motion.div
-          className="relative mx-auto w-full max-w-[400px] overflow-hidden rounded-[2px] border border-linea"
+          className="relative mx-auto w-full max-w-[400px] overflow-hidden rounded-[2px] border border-filete"
           initial={{ clipPath: 'inset(0% 0% 100% 0%)' }}
           whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
           viewport={{ once: true, margin: '0px 0px -10% 0px' }}
@@ -95,7 +95,7 @@ export default function Experiencia() {
             <source src="/showroom/recorrido.mp4" type="video/mp4" />
           </video>
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-          <p className="tipo-etiqueta absolute bottom-5 left-5 text-papel/85">Recorrido · Showroom</p>
+          <p className="tipo-etiqueta absolute bottom-5 left-5 text-tinta/85">Recorrido · Showroom</p>
         </motion.div>
       </Contenedor>
     </section>

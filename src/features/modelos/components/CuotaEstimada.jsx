@@ -18,7 +18,7 @@ export default function CuotaEstimada({ precio }) {
   const cuotaAnimada = useCountUp(cuota)
 
   return (
-    <div className="rounded-[2px] bg-papel text-asfalto p-6 sm:p-8">
+    <div className="rounded-[2px] border border-filete bg-lienzo text-tinta p-6 sm:p-8">
       <h2 className="text-2xl font-semibold">¿Cuánto pagarías al mes?</h2>
 
       <div className="mt-6 grid gap-8 md:grid-cols-2">
@@ -29,7 +29,7 @@ export default function CuotaEstimada({ precio }) {
                 Enganche
               </label>
               <span className="tipo-tablero text-xl">
-                {formatoQuetzales(enganche)} <span className="text-base text-grafito">({porcentaje}%)</span>
+                {formatoQuetzales(enganche)} <span className="text-base text-tinta-suave">({porcentaje}%)</span>
               </span>
             </div>
             <input
@@ -58,7 +58,7 @@ export default function CuotaEstimada({ precio }) {
                     onChange={() => setMeses(p)}
                     className="peer sr-only"
                   />
-                  <span className="flex min-h-11 items-center justify-center rounded-[2px] border border-asfalto/25 text-base font-medium transition-colors duration-150 peer-checked:border-asfalto peer-checked:bg-asfalto peer-checked:text-papel peer-focus-visible:ring-2 peer-focus-visible:ring-lima-hondo">
+                  <span className="flex min-h-11 items-center justify-center rounded-[2px] border border-tinta/25 text-base font-medium transition-colors duration-150 peer-checked:border-tinta peer-checked:bg-tinta peer-checked:text-lienzo-alto peer-focus-visible:ring-2 peer-focus-visible:ring-lima-hondo">
                     {p} meses
                   </span>
                 </label>
@@ -68,17 +68,17 @@ export default function CuotaEstimada({ precio }) {
         </div>
 
         {/* Lectura oscura dentro de la banda clara: como el tablero de la moto. */}
-        <div className="flex flex-col justify-center rounded-[2px] bg-asfalto p-6 text-papel">
-          <span className="tipo-etiqueta text-niebla">Cuota estimada</span>
+        <div className="flex flex-col justify-center rounded-[2px] bg-tinta p-6 text-lienzo-alto">
+          <span className="tipo-etiqueta text-tinta-inversa-suave">Cuota estimada</span>
           <span className="tipo-tablero mt-1 text-5xl" aria-hidden="true">
             {formatoQuetzales(cuotaAnimada)}
-            <span className="ml-1 text-lg text-niebla">al mes</span>
+            <span className="ml-1 text-lg text-tinta-inversa-suave">al mes</span>
           </span>
           {/* El lector de pantalla oye solo el valor final, no cada cuadro de la animación. */}
           <span className="sr-only" aria-live="polite">
             {formatoQuetzales(cuota)} al mes
           </span>
-          <p className="mt-4 text-sm text-niebla">
+          <p className="mt-4 text-sm text-tinta-inversa-suave">
             Referencia con tasa anual de {Math.round(TASA_ANUAL_EJEMPLO * 100)}%. La cuota final depende de la
             financiera y de la aprobación de crédito.
           </p>

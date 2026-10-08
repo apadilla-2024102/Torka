@@ -34,13 +34,13 @@ export default function DistribuidoresPage() {
         <section
           id="flotillas"
           aria-labelledby="flotillas-titulo"
-          className="mt-16 flex scroll-mt-28 flex-col gap-6 rounded-[2px] border border-linea bg-negro p-8 text-papel sm:p-10 lg:flex-row lg:items-center lg:justify-between"
+          className="mt-16 flex scroll-mt-28 flex-col gap-6 rounded-[2px] border border-filete bg-lienzo p-8 text-tinta sm:p-10 lg:flex-row lg:items-center lg:justify-between"
         >
           <div>
             <h2 id="flotillas-titulo" className="tipo-ruta text-3xl">
               ¿Compras para una flotilla?
             </h2>
-            <p className="mt-3 max-w-xl text-niebla">
+            <p className="mt-3 max-w-xl text-tinta-suave">
               A partir de cinco unidades cambian el precio, el servicio y el esquema de repuestos. Escríbenos y armamos
               la propuesta para tu operación.
             </p>

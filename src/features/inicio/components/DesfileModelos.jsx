@@ -16,7 +16,7 @@ export default function DesfileModelos({ modelos }) {
   const piezas = modelos.flatMap((m) => m.colores.map((c) => ({ modelo: m, color: c })))
 
   return (
-    <section aria-labelledby="desfile-titulo" className="overflow-hidden bg-negro py-24 text-papel sm:py-28">
+    <section aria-labelledby="desfile-titulo" className="overflow-hidden bg-lienzo py-24 text-tinta sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-8">
         <TituloSeccion id="desfile-titulo" indice="04" etiqueta="Línea yolt">
           Una misma esencia, diferentes caminos
@@ -36,7 +36,7 @@ export default function DesfileModelos({ modelos }) {
                 >
                   <span
                     aria-hidden="true"
-                    className="tipo-ruta pointer-events-none absolute inset-x-0 top-[22%] overflow-hidden text-center text-[clamp(2.6rem,11vw,4.1rem)] leading-none text-transparent transition-colors duration-500 [-webkit-text-stroke:1px_rgba(241,238,229,0.22)] group-hover:text-lima/90 group-hover:[-webkit-text-stroke:1px_transparent]"
+                    className="tipo-ruta pointer-events-none absolute inset-x-0 top-[22%] overflow-hidden text-center text-[clamp(2.6rem,11vw,4.1rem)] leading-none text-transparent transition-colors duration-500 [-webkit-text-stroke:1px_rgba(29,29,31,0.14)] group-hover:text-lima-hondo/90 group-hover:[-webkit-text-stroke:1px_transparent]"
                   >
                     {modelo.nombre}
                   </span>
@@ -45,7 +45,7 @@ export default function DesfileModelos({ modelos }) {
                   </span>
                   <span className="mt-2 flex items-baseline justify-between gap-3 px-1">
                     <span>
-                      <span className="tipo-etiqueta block text-niebla">{modelo.perfilLabel}</span>
+                      <span className="tipo-etiqueta block text-tinta-suave">{modelo.perfilLabel}</span>
                       <span className="text-lg font-semibold">
                         {modelo.nombre} · {color.nombre}
                       </span>

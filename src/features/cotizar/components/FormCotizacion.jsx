@@ -64,19 +64,19 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         style={{ transformOrigin: '100% 100%' }}
-        className="rounded-[2px] bg-papel text-asfalto p-8 sm:p-10"
+        className="rounded-[2px] border border-filete bg-lienzo text-tinta p-8 sm:p-10"
         role="status"
       >
         <PalomitaAnimada />
         <h2 className="tipo-ruta mt-5 text-3xl">Abrimos WhatsApp con tu solicitud</h2>
-        <p className="mt-3 max-w-lg text-grafito">
+        <p className="mt-3 max-w-lg text-tinta-suave">
           Solo falta que envíes el mensaje. Un asesor te responde con el precio y el distribuidor más cercano.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Boton href={enlaceEnviado} target="_blank" rel="noopener noreferrer">
             Abrir WhatsApp otra vez
           </Boton>
-          <Boton variante="secundario" sobreOscuro={false} onClick={() => setEnlaceEnviado(null)}>
+          <Boton variante="secundario" onClick={() => setEnlaceEnviado(null)}>
             Editar la solicitud
           </Boton>
         </div>
@@ -85,7 +85,7 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
   }
 
   return (
-    <form ref={formulario} onSubmit={enviar} noValidate className="space-y-7 rounded-[2px] bg-papel text-asfalto p-6 sm:p-10">
+    <form ref={formulario} onSubmit={enviar} noValidate className="space-y-7 rounded-[2px] border border-filete bg-lienzo text-tinta p-6 sm:p-10">
       <div className="grid gap-7 sm:grid-cols-2">
         <Campo id="modelo" etiqueta="Modelo" error={errores.modelo} intento={intento}>
           <select
@@ -185,7 +185,7 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
                 onChange={actualizar('interes')}
                 className="peer sr-only"
               />
-              <span className="flex min-h-12 items-center justify-center rounded-[2px] border border-asfalto/25 px-4 text-center font-medium transition-colors duration-150 peer-checked:border-asfalto peer-checked:bg-asfalto peer-checked:text-papel peer-focus-visible:ring-2 peer-focus-visible:ring-lima-hondo">
+              <span className="flex min-h-12 items-center justify-center rounded-[2px] border border-tinta/25 px-4 text-center font-medium transition-colors duration-150 peer-checked:border-tinta peer-checked:bg-tinta peer-checked:text-lienzo-alto peer-focus-visible:ring-2 peer-focus-visible:ring-lima-hondo">
                 {i.label}
               </span>
             </label>
@@ -206,8 +206,8 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
         />
       </Campo>
 
-      <div className="flex flex-col gap-4 border-t border-concreto pt-7 sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-md text-sm text-grafito">
+      <div className="flex flex-col gap-4 border-t border-filete pt-7 sm:flex-row sm:items-center sm:justify-between">
+        <p className="max-w-md text-sm text-tinta-suave">
           Al enviar se abre WhatsApp con tu mensaje listo. Tus datos solo se usan para responder esta cotización.
         </p>
         <Boton type="submit" className="shrink-0">

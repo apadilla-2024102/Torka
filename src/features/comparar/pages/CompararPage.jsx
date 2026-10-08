@@ -19,7 +19,7 @@ export default function CompararPage() {
       />
       <Contenedor className="py-12 sm:py-16">
         <TablaComparativa modelos={modelos} specsMeta={SPECS_META} />
-        <p className="mt-5 text-sm text-niebla">
+        <p className="mt-5 text-sm text-tinta-suave">
           En el celular, desliza la tabla hacia los lados para ver todos los modelos.
         </p>
       </Contenedor>

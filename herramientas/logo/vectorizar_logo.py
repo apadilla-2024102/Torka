@@ -6,7 +6,7 @@ Vectoriza el logo oficial de yolt (PNG) a SVG.
 Entrada: herramientas/logo/original/yolt-logo.png (Y lima + "olt" blanco)
          herramientas/logo/original/yolt-isotipo.png (solo la Y)
 Salida:  public/marca/yolt-logo-claro.svg   Y lima + "olt" hueso (fondos oscuros)
-         public/marca/yolt-logo-oscuro.svg  Y lima hondo + "olt" grafito (fondos claros)
+         public/marca/yolt-logo-oscuro.svg  Y lima + "olt" tinta (fondos claros)
          public/marca/yolt-isotipo.svg      solo la Y, lima
          public/favicon.svg                 Y lima sobre grafito
 
@@ -21,7 +21,7 @@ import numpy as np
 
 AQUI = Path(__file__).resolve().parent
 RAIZ = AQUI.parents[1]
-LIMA, LIMA_HONDO, HUESO, GRAFITO = '#d6f715', '#4a6600', '#f1eee5', '#121212'
+LIMA, HUESO, GRAFITO = '#d6f715', '#f1eee5', '#121212'
 ESCALA = 4
 
 
@@ -65,7 +65,7 @@ def main():
     m = 4
     vb = f'{x0 - m} {y0 - m} {x1 - x0 + 2 * m} {y1 - y0 + 2 * m}'
     d_y, d_olt = trazar(lima), trazar(blanco)
-    for nombre, c_y, c_olt in (('claro', LIMA, HUESO), ('oscuro', LIMA_HONDO, GRAFITO)):
+    for nombre, c_y, c_olt in (('claro', LIMA, HUESO), ('oscuro', LIMA, '#1d1d1f')):
         cuerpo = f'<path fill="{c_y}" fill-rule="evenodd" d="{d_y}"/><path fill="{c_olt}" fill-rule="evenodd" d="{d_olt}"/>'
         (destino / f'yolt-logo-{nombre}.svg').write_text(svg(vb, cuerpo))
 

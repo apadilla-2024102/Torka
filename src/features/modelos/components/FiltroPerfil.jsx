@@ -16,13 +16,13 @@ export default function FiltroPerfil({ perfiles, activo, onCambiar }) {
             aria-pressed={seleccionado}
             onClick={() => onCambiar(p.id)}
             className={`tipo-etiqueta relative min-h-11 px-5 transition-colors duration-[330ms] ${
-              seleccionado ? 'text-negro' : 'text-niebla hover:text-papel'
+              seleccionado ? 'text-lienzo' : 'text-tinta-suave hover:text-tinta'
             }`}
           >
             {seleccionado && (
               <motion.span
                 layoutId="perfil-activo"
-                className="absolute inset-0 bg-papel"
+                className="absolute inset-0 bg-tinta"
                 transition={{ type: 'spring', stiffness: 500, damping: 40 }}
               />
             )}

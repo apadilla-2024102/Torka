@@ -59,7 +59,7 @@ export default function Nav() {
       onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setFocoDentro(false)}
       style={{ transform: escondida && !abierta && !focoDentro ? 'translateY(-100%)' : 'translateY(0)' }}
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,transform] duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] motion-reduce:transition-none ${
-        conFondo || abierta ? 'border-b border-white/10 bg-negro/70 backdrop-blur-xl' : 'border-b border-transparent'
+        conFondo || abierta ? 'border-b border-filete bg-lienzo/85 backdrop-blur-xl' : 'border-b border-transparent'
       }`}
     >
       <nav aria-label="Principal" className="mx-auto flex h-18 max-w-6xl items-center justify-between gap-6 px-4 sm:px-8">
@@ -75,7 +75,7 @@ export default function Nav() {
                 viewTransition
                 className={({ isActive }) =>
                   `relative block rounded-full px-4 py-2 text-[0.95rem] font-medium transition-colors duration-200 ${
-                    isActive ? 'text-papel' : 'text-niebla hover:text-papel'
+                    isActive ? 'text-tinta' : 'text-tinta-suave hover:text-tinta'
                   }`
                 }
               >
@@ -108,7 +108,7 @@ export default function Nav() {
             aria-expanded={abierta}
             aria-controls="menu-movil"
             aria-label={abierta ? 'Cerrar menú' : 'Abrir menú'}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-linea text-papel lg:hidden"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-filete text-tinta lg:hidden"
           >
             {abierta ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
           </button>
@@ -122,7 +122,7 @@ export default function Nav() {
         {abierta && (
           <motion.div
             id="menu-movil"
-            className="h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain border-t border-linea bg-asfalto lg:hidden"
+            className="h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain border-t border-filete bg-lienzo-alto lg:hidden"
             initial={{ clipPath: 'inset(0 0 100% 0)' }}
             animate={{ clipPath: 'inset(0 0 0% 0)', transition: { duration: 0.6, ease: CURVA.expo } }}
             exit={{ clipPath: 'inset(0 0 100% 0)', transition: { duration: 0.3, ease: CURVA.mover } }}
@@ -134,13 +134,13 @@ export default function Nav() {
               variants={escalonar(0.15, 0.06)}
             >
               {ENLACES.map((e) => (
-                <li key={e.to} className="overflow-hidden border-b border-linea">
+                <li key={e.to} className="overflow-hidden border-b border-filete">
                   <motion.div variants={lineaMascara}>
                     <NavLink
                       to={e.to}
                       viewTransition
                       className={({ isActive }) =>
-                        `tipo-ruta block py-5 text-[clamp(2rem,9vw,3rem)] leading-none ${isActive ? 'text-lima' : 'text-papel'}`
+                        `tipo-ruta block py-5 text-[clamp(2rem,9vw,3rem)] leading-none ${isActive ? 'text-lima-hondo' : 'text-tinta'}`
                       }
                     >
                       {e.label}

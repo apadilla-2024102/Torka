@@ -13,7 +13,7 @@ const FRASES = [
 
 export default function BandaVelocidad() {
   return (
-    <section aria-label="Lo que cambia con una yolt" className="overflow-hidden border-y border-linea bg-asfalto py-6 text-papel sm:py-8">
+    <section aria-label="Lo que cambia con una yolt" className="overflow-hidden border-y border-filete bg-lienzo-alto py-6 text-tinta sm:py-8">
       {/* Su bucle de animación corre en cada cuadro: fuera de pantalla se
           cambia por el mismo texto quieto. */}
       <MontarEnVista

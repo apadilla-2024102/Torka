@@ -29,7 +29,7 @@ export default function CotizarPage() {
         <aside className="space-y-6">
           <div>
             <h2 className="text-xl font-semibold">Qué pasa después</h2>
-            <ol className="mt-4 list-decimal space-y-3 pl-5 text-niebla marker:font-semibold marker:text-lima">
+            <ol className="mt-4 list-decimal space-y-3 pl-5 text-tinta-suave marker:font-semibold marker:text-lima-hondo">
               <li>Envías el mensaje que se abre en WhatsApp.</li>
               <li>Un asesor te responde con precio y opciones de pago.</li>
               <li>Agendas la prueba de manejo en el distribuidor que te quede cerca.</li>

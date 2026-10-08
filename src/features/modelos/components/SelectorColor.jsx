@@ -8,8 +8,8 @@ export default function SelectorColor({ colores, activo, onCambiar, nombreGrupo 
 
   return (
     <fieldset>
-      <legend className="text-niebla">
-        Color: <span className="font-semibold text-papel">{actual.nombre}</span>
+      <legend className="text-tinta-suave">
+        Color: <span className="font-semibold text-tinta">{actual.nombre}</span>
       </legend>
       <div className="mt-3 flex gap-3">
         {colores.map((c) => (
@@ -25,7 +25,7 @@ export default function SelectorColor({ colores, activo, onCambiar, nombreGrupo 
             <span className="sr-only">{c.nombre}</span>
             <span
               aria-hidden="true"
-              className="block h-11 w-11 rounded-full ring-2 ring-linea ring-offset-4 ring-offset-asfalto transition-[box-shadow] duration-150 peer-checked:ring-papel peer-focus-visible:ring-lima"
+              className="block h-11 w-11 rounded-full ring-2 ring-filete ring-offset-4 ring-offset-lienzo-alto transition-[box-shadow] duration-150 peer-checked:ring-tinta peer-focus-visible:ring-lima-hondo"
               style={{ backgroundColor: c.hex }}
             />
           </label>
