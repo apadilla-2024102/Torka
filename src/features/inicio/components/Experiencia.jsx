@@ -9,7 +9,7 @@ import { CURVA, EN_VISTA, escalonar, subir } from '../../../shared/lib/movimient
 const SERVICIOS = [
   { nombre: 'Motos', detalle: 'La gama completa en exhibición y lista para prueba.' },
   { nombre: 'Servicio', detalle: 'Taller autorizado para mantenimiento y garantía.' },
-  { nombre: 'Repuestos', detalle: 'Inventario local y garantía de disponibilidad.' },
+  { nombre: 'Repuestos', detalle: 'Inventario local de repuestos.' },
   { nombre: 'Carga', detalle: 'Orientación para instalar la carga en casa o en tu negocio.' },
   { nombre: 'Asesoría', detalle: 'Financiamiento, flotillas y trámite de placas.' },
 ]
