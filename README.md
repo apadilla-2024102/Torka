@@ -22,7 +22,7 @@ debe devolver `index.html` para cualquier ruta. Ya está configurado para
 
 | Ruta | Qué hace |
 |---|---|
-| `/` | Portada: comparativa de dos carriles (cuánto recorres con Q100), gama, razones, proceso de compra |
+| `/` | Portada: comparativa de dos carriles (lo que cuesta recorrer 90 km, una carga de la CITY), gama, razones, proceso de compra |
 | `/modelos` | Catálogo con filtro por uso (el filtro queda en la URL) |
 | `/modelos/:id` | Ficha: selector de color, ficha técnica, estimador de cuota |
 | `/comparar` | Tabla comparativa de todos los modelos |

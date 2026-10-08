@@ -1,19 +1,16 @@
 import { Link } from 'react-router-dom'
-import { motion } from 'motion/react'
-import { kmPorMonto, SUPUESTOS } from '../../../shared/lib/energia.js'
-import { formatoNumero } from '../../../shared/lib/formato.js'
+import { useRef } from 'react'
+import { motion, useInView } from 'motion/react'
+import { costoRecorrido, REFERENCIA, SUPUESTOS } from '../../../shared/lib/energia.js'
 import Carril from '../../../shared/components/ui/Carril.jsx'
 import { useSinMovimiento } from '../../../shared/hooks/useMovimiento.js'
 
-const MONTO = 100
-
 /**
- * La firma de la portada: dos carriles, el mismo dinero.
+ * La firma de la portada: dos carriles, la misma distancia.
  *
- * Con Q100 de energía, la moto de gasolina se detiene pronto y la yolt
- * sigue hasta el final de la calle. Es el argumento de venta convertido
- * en imagen, y el único movimiento que ocurre sin que el usuario haga
- * nada en todo el sitio.
+ * Lo que cuesta recorrer 90 km (una carga completa de la yolt CITY, según
+ * la ficha del fabricante) con cada moto. Cifras redondeadas sin exagerar
+ * a favor de yolt: la gasolina hacia abajo, la luz hacia arriba.
  *
  * Técnica: cada carril es una franja del ancho completo que se desplaza
  * con transform desde fuera de la vista. Solo se anima transform, nunca
@@ -21,15 +18,20 @@ const MONTO = 100
  */
 export default function CalleComparativa() {
   const reduced = useSinMovimiento()
-  const km = kmPorMonto(MONTO)
-  const proporcionGasolina = km.gasolina / km.electrica
+  // El disparo lo da la figura completa: una barra que arranca fuera de su
+  // carril (recortada) nunca cuenta como visible para el observador.
+  const figura = useRef(null)
+  const enVista = useInView(figura, { once: true, margin: '0px 0px -20% 0px' })
+  const costo = costoRecorrido()
+  const gasolina = Math.floor(costo.gasolina)
+  const electrica = Math.ceil(costo.electrica)
 
   const carriles = [
     {
       id: 'gasolina',
       etiqueta: 'Moto de gasolina 150 cc',
-      km: km.gasolina,
-      proporcion: proporcionGasolina,
+      monto: gasolina,
+      proporcion: 1,
       barra: 'bg-tinta-suave/40',
       moto: '#a9abb3',
       duracion: 1.1,
@@ -37,8 +39,8 @@ export default function CalleComparativa() {
     {
       id: 'yolt',
       etiqueta: 'yolt eléctrica',
-      km: km.electrica,
-      proporcion: 1,
+      monto: electrica,
+      proporcion: electrica / gasolina,
       barra: 'bg-tinta',
       moto: '#d6f715',
       duracion: 2.4,
@@ -46,9 +48,10 @@ export default function CalleComparativa() {
   ]
 
   return (
-    <figure aria-labelledby="calle-titulo">
+    <figure ref={figura} aria-labelledby="calle-titulo">
       <figcaption id="calle-titulo" className="mb-6 text-lg text-tinta">
-        Lo que recorres con <span className="tipo-tablero text-2xl text-lima-hondo">Q{MONTO}</span> de energía
+        Lo que cuesta recorrer <span className="tipo-tablero text-2xl text-lima-hondo">{REFERENCIA.km} km</span>, una
+        carga completa de la {REFERENCIA.modelo}
       </figcaption>
 
       <div>
@@ -59,20 +62,18 @@ export default function CalleComparativa() {
               <motion.span
                 className="tipo-tablero text-3xl text-tinta sm:text-4xl"
                 initial={reduced ? false : { opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                  viewport={{ once: true, margin: '0px 0px -20% 0px' }}
+                animate={enVista ? { opacity: 1 } : undefined}
                 transition={{ delay: 0.2 + c.duracion, duration: 0.3 }}
               >
-                {formatoNumero(c.km)}
-                <span className="ml-1 text-base text-tinta-suave">km</span>
+                <span className="mr-1 text-base text-tinta-suave">Q</span>
+                {c.monto}
               </motion.span>
             </div>
             <div className="relative h-12 overflow-hidden rounded-[2px] bg-filete/60 sm:h-14">
               <motion.div
                 className={`absolute inset-0 rounded-[2px] ${c.barra}`}
                 initial={reduced ? false : { x: '-100%' }}
-                whileInView={{ x: `${-(1 - c.proporcion) * 100}%` }}
-                viewport={{ once: true, margin: '0px 0px -20% 0px' }}
+                animate={enVista ? { x: `${-(1 - c.proporcion) * 100}%` } : undefined}
                 transition={{ duration: c.duracion, ease: [0.22, 0.8, 0.3, 1], delay: 0.2 }}
               >
                 <MotoMarcador color={c.moto} />
@@ -85,7 +86,7 @@ export default function CalleComparativa() {
 
       <p className="mt-5 max-w-3xl text-sm text-tinta-suave">
         Gasolina a Q{SUPUESTOS.precioGalon} el galón y {SUPUESTOS.rendimientoKmGalon} km por galón. Luz a Q
-        {SUPUESTOS.tarifaKwh} el kWh y {SUPUESTOS.consumoKwh100km} kWh cada 100 km.{' '}
+        {SUPUESTOS.tarifaKwh} el kWh; batería de 72V 30Ah con 15 % de pérdida al cargar.{' '}
         <Link to="/ahorro" viewTransition className="font-medium text-tinta underline underline-offset-4">
           Haz la cuenta con tus números
         </Link>

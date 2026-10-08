@@ -6,8 +6,7 @@ import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import ModeloImagen from '../../../shared/components/brand/ModeloImagen.jsx'
 import Inclinar from '../../../shared/components/ui/Inclinar.jsx'
 import { RUTAS_LOGO } from '../../../shared/components/brand/Logo.jsx'
-import { formatoNumero } from '../../../shared/lib/formato.js'
-import { kmPorMonto } from '../../../shared/lib/energia.js'
+import { costoRecorrido, REFERENCIA } from '../../../shared/lib/energia.js'
 import { CURVA, escalonar, lineaMascara, subir } from '../../../shared/lib/movimiento.js'
 import { useIntro } from '../../../shared/components/intro/IntroContexto.jsx'
 import { useSinMovimiento } from '../../../shared/hooks/useMovimiento.js'
@@ -40,11 +39,11 @@ export default function Hero({ modeloPortada }) {
   const capaPanel = useTransform(scrollYProgress, [0, 1], ['0%', '12%'])
   const capaMoto = useTransform(scrollYProgress, [0, 1], ['0%', '-10%'])
   const capaMarca = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
-  const km = kmPorMonto(100)
-  // Redondeos que nunca exageran a favor de yolt: lo eléctrico hacia abajo
-  // a la centena, lo de gasolina a la decena más cercana.
-  const kmElectrica = formatoNumero(Math.floor(km.electrica / 100) * 100)
-  const kmGasolina = formatoNumero(Math.round(km.gasolina / 10) * 10)
+  // Redondeos que nunca exageran a favor de yolt: la luz hacia arriba, la
+  // gasolina hacia abajo.
+  const costo = costoRecorrido()
+  const qElectrica = Math.ceil(costo.electrica)
+  const qGasolina = Math.floor(costo.gasolina)
 
   return (
     <section ref={seccion} className="relative isolate overflow-hidden bg-lienzo text-tinta">
@@ -67,8 +66,8 @@ export default function Hero({ modeloPortada }) {
             Menos gasto. Más vida.
           </motion.p>
           <motion.p variants={subir} className="mt-8 max-w-md text-base leading-relaxed text-tinta-suave sm:text-lg">
-            Con Q100 de energía recorres más de {kmElectrica} km; con gasolina, unos {kmGasolina}. Frenos de
-            disco y mantenimiento mínimo. Solicita tu cotización con el precio vigente.
+            Una carga completa de la {REFERENCIA.modelo} cuesta unos Q{qElectrica} de luz y rinde {REFERENCIA.km} km; la
+            misma distancia en gasolina, unos Q{qGasolina}. Frenos de disco y mantenimiento mínimo.
           </motion.p>
           <motion.div variants={subir} className="mt-10 flex flex-wrap items-center gap-3">
             <Boton to="/modelos">Ver la gama</Boton>
