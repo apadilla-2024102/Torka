@@ -76,36 +76,6 @@ export const MOCK_MODELOS = [
     },
   },
   {
-    id: 'x',
-    nombre: 'X',
-    tagline: 'Más potencia. Más libertad.',
-    perfil: 'potencia',
-    perfilLabel: 'Potencia',
-    precio: 25000,
-    destacado: 'Más potencia',
-    requiereLicencia: true,
-    resumen:
-      'Moto de uso mixto con suspensión delantera invertida, rines de rayos y llantas de tacos para salirte del asfalto. Motor de mayor par para subidas, vía primaria y rutas fuera de la ciudad. Requiere licencia y placas.',
-    specs: {
-      autonomia: 110,
-      velocidad: 80,
-      carga: 6,
-      motor: 3000,
-      cargaUtil: 180,
-      bateria: 'Litio 72V 40Ah',
-    },
-    puntos: [
-      'Motor de 3000 W con par inmediato para pendientes',
-      'Frenos de disco delantero y trasero',
-      'Suspensión invertida y llantas de tacos para terracería',
-    ],
-    ilustracion: { parabrisas: false, parrilla: false, caja: false, dobleBateria: true, deportiva: true },
-    colores: [{ id: 'grafito', nombre: 'Grafito y lima', hex: '#1f2125' }],
-    fotos: { grafito: '/modelos/fotos/x-grafito.webp' },
-    // Sin foto de la unidad todavía: imagen de la lámina de marca.
-    fotoReferencia: true,
-  },
-  {
     id: 'gt',
     nombre: 'GT',
     tagline: 'Sin límites',
@@ -151,7 +121,6 @@ export const PERFILES = [
   { id: 'todos', label: 'Todos' },
   { id: 'ciudad', label: 'Ciudad' },
   { id: 'trabajo', label: 'Ciudad y reparto' },
-  { id: 'potencia', label: 'Potencia' },
   { id: 'autonomia', label: 'Larga distancia' },
 ]
 
@@ -200,13 +169,13 @@ export const MOCK_PREGUNTAS = [
     id: 'licencia',
     pregunta: '¿Necesito licencia y placas?',
     respuesta:
-      'Depende del modelo. yolt ONE y CITY se mantienen dentro del límite de potencia y velocidad que suele clasificarse como ciclomotor y no exigen licencia tipo M. yolt X y GT sí requieren licencia tipo M y placas. Tu distribuidor te entrega la factura y el certificado de origen, que es lo que necesitas para inscribir el vehículo ante la SAT.',
+      'Depende del modelo. yolt ONE y CITY se mantienen dentro del límite de potencia y velocidad que suele clasificarse como ciclomotor y no exigen licencia tipo M. yolt GT sí requiere licencia tipo M y placas. Tu distribuidor te entrega la factura y el certificado de origen, que es lo que necesitas para inscribir el vehículo ante la SAT.',
   },
   {
     id: 'carga-departamento',
     pregunta: 'Vivo en un apartamento, ¿dónde la cargo?',
     respuesta:
-      'Por eso la batería es extraíble en yolt ONE y CITY. Pesa entre 11 y 14 kg, la desmontas con llave, la subes y la conectas a un contacto normal de 120 V. No necesitas instalación especial. yolt X y GT llevan batería fija de mayor capacidad y se cargan con la moto estacionada.',
+      'Por eso la batería es extraíble en yolt ONE y CITY. Pesa entre 11 y 14 kg, la desmontas con llave, la subes y la conectas a un contacto normal de 120 V. No necesitas instalación especial. yolt GT lleva batería fija de mayor capacidad y se carga con la moto estacionada.',
   },
   {
     id: 'vida-bateria',

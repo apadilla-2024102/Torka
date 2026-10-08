@@ -24,7 +24,7 @@ export default function ModelosPage() {
     <>
       <EncabezadoPagina
         titulo="Modelos"
-        descripcion="Cuatro motos para cuatro usos distintos. Filtra por cómo la vas a usar, no por cuál se ve mejor."
+        descripcion="Una moto para cada recorrido. Filtra por cómo la vas a usar, no por cuál se ve mejor."
       />
 
       <Contenedor className="py-12 sm:py-16">
