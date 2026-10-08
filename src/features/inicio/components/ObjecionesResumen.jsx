@@ -18,7 +18,7 @@ export default function ObjecionesResumen({ preguntas: todas }) {
     <section aria-labelledby="dudas-titulo" className="bg-asfalto py-24 sm:py-28">
       <Contenedor>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <TituloSeccion id="dudas-titulo" indice="05" etiqueta="Preguntas frecuentes">
+          <TituloSeccion id="dudas-titulo" indice="07" etiqueta="Preguntas frecuentes">
             Lo que todos preguntan antes de comprar
           </TituloSeccion>
           <Link to="/preguntas" viewTransition className="shrink-0 font-semibold underline underline-offset-4">

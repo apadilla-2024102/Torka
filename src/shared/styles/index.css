@@ -31,10 +31,11 @@
   --color-niebla: #9b9b9b; /* gris metálico: texto secundario sobre oscuro (6.8:1) */
 
   /* --- Tipografía ---
-     Una sola familia, Archivo, y su eje de ANCHO como recurso expresivo:
-     expandida para titulares (velocidad, carretera), normal para leer,
-     condensada para las lecturas del tablero. */
+     Dos familias: Instrument Serif para los titulares (voz editorial y
+     formal) y Archivo para leer, rótulos y cifras del tablero (su eje de
+     ancho la condensa en las lecturas técnicas). */
   --font-sans: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', 'Times New Roman', ui-serif, serif;
 
   --ease-salida: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-estado: cubic-bezier(0.25, 1, 0.5, 1); /* 0.33 s, todo cambio de estado (Tesla) */
@@ -99,15 +100,14 @@
 }
 
 @layer utilities {
-  /* Titular expandido: la firma tipográfica de la marca. */
-  /* Display de la marca: expandida, en MAYÚSCULAS, interlínea apretada
-     (Lamborghini). */
+  /* Display de la marca: serif editorial (Instrument Serif), en caja
+     normal, interlínea apretada. Es la voz formal: titulares, cifras
+     grandes de portada y el manifiesto. */
   .tipo-ruta {
-    font-stretch: 125%;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    line-height: 0.92;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1;
   }
 
   /* Rótulos de botones y datos: chicos, en mayúsculas y espaciados. */

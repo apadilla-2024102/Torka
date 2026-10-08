@@ -41,7 +41,7 @@ export default function Razones() {
   return (
     <section aria-labelledby="razones-titulo" className="bg-asfalto py-24 text-papel sm:py-32">
       <Contenedor>
-        <TituloSeccion id="razones-titulo" indice="02" etiqueta="Por qué eléctrica">
+        <TituloSeccion id="razones-titulo" indice="03" etiqueta="Por qué eléctrica">
           Lo que cambia cuando dejas la gasolina
         </TituloSeccion>
 

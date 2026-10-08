@@ -10,20 +10,25 @@ const trazo = {
 /**
  * Encabezado de sección: índice numerado, filete lima y rótulo, y debajo
  * el titular que sube desde detrás de una máscara al entrar en pantalla.
- * Da a todas las secciones el mismo orden editorial.
+ * Da a todas las secciones el mismo orden editorial. `claro` lo adapta a
+ * las bandas hueso (lima hondo y grafito).
  *
  * El disparo va en el contenedor: la línea del titular empieza oculta tras
  * la máscara y el navegador nunca la vería entrar.
  */
-export default function TituloSeccion({ id, indice, etiqueta, children, className = '' }) {
+export default function TituloSeccion({ id, indice, etiqueta, children, claro = false, className = '' }) {
   return (
     <motion.div initial="oculto" whileInView="visible" viewport={EN_VISTA} variants={escalonar(0, 0.12)} className={className}>
-      <motion.p variants={subir} className="tipo-etiqueta flex items-center gap-3 text-niebla">
-        <span className="tipo-tablero text-base tracking-normal text-lima">{indice}</span>
-        <motion.span variants={trazo} aria-hidden="true" className="block h-px w-10 origin-left bg-lima" />
+      <motion.p variants={subir} className={`tipo-etiqueta flex items-center gap-3 ${claro ? 'text-grafito' : 'text-niebla'}`}>
+        <span className={`tipo-tablero text-base tracking-normal ${claro ? 'text-lima-hondo' : 'text-lima'}`}>{indice}</span>
+        <motion.span
+          variants={trazo}
+          aria-hidden="true"
+          className={`block h-px w-10 origin-left ${claro ? 'bg-lima-hondo' : 'bg-lima'}`}
+        />
         {etiqueta}
       </motion.p>
-      <h2 id={id} className="tipo-ruta mt-5 max-w-3xl overflow-hidden pb-[0.08em] text-[clamp(2rem,4.6vw,3.5rem)]">
+      <h2 id={id} className="tipo-ruta mt-5 max-w-3xl overflow-hidden pb-[0.1em] text-[clamp(2.4rem,5.2vw,4.2rem)]">
         <motion.span variants={lineaMascara} className="block">
           {children}
         </motion.span>

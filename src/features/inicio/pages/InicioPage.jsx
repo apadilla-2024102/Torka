@@ -10,6 +10,8 @@ import ComoComprar from '../components/ComoComprar.jsx'
 import ObjecionesResumen from '../components/ObjecionesResumen.jsx'
 import LlamadoFinal from '../components/LlamadoFinal.jsx'
 import DesfileModelos from '../components/DesfileModelos.jsx'
+import Showroom from '../components/Showroom.jsx'
+import Experiencia from '../components/Experiencia.jsx'
 
 export const inicioLoader = async () => {
   const [modelos, preguntas] = await Promise.all([getModelos(), getPreguntas()])
@@ -17,10 +19,11 @@ export const inicioLoader = async () => {
 }
 
 /**
- * Portada. Orden pensado como una prueba de manejo:
+ * Portada. Orden pensado como una visita al showroom:
  * la emoción primero (autopista y moto), luego el argumento (manifiesto
- * y carriles), la elección (escaparate), las razones, el desfile de la
- * gama, el proceso, las dudas y, al final, la acción.
+ * y carriles), la elección (escaparate), el showroom en fotos, las
+ * razones, el desfile de la gama, la experiencia en tienda, el proceso,
+ * las dudas y, al final, la acción.
  */
 export default function InicioPage() {
   const { modelos, preguntas } = useLoaderData()
@@ -36,8 +39,10 @@ export default function InicioPage() {
       <BandaVelocidad />
       <Manifiesto />
       <GamaEscaparate modelos={modelos} />
+      <Showroom />
       <Razones />
       <DesfileModelos modelos={modelos} />
+      <Experiencia />
       <ComoComprar />
       <ObjecionesResumen preguntas={preguntas} />
       <LlamadoFinal />
