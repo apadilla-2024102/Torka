@@ -17,8 +17,9 @@ export const MOCK_MODELOS = [
     tagline: 'Tu primer gran paso',
     perfil: 'ciudad',
     perfilLabel: 'Ciudad',
-    precio: 8000,
-    destacado: 'Desde Q 8,000',
+    // Sin precio publicado todavía: el sitio muestra "Precio a consultar".
+    precio: null,
+    destacado: 'Ideal para iniciar',
     requiereLicencia: false,
     resumen:
       'La puerta de entrada a lo eléctrico: ligera, fácil de manejar y con respaldo para el acompañante. Para casa, oficina y mandados sin volver a pasar por la gasolinera.',
@@ -49,7 +50,7 @@ export const MOCK_MODELOS = [
     tagline: 'Más ciudad. Más vida.',
     perfil: 'trabajo',
     perfilLabel: 'Ciudad y reparto',
-    precio: 12000,
+    precio: null,
     destacado: 'Más vendida',
     requiereLicencia: true,
     resumen:

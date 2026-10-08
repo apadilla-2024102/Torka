@@ -71,7 +71,9 @@ export default function ModeloDetallePage() {
                 <span className="mt-1 block text-sm text-tinta-suave">
                   {modelo.proximamente
                     ? 'Futura gama superior. Te avisamos primero cuando llegue.'
-                    : 'Precio de lista, sin placas ni seguro'}
+                    : modelo.precio == null
+                      ? 'Solicita tu cotización con el precio vigente y las opciones de pago.'
+                      : 'Precio de lista, sin placas ni seguro'}
                 </span>
               </motion.p>
 

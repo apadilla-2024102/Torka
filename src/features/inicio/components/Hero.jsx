@@ -6,7 +6,7 @@ import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import ModeloImagen from '../../../shared/components/brand/ModeloImagen.jsx'
 import Inclinar from '../../../shared/components/ui/Inclinar.jsx'
 import { RUTAS_LOGO } from '../../../shared/components/brand/Logo.jsx'
-import { formatoNumero, formatoQuetzales } from '../../../shared/lib/formato.js'
+import { formatoNumero } from '../../../shared/lib/formato.js'
 import { kmPorMonto } from '../../../shared/lib/energia.js'
 import { CURVA, escalonar, lineaMascara, subir } from '../../../shared/lib/movimiento.js'
 import { useIntro } from '../../../shared/components/intro/IntroContexto.jsx'
@@ -31,7 +31,7 @@ const CONFIANZA = [
  * cortina, la moto entra y flota despacio, y con el scroll el panel y la
  * moto se separan en profundidad (paralaje).
  */
-export default function Hero({ precioDesde, modeloPortada }) {
+export default function Hero({ modeloPortada }) {
   const seccion = useRef(null)
   const reduced = useSinMovimiento()
   // La entrada espera a que se abra la cortina de la pantalla de carga.
@@ -68,7 +68,7 @@ export default function Hero({ precioDesde, modeloPortada }) {
           </motion.p>
           <motion.p variants={subir} className="mt-8 max-w-md text-base leading-relaxed text-tinta-suave sm:text-lg">
             Con Q100 de energía recorres más de {kmElectrica} km; con gasolina, unos {kmGasolina}. Frenos de
-            disco y mantenimiento mínimo. La gama yolt inicia en {formatoQuetzales(precioDesde)}.
+            disco y mantenimiento mínimo. Solicita tu cotización con el precio vigente.
           </motion.p>
           <motion.div variants={subir} className="mt-10 flex flex-wrap items-center gap-3">
             <Boton to="/modelos">Ver la gama</Boton>
