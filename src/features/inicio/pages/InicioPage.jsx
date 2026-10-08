@@ -34,7 +34,7 @@ export default function InicioPage() {
     <>
       <Hero
         precioDesde={precioDesde}
-        modeloPortada={modelos.find((m) => m.id === 'x') ?? modelos[0]}
+        modeloPortada={modelos.find((m) => m.id === 'city') ?? modelos[0]}
       />
       <BandaVelocidad />
       <Manifiesto />
