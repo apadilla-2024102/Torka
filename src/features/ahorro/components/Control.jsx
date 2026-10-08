@@ -11,7 +11,7 @@ export default function Control({ id, etiqueta, valor, min, max, paso, prefijo =
         <output htmlFor={id} className="tipo-tablero shrink-0 text-2xl">
           {prefijo}
           {formatoDecimal(valor, decimales)}
-          {sufijo && <span className="ml-1 text-sm text-grafito">{sufijo}</span>}
+          {sufijo && <span className="ml-1 text-sm text-tinta-suave">{sufijo}</span>}
         </output>
       </div>
       <input

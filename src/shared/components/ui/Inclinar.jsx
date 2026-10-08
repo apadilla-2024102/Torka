@@ -26,7 +26,7 @@ export default function Inclinar({ children, grados = 8, brillo = false, classNa
   const rotateX = useTransform(sy, [0, 1], [grados, -grados])
   const luzX = useTransform(sx, (v) => `${v * 100}%`)
   const luzY = useTransform(sy, (v) => `${v * 100}%`)
-  const reflejo = useMotionTemplate`radial-gradient(circle at ${luzX} ${luzY}, rgba(255,255,255,0.16), transparent 55%)`
+  const reflejo = useMotionTemplate`radial-gradient(circle at ${luzX} ${luzY}, rgba(214,247,21,0.10), transparent 55%)`
 
   if (!activo) return <div className={className}>{children}</div>
 

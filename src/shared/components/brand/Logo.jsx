@@ -5,8 +5,9 @@
  * - `barra`: el logotipo solo, para la navegación y la pantalla de carga.
  * - `completo`: logotipo y el lema "Enciende tu camino.", para el pie.
  *
- * `sobreOscuro` elige la versión con "olt" hueso (fondo negro) o la de
- * "olt" grafito y Y lima hondo (fondo claro).
+ * `sobreLienzo` (por defecto) usa la versión para fondo claro: "olt" en
+ * tinta y la Y en lima; con `false`, la de fondo oscuro ("olt"
+ * hueso y Y lima).
  */
 export const RUTAS_LOGO = {
   claro: '/marca/yolt-logo-claro.svg',
@@ -14,10 +15,10 @@ export const RUTAS_LOGO = {
   isotipo: '/marca/yolt-isotipo.svg',
 }
 
-export default function Logo({ variante = 'barra', sobreOscuro = true, className = '' }) {
+export default function Logo({ variante = 'barra', sobreLienzo = true, className = '' }) {
   const img = (
     <img
-      src={sobreOscuro ? RUTAS_LOGO.claro : RUTAS_LOGO.oscuro}
+      src={sobreLienzo ? RUTAS_LOGO.oscuro : RUTAS_LOGO.claro}
       alt="yolt"
       translate="no"
       width="1186"
@@ -30,7 +31,7 @@ export default function Logo({ variante = 'barra', sobreOscuro = true, className
     return (
       <span className={`inline-flex flex-col items-start gap-3 ${className}`}>
         {img}
-        <span className={`tipo-etiqueta ${sobreOscuro ? 'text-niebla' : 'text-grafito'}`}>Enciende tu camino.</span>
+        <span className={`tipo-etiqueta ${sobreLienzo ? 'text-tinta-suave' : 'text-tinta-inversa-suave'}`}>Enciende tu camino.</span>
       </span>
     )
   }

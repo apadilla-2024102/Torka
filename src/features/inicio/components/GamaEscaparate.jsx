@@ -25,7 +25,7 @@ export default function GamaEscaparate({ modelos }) {
   const modeloActivo = modelos.find((m) => m.id === activo) ?? modelos[0]
 
   return (
-    <section aria-labelledby="gama-titulo" className="relative bg-negro py-24 sm:py-32">
+    <section aria-labelledby="gama-titulo" className="relative bg-lienzo py-24 sm:py-32">
       <Contenedor>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <TituloSeccion id="gama-titulo" indice="01" etiqueta="La gama">
@@ -97,11 +97,11 @@ function Capitulo({ modelo, indice, total, onActivo }) {
       <div className="mb-6 lg:hidden">
         <ModeloImagen modelo={modelo} ajustada className="aspect-[4/3] w-full" />
       </div>
-      <p className="tipo-etiqueta text-niebla">
+      <p className="tipo-etiqueta text-tinta-suave">
         {String(indice + 1).padStart(2, '0')} de {String(total).padStart(2, '0')} · {modelo.perfilLabel}
       </p>
       <h3 className="tipo-ruta mt-2 text-[clamp(2.6rem,5vw,4.2rem)]">{modelo.nombre}</h3>
-      <p className="mt-3 max-w-md text-lg text-niebla">{modelo.tagline}</p>
+      <p className="mt-3 max-w-md text-lg text-tinta-suave">{modelo.tagline}</p>
 
       <dl className="mt-8 grid max-w-md grid-cols-3 gap-4">
         <Lectura etiqueta="Autonomía" valor={modelo.specs.autonomia} unidad="km" energia />
@@ -114,7 +114,7 @@ function Capitulo({ modelo, indice, total, onActivo }) {
         <Link
           to={`/modelos/${modelo.id}`}
           viewTransition
-          className="tipo-etiqueta inline-flex min-h-12 items-center border border-papel/50 px-7 text-papel transition-[background-color,border-color,color] duration-[330ms] hover:border-papel hover:bg-papel hover:text-negro"
+          className="tipo-etiqueta inline-flex min-h-12 items-center border border-tinta/50 px-7 text-tinta transition-[background-color,border-color,color] duration-[330ms] hover:border-tinta hover:bg-tinta hover:text-lienzo"
         >
           Ver la {modelo.nombre}
         </Link>

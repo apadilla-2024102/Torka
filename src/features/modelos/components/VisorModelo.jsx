@@ -66,7 +66,7 @@ export default function VisorModelo({ modelo, colorId }) {
         )}
       </div>
       {/* Con 3D, los botones de giro ocupan la franja de abajo: el texto va después. */}
-      <figcaption className={`text-sm text-niebla ${con3D ? 'mt-[4.25rem]' : 'mt-4'}`}>
+      <figcaption className={`text-sm text-tinta-suave ${con3D ? 'mt-[4.25rem]' : 'mt-4'}`}>
         {conFoto
           ? 'Imagen de referencia del modelo; el acabado final puede variar.'
           : `${con3D ? 'Arrastra la moto para verla desde cualquier lado. ' : ''}Imagen generada por computadora; el acabado real puede variar.`}

@@ -15,22 +15,19 @@ import { useSinMovimiento } from '../../hooks/useMovimiento.js'
  * `energia` marca la cifra en lima: solo para datos de
  * autonomía, carga y distancia.
  */
-export default function Lectura({ valor, unidad, etiqueta, energia = false, sobreOscuro = true, grande = false }) {
+export default function Lectura({ valor, unidad, etiqueta, energia = false, sobreLienzo = true, grande = false }) {
   const ref = useRef(null)
   const enVista = useInView(ref, { once: true, margin: '0px 0px -10% 0px' })
   const reduced = useSinMovimiento()
   const esNumero = typeof valor === 'number'
   const mostrado = useCountUp(esNumero ? (enVista || reduced ? valor : 0) : 0, 1.1)
 
-  const colorCifra = energia && sobreOscuro ? 'text-lima' : sobreOscuro ? 'text-papel' : 'text-asfalto'
+  const colorCifra = energia ? (sobreLienzo ? 'text-lima-hondo' : 'text-lima') : sobreLienzo ? 'text-tinta' : 'text-lienzo-alto'
 
   return (
     <div ref={ref}>
-      <dt className={`text-sm ${sobreOscuro ? 'text-niebla' : 'text-grafito'}`}>{etiqueta}</dt>
+      <dt className={`text-sm ${sobreLienzo ? 'text-tinta-suave' : 'text-tinta-inversa-suave'}`}>{etiqueta}</dt>
       <dd className={`tipo-tablero mt-0.5 leading-none ${grande ? 'text-5xl' : 'text-3xl'} ${colorCifra}`}>
-        {energia && !sobreOscuro && (
-          <span className="mr-1.5 inline-block h-[0.6em] w-1.5 rounded-sm bg-lima align-baseline" aria-hidden="true" />
-        )}
         {esNumero ? (
           <>
             <span aria-hidden="true">{formatoNumero(mostrado)}</span>
@@ -40,7 +37,7 @@ export default function Lectura({ valor, unidad, etiqueta, energia = false, sobr
           valor
         )}
         {unidad && (
-          <span className={`ml-1 text-base font-semibold ${sobreOscuro ? 'text-niebla' : 'text-grafito'}`}>
+          <span className={`ml-1 text-base font-semibold ${sobreLienzo ? 'text-tinta-suave' : 'text-tinta-inversa-suave'}`}>
             {unidad}
           </span>
         )}

@@ -89,12 +89,12 @@ export default function PantallaCarga() {
           role="status"
           aria-live="polite"
           aria-label={`Cargando yolt, ${porcentaje} por ciento`}
-          className="fixed inset-0 z-[100] flex flex-col justify-between bg-black px-5 py-6 text-papel sm:px-10 sm:py-8"
+          className="fixed inset-0 z-[100] flex flex-col justify-between bg-tinta px-5 py-6 text-lienzo-alto sm:px-10 sm:py-8"
           initial={{ clipPath: 'inset(0 0 0% 0)' }}
           exit={reduced ? { opacity: 0, transition: { duration: 0.3 } } : { clipPath: 'inset(0 0 100% 0)', transition: { duration: 0.9, ease: CURVA.expo } }}
         >
-          <div className="flex items-center justify-between text-sm text-niebla">
-            <Logo />
+          <div className="flex items-center justify-between text-sm text-tinta-inversa-suave">
+            <Logo sobreLienzo={false} />
             <span className="tipo-etiqueta hidden sm:block">Movilidad eléctrica · Guatemala</span>
           </div>
 
@@ -115,13 +115,13 @@ export default function PantallaCarga() {
           </div>
 
           <div aria-hidden="true">
-            <div className="flex items-end justify-between text-niebla">
+            <div className="flex items-end justify-between text-tinta-inversa-suave">
               <span className="tipo-etiqueta">{porcentaje < 100 ? 'Encendiendo' : 'Enciende tu camino'}</span>
-              <span className="tipo-tablero text-3xl text-papel sm:text-4xl">
+              <span className="tipo-tablero text-3xl text-lienzo-alto sm:text-4xl">
                 {String(porcentaje).padStart(3, '0')}
               </span>
             </div>
-            <div className="mt-4 h-px w-full bg-white/10">
+            <div className="mt-4 h-px w-full bg-filete-inverso">
               <div className="h-px origin-left bg-lima" style={{ transform: `scaleX(${porcentaje / 100})` }} />
             </div>
           </div>

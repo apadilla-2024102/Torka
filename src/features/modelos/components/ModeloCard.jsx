@@ -30,11 +30,11 @@ export default function ModeloCard({ modelo, ref }) {
           to={`/modelos/${id}`}
           viewTransition
           data-cursor="Ver"
-          className="group flex h-full flex-col overflow-hidden rounded-[2px] border border-linea bg-asfalto-alto transition-[border-color] duration-[330ms] hover:border-papel/40"
+          className="group flex h-full flex-col overflow-hidden rounded-[2px] border border-filete bg-superficie transition-[border-color] duration-[330ms] hover:border-tinta/40"
         >
-          <div className="relative bg-negro px-6 pt-10 pb-4">
+          <div className="relative bg-lienzo px-6 pt-10 pb-4">
             {destacado && (
-              <span className="tipo-etiqueta absolute top-4 left-4 bg-lima px-3 py-1 text-negro">
+              <span className="tipo-etiqueta absolute top-4 left-4 bg-lima px-3 py-1 text-lienzo">
                 {destacado}
               </span>
             )}
@@ -47,9 +47,9 @@ export default function ModeloCard({ modelo, ref }) {
           <div className="flex flex-1 flex-col p-6">
             <div className="flex items-baseline justify-between gap-3">
               <h2 className="tipo-ruta text-3xl">{nombre}</h2>
-              <span className="text-niebla">{perfilLabel}</span>
+              <span className="text-tinta-suave">{perfilLabel}</span>
             </div>
-            <p className="mt-2 text-niebla">{tagline}</p>
+            <p className="mt-2 text-tinta-suave">{tagline}</p>
 
             <dl className="mt-6 grid grid-cols-3 gap-3">
               <Lectura etiqueta="Autonomía" valor={specs.autonomia} unidad="km" energia />
@@ -59,7 +59,7 @@ export default function ModeloCard({ modelo, ref }) {
 
             <div className="mt-auto flex items-end justify-between gap-4 pt-7">
               <div>
-                <span className="tipo-etiqueta block text-niebla">Precio</span>
+                <span className="tipo-etiqueta block text-tinta-suave">Precio</span>
                 <span className="tipo-tablero text-2xl">{precioModelo(modelo)}</span>
               </div>
               <div className="flex gap-1.5" aria-label={colores.length === 1 ? `Color: ${colores[0].nombre}` : `${colores.length} colores disponibles`}>
@@ -67,7 +67,7 @@ export default function ModeloCard({ modelo, ref }) {
                   <span
                     key={c.id}
                     title={c.nombre}
-                    className="h-5 w-5 rounded-full ring-1 ring-papel/30"
+                    className="h-5 w-5 rounded-full ring-1 ring-tinta/30"
                     style={{ backgroundColor: c.hex }}
                   />
                 ))}

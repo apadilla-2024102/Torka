@@ -66,7 +66,7 @@ export default function CursorMarca() {
       </motion.div>
       <motion.div aria-hidden="true" className="pointer-events-none fixed top-0 left-0 z-[90]" style={posicion}>
         <motion.div
-          className="absolute -top-[42px] -left-[42px] flex h-[84px] w-[84px] items-center justify-center rounded-full bg-lima text-sm font-semibold text-negro"
+          className="absolute -top-[42px] -left-[42px] flex h-[84px] w-[84px] items-center justify-center rounded-full bg-tinta text-sm font-medium text-lienzo"
           animate={{ scale: etiqueta && visible ? 1 : 0 }}
           transition={resorte}
         >

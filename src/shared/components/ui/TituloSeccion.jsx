@@ -10,21 +10,21 @@ const trazo = {
 /**
  * Encabezado de sección: índice numerado, filete lima y rótulo, y debajo
  * el titular que sube desde detrás de una máscara al entrar en pantalla.
- * Da a todas las secciones el mismo orden editorial. `claro` lo adapta a
- * las bandas hueso (lima hondo y grafito).
+ * Da a todas las secciones el mismo orden editorial. `sobreTinta` lo adapta a
+ * las bandas de tinta (oscuras).
  *
  * El disparo va en el contenedor: la línea del titular empieza oculta tras
  * la máscara y el navegador nunca la vería entrar.
  */
-export default function TituloSeccion({ id, indice, etiqueta, children, claro = false, className = '' }) {
+export default function TituloSeccion({ id, indice, etiqueta, children, sobreTinta = false, className = '' }) {
   return (
     <motion.div initial="oculto" whileInView="visible" viewport={EN_VISTA} variants={escalonar(0, 0.12)} className={className}>
-      <motion.p variants={subir} className={`tipo-etiqueta flex items-center gap-3 ${claro ? 'text-grafito' : 'text-niebla'}`}>
-        <span className={`tipo-tablero text-base tracking-normal ${claro ? 'text-lima-hondo' : 'text-lima'}`}>{indice}</span>
+      <motion.p variants={subir} className={`tipo-etiqueta flex items-center gap-3 ${sobreTinta ? 'text-tinta-inversa-suave' : 'text-tinta-suave'}`}>
+        <span className={`tipo-tablero text-base tracking-normal ${sobreTinta ? 'text-lima' : 'text-lima-hondo'}`}>{indice}</span>
         <motion.span
           variants={trazo}
           aria-hidden="true"
-          className={`block h-px w-10 origin-left ${claro ? 'bg-lima-hondo' : 'bg-lima'}`}
+          className={`block h-px w-10 origin-left ${sobreTinta ? 'bg-lima' : 'bg-lima-hondo'}`}
         />
         {etiqueta}
       </motion.p>

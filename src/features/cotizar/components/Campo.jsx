@@ -25,7 +25,7 @@ export default function Campo({ id, etiqueta, ayuda, error, intento = 0, childre
         {etiqueta}
       </label>
       {ayuda && (
-        <p id={`${id}-ayuda`} className="mt-1 text-sm text-grafito">
+        <p id={`${id}-ayuda`} className="mt-1 text-sm text-tinta-suave">
           {ayuda}
         </p>
       )}
@@ -44,6 +44,6 @@ export default function Campo({ id, etiqueta, ayuda, error, intento = 0, childre
 }
 
 export const claseControl = (conError) =>
-  `block min-h-12 w-full rounded-[2px] border bg-white px-4 text-base text-asfalto transition-[border-color] duration-150 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-lima-hondo ${
-    conError ? 'border-error-hondo' : 'border-asfalto/25 hover:border-asfalto/50'
+  `block min-h-12 w-full rounded-[2px] border bg-white px-4 text-base text-tinta transition-[border-color] duration-150 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-lima-hondo ${
+    conError ? 'border-error-hondo' : 'border-tinta/25 hover:border-tinta/50'
   }`

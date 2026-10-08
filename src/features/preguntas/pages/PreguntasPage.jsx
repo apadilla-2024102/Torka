@@ -20,7 +20,7 @@ export default function PreguntasPage() {
         descripcion="Licencia, carga, batería, lluvia, ahorro y garantía: las dudas que más se repiten en el piso de venta."
       />
       <Contenedor className="py-10 sm:py-14">
-        <div className="border-t border-linea">
+        <div className="border-t border-filete">
           {preguntas.map((p, i) => (
             <Pregunta
               key={p.id}

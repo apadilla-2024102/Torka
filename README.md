@@ -194,31 +194,28 @@ Quien activa "reducir movimiento" en su sistema ve todo el contenido sin
 desplazamientos: los bucles se pausan, la línea de pasos aparece completa
 y las cifras muestran su valor final.
 
-## Portada cinematográfica
+## Portada
 
-La portada está armada por capas de profundidad (skill `epic-design`) y
-usa componentes de [React Bits](https://github.com/DavidHDev/react-bits),
-guardados en `src/shared/components/reactbits/` con su licencia:
+Estilo formal y claro (ver `DESIGN.md`). Orden: héroe (titular en serif y
+la moto sobre un panel pergamino con paralaje), banda de lemas, manifiesto
+y comparación de recorrido, 01 La gama (escaparate), 02 Showroom (galería
+editorial sobre tinta), 03 Razones, 04 Línea yolt (desfile), 05
+Experiencia (servicios y video), 06 Proceso de compra, 07 Preguntas y el
+cierre en banda de tinta.
+
+Componentes de [React Bits](https://github.com/DavidHDev/react-bits) en
+`src/shared/components/reactbits/` (con su licencia):
 
 | Sección | Componente | Qué hace |
 |---|---|---|
-| Héroe | Hyperspeed | Autopista nocturna en lima y blanco, en curva larga y a velocidad de crucero |
-| Botón principal | Magnet | El botón se acerca al cursor |
-| Banda | ScrollVelocity | Frases que corren y se aceleran con el scroll |
+| Banda | ScrollVelocity | Lemas que corren y se aceleran con el scroll |
 | Manifiesto | ScrollReveal | Las palabras se encienden mientras se lee |
 | Razones | SpotlightCard | Tarjetas con luz que sigue al cursor |
-| Cierre | CSS (`borde-vivo`, `resplandor-lento`) | Línea de luz lima que recorre el borde de la tarjeta final sobre un resplandor que se desplaza |
 
-Además: escaparate de la gama con la moto fija mientras pasan los modelos
-(se intercambian como motos frente a una vitrina), franja de garantías bajo
-el héroe, resumen de dudas frecuentes y barra fija de compra en celular
-(recomendaciones de la skill `page-cro`).
-
-La autopista (WebGL) se pausa cuando sale de pantalla. En celular, sin
-WebGL o en equipos lentos, se usa una versión estática en CSS.
-
-Cada sección de la portada abre con `TituloSeccion`: índice numerado
-(01–05), filete lima que se dibuja y titular que sube desde una máscara.
+Propios: `TituloSeccion` (índice, filete y titular por máscara),
+`FotoRevelada` (foto que se descubre como cortina con paralaje),
+`Inclinar` (inclinación 3D con el cursor), el destello sobre la moto y el
+borde vivo del cierre (CSS).
 
 ## Pantalla de carga, transiciones y cursor
 
@@ -234,11 +231,6 @@ Mientras la pantalla de carga está arriba, el sitio de abajo no se pinta
 (sus imágenes sí descargan): así la carga se anima fluida incluso en
 equipos modestos. La portada y los títulos esperan a que la cortina se
 abra para hacer su entrada.
-
-**Equipos lentos.** La autopista del héroe se
-mide al arrancar: si el equipo no la mueve a 30 cuadros por segundo
-(por ejemplo, sin aceleración gráfica), se cambia por su versión estática
-durante el resto de la visita (`shared/hooks/useFluidez.js`).
 
 ## Accesibilidad
 

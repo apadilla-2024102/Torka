@@ -13,20 +13,20 @@ const ganadorDe = (modelos, key, mejor) => {
 
 export default function TablaComparativa({ modelos, specsMeta }) {
   return (
-    <div className="relative overflow-x-auto rounded-[2px] bg-papel text-asfalto">
+    <div className="relative overflow-x-auto rounded-[2px] border border-filete bg-lienzo text-tinta">
       <table className="w-full min-w-[720px] border-collapse text-left">
         <caption className="sr-only">
           Especificaciones de los modelos yolt. El mejor valor de cada fila está marcado.
         </caption>
         <thead>
-          <tr className="border-b border-concreto align-bottom">
+          <tr className="border-b border-filete align-bottom">
             <td className="p-5" />
             {modelos.map((m) => (
               <th key={m.id} scope="col" className="p-5">
                 <Link to={`/modelos/${m.id}`} viewTransition className="group block">
                   <ModeloImagen modelo={m} className="aspect-[44/27] w-full max-w-[170px]" />
                   <span className="tipo-ruta mt-3 block text-2xl group-hover:underline">{m.nombre}</span>
-                  <span className="block text-sm font-normal text-grafito">{m.perfilLabel}</span>
+                  <span className="block text-sm font-normal text-tinta-suave">{m.perfilLabel}</span>
                 </Link>
               </th>
             ))}
@@ -36,8 +36,8 @@ export default function TablaComparativa({ modelos, specsMeta }) {
           {specsMeta.map((s) => {
             const ganador = ganadorDe(modelos, s.key, s.mejor)
             return (
-              <tr key={s.key} className="border-b border-concreto/80">
-                <th scope="row" className="p-5 font-medium text-grafito">
+              <tr key={s.key} className="border-b border-filete/80">
+                <th scope="row" className="p-5 font-medium text-tinta-suave">
                   {s.label}
                 </th>
                 {modelos.map((m) => {
@@ -46,7 +46,7 @@ export default function TablaComparativa({ modelos, specsMeta }) {
                   return (
                     <td key={m.id} className="p-5">
                       {typeof v === 'number' ? (
-                        <span className={`tipo-tablero text-2xl ${gana ? '' : 'text-asfalto/70'}`}>
+                        <span className={`tipo-tablero text-2xl ${gana ? '' : 'text-tinta/70'}`}>
                           {gana && (
                             // El punto del ganador aparece con un pequeño salto al ver la tabla.
                             <motion.span
@@ -58,7 +58,7 @@ export default function TablaComparativa({ modelos, specsMeta }) {
                             />
                           )}
                           {formatoNumero(v)}
-                          <span className="ml-1 text-sm text-grafito">{s.unidad}</span>
+                          <span className="ml-1 text-sm text-tinta-suave">{s.unidad}</span>
                           {gana && <span className="sr-only"> (mejor valor)</span>}
                         </span>
                       ) : (
@@ -70,8 +70,8 @@ export default function TablaComparativa({ modelos, specsMeta }) {
               </tr>
             )
           })}
-          <tr className="border-b border-concreto/80">
-            <th scope="row" className="p-5 font-medium text-grafito">
+          <tr className="border-b border-filete/80">
+            <th scope="row" className="p-5 font-medium text-tinta-suave">
               Licencia tipo M
             </th>
             {modelos.map((m) => (
@@ -80,7 +80,7 @@ export default function TablaComparativa({ modelos, specsMeta }) {
               </td>
             ))}
           </tr>
-          <tr className="bg-papel">
+          <tr className="bg-lienzo-alto">
             <th scope="row" className="p-5 font-semibold">
               Precio
             </th>

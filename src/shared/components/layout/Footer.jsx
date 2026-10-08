@@ -31,21 +31,21 @@ const COLUMNAS = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-negro pt-16 pb-28 text-papel lg:pb-10">
+    <footer className="relative bg-lienzo pt-16 pb-28 text-tinta lg:pb-10">
       <div aria-hidden="true" className="franja-marca absolute inset-x-0 top-0 h-1" />
       <Contenedor>
         <div className="grid gap-12 lg:grid-cols-[1.2fr_2fr]">
           <div>
             <Logo variante="completo" />
-            <p className="mt-6 max-w-sm text-niebla">
+            <p className="mt-6 max-w-sm text-tinta-suave">
               Movilidad eléctrica para una Guatemala más real. Más ahorro, menos mantenimiento y una ciudad más limpia.
             </p>
-            <p className="mt-6 text-niebla">
-              <a href={`mailto:${NEGOCIO.correoVentas}`} className="text-papel underline-offset-4 hover:underline">
+            <p className="mt-6 text-tinta-suave">
+              <a href={`mailto:${NEGOCIO.correoVentas}`} className="text-tinta underline-offset-4 hover:underline">
                 {NEGOCIO.correoVentas}
               </a>
               <br />
-              <a href={`tel:${NEGOCIO.telefono.replace(/\s/g, '')}`} className="cifras text-papel underline-offset-4 hover:underline">
+              <a href={`tel:${NEGOCIO.telefono.replace(/\s/g, '')}`} className="cifras text-tinta underline-offset-4 hover:underline">
                 {NEGOCIO.telefono}
               </a>
             </p>
@@ -58,7 +58,7 @@ export default function Footer() {
                 <ul className="mt-4 space-y-3">
                   {c.enlaces.map((e) => (
                     <li key={e.to}>
-                      <Link to={e.to} viewTransition className="text-niebla transition-colors duration-200 hover:text-papel">
+                      <Link to={e.to} viewTransition className="text-tinta-suave transition-colors duration-200 hover:text-tinta">
                         {e.label}
                       </Link>
                     </li>
@@ -69,7 +69,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-3 border-t border-linea pt-7 text-sm text-niebla sm:flex-row sm:justify-between">
+        <div className="mt-14 flex flex-col gap-3 border-t border-filete pt-7 text-sm text-tinta-suave sm:flex-row sm:justify-between">
           <p>© {new Date().getFullYear()} yolt · Guatemala en movimiento</p>
           <p>Precios y especificaciones de referencia. Confirma la ficha vigente con tu distribuidor.</p>
         </div>
