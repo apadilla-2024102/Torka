@@ -101,6 +101,15 @@ anteriores siguen en `herramientas/fotos/originales/`.
 Como las motos son negras sobre lienzo negro, `.foto-moto` les da una
 orilla de luz tenue (index.css).
 
+### Showroom
+
+Las fotos y el video del showroom están en `public/showroom/`, preparados
+con `python3 herramientas/showroom/preparar_showroom.py` (Pillow + ffmpeg)
+desde `herramientas/showroom/originales/`: color sobrio y uniforme, WebP de
+1400 px y un fragmento de 12 s del recorrido en WebM y MP4 con póster.
+Se usan en las secciones Showroom (galería editorial sobre hueso) y
+Experiencia (servicios y video vertical) de la portada.
+
 | Modelo | Color         | Archivo                |
 | ------ | ------------- | ---------------------- |
 | yolt ONE  | Grafito y lima | `one-grafito.webp` |

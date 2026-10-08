@@ -90,7 +90,7 @@ export default function Hero({ precioDesde, modeloPortada }) {
               <motion.p variants={subir} className="tipo-etiqueta mb-5 text-niebla">
                 Movilidad eléctrica para una Guatemala más real
               </motion.p>
-              <h1 className="tipo-ruta text-[clamp(2.1rem,5.4vw,4.4rem)] drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)]">
+              <h1 className="tipo-ruta text-[clamp(3.2rem,7.6vw,6.6rem)] leading-[0.9] drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)]">
                 {LINEAS.map((linea) => (
                   <span key={linea} className="block overflow-hidden pb-[0.08em]">
                     <motion.span variants={lineaMascara} className="block">
@@ -99,7 +99,7 @@ export default function Hero({ precioDesde, modeloPortada }) {
                   </span>
                 ))}
               </h1>
-              <motion.p variants={subir} className="tipo-ruta mt-4 text-[clamp(1.3rem,2.6vw,2rem)] text-lima">
+              <motion.p variants={subir} className="tipo-ruta mt-4 text-[clamp(1.6rem,3.2vw,2.6rem)] text-lima italic">
                 Menos gasto. Más vida.
               </motion.p>
               <motion.p variants={subir} className="mt-6 max-w-lg text-lg text-papel/80 sm:text-xl">

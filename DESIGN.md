@@ -23,8 +23,8 @@ colors:
 
 typography:
   logotipo: "oficial, vectorizado (public/marca)"
-  familia: "Archivo (eje de ancho 62–125)"
-  display: { ancho: 125%, peso: 700, caja: MAYÚSCULAS, interlinea: 0.92, tracking: -0.02em }
+  familia: "Archivo (eje de ancho 62–125) + Instrument Serif"
+  display: { familia: Instrument Serif, peso: 400, caja: normal, interlinea: 1.0, tracking: -0.015em }
   cuerpo:  { ancho: 100%, peso: 400, tamaño: 17px, interlinea: 1.6 }
   tablero: { ancho: 75%, peso: 700, cifras: tabulares }
   etiqueta: { ancho: 100%, peso: 600, caja: MAYÚSCULAS, tamaño: 12–13px, tracking: 0.12em }
@@ -57,10 +57,12 @@ lienzo negro donde solo el producto, el texto hueso y el lima tienen
 permiso de brillar.
 
 - Lienzo negro de borde a borde; las escenas importantes en negro puro.
-- Titulares en MAYÚSCULAS, enormes, interlínea apretada.
+- Titulares en serif editorial, grandes, en caja normal.
 - Botones rectos, sin esquinas redondeadas.
-- Bandas claras (hueso) solo donde se lee con calma: tabla comparativa,
-  formularios, calculadoras.
+- Bandas claras (hueso) donde se lee con calma o se contempla: showroom,
+  tabla comparativa, formularios, calculadoras.
+- Fotografía editorial: galería asimétrica, fotos que se descubren como
+  cortina y se desplazan dentro de su marco (`FotoRevelada`).
 - Un solo tiempo para todo cambio de estado: 0.33 s.
 
 ## 3. Color
@@ -81,8 +83,9 @@ lima hondo sobre hueso 5.7:1.
 ## 4. Tipografía
 
 - **Logotipo**: siempre el archivo SVG; nunca se escribe con texto.
-- **Display / títulos** (`.tipo-ruta`): Archivo expandida al 125 %, peso
-  700, en MAYÚSCULAS, interlínea 0.92.
+- **Display / títulos** (`.tipo-ruta`): Instrument Serif, peso 400, en
+  caja normal (nunca todo en mayúsculas), interlínea 1.0. Itálica para el
+  lema en lima ("Menos gasto. Más vida.").
 - **Cuerpo**: ancho normal, 17 px, interlínea 1.6.
 - **Tablero** (`.tipo-tablero`): condensada al 75 % con cifras tabulares,
   para toda especificación técnica.

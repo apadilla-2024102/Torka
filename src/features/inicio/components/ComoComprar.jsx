@@ -45,7 +45,7 @@ export default function ComoComprar() {
   return (
     <section aria-labelledby="comprar-titulo" className="py-20 sm:py-28">
       <Contenedor>
-        <TituloSeccion id="comprar-titulo" indice="04" etiqueta="Proceso de compra">
+        <TituloSeccion id="comprar-titulo" indice="06" etiqueta="Proceso de compra">
           Así de simple es comprar
         </TituloSeccion>
 

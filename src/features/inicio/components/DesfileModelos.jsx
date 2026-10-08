@@ -18,7 +18,7 @@ export default function DesfileModelos({ modelos }) {
   return (
     <section aria-labelledby="desfile-titulo" className="overflow-hidden bg-negro py-24 text-papel sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-8">
-        <TituloSeccion id="desfile-titulo" indice="03" etiqueta="Línea yolt">
+        <TituloSeccion id="desfile-titulo" indice="04" etiqueta="Línea yolt">
           Una misma esencia, diferentes caminos
         </TituloSeccion>
       </div>
