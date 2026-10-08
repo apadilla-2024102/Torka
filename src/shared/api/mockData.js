@@ -2,7 +2,8 @@
  * Datos de ejemplo de yolt.
  *
  * Se usan mientras no exista un backend (variable VITE_API_URL vacía).
- * Precios en quetzales (GTQ), fichas, garantías y distribuidores son de
+ * Fichas técnicas: cotización del fabricante (260901). Precios en quetzales
+ * (GTQ), garantías y distribuidores son de
  * EJEMPLO: sustitúyelos por los reales antes de publicar.
  *
  * Añade o quita modelos y el catálogo, la ficha, el comparador y el
@@ -20,19 +21,20 @@ export const MOCK_MODELOS = [
     destacado: 'Desde Q 8,000',
     requiereLicencia: false,
     resumen:
-      'La puerta de entrada a lo eléctrico: ligera, fácil de manejar y con batería que se desmonta para cargarla en casa. Para casa, oficina y mandados sin volver a pasar por la gasolinera.',
+      'La puerta de entrada a lo eléctrico: ligera, fácil de manejar y con respaldo para el acompañante. Para casa, oficina y mandados sin volver a pasar por la gasolinera.',
+    // Ficha del fabricante (cotización 260901).
     specs: {
-      autonomia: 60,
-      velocidad: 45,
-      carga: 4,
+      autonomia: 70,
+      velocidad: 50,
       motor: 1000,
-      cargaUtil: 150,
-      bateria: 'Extraíble 48V 20Ah',
+      bateria: 'Plomo-ácido 60V 20Ah',
+      frenos: 'Disco delantero y trasero',
+      llantas: 'Aluminio 10" delantera y trasera',
     },
     puntos: [
-      'Batería extraíble: la cargas en cualquier contacto de 120 V',
+      'Frenos de disco delantero y trasero',
+      'Respaldo para el acompañante y faro LED',
       'No requiere licencia tipo M',
-      'Asiento acolchado con respaldo para el acompañante',
     ],
     // Silueta de respaldo, por si una foto no carga.
     ilustracion: { parabrisas: false, parrilla: false, caja: false, dobleBateria: false },
@@ -49,20 +51,20 @@ export const MOCK_MODELOS = [
     perfilLabel: 'Ciudad y reparto',
     precio: 12000,
     destacado: 'Más vendida',
-    requiereLicencia: false,
+    requiereLicencia: true,
     resumen:
-      'Chasis con defensas de acero, parrilla trasera y plataforma amplia. Para moverte todos los días por la ciudad, hacer mensajería o reparto, y que cada quetzal que antes iba a combustible se quede contigo.',
+      'Chasis con defensa de acero, baúl trasero y plataforma amplia. Para moverte todos los días por la ciudad, hacer mensajería o reparto, y que cada quetzal que antes iba a combustible se quede contigo.',
     specs: {
-      autonomia: 80,
-      velocidad: 50,
-      carga: 5,
-      motor: 1500,
-      cargaUtil: 200,
-      bateria: 'Extraíble 60V 24Ah',
+      autonomia: 90,
+      velocidad: 85,
+      motor: 3000,
+      bateria: 'Litio 72V 30Ah',
+      frenos: 'Disco delantero y trasero',
+      llantas: 'Aluminio 12" delantera, 10" trasera',
     },
     puntos: [
-      'Defensas laterales y parrilla trasera de acero',
-      'Capacidad de 200 kg incluyendo conductor',
+      'Motor de 3,000 W y hasta 85 km/h',
+      'Defensa de acero y baúl trasero',
       'Precio por flotilla a partir de 5 unidades',
     ],
     ilustracion: { parabrisas: true, parrilla: true, caja: false, dobleBateria: false },
@@ -87,19 +89,19 @@ export const MOCK_MODELOS = [
     destacado: 'Próximamente',
     requiereLicencia: true,
     resumen:
-      'La futura gama superior de yolt: scooter grande, cómodo para dos y con la mayor autonomía de la marca. Déjanos tus datos y te avisamos primero cuando llegue.',
+      'La gama superior de yolt: scooter grande con motor de 5,000 W, cómodo para dos y con la mayor autonomía de la marca. Déjanos tus datos y te avisamos primero cuando llegue.',
     specs: {
-      autonomia: 140,
+      autonomia: 130,
       velocidad: 95,
-      carga: 6,
-      motor: 4000,
-      cargaUtil: 190,
-      bateria: 'Litio 72V 50Ah',
+      motor: 5000,
+      bateria: 'Litio 72V 48Ah',
+      frenos: 'Disco delantero y trasero',
+      llantas: 'Aluminio 13" delantera, 12" trasera',
     },
     puntos: [
-      'La mayor autonomía de la gama',
-      'Parabrisas alto y asiento amplio para viajar en pareja',
-      'Ficha preliminar: puede cambiar al lanzamiento',
+      'Motor de 5,000 W y hasta 95 km/h',
+      'La mayor autonomía de la gama: 130 km',
+      'Parabrisas alto y baúl trasero',
     ],
     ilustracion: { parabrisas: true, parrilla: true, caja: false, dobleBateria: false, deportiva: true },
     colores: [{ id: 'blanco', nombre: 'Blanco perla', hex: '#e7e6ea' }],
@@ -112,9 +114,9 @@ export const SPECS_META = [
   { key: 'autonomia', label: 'Autonomía', unidad: 'km', mejor: 'alto' },
   { key: 'velocidad', label: 'Velocidad máxima', unidad: 'km/h', mejor: 'alto' },
   { key: 'motor', label: 'Potencia', unidad: 'W', mejor: 'alto' },
-  { key: 'carga', label: 'Tiempo de carga', unidad: 'h', mejor: 'bajo' },
-  { key: 'cargaUtil', label: 'Capacidad de carga', unidad: 'kg', mejor: 'alto' },
   { key: 'bateria', label: 'Batería', unidad: '', mejor: null },
+  { key: 'frenos', label: 'Frenos', unidad: '', mejor: null },
+  { key: 'llantas', label: 'Rines', unidad: '', mejor: null },
 ]
 
 export const PERFILES = [
@@ -169,25 +171,25 @@ export const MOCK_PREGUNTAS = [
     id: 'licencia',
     pregunta: '¿Necesito licencia y placas?',
     respuesta:
-      'Depende del modelo. yolt ONE y CITY se mantienen dentro del límite de potencia y velocidad que suele clasificarse como ciclomotor y no exigen licencia tipo M. yolt GT sí requiere licencia tipo M y placas. Tu distribuidor te entrega la factura y el certificado de origen, que es lo que necesitas para inscribir el vehículo ante la SAT.',
+      'Depende del modelo. yolt ONE (1,000 W y 50 km/h) se mantiene dentro del límite que suele clasificarse como ciclomotor y no exige licencia tipo M. yolt CITY y GT sí requieren licencia tipo M y placas. Tu distribuidor te entrega la factura y el certificado de origen, que es lo que necesitas para inscribir el vehículo ante la SAT.',
   },
   {
     id: 'carga-departamento',
     pregunta: 'Vivo en un apartamento, ¿dónde la cargo?',
     respuesta:
-      'Por eso la batería es extraíble en yolt ONE y CITY. Pesa entre 11 y 14 kg, la desmontas con llave, la subes y la conectas a un contacto normal de 120 V. No necesitas instalación especial. yolt GT lleva batería fija de mayor capacidad y se carga con la moto estacionada.',
+      'Se carga en un tomacorriente doméstico con su cargador, sin instalación especial: en el parqueo, la cochera o el sótano de tu edificio. Si no tienes un tomacorriente cerca de donde estacionas, tu asesor te orienta para instalar uno.',
   },
   {
     id: 'vida-bateria',
     pregunta: '¿Cuánto dura la batería antes de perder capacidad?',
     respuesta:
-      'Las celdas de litio están especificadas a 1,000 ciclos completos conservando el 80% de su capacidad. En uso urbano típico, cargando cada dos o tres días, son entre cuatro y seis años antes de notar pérdida real de autonomía. La batería tiene garantía propia y se puede reemplazar sin cambiar la moto.',
+      'Depende del tipo de batería. yolt CITY y GT usan litio, que conserva la mayor parte de su capacidad durante varios años de uso diario. yolt ONE usa plomo-ácido: es más económica y su vida útil es menor. En ambos casos la batería tiene garantía propia y se puede reemplazar sin cambiar la moto.',
   },
   {
     id: 'lluvia',
     pregunta: '¿Qué pasa si me agarra la lluvia?',
     respuesta:
-      'Toda la gama tiene certificación IP67 en el sistema eléctrico y la batería: resiste lluvia fuerte y charcos. Lo que ninguna moto tolera, eléctrica o de gasolina, es quedar sumergida. Puedes lavarla con manguera normal; evita la hidrolavadora directa sobre el conector.',
+      'Están diseñadas para uso diario en la calle, con lluvia incluida. Lo que ninguna moto tolera, eléctrica o de gasolina, es quedar sumergida. Puedes lavarla con manguera normal; evita la hidrolavadora directa sobre conectores y tablero.',
   },
   {
     id: 'ahorro',

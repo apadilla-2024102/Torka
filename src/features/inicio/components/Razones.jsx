@@ -1,4 +1,4 @@
-import { BatteryCharging, ShieldCheck, Wallet, Wrench } from 'lucide-react'
+import { CircleDot, ShieldCheck, Wallet, Wrench } from 'lucide-react'
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import Revelar from '../../../shared/components/ui/Revelar.jsx'
 import SpotlightCard from '../../../shared/components/reactbits/SpotlightCard/SpotlightCard.jsx'
@@ -19,9 +19,9 @@ const RAZONES = [
     ancha: true,
   },
   {
-    icono: BatteryCharging,
-    titulo: 'Batería extraíble',
-    texto: 'Se retira con llave, pesa 11 kg y se carga en cualquier tomacorriente de 120 V.',
+    icono: CircleDot,
+    titulo: 'Frenos de disco',
+    texto: 'Disco delantero y trasero y rines de aluminio en toda la gama.',
   },
   {
     icono: Wrench,

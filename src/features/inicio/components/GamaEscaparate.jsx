@@ -106,7 +106,7 @@ function Capitulo({ modelo, indice, total, onActivo }) {
       <dl className="mt-8 grid max-w-md grid-cols-3 gap-4">
         <Lectura etiqueta="Autonomía" valor={modelo.specs.autonomia} unidad="km" energia />
         <Lectura etiqueta="Velocidad" valor={modelo.specs.velocidad} unidad="km/h" />
-        <Lectura etiqueta="Carga" valor={modelo.specs.carga} unidad="h" energia />
+        <Lectura etiqueta="Potencia" valor={modelo.specs.motor} unidad="W" />
       </dl>
 
       <div className="mt-8 flex flex-wrap items-center gap-5">
