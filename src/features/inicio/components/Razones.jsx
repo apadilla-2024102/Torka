@@ -32,7 +32,7 @@ const RAZONES = [
     icono: ShieldCheck,
     titulo: 'Garantía y respaldo',
     texto:
-      'Dos años en motor y estructura, tres en batería y repuestos garantizados por siete años. Respaldo de una red de distribuidores autorizados en Guatemala.',
+      'Dos años de garantía en motor, estructura y batería. Respaldo de una red de distribuidores autorizados en Guatemala.',
     ancha: true,
   },
 ]

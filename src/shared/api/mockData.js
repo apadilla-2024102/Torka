@@ -202,7 +202,7 @@ export const MOCK_PREGUNTAS = [
     id: 'garantia',
     pregunta: '¿Qué cubre la garantía y dónde me dan servicio?',
     respuesta:
-      'Dos años o 20,000 km en motor, controlador y estructura, y tres años en batería contra defectos de fabricación. El servicio se da en la red de distribuidores autorizados. El mantenimiento se limita a frenos, llantas y suspensión. Hay repuestos garantizados por siete años desde la compra.',
+      'Dos años o 20,000 km en motor, controlador y estructura, y dos años en batería contra defectos de fabricación. El servicio se da en la red de distribuidores autorizados. El mantenimiento se limita a frenos, llantas y suspensión.',
   },
 ]
 

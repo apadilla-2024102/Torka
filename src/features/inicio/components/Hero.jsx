@@ -15,8 +15,8 @@ const LINEAS = ['Enciende', 'tu camino.']
 
 /** Lo que más pesa en la decisión, a la vista desde el primer pantallazo. */
 const CONFIANZA = [
-  { icono: BatteryCharging, texto: '3 años de garantía en batería' },
-  { icono: Wrench, texto: 'Repuestos garantizados por 7 años' },
+  { icono: BatteryCharging, texto: '2 años de garantía en batería' },
+  { icono: Wrench, texto: 'Servicio en taller autorizado' },
   { icono: FileCheck2, texto: 'Factura y certificado para placas' },
   { icono: KeyRound, texto: 'Prueba de manejo antes de comprar' },
 ]
