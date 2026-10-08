@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom'
-import { motion } from 'motion/react'
 import ModeloImagen from '../../../shared/components/brand/ModeloImagen.jsx'
 import { precioModelo } from '../../../shared/lib/formato.js'
-import { EN_VISTA, lineaMascara } from '../../../shared/lib/movimiento.js'
+import TituloSeccion from '../../../shared/components/ui/TituloSeccion.jsx'
 
 /**
  * Desfile: todas las motos pasan en una fila sin fin, cada una sobre su
@@ -19,19 +18,9 @@ export default function DesfileModelos({ modelos }) {
   return (
     <section aria-labelledby="desfile-titulo" className="overflow-hidden bg-negro py-24 text-papel sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-8">
-        {/* El disparo va en el h2, no en la línea: la línea empieza oculta tras
-            la máscara y el navegador nunca la vería entrar en pantalla. */}
-        <motion.h2
-          id="desfile-titulo"
-          initial="oculto"
-          whileInView="visible"
-          viewport={EN_VISTA}
-          className="tipo-ruta overflow-hidden pb-[0.08em] text-[clamp(2.2rem,5.5vw,4rem)]"
-        >
-          <motion.span className="block" variants={lineaMascara}>
-            Toda la gama, en la calle
-          </motion.span>
-        </motion.h2>
+        <TituloSeccion id="desfile-titulo" indice="03" etiqueta="Línea yolt">
+          Una misma esencia, diferentes caminos
+        </TituloSeccion>
       </div>
 
       <div className="mt-12 flex w-max desfile">

@@ -40,7 +40,7 @@ export default function CalleComparativa() {
       km: km.electrica,
       proporcion: 1,
       barra: 'bg-lima',
-      moto: '#ff4a50',
+      moto: '#121212',
       duracion: 2.4,
     },
   ]
@@ -78,7 +78,7 @@ export default function CalleComparativa() {
                 <MotoMarcador color={c.moto} />
               </motion.div>
             </div>
-            {i === 0 && <Carril className="my-5 h-1 rounded-full opacity-80" />}
+            {i === 0 && <Carril className="my-5 h-px" />}
           </div>
         ))}
       </div>

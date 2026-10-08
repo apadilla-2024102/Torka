@@ -5,14 +5,13 @@ import { CURVA } from '../../lib/movimiento.js'
 import Logo, { RUTAS_LOGO } from '../brand/Logo.jsx'
 import { useSinMovimiento } from '../../hooks/useMovimiento.js'
 
-const SEGMENTOS = 10
 // La moto de la portada (InicioPage): se precarga junto con el logo.
 const FOTO_PORTADA = '/modelos/fotos/x-grafito.webp'
 const MINIMO_MS = 1600 // aunque todo llegue antes: la carga se tiene que poder ver
 const MAXIMO_MS = 4500 // con conexión lenta, nunca se queda esperando de más
 
 /**
- * Pantalla de carga: una batería que se carga de 0 a 100 %.
+ * Pantalla de carga: la Y de yolt se llena de lima de 0 a 100 %.
  *
  * El porcentaje sigue la carga real de lo que la portada necesita para
  * verse bien (tipografía e imagen principal), suavizado para que no salte.
@@ -39,7 +38,7 @@ export default function PantallaCarga() {
     // deferred") y la batería se quedaría esperando.
     const tareas = [
       document.fonts?.ready ?? Promise.resolve(),
-      ...[FOTO_PORTADA, RUTAS_LOGO.claro].map(
+      ...[FOTO_PORTADA, RUTAS_LOGO.claro, RUTAS_LOGO.isotipo].map(
         (ruta) =>
           new Promise((resolver) => {
             const img = new Image()
@@ -82,8 +81,6 @@ export default function PantallaCarga() {
     return () => clearTimeout(espera)
   }, [porcentaje, lista, reduced, terminar])
 
-  const llenos = Math.round((porcentaje / 100) * SEGMENTOS)
-
   return (
     <AnimatePresence>
       {!lista && (
@@ -98,35 +95,36 @@ export default function PantallaCarga() {
         >
           <div className="flex items-center justify-between text-sm text-niebla">
             <Logo />
-            <span>Motos eléctricas para Guatemala</span>
+            <span className="tipo-etiqueta hidden sm:block">Movilidad eléctrica · Guatemala</span>
           </div>
 
-          <div className="mx-auto flex w-full max-w-3xl flex-col items-center">
-            {/* Batería: diez celdas que se encienden en lima */}
-            <div className="flex w-full items-center gap-2" aria-hidden="true">
-              <div className="flex h-24 flex-1 gap-1.5 rounded-[3px] border-2 border-papel/80 p-2 sm:h-32">
-                {Array.from({ length: SEGMENTOS }, (_, i) => (
-                  <motion.span
-                    key={i}
-                    className="flex-1 rounded-[1px] bg-lima"
-                    initial={false}
-                    animate={{ opacity: i < llenos ? 1 : 0.08, scaleY: i < llenos ? 1 : 0.86 }}
-                    transition={{ duration: 0.25, ease: CURVA.entrar }}
-                  />
-                ))}
-              </div>
-              <span className="h-10 w-3 rounded-r-[2px] bg-papel/80 sm:h-12" />
+          {/* La Y del logotipo se llena de lima de abajo hacia arriba con la
+              carga: sobre una Y apagada, la misma Y recortada por el avance. */}
+          <div className="mx-auto flex w-full max-w-md flex-col items-center" aria-hidden="true">
+            <div className="relative w-40 sm:w-56">
+              <img src={RUTAS_LOGO.isotipo} alt="" className="block w-full opacity-[0.08]" width="851" height="535" />
+              <img
+                src={RUTAS_LOGO.isotipo}
+                alt=""
+                className="absolute inset-0 block w-full"
+                style={{ clipPath: `inset(${100 - porcentaje}% 0 0 0)` }}
+                width="851"
+                height="535"
+              />
             </div>
-
-            <p className="tipo-tablero mt-8 text-[clamp(4rem,16vw,10rem)] leading-none" aria-hidden="true">
-              {porcentaje}
-              <span className="text-[0.4em] text-niebla">%</span>
-            </p>
           </div>
 
-          <p className="text-center text-sm text-niebla sm:text-left" aria-hidden="true">
-            {porcentaje < 100 ? 'Cargando la batería' : 'Lista para salir'}
-          </p>
+          <div aria-hidden="true">
+            <div className="flex items-end justify-between text-niebla">
+              <span className="tipo-etiqueta">{porcentaje < 100 ? 'Encendiendo' : 'Enciende tu camino'}</span>
+              <span className="tipo-tablero text-3xl text-papel sm:text-4xl">
+                {String(porcentaje).padStart(3, '0')}
+              </span>
+            </div>
+            <div className="mt-4 h-px w-full bg-white/10">
+              <div className="h-px origin-left bg-lima" style={{ transform: `scaleX(${porcentaje / 100})` }} />
+            </div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

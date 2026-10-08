@@ -83,9 +83,9 @@ Todo está construido con datos de ejemplo. En orden de importancia:
 4. **Distribuidores** en el mismo archivo.
 5. **Supuestos de costo** en `src/shared/lib/energia.js`: precio del galón,
    tarifa eléctrica, mantenimiento y la tasa de ejemplo de las cuotas.
-6. **Logotipo**: se genera con `python3 herramientas/logo/generar_logo.py`
-   (requiere fonttools): "yolt" en Outfit Bold convertido a trazos más el
-   rayo lima. Regenera `public/marca/` y `public/favicon.svg`.
+6. **Logotipo**: los originales están en `herramientas/logo/original/`. Si
+   cambian, reemplázalos y corre `python3 herramientas/logo/vectorizar_logo.py`
+   (requiere opencv-python): regenera `public/marca/` y `public/favicon.svg`.
 
 ## Imágenes de las motos
 
@@ -153,7 +153,7 @@ el sitio vuelve a los datos de ejemplo en lugar de quedar en blanco.
 
 **Las reglas visuales viven en [`DESIGN.md`](DESIGN.md)**: colores y para
 qué se usa cada uno, tipografía, botones, espaciado y movimiento. Aplica el
-sistema de marca de yolt (rayo lima, "yolt" en minúsculas, paleta lima /
+sistema de marca de yolt (isotipo Y lima, "yolt" en minúsculas, paleta lima /
 grafito / hueso / gris metálico) sobre una estructura de escaparate
 nocturno: lienzo negro, titulares gigantes en mayúsculas y la moto como
 protagonista.
@@ -193,41 +193,42 @@ guardados en `src/shared/components/reactbits/` con su licencia:
 
 | Sección | Componente | Qué hace |
 |---|---|---|
-| Héroe | Hyperspeed | Autopista nocturna en lima y blanco; al mantener presionado, acelera |
-| Héroe y cierre | ClickSpark | Chispas amarillas al hacer clic |
+| Héroe | Hyperspeed | Autopista nocturna en lima y blanco, en curva larga y a velocidad de crucero |
 | Botón principal | Magnet | El botón se acerca al cursor |
 | Banda | ScrollVelocity | Frases que corren y se aceleran con el scroll |
 | Manifiesto | ScrollReveal | Las palabras se encienden mientras se lee |
 | Razones | SpotlightCard | Tarjetas con luz que sigue al cursor |
-| Cierre | Lightning + ElectricBorder | Relámpago de fondo y borde eléctrico en la tarjeta final |
+| Cierre | CSS (`borde-vivo`, `resplandor-lento`) | Línea de luz lima que recorre el borde de la tarjeta final sobre un resplandor que se desplaza |
 
 Además: escaparate de la gama con la moto fija mientras pasan los modelos
 (se intercambian como motos frente a una vitrina), franja de garantías bajo
 el héroe, resumen de dudas frecuentes y barra fija de compra en celular
 (recomendaciones de la skill `page-cro`).
 
-Los fondos WebGL (autopista y relámpago) solo se montan cuando están en
-pantalla. En celular, sin WebGL o con "reducir movimiento", se usa una
-versión estática en CSS.
+La autopista (WebGL) se pausa cuando sale de pantalla. En celular, sin
+WebGL o en equipos lentos, se usa una versión estática en CSS.
+
+Cada sección de la portada abre con `TituloSeccion`: índice numerado
+(01–05), filete lima que se dibuja y titular que sube desde una máscara.
 
 ## Pantalla de carga, transiciones y cursor
 
 | Pieza | Dónde | Qué hace |
 |---|---|---|
-| Pantalla de carga | `shared/components/intro/PantallaCarga.jsx` | Batería que se carga de 0 a 100 % siguiendo la carga real (tipografía e imagen principal), luego se abre como cortina. Solo en la primera visita de la sesión |
+| Pantalla de carga | `shared/components/intro/PantallaCarga.jsx` | La Y del logotipo se llena de lima de 0 a 100 % siguiendo la carga real (tipografía, logo e imagen principal), con una línea de progreso; luego se abre como cortina. Solo en la primera visita de la sesión |
 | Cambio de página | `shared/styles/index.css` (view transitions) | La página nueva sube como cortina mientras la anterior se hunde y se oscurece |
-| Cursor | `shared/components/intro/CursorMarca.jsx` | Anillo que sigue al mouse; crece sobre enlaces y muestra "Ver", "Arrastra" o "Acelera" según el elemento (atributo `data-cursor`) |
+| Cursor | `shared/components/intro/CursorMarca.jsx` | Anillo que sigue al mouse; crece sobre enlaces y muestra "Ver" o "Arrastra" según el elemento (atributo `data-cursor`) |
 | Scroll suave | `shared/hooks/useScrollSuave.js` | Inercia con Lenis, solo con mouse o trackpad |
 | Menú de celular | `shared/components/layout/Nav.jsx` | Pantalla completa, baja como cortina y los enlaces entran en cascada |
 
 Mientras la pantalla de carga está arriba, el sitio de abajo no se pinta
-(sus imágenes sí descargan): así la batería se mueve fluida incluso en
+(sus imágenes sí descargan): así la carga se anima fluida incluso en
 equipos modestos. La portada y los títulos esperan a que la cortina se
 abra para hacer su entrada.
 
-**Equipos lentos.** La autopista del héroe y el relámpago del cierre se
-miden al arrancar: si el equipo no los mueve a 30 cuadros por segundo
-(por ejemplo, sin aceleración gráfica), se cambian por su versión estática
+**Equipos lentos.** La autopista del héroe se
+mide al arrancar: si el equipo no la mueve a 30 cuadros por segundo
+(por ejemplo, sin aceleración gráfica), se cambia por su versión estática
 durante el resto de la visita (`shared/hooks/useFluidez.js`).
 
 ## Accesibilidad

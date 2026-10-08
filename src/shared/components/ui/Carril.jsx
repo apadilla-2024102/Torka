@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { useInView } from 'motion/react'
 
 /**
- * Línea de carril discontinua que avanza como la calle bajo la moto.
+ * Línea de luz: filete fino con un destello lima que lo recorre.
  *
  * Es un bucle decorativo, así que se pausa fuera de pantalla (no gasta
  * GPU).

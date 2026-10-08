@@ -13,7 +13,6 @@ Los cambios hechos para yolt están marcados en el código con `[yolt]`:
 |---|---|
 | ScrollReveal | Limpieza limitada a sus propios disparadores (el original borraba todos los de la página), HTML válido, respeta "reducir movimiento" |
 | ScrollVelocity | Texto accesible una sola vez para lectores de pantalla, banda quieta con "reducir movimiento" |
-| Lightning | Libera el contexto WebGL al desmontarse |
 
-Hyperspeed, ElectricBorder, ClickSpark, Magnet y SpotlightCard se usan sin
+Hyperspeed, Magnet y SpotlightCard se usan sin
 cambios; su configuración de marca vive en quien los usa.

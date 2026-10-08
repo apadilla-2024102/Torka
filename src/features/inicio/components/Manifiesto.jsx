@@ -19,8 +19,8 @@ export default function Manifiesto() {
           containerClassName="max-w-4xl"
           textClassName="tipo-ruta !text-[clamp(1.4rem,2.9vw,2.3rem)] !leading-[1.25]"
         >
-          Una moto de gasolina te cobra en cada semáforo. Una eléctrica se carga en el mismo contacto que tu celular, no
-          pide afinación y no hace ruido. Lo que ahorras se queda contigo.
+          Una motocicleta de gasolina cuesta en cada kilómetro. Una eléctrica se carga en el mismo tomacorriente que tu
+          teléfono, no requiere afinaciones y opera en silencio. Lo que ahorras, se queda contigo.
         </ScrollReveal>
 
         <div className="mt-20">

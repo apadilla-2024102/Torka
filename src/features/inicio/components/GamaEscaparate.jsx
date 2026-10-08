@@ -7,6 +7,7 @@ import Lectura from '../../../shared/components/ui/Lectura.jsx'
 import { precioModelo } from '../../../shared/lib/formato.js'
 import { CURVA } from '../../../shared/lib/movimiento.js'
 import { useSinMovimiento } from '../../../shared/hooks/useMovimiento.js'
+import TituloSeccion from '../../../shared/components/ui/TituloSeccion.jsx'
 
 /**
  * Escaparate de la gama (técnica "sticky column journey" de epic-design).
@@ -27,9 +28,9 @@ export default function GamaEscaparate({ modelos }) {
     <section aria-labelledby="gama-titulo" className="relative bg-negro py-24 sm:py-32">
       <Contenedor>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <h2 id="gama-titulo" className="tipo-ruta max-w-2xl text-[clamp(2.2rem,5.5vw,4rem)]">
+          <TituloSeccion id="gama-titulo" indice="01" etiqueta="La gama">
             Una moto para cada recorrido
-          </h2>
+          </TituloSeccion>
           <Link to="/comparar" viewTransition className="shrink-0 font-semibold underline underline-offset-4">
             Compararlas lado a lado
           </Link>

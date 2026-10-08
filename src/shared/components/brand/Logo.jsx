@@ -1,17 +1,17 @@
 /**
- * Logotipo yolt: rayo lima + "yolt" en minúsculas (SVG en public/marca,
- * generado con herramientas/logo/generar_logo.py).
+ * Logotipo oficial de yolt: la Y lima + "olt" (SVG en public/marca,
+ * vectorizado del original con herramientas/logo/vectorizar_logo.py).
  *
  * - `barra`: el logotipo solo, para la navegación y la pantalla de carga.
  * - `completo`: logotipo y el lema "Enciende tu camino.", para el pie.
  *
- * `sobreOscuro` elige la versión de palabra hueso (fondo negro) o la
- * grafito (fondo claro).
+ * `sobreOscuro` elige la versión con "olt" hueso (fondo negro) o la de
+ * "olt" grafito y Y lima hondo (fondo claro).
  */
 export const RUTAS_LOGO = {
   claro: '/marca/yolt-logo-claro.svg',
   oscuro: '/marca/yolt-logo-oscuro.svg',
-  rayo: '/marca/yolt-rayo.svg',
+  isotipo: '/marca/yolt-isotipo.svg',
 }
 
 export default function Logo({ variante = 'barra', sobreOscuro = true, className = '' }) {
@@ -20,9 +20,9 @@ export default function Logo({ variante = 'barra', sobreOscuro = true, className
       src={sobreOscuro ? RUTAS_LOGO.claro : RUTAS_LOGO.oscuro}
       alt="yolt"
       translate="no"
-      width="2227"
-      height="1051"
-      className={variante === 'completo' ? 'h-14 w-auto' : 'h-8 w-auto sm:h-9'}
+      width="1186"
+      height="499"
+      className={variante === 'completo' ? 'h-12 w-auto' : 'h-7 w-auto sm:h-8'}
     />
   )
 

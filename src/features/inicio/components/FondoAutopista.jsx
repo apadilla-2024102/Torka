@@ -16,24 +16,25 @@ const Hyperspeed = lazy(() => import('../../../shared/components/reactbits/Hyper
  * completo si recibe un objeto nuevo en cada render.
  */
 const OPCIONES_MARCA = {
-  distortion: 'turbulentDistortion',
+  // Curva larga y serena: elegante, sin el vaivén de la turbulenta.
+  distortion: 'LongRaceDistortion',
   length: 400,
   roadWidth: 9,
   islandWidth: 2,
   lanesPerRoad: 3,
   fov: 90,
-  fovSpeedUp: 140,
-  speedUp: 2.2,
+  fovSpeedUp: 115,
+  speedUp: 1.6,
   carLightsFade: 0.4,
   totalSideLightSticks: 24,
-  lightPairsPerRoadWay: 42,
+  lightPairsPerRoadWay: 32,
   shoulderLinesWidthPercentage: 0.05,
   brokenLinesWidthPercentage: 0.1,
   brokenLinesLengthPercentage: 0.5,
   lightStickWidth: [0.12, 0.5],
   lightStickHeight: [1.3, 1.7],
-  movingAwaySpeed: [60, 80],
-  movingCloserSpeed: [-120, -160],
+  movingAwaySpeed: [45, 60],
+  movingCloserSpeed: [-90, -120],
   carLightsLength: [400 * 0.03, 400 * 0.2],
   carLightsRadius: [0.05, 0.14],
   carWidthPercentage: [0.3, 0.5],
@@ -44,10 +45,10 @@ const OPCIONES_MARCA = {
     islandColor: 0x0e0e11,
     background: 0x000000,
     shoulderLines: 0x1c1c22,
-    brokenLines: 0xc5f230,
-    leftCars: [0xc5f230, 0xd8ff52, 0x8fb81a],
+    brokenLines: 0xd6f715,
+    leftCars: [0xd6f715, 0xe4ff4d, 0x8fb81a],
     rightCars: [0xf1eee5, 0xffffff, 0x9b9b9b],
-    sticks: 0xc5f230,
+    sticks: 0xd6f715,
   },
 }
 
@@ -57,10 +58,10 @@ const OPCIONES_MARCA = {
  */
 const OPCIONES_SUAVES = {
   ...OPCIONES_MARCA,
-  fovSpeedUp: 105,
-  speedUp: 1.2,
-  movingAwaySpeed: [30, 40],
-  movingCloserSpeed: [-60, -80],
+  fovSpeedUp: 100,
+  speedUp: 1.15,
+  movingAwaySpeed: [25, 35],
+  movingCloserSpeed: [-50, -65],
 }
 
 /**
@@ -70,7 +71,7 @@ const OPCIONES_SUAVES = {
 function AutopistaEstatica() {
   return (
     <div className="absolute inset-0 overflow-hidden bg-black" aria-hidden="true">
-      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-[radial-gradient(ellipse_at_50%_100%,rgba(197,242,48,0.22),transparent_60%)]" />
+      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-[radial-gradient(ellipse_at_50%_100%,rgba(214,247,21,0.22),transparent_60%)]" />
       <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[radial-gradient(ellipse_at_70%_100%,rgba(241,238,229,0.10),transparent_55%)]" />
       <div className="absolute bottom-[18%] left-[-10%] h-px w-[70%] rotate-[-8deg] bg-gradient-to-r from-transparent via-lima to-transparent opacity-70" />
       <div className="absolute bottom-[26%] left-[20%] h-px w-[60%] rotate-[-5deg] bg-gradient-to-r from-transparent via-papel to-transparent opacity-40" />

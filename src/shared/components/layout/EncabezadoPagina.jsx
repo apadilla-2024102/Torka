@@ -30,7 +30,7 @@ export default function EncabezadoPagina({ titulo, descripcion, children }) {
         </motion.div>
         {children}
       </Contenedor>
-      <Carril className="absolute inset-x-0 bottom-0 h-1.5" />
+      <Carril className="absolute inset-x-0 bottom-0 h-px" />
     </header>
   )
 }
