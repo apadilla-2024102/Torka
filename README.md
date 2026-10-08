@@ -89,13 +89,10 @@ Todo está construido con datos de ejemplo. En orden de importancia:
 
 ## Imágenes de las motos
 
-ONE, CITY y GT usan **fotos reales del showroom** (originales en
+La gama (ONE, CITY y GT) usa **fotos reales del showroom** (originales en
 `herramientas/fotos/showroom-modelos/`), recortadas sin fondo con BiRefNet
 y encuadradas en 1320 × 810 px con sombra de contacto, en
-`public/modelos/fotos/<modelo>-<color>.webp`. La X aún no tiene foto: usa
-la imagen de la lámina de marca (`fotoReferencia: true` en `mockData.js`),
-y su ficha lo indica. Cuando llegue su foto, reemplaza `x-grafito.webp`
-con el mismo encuadre y quita `fotoReferencia`.
+`public/modelos/fotos/<modelo>-<color>.webp`.
 
 `.foto-moto` da a cada moto una sombra de apoyo sobre el lienzo claro
 (index.css).
@@ -113,7 +110,6 @@ Experiencia (servicios y video vertical) de la portada.
 | ------ | ----- | ------- | ------ |
 | yolt ONE  | Crema y menta | `one-crema.webp` | Foto de showroom |
 | yolt CITY | Grafito / Naranja | `city-grafito.webp`, `city-naranja.webp` | Fotos de showroom |
-| yolt X    | Grafito y lima | `x-grafito.webp` | Lámina de marca (referencia) |
 | yolt GT   | Blanco perla (próximamente) | `gt-blanco.webp` | Foto de showroom |
 
 Cada modelo ofrece **solo los colores que tienen foto**: un color sin foto
