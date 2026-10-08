@@ -67,8 +67,8 @@ export default function Hero({ precioDesde, modeloPortada }) {
             Menos gasto. Más vida.
           </motion.p>
           <motion.p variants={subir} className="mt-8 max-w-md text-base leading-relaxed text-tinta-suave sm:text-lg">
-            Con Q100 de energía recorres más de {kmElectrica} km; con gasolina, unos {kmGasolina}. Batería
-            extraíble y mantenimiento mínimo. La gama yolt inicia en {formatoQuetzales(precioDesde)}.
+            Con Q100 de energía recorres más de {kmElectrica} km; con gasolina, unos {kmGasolina}. Frenos de
+            disco y mantenimiento mínimo. La gama yolt inicia en {formatoQuetzales(precioDesde)}.
           </motion.p>
           <motion.div variants={subir} className="mt-10 flex flex-wrap items-center gap-3">
             <Boton to="/modelos">Ver la gama</Boton>

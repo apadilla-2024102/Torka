@@ -54,7 +54,7 @@ export default function ModeloCard({ modelo, ref }) {
             <dl className="mt-6 grid grid-cols-3 gap-3">
               <Lectura etiqueta="Autonomía" valor={specs.autonomia} unidad="km" energia />
               <Lectura etiqueta="Velocidad" valor={specs.velocidad} unidad="km/h" />
-              <Lectura etiqueta="Carga" valor={specs.carga} unidad="h" energia />
+              <Lectura etiqueta="Potencia" valor={specs.motor} unidad="W" />
             </dl>
 
             <div className="mt-auto flex items-end justify-between gap-4 pt-7">
