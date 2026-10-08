@@ -32,14 +32,14 @@ export const MOCK_MODELOS = [
     puntos: [
       'Batería extraíble: la cargas en cualquier contacto de 120 V',
       'No requiere licencia tipo M',
-      'Firma luminosa yolt y rayo lateral en lima',
+      'Asiento acolchado con respaldo para el acompañante',
     ],
     // Silueta de respaldo, por si una foto no carga.
     ilustracion: { parabrisas: false, parrilla: false, caja: false, dobleBateria: false },
     // Un color por cada foto real: no se ofrece un color que no se puede mostrar.
-    colores: [{ id: 'grafito', nombre: 'Grafito y lima', hex: '#1f2125' }],
+    colores: [{ id: 'crema', nombre: 'Crema y menta', hex: '#e8e1cb' }],
     // Imágenes en public/modelos/fotos (ver README, "Imágenes de las motos").
-    fotos: { grafito: '/modelos/fotos/one-grafito.webp' },
+    fotos: { crema: '/modelos/fotos/one-crema.webp' },
   },
   {
     id: 'city',
@@ -51,7 +51,7 @@ export const MOCK_MODELOS = [
     destacado: 'Más vendida',
     requiereLicencia: false,
     resumen:
-      'Más motor y más autonomía que la ONE, con frenos de disco y llantas más anchas. Para moverte todos los días por la ciudad, hacer mensajería o reparto, y que cada quetzal que antes iba a combustible se quede contigo.',
+      'Chasis con defensas de acero, parrilla trasera y plataforma amplia. Para moverte todos los días por la ciudad, hacer mensajería o reparto, y que cada quetzal que antes iba a combustible se quede contigo.',
     specs: {
       autonomia: 80,
       velocidad: 50,
@@ -61,13 +61,19 @@ export const MOCK_MODELOS = [
       bateria: 'Extraíble 60V 24Ah',
     },
     puntos: [
-      'Frenos de disco y llantas anchas para la ciudad',
+      'Defensas laterales y parrilla trasera de acero',
       'Capacidad de 200 kg incluyendo conductor',
       'Precio por flotilla a partir de 5 unidades',
     ],
-    ilustracion: { parabrisas: false, parrilla: false, caja: false, dobleBateria: false },
-    colores: [{ id: 'grafito', nombre: 'Grafito y lima', hex: '#1f2125' }],
-    fotos: { grafito: '/modelos/fotos/city-grafito.webp' },
+    ilustracion: { parabrisas: true, parrilla: true, caja: false, dobleBateria: false },
+    colores: [
+      { id: 'grafito', nombre: 'Grafito', hex: '#3b3d42' },
+      { id: 'naranja', nombre: 'Naranja', hex: '#e8501e' },
+    ],
+    fotos: {
+      grafito: '/modelos/fotos/city-grafito.webp',
+      naranja: '/modelos/fotos/city-naranja.webp',
+    },
   },
   {
     id: 'x',
@@ -96,6 +102,8 @@ export const MOCK_MODELOS = [
     ilustracion: { parabrisas: false, parrilla: false, caja: false, dobleBateria: true, deportiva: true },
     colores: [{ id: 'grafito', nombre: 'Grafito y lima', hex: '#1f2125' }],
     fotos: { grafito: '/modelos/fotos/x-grafito.webp' },
+    // Sin foto de la unidad todavía: imagen de la lámina de marca.
+    fotoReferencia: true,
   },
   {
     id: 'gt',
@@ -120,12 +128,12 @@ export const MOCK_MODELOS = [
     },
     puntos: [
       'La mayor autonomía de la gama',
-      'Parabrisas alto y baúl trasero para viajar en pareja',
+      'Parabrisas alto y asiento amplio para viajar en pareja',
       'Ficha preliminar: puede cambiar al lanzamiento',
     ],
     ilustracion: { parabrisas: true, parrilla: true, caja: false, dobleBateria: false, deportiva: true },
-    colores: [{ id: 'grafito', nombre: 'Grafito y lima', hex: '#1f2125' }],
-    fotos: { grafito: '/modelos/fotos/gt-grafito.webp' },
+    colores: [{ id: 'blanco', nombre: 'Blanco perla', hex: '#e7e6ea' }],
+    fotos: { blanco: '/modelos/fotos/gt-blanco.webp' },
   },
 ]
 
