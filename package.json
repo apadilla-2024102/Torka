@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/generar-sitemap.mjs",
     "build": "vite build",
     "preview": "vite preview",
-    "renders": "node scripts/generar-renders.mjs"
+    "renders": "node scripts/generar-renders.mjs",
+    "sitemap": "node scripts/generar-sitemap.mjs"
   },
   "dependencies": {
     "gsap": "^3.15.0",

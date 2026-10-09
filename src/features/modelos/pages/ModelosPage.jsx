@@ -7,11 +7,19 @@ import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import LlamadoCotizar from '../../../shared/components/ui/LlamadoCotizar.jsx'
 import FiltroPerfil from '../components/FiltroPerfil.jsx'
 import ModeloCard from '../components/ModeloCard.jsx'
+import { useSeo } from '../../../shared/seo/useSeo.js'
+import { esquemaCatalogo } from '../../../shared/seo/esquemas.js'
 
 export const modelosLoader = async () => ({ modelos: await getModelos() })
 
 export default function ModelosPage() {
   const { modelos } = useLoaderData()
+  useSeo({
+    titulo: 'Modelos de motos eléctricas',
+    descripcion:
+      'Conoce la gama yolt: ONE para iniciar, CITY y STREET para ciudad y reparto, GT de larga distancia. Autonomía de 70 a 130 km. Solicita tu cotización.',
+    jsonLd: esquemaCatalogo(modelos),
+  })
   // El filtro vive en la URL: el enlace se puede compartir tal cual.
   const [params, setParams] = useSearchParams()
   const perfil = params.get('perfil') ?? 'todos'

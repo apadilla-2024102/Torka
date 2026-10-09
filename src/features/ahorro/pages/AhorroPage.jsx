@@ -2,8 +2,14 @@ import EncabezadoPagina from '../../../shared/components/layout/EncabezadoPagina
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import LlamadoCotizar from '../../../shared/components/ui/LlamadoCotizar.jsx'
 import CalculadoraAhorro from '../components/CalculadoraAhorro.jsx'
+import { useSeo } from '../../../shared/seo/useSeo.js'
 
 export default function AhorroPage() {
+  useSeo({
+    titulo: 'Calculadora de ahorro',
+    descripcion:
+      'Calcula cuánto dejas de gastar al año con una moto eléctrica yolt frente a una de gasolina, con tus kilómetros, tu tarifa de luz y el precio del galón.',
+  })
   return (
     <>
       <EncabezadoPagina

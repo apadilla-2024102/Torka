@@ -1,0 +1,6 @@
+# robots.txt de https://www.yolt.gt
+User-agent: *
+Allow: /
+Disallow: /cotizar?*
+
+Sitemap: https://www.yolt.gt/sitemap.xml

@@ -245,3 +245,57 @@ abra para hacer su entrada.
   flechas y el lector de pantalla anuncia el nombre.
 - Las cifras animadas se anuncian solo con su valor final.
 - Tabla comparativa con encabezados de fila y columna.
+
+## Antes de publicar: legal, SEO y analítica
+
+Todo se configura en `src/shared/config/negocio.js`:
+
+| Dato | Para qué |
+| ---- | -------- |
+| `razonSocial`, `nit`, `direccion`, `correoPrivacidad` | Aviso legal y política de privacidad |
+| `sitioUrl` | Enlaces canónicos, `sitemap.xml`, `robots.txt`, datos estructurados |
+| `perfiles.google` (y redes) | `sameAs` del negocio: une el sitio con la ficha de Google |
+| `ga4` (o variable `VITE_GA4_ID` en Vercel) | ID de Google Analytics 4 (`G-XXXXXXXXXX`) |
+
+- **Legal:** `/aviso-legal`, `/privacidad` y `/cookies` (`src/features/legal/`).
+  Son una base redactada para Guatemala: **revísalas con un abogado**.
+- **Aviso de cookies:** aparece en la primera visita; aceptar y rechazar
+  pesan igual. Google Analytics se carga solo si se acepta. "Configurar
+  cookies" (pie de página) vuelve a abrirlo.
+- **Analítica:** Vercel Web Analytics (sin cookies; actívala en el panel de
+  Vercel, pestaña *Analytics*) y GA4 tras el consentimiento. Eventos:
+  `generate_lead` (envío de cotización) y `contacto_whatsapp`.
+- **HTTPS:** Vercel lo fuerza con su certificado; `vercel.json` añade HSTS,
+  `upgrade-insecure-requests` y cabeceras de seguridad (también en
+  `public/_headers` para Netlify).
+- **SEO:** cada página define título, descripción, canónica, Open Graph y
+  JSON-LD con `useSeo()` (`src/shared/seo/`). Esquemas: `MotorcycleDealer`
+  (todo el sitio), `Product` + `BreadcrumbList` (cada moto), `ItemList`
+  (catálogo) y `FAQPage` (preguntas). Imagen para compartir:
+  `public/og-yolt.jpg` (1200 × 630).
+- **Sitemap y robots:** `npm run build` los regenera desde los modelos
+  (`scripts/generar-sitemap.mjs`). Tras publicar, envía
+  `https://<dominio>/sitemap.xml` en Google Search Console.
+- **404:** página propia con `noindex`, la acción del sitio y accesos a las
+  páginas más buscadas.
+- **Una sola llamada a la acción:** en todo el sitio la acción es
+  **Solicitar cotización**. WhatsApp es el canal de ayuda: botón verde
+  flotante, visible en todas las páginas.
+
+### Ficha de Google (Google Business Profile)
+
+La crea el dueño del negocio; no se puede crear desde el código.
+
+1. Entra a <https://business.google.com> con la cuenta de Google de la empresa.
+2. Nombre: **yolt**. Categoría principal: *Concesionario de motocicletas*;
+   secundarias: *Tienda de scooters eléctricos*, *Taller de motocicletas*.
+3. Dirección del showroom (o zona de servicio si no atiende al público),
+   teléfono y sitio web: el mismo dominio de `sitioUrl`.
+4. Horario, fotos reales (fachada, showroom y las 4 motos) y la
+   descripción.
+5. Verifica la ficha (video, llamada o correo, según lo que ofrezca Google).
+6. Copia el enlace público de la ficha en `perfiles.google` y vuelve a
+   publicar: así Google relaciona el sitio con la ficha.
+
+Nombre, dirección y teléfono deben ser idénticos en la ficha, el sitio y
+las redes: Google desconfía de los datos que no coinciden.

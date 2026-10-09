@@ -5,11 +5,17 @@ import EncabezadoPagina from '../../../shared/components/layout/EncabezadoPagina
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import LlamadoCotizar from '../../../shared/components/ui/LlamadoCotizar.jsx'
 import TablaComparativa from '../components/TablaComparativa.jsx'
+import { useSeo } from '../../../shared/seo/useSeo.js'
 
 export const compararLoader = async () => ({ modelos: await getModelos() })
 
 export default function CompararPage() {
   const { modelos } = useLoaderData()
+  useSeo({
+    titulo: 'Comparar motos eléctricas',
+    descripcion:
+      'Compara lado a lado autonomía, velocidad, potencia, batería y frenos de las motos eléctricas yolt, y elige la que mejor se ajusta a tu recorrido.',
+  })
 
   return (
     <>

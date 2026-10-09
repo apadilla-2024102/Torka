@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.yolt.gt/</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.yolt.gt/modelos</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.yolt.gt/modelos/one</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://www.yolt.gt/modelos/fotos/one/izquierda.webp</image:loc><image:title>yolt ONE, lado izquierdo</image:title></image:image>
+    <image:image><image:loc>https://www.yolt.gt/modelos/fotos/one/frente.webp</image:loc><image:title>yolt ONE, frente</image:title></image:image>
+    <image:image><image:loc>https://www.yolt.gt/modelos/fotos/one/derecha.webp</image:loc><image:title>yolt ONE, lado derecho</image:title></image:image>
+    <image:image><image:loc>https://www.yolt.gt/modelos/fotos/one/atras.webp</image:loc><image:title>yolt ONE, atrás</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://www.yolt.gt/modelos/city</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://www.yolt.gt/modelos/fotos/city/izquierda.webp</image:loc><image:title>yolt CITY, lado izquierdo</image:title></image:image>
+    <image:image><image:loc>https://www.yolt.gt/modelos/fotos/city/frente.webp</image:loc><image:title>yolt CITY, frente</image:title></image:image>
+    <image:image><image:loc>https://www.yolt.gt/modelos/fotos/city/derecha.webp</image:loc><image:title>yolt CITY, lado derecho</image:title></image:image>
+    <image:image><image:loc>https://www.yolt.gt/modelos/fotos/city/atras.webp</image:loc><image:title>yolt CITY, atrás</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://www.yolt.gt/modelos/street</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://www.yolt.gt/modelos/fotos/street/izquierda.webp</image:loc><image:title>yolt STREET, lado izquierdo</image:title></image:image>
+    <image:image><image:loc>https://www.yolt.gt/modelos/fotos/street/frente.webp</image:loc><image:title>yolt STREET, frente</image:title></image:image>
+    <image:image><image:loc>https://www.yolt.gt/modelos/fotos/street/derecha.webp</image:loc><image:title>yolt STREET, lado derecho</image:title></image:image>
+    <image:image><image:loc>https://www.yolt.gt/modelos/fotos/street/atras.webp</image:loc><image:title>yolt STREET, atrás</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://www.yolt.gt/modelos/gt</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://www.yolt.gt/modelos/fotos/gt/izquierda.webp</image:loc><image:title>yolt GT, lado izquierdo</image:title></image:image>
+    <image:image><image:loc>https://www.yolt.gt/modelos/fotos/gt/frente.webp</image:loc><image:title>yolt GT, frente</image:title></image:image>
+    <image:image><image:loc>https://www.yolt.gt/modelos/fotos/gt/derecha.webp</image:loc><image:title>yolt GT, lado derecho</image:title></image:image>
+    <image:image><image:loc>https://www.yolt.gt/modelos/fotos/gt/atras.webp</image:loc><image:title>yolt GT, atrás</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://www.yolt.gt/cotizar</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.yolt.gt/comparar</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.yolt.gt/ahorro</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.yolt.gt/distribuidores</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.yolt.gt/preguntas</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.yolt.gt/aviso-legal</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://www.yolt.gt/privacidad</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://www.yolt.gt/cookies</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+</urlset>

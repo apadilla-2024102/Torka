@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { MessageCircle } from 'lucide-react'
 import Boton from '../ui/Boton.jsx'
-import { enlaceWhatsApp } from '../../config/negocio.js'
 
 /**
- * Barra fija de compra en celular (skill page-cro): en pantallas chicas el
+ * Barra fija de compra en celular, con la única acción del sitio (skill page-cro): en pantallas chicas el
  * botón de cotizar queda arriba y se pierde al bajar. Aparece después del
  * primer pantallazo y no se muestra en la página de cotización, donde ya
  * está el formulario.
@@ -30,21 +28,10 @@ export default function BarraMovil() {
       }`}
       aria-hidden={!visible}
     >
-      <div className="flex gap-2">
-        <Boton to="/cotizar" className="flex-1" tabIndex={visible ? 0 : -1}>
-          Cotizar
-        </Boton>
-        <Boton
-          href={enlaceWhatsApp('Hola, quiero información de las motos yolt.')}
-          target="_blank"
-          rel="noopener noreferrer"
-          variante="secundario"
-          sobreLienzo
-          className="flex-1"
-          tabIndex={visible ? 0 : -1}
-        >
-          <MessageCircle size={18} aria-hidden="true" />
-          WhatsApp
+      {/* Una sola acción; WhatsApp va en el botón flotante, a la derecha. */}
+      <div className="pr-[4.5rem]">
+        <Boton to="/cotizar" className="w-full" tabIndex={visible ? 0 : -1}>
+          Solicitar cotización
         </Boton>
       </div>
     </div>

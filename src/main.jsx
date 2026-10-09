@@ -2,6 +2,9 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { App } from './app/App.jsx'
 import './shared/styles/index.css'
+import { iniciarAnalitica } from './shared/analitica/analitica.js'
+
+iniciarAnalitica()
 
 // Tras publicar una versión nueva, una pestaña abierta con la anterior pide
 // archivos que ya no existen y la página no carga. Se recarga una sola vez
