@@ -89,10 +89,19 @@ Todo está construido con datos de ejemplo. En orden de importancia:
 
 ## Imágenes de las motos
 
-La gama (ONE, CITY y GT) usa **fotos reales del showroom** (originales en
-`herramientas/fotos/showroom-modelos/`), recortadas sin fondo con BiRefNet
-y encuadradas en 1320 × 810 px con sombra de contacto, en
-`public/modelos/fotos/<modelo>-<color>.webp`.
+La gama (ONE, CITY, STREET y GT) usa **fotos reales de cada unidad desde
+cuatro ángulos** (originales en `herramientas/fotos/vistas/originales/`),
+recortadas sin fondo con BiRefNet (o ISNet donde BiRefNet falla) y
+encuadradas en 1320 × 810 px con sombra de contacto, en
+`public/modelos/fotos/<modelo>/<vista>.webp` (`izquierda`, `frente`,
+`derecha`, `atras`). Para regenerarlas: recorta cada original a
+`<modelo>-<vista>.png` y corre
+`python3 herramientas/fotos/vistas/encuadrar_vistas.py <carpeta>`; las cuatro
+vistas de una moto quedan a la misma altura.
+
+En la ficha de cada modelo, las cuatro vistas forman un **giro de 360°**
+(`GiroVistas.jsx`): se arrastra la moto, se usan las flechas o se elige una
+miniatura. La vista `izquierda` es la foto de catálogo en tarjetas y portada.
 
 `.foto-moto` da a cada moto una sombra de apoyo sobre el lienzo claro
 (index.css).
@@ -108,9 +117,10 @@ Experiencia (servicios y video vertical) de la portada.
 
 | Modelo | Color | Archivo | Origen |
 | ------ | ----- | ------- | ------ |
-| yolt ONE  | Crema y menta | `one-crema.webp` | Foto de showroom |
-| yolt CITY | Grafito / Naranja | `city-grafito.webp`, `city-naranja.webp` | Fotos de showroom |
-| yolt GT   | Blanco perla (próximamente) | `gt-blanco.webp` | Foto de showroom |
+| yolt ONE    | Crema y menta | `one/` | 4 vistas de la unidad |
+| yolt CITY   | Naranja | `city/` | 4 vistas de la unidad |
+| yolt STREET | Grafito (nombre provisional) | `street/` | 4 vistas de la unidad |
+| yolt GT     | Blanco perla (próximamente) | `gt/` | 4 vistas de la unidad |
 
 Cada modelo ofrece **solo los colores que tienen foto**: un color sin foto
 no se puede mostrar y genera dudas en la compra.

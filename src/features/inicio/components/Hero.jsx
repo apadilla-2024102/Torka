@@ -116,7 +116,7 @@ export default function Hero({ modeloPortada }) {
                       prioridad
                       ajustada
                       destello
-                      className="aspect-[4/3] w-full"
+                      className="aspect-[44/27] w-full"
                     />
                   </Inclinar>
                 </motion.div>

@@ -10,6 +10,20 @@
  * formulario de cotización se reconstruyen solos.
  */
 
+/**
+ * Las cuatro vistas de cada moto, en el orden de un giro completo: de
+ * perfil con el frente hacia la izquierda, de frente, el otro perfil y por
+ * detrás. Fotos en public/modelos/fotos/<modelo>/<vista>.webp.
+ */
+export const VISTAS = [
+  { id: 'izquierda', label: 'Lado izquierdo' },
+  { id: 'frente', label: 'Frente' },
+  { id: 'derecha', label: 'Lado derecho' },
+  { id: 'atras', label: 'Atrás' },
+]
+const vistasDe = (id) => VISTAS.map((v) => ({ ...v, src: `/modelos/fotos/${id}/${v.id}.webp` }))
+const fotoDe = (id) => `/modelos/fotos/${id}/izquierda.webp`
+
 export const MOCK_MODELOS = [
   {
     id: 'one',
@@ -42,7 +56,8 @@ export const MOCK_MODELOS = [
     // Un color por cada foto real: no se ofrece un color que no se puede mostrar.
     colores: [{ id: 'crema', nombre: 'Crema y menta', hex: '#e8e1cb' }],
     // Imágenes en public/modelos/fotos (ver README, "Imágenes de las motos").
-    fotos: { crema: '/modelos/fotos/one-crema.webp' },
+    fotos: { crema: fotoDe('one') },
+    vistas: { crema: vistasDe('one') },
   },
   {
     id: 'city',
@@ -69,14 +84,38 @@ export const MOCK_MODELOS = [
       'Precio por flotilla a partir de 5 unidades',
     ],
     ilustracion: { parabrisas: true, parrilla: true, caja: false, dobleBateria: false },
-    colores: [
-      { id: 'grafito', nombre: 'Grafito', hex: '#3b3d42' },
-      { id: 'naranja', nombre: 'Naranja', hex: '#e8501e' },
-    ],
-    fotos: {
-      grafito: '/modelos/fotos/city-grafito.webp',
-      naranja: '/modelos/fotos/city-naranja.webp',
+    colores: [{ id: 'naranja', nombre: 'Naranja', hex: '#e8501e' }],
+    fotos: { naranja: fotoDe('city') },
+    vistas: { naranja: vistasDe('city') },
+  },
+  {
+    // Nombre provisional: cámbialo aquí y el sitio entero se actualiza.
+    id: 'street',
+    nombre: 'STREET',
+    tagline: 'Hecha para el trabajo diario',
+    perfil: 'trabajo',
+    perfilLabel: 'Ciudad y reparto',
+    precio: null,
+    requiereLicencia: true,
+    resumen:
+      'Carrocería grafito de líneas rectas, parabrisas, defensa de acero y parrilla trasera para carga. Para quien vive en la calle todos los días: mensajería, reparto o el trayecto diario, sin gastar en gasolina.',
+    specs: {
+      autonomia: 90,
+      velocidad: 85,
+      motor: 3000,
+      bateria: 'Litio 72V 30Ah',
+      frenos: 'Disco delantero y trasero',
+      llantas: 'Aluminio 12" delantera, 10" trasera',
     },
+    puntos: [
+      'Motor de 3,000 W y hasta 85 km/h',
+      'Parabrisas, defensa de acero y parrilla de carga',
+      'Precio por flotilla a partir de 5 unidades',
+    ],
+    ilustracion: { parabrisas: true, parrilla: true, caja: false, dobleBateria: false },
+    colores: [{ id: 'grafito', nombre: 'Grafito', hex: '#3b3d42' }],
+    fotos: { grafito: fotoDe('street') },
+    vistas: { grafito: vistasDe('street') },
   },
   {
     id: 'gt',
@@ -106,7 +145,8 @@ export const MOCK_MODELOS = [
     ],
     ilustracion: { parabrisas: true, parrilla: true, caja: false, dobleBateria: false, deportiva: true },
     colores: [{ id: 'blanco', nombre: 'Blanco perla', hex: '#e7e6ea' }],
-    fotos: { blanco: '/modelos/fotos/gt-blanco.webp' },
+    fotos: { blanco: fotoDe('gt') },
+    vistas: { blanco: vistasDe('gt') },
   },
 ]
 
@@ -172,7 +212,7 @@ export const MOCK_PREGUNTAS = [
     id: 'licencia',
     pregunta: '¿Necesito licencia y placas?',
     respuesta:
-      'Depende del modelo. yolt ONE (1,000 W y 50 km/h) se mantiene dentro del límite que suele clasificarse como ciclomotor y no exige licencia tipo M. yolt CITY y GT sí requieren licencia tipo M y placas. Tu distribuidor te entrega la factura y el certificado de origen, que es lo que necesitas para inscribir el vehículo ante la SAT.',
+      'Depende del modelo. yolt ONE (1,000 W y 50 km/h) se mantiene dentro del límite que suele clasificarse como ciclomotor y no exige licencia tipo M. yolt CITY, STREET y GT sí requieren licencia tipo M y placas. Tu distribuidor te entrega la factura y el certificado de origen, que es lo que necesitas para inscribir el vehículo ante la SAT.',
   },
   {
     id: 'carga-departamento',
@@ -184,7 +224,7 @@ export const MOCK_PREGUNTAS = [
     id: 'vida-bateria',
     pregunta: '¿Cuánto dura la batería antes de perder capacidad?',
     respuesta:
-      'Depende del tipo de batería. yolt CITY y GT usan litio, que conserva la mayor parte de su capacidad durante varios años de uso diario. yolt ONE usa plomo-ácido: es más económica y su vida útil es menor. En ambos casos la batería tiene garantía propia y se puede reemplazar sin cambiar la moto.',
+      'Depende del tipo de batería. yolt CITY, STREET y GT usan litio, que conserva la mayor parte de su capacidad durante varios años de uso diario. yolt ONE usa plomo-ácido: es más económica y su vida útil es menor. En ambos casos la batería tiene garantía propia y se puede reemplazar sin cambiar la moto.',
   },
   {
     id: 'lluvia',

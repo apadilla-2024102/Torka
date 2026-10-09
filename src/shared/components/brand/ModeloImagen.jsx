@@ -13,9 +13,9 @@ export const rutaRender = (modeloId, colorId) => `/modelos/renders/${modeloId}-$
  *
  * Así subir o quitar imágenes nunca deja un icono roto.
  *
- * `ajustada` recorta los márgenes laterales vacíos de la foto (cuadro 4:3):
- * la moto se ve más grande sin cortar nada, porque ninguna foto ocupa más
- * de ese ancho. Úsala con contenedores 4:3.
+ * `ajustada` se conserva por compatibilidad: las fotos de perfil ocupan casi
+ * todo el ancho del lienzo, así que la moto siempre se muestra completa
+ * (contain). Usa contenedores 44:27, la proporción de las fotos.
  *
  * `destello` hace pasar cada pocos segundos un reflejo de luz por la
  * carrocería (solo sobre la moto: la foto misma sirve de máscara).
@@ -35,7 +35,7 @@ export default function ModeloImagen({ modelo, colorId, className = '', transici
   const estilo = transicion ? { viewTransitionName: `moto-${modelo.id}` } : undefined
 
   if (src && destello) {
-    const ajuste = ajustada ? 'cover' : 'contain'
+    const ajuste = 'contain'
     return (
       <span className={`relative block ${className}`} style={estilo}>
         <img
@@ -47,7 +47,7 @@ export default function ModeloImagen({ modelo, colorId, className = '', transici
           loading={prioridad ? 'eager' : 'lazy'}
           fetchPriority={prioridad ? 'high' : undefined}
           decoding="async"
-          className={`foto-moto h-full w-full ${ajustada ? 'object-cover' : 'object-contain'}`}
+          className={`foto-moto h-full w-full object-contain`}
         />
         <span
           aria-hidden="true"
@@ -78,7 +78,7 @@ export default function ModeloImagen({ modelo, colorId, className = '', transici
         loading={prioridad ? 'eager' : 'lazy'}
         fetchPriority={prioridad ? 'high' : undefined}
         decoding="async"
-        className={`foto-moto ${ajustada ? 'object-cover' : 'object-contain'} ${className}`}
+        className={`foto-moto object-contain ${className}`}
         style={estilo}
       />
     )

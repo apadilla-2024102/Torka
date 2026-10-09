@@ -41,7 +41,7 @@ export default function DesfileModelos({ modelos }) {
                     {modelo.nombre}
                   </span>
                   <span className="relative block transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-4 group-hover:scale-105">
-                    <ModeloImagen modelo={modelo} colorId={color.id} transicion={false} ajustada className="aspect-[4/3] w-full" />
+                    <ModeloImagen modelo={modelo} colorId={color.id} transicion={false} ajustada className="aspect-[44/27] w-full" />
                   </span>
                   <span className="mt-2 flex items-baseline justify-between gap-3 px-1">
                     <span>
