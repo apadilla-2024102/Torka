@@ -3,11 +3,17 @@ import { getModelos } from '../../../shared/api/modelosApi.js'
 import EncabezadoPagina from '../../../shared/components/layout/EncabezadoPagina.jsx'
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import FormCotizacion from '../components/FormCotizacion.jsx'
+import { useSeo } from '../../../shared/seo/useSeo.js'
 
 export const cotizarLoader = async () => ({ modelos: await getModelos() })
 
 export default function CotizarPage() {
   const { modelos } = useLoaderData()
+  useSeo({
+    titulo: 'Solicitar cotización',
+    descripcion:
+      'Pide la cotización de tu moto eléctrica yolt en un minuto. Te respondemos por WhatsApp con el precio vigente, opciones de pago y prueba de manejo.',
+  })
   const [params] = useSearchParams()
   const modelo = modelos.find((m) => m.id === params.get('modelo'))
   const colorId = modelo?.colores.some((c) => c.id === params.get('color')) ? params.get('color') : undefined

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'motion/react'
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import TituloSeccion from '../../../shared/components/ui/TituloSeccion.jsx'
-import Boton from '../../../shared/components/ui/Boton.jsx'
+import { Link } from 'react-router-dom'
 import { CURVA, EN_VISTA, escalonar, subir } from '../../../shared/lib/movimiento.js'
 
 /** Lo que ofrece el showroom (sistema de marca yolt). */
@@ -68,9 +68,9 @@ export default function Experiencia() {
           </motion.ol>
 
           <motion.div initial="oculto" whileInView="visible" viewport={EN_VISTA} variants={subir} className="mt-10">
-            <Boton to="/distribuidores" variante="secundario" sobreLienzo>
-              Agendar visita
-            </Boton>
+            <Link to="/distribuidores" viewTransition className="font-medium text-tinta underline underline-offset-4">
+              Ver distribuidores y horarios
+            </Link>
           </motion.div>
         </div>
 

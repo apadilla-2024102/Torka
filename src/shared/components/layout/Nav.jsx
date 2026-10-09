@@ -99,7 +99,7 @@ export default function Nav() {
               propio display y lo dejaba visible, empujando el menú fuera. */}
           <span className="hidden sm:contents">
             <Boton to="/cotizar" variante="secundario" className="min-h-11 px-5">
-              Cotizar
+              Solicitar cotización
             </Boton>
           </span>
           <button
@@ -155,7 +155,7 @@ export default function Nav() {
               animate={{ opacity: 1, y: 0, transition: { delay: 0.45, duration: 0.4, ease: CURVA.entrar } }}
             >
               <Boton to="/cotizar" className="w-full">
-                Cotizar una moto
+                Solicitar cotización
               </Boton>
             </motion.div>
           </motion.div>

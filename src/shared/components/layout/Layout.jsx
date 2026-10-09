@@ -1,15 +1,40 @@
-import { Outlet, ScrollRestoration } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
 import BarraMovil from './BarraMovil.jsx'
 import { useScrollAHash } from '../../hooks/useScrollAHash.js'
 import { useScrollSuave } from '../../hooks/useScrollSuave.js'
 import CursorMarca from '../intro/CursorMarca.jsx'
+import BotonWhatsApp from './BotonWhatsApp.jsx'
+import AvisoCookies from '../legal/AvisoCookies.jsx'
+import { registrarVista } from '../../analitica/analitica.js'
+import { esquemaNegocio } from '../../seo/esquemas.js'
 
 /** Estructura común a todas las páginas: navegación, contenido y pie. */
 export default function Layout() {
   useScrollAHash()
   useScrollSuave()
+  const { pathname } = useLocation()
+
+  // Vista de página en la analítica en cada cambio de ruta (el título ya
+  // lo puso la página).
+  useEffect(() => {
+    const t = setTimeout(() => registrarVista(pathname), 0)
+    return () => clearTimeout(t)
+  }, [pathname])
+
+  // Datos estructurados del negocio, comunes a todo el sitio.
+  useEffect(() => {
+    let s = document.getElementById('ld-negocio')
+    if (!s) {
+      s = document.createElement('script')
+      s.type = 'application/ld+json'
+      s.id = 'ld-negocio'
+      document.head.appendChild(s)
+    }
+    s.textContent = JSON.stringify(esquemaNegocio())
+  }, [])
 
   return (
     <>
@@ -27,6 +52,8 @@ export default function Layout() {
       </main>
       <Footer />
       <BarraMovil />
+      <BotonWhatsApp />
+      <AvisoCookies />
       <CursorMarca />
       <ScrollRestoration />
     </>

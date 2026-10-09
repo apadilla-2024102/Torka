@@ -70,10 +70,7 @@ export default function Hero({ modeloPortada }) {
             misma distancia en gasolina, unos Q{qGasolina}. Frenos de disco y mantenimiento mínimo.
           </motion.p>
           <motion.div variants={subir} className="mt-10 flex flex-wrap items-center gap-3">
-            <Boton to="/modelos">Ver la gama</Boton>
-            <Boton to="/cotizar" variante="secundario">
-              Agendar prueba de manejo
-            </Boton>
+            <Boton to="/cotizar">Solicitar cotización</Boton>
           </motion.div>
         </motion.div>
 

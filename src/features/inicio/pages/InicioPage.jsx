@@ -12,6 +12,7 @@ import LlamadoFinal from '../components/LlamadoFinal.jsx'
 import DesfileModelos from '../components/DesfileModelos.jsx'
 import Showroom from '../components/Showroom.jsx'
 import Experiencia from '../components/Experiencia.jsx'
+import { useSeo } from '../../../shared/seo/useSeo.js'
 
 export const inicioLoader = async () => {
   const [modelos, preguntas] = await Promise.all([getModelos(), getPreguntas()])
@@ -27,6 +28,10 @@ export const inicioLoader = async () => {
  */
 export default function InicioPage() {
   const { modelos, preguntas } = useLoaderData()
+  useSeo({
+    descripcion:
+      'Motos eléctricas yolt en Guatemala: ONE, CITY, STREET y GT. Recorre 90 km con unos Q5 de luz, sin afinaciones. Solicita tu cotización y prueba de manejo.',
+  })
 
   return (
     <>

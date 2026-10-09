@@ -3,13 +3,18 @@ import { getDistribuidores } from '../../../shared/api/distribuidoresApi.js'
 import EncabezadoPagina from '../../../shared/components/layout/EncabezadoPagina.jsx'
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import Boton from '../../../shared/components/ui/Boton.jsx'
-import { NEGOCIO } from '../../../shared/config/negocio.js'
 import DistribuidorItem from '../components/DistribuidorItem.jsx'
+import { useSeo } from '../../../shared/seo/useSeo.js'
 
 export const distribuidoresLoader = async () => ({ distribuidores: await getDistribuidores() })
 
 export default function DistribuidoresPage() {
   const { distribuidores } = useLoaderData()
+  useSeo({
+    titulo: 'Distribuidores en Guatemala',
+    descripcion:
+      'Encuentra el distribuidor yolt más cercano en Guatemala: dirección, horario, prueba de manejo y servicio autorizado. Precios especiales para flotillas.',
+  })
 
   return (
     <>
@@ -45,8 +50,8 @@ export default function DistribuidoresPage() {
               la propuesta para tu operación.
             </p>
           </div>
-          <Boton href={`mailto:${NEGOCIO.correoVentas}?subject=Flotilla%20yolt`} className="shrink-0">
-            Escribir a ventas
+          <Boton to="/cotizar" className="shrink-0">
+            Solicitar cotización
           </Boton>
         </section>
       </Contenedor>

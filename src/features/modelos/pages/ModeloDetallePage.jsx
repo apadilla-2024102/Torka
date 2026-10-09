@@ -7,13 +7,14 @@ import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import ModeloImagen from '../../../shared/components/brand/ModeloImagen.jsx'
 import Boton from '../../../shared/components/ui/Boton.jsx'
 import LlamadoCotizar from '../../../shared/components/ui/LlamadoCotizar.jsx'
-import { enlaceWhatsApp } from '../../../shared/config/negocio.js'
 import { precioModelo } from '../../../shared/lib/formato.js'
 import SelectorColor from '../components/SelectorColor.jsx'
 import FichaTecnica from '../components/FichaTecnica.jsx'
 import CuotaEstimada from '../components/CuotaEstimada.jsx'
 import VisorModelo from '../components/VisorModelo.jsx'
 import { useIntro } from '../../../shared/components/intro/IntroContexto.jsx'
+import { useSeo } from '../../../shared/seo/useSeo.js'
+import { esquemaMigas, esquemaModelo } from '../../../shared/seo/esquemas.js'
 
 export const modeloDetalleLoader = async ({ params }) => {
   const [modelo, modelos] = await Promise.all([getModeloPorId(params.id), getModelos()])
@@ -23,6 +24,19 @@ export const modeloDetalleLoader = async ({ params }) => {
 
 export default function ModeloDetallePage() {
   const { modelo, otros } = useLoaderData()
+  useSeo({
+    titulo: `${modelo.nombre}, moto eléctrica de ${modelo.specs.motor.toLocaleString('en-US')} W`,
+    descripcion: `yolt ${modelo.nombre}: ${modelo.specs.autonomia} km de autonomía, hasta ${modelo.specs.velocidad} km/h, batería de ${modelo.specs.bateria.replace(/^\S+/, (t) => t.toLowerCase())} y frenos de disco. Mírala por todos sus lados y cotiza.`,
+    imagen: Object.values(modelo.fotos ?? {})[0],
+    jsonLd: [
+      esquemaModelo(modelo),
+      esquemaMigas([
+        { nombre: 'Inicio', ruta: '/' },
+        { nombre: 'Modelos', ruta: '/modelos' },
+        { nombre: `yolt ${modelo.nombre}`, ruta: `/modelos/${modelo.id}` },
+      ]),
+    ],
+  })
   const { lista } = useIntro()
   // El color elegido vive en la URL y viaja a la cotización.
   const [params, setParams] = useSearchParams()
@@ -88,16 +102,7 @@ export default function ModeloDetallePage() {
 
               <motion.div variants={subir} className="mt-9 flex flex-wrap gap-3">
                 <Boton to={`/cotizar?modelo=${modelo.id}&color=${colorId}`}>
-                  {modelo.proximamente ? 'Avísame cuando llegue' : `Cotizar la ${modelo.nombre}`}
-                </Boton>
-                <Boton
-                  href={enlaceWhatsApp(`Hola, me interesa la yolt ${modelo.nombre}.`)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variante="secundario"
-                  sobreLienzo
-                >
-                  Preguntar por WhatsApp
+                  {modelo.proximamente ? 'Avísame cuando llegue' : 'Solicitar cotización'}
                 </Boton>
               </motion.div>
             </motion.div>

@@ -2,7 +2,6 @@ import { useRef } from 'react'
 import { motion, useInView } from 'motion/react'
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import Boton from '../../../shared/components/ui/Boton.jsx'
-import { enlaceWhatsApp } from '../../../shared/config/negocio.js'
 import { EN_VISTA, escalonar, lineaMascara, subir } from '../../../shared/lib/movimiento.js'
 
 /**
@@ -49,15 +48,6 @@ export default function LlamadoFinal() {
             <motion.div variants={subir} className="mt-10 flex flex-wrap gap-3">
               <Boton to="/cotizar" sobreLienzo={false}>
                 Solicitar cotización
-              </Boton>
-              <Boton
-                href={enlaceWhatsApp('Hola, quiero agendar una prueba de manejo de yolt.')}
-                target="_blank"
-                rel="noopener noreferrer"
-                variante="secundario"
-                sobreLienzo={false}
-              >
-                Escribir por WhatsApp
               </Boton>
             </motion.div>
           </div>

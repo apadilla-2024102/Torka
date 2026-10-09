@@ -4,11 +4,19 @@ import EncabezadoPagina from '../../../shared/components/layout/EncabezadoPagina
 import Contenedor from '../../../shared/components/layout/Contenedor.jsx'
 import LlamadoCotizar from '../../../shared/components/ui/LlamadoCotizar.jsx'
 import Pregunta from '../components/Pregunta.jsx'
+import { useSeo } from '../../../shared/seo/useSeo.js'
+import { esquemaPreguntas } from '../../../shared/seo/esquemas.js'
 
 export const preguntasLoader = async () => ({ preguntas: await getPreguntas() })
 
 export default function PreguntasPage() {
   const { preguntas } = useLoaderData()
+  useSeo({
+    titulo: 'Preguntas frecuentes',
+    descripcion:
+      'Licencia, placas, carga en casa, vida de la batería, lluvia, ahorro y garantía: resolvemos las dudas antes de comprar una moto eléctrica yolt.',
+    jsonLd: esquemaPreguntas(preguntas),
+  })
   // Si se llega con un enlace a una pregunta concreta, se abre esa.
   const { hash } = useLocation()
   const abiertaId = hash.slice(1)

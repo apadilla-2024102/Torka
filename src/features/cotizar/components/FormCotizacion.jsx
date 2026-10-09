@@ -1,4 +1,6 @@
 import { useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { registrarEvento } from '../../../shared/analitica/analitica.js'
 import { motion } from 'motion/react'
 import { DEPARTAMENTOS_GT } from '../../../shared/api/mockData.js'
 import { enlaceWhatsApp } from '../../../shared/config/negocio.js'
@@ -50,6 +52,7 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
     }
 
     const enlace = enlaceWhatsApp(armarMensaje(datos, modelo, color))
+    registrarEvento('generate_lead', { modelo: datos.modelo, departamento: datos.departamento })
     window.open(enlace, '_blank', 'noopener,noreferrer')
     setEnlaceEnviado(enlace)
   }
@@ -208,7 +211,12 @@ export default function FormCotizacion({ modelos, modeloInicial, colorInicial })
 
       <div className="flex flex-col gap-4 border-t border-filete pt-7 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-md text-sm text-tinta-suave">
-          Al enviar se abre WhatsApp con tu mensaje listo. Tus datos solo se usan para responder esta cotización.
+          Al enviar se abre WhatsApp con tu mensaje listo. Tus datos solo se usan para responder esta cotización,
+          como explica la{' '}
+          <Link to="/privacidad" className="font-medium text-tinta underline underline-offset-4">
+            política de privacidad
+          </Link>
+          .
         </p>
         <Boton type="submit" className="shrink-0">
           Enviar por WhatsApp

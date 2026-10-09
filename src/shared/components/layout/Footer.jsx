@@ -2,6 +2,13 @@ import { Link } from 'react-router-dom'
 import Logo from '../brand/Logo.jsx'
 import Contenedor from './Contenedor.jsx'
 import { NEGOCIO } from '../../config/negocio.js'
+import { abrirAvisoCookies } from '../../analitica/analitica.js'
+
+const LEGALES = [
+  { to: '/aviso-legal', label: 'Aviso legal' },
+  { to: '/privacidad', label: 'Política de privacidad' },
+  { to: '/cookies', label: 'Aviso de cookies' },
+]
 
 const COLUMNAS = [
   {
@@ -69,10 +76,28 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-3 border-t border-filete pt-7 text-sm text-tinta-suave sm:flex-row sm:justify-between">
+        <div className="mt-14 flex flex-col gap-4 border-t border-filete pt-7 text-sm text-tinta-suave lg:flex-row lg:items-center lg:justify-between">
           <p>© {new Date().getFullYear()} yolt · Guatemala en movimiento</p>
-          <p>Precios y especificaciones de referencia. Confirma la ficha vigente con tu distribuidor.</p>
+          <nav aria-label="Información legal">
+            <ul className="flex flex-wrap gap-x-5 gap-y-2">
+              {LEGALES.map((l) => (
+                <li key={l.to}>
+                  <Link to={l.to} viewTransition className="underline-offset-4 hover:text-tinta hover:underline">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <button type="button" onClick={abrirAvisoCookies} className="underline-offset-4 hover:text-tinta hover:underline">
+                  Configurar cookies
+                </button>
+              </li>
+            </ul>
+          </nav>
         </div>
+        <p className="mt-4 text-xs text-tinta-suave">
+          Precios y especificaciones de referencia. Confirma la ficha vigente con tu distribuidor.
+        </p>
       </Contenedor>
     </footer>
   )
