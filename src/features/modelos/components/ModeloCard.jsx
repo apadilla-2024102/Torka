@@ -40,7 +40,7 @@ export default function ModeloCard({ modelo, ref }) {
             )}
             {/* Al pasar el cursor la moto rueda un poco hacia adelante. */}
             <div className="transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-3">
-              <ModeloImagen modelo={modelo} ajustada className="mx-auto aspect-[4/3] w-full max-w-[320px]" />
+              <ModeloImagen modelo={modelo} ajustada className="mx-auto aspect-[44/27] w-full max-w-[320px]" />
             </div>
           </div>
 

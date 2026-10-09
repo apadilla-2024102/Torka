@@ -4,6 +4,7 @@ import ModeloImagen from '../../../shared/components/brand/ModeloImagen.jsx'
 import { hayWebGL } from '../../../shared/components/brand/moto3d/webgl.js'
 import Decorado from '../../../shared/components/ui/Decorado.jsx'
 import Inclinar from '../../../shared/components/ui/Inclinar.jsx'
+import GiroVistas from './GiroVistas.jsx'
 import { CURVA } from '../../../shared/lib/movimiento.js'
 
 // Three.js pesa: solo se descarga al abrir una ficha, nunca en la portada.
@@ -25,7 +26,20 @@ export default function VisorModelo({ modelo, colorId }) {
   const [listo, setListo] = useState(false)
   const color = modelo.colores.find((c) => c.id === colorId) ?? modelo.colores[0]
   const conFoto = Boolean(modelo.fotos?.[color.id])
+  const vistas = modelo.vistas?.[color.id]
   const con3D = webgl && !conFoto
+
+  // Con las cuatro fotos reales, el visor es un giro de 360° de la unidad.
+  if (vistas?.length) {
+    return (
+      <figure>
+        <GiroVistas key={color.id} vistas={vistas} titulo={`yolt ${modelo.nombre} en ${color.nombre.toLowerCase()}`} />
+        <figcaption className="mt-4 text-sm text-tinta-suave">
+          Arrastra la moto o usa las flechas para verla por todos sus lados. Fotografías de la unidad real.
+        </figcaption>
+      </figure>
+    )
+  }
 
   return (
     <figure>
